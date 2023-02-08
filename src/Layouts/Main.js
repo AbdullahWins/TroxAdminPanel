@@ -1,10 +1,15 @@
 import React from "react";
-import Home from "../Pages/Home/Home";
+import { Outlet } from "react-router-dom";
+import SideNav from "../Components/Shared/SideNav/SideNav";
+import TopNav from "../Components/Shared/TopNav/TopNav";
 
 const Main = () => {
   return (
     <div>
-      <Home></Home>
+      <TopNav></TopNav>
+      <div className="flex items-center justify-between">
+        <SideNav></SideNav> <Outlet></Outlet>
+      </div>
     </div>
   );
 };

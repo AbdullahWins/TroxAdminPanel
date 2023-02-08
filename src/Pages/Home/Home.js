@@ -1,11 +1,13 @@
 import React from "react";
+import HomeBody from "../../Components/HomeBody/HomeBody";
 
 const Home = () => {
   return (
     <div>
-      <h2>Home Page</h2>
-<p className="text-red-400">idjfoiiasdfwe r we rew re w</p>
-      <h1 class="text-3xl font-bold underline text-red-900">Hello world!</h1>
+      <h1 className="text-3xl font-bold underline text-red-900">
+        Hello world!
+      </h1>
+      <HomeBody></HomeBody>
     </div>
   );
 };

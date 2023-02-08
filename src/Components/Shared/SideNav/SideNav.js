@@ -1,11 +1,7 @@
 import React from "react";
 
 const SideNav = () => {
-  return (
-    <div>
-      <h2>Side Nav</h2>
-    </div>
-  );
+  return <div>sidenav here</div>;
 };
 
 export default SideNav;
