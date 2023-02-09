@@ -1,6 +1,5 @@
 {
   "name": "trox-admin-panel",
-  "homepage": "trox.products8.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

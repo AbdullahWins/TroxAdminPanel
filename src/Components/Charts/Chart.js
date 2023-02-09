@@ -1,59 +1,30 @@
 import React from "react";
-import {
-  BarChart,
-  LineChart,
-  Line,
-  Bar,
-  CartesianGrid,
-  Legend,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+import ChartArea from "./ChartArea";
+import ChartBar from "./ChartBar";
+import ChartLine from "./ChartLine";
 
 const Chart = () => {
   const data = [
-    { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-    { name: "Page A", uv: 200, pv: 2400, amt: 2400 },
-    { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-    { name: "Page A", uv: 100, pv: 2400, amt: 2400 },
-    { name: "Page A", uv: 600, pv: 2400, amt: 2400 },
-    { name: "Page A", uv: 300, pv: 2400, amt: 2400 },
-    { name: "Page A", uv: 100, pv: 2400, amt: 2400 },
-    { name: "Page A", uv: 800, pv: 2400, amt: 2400 },
+    { name: "Page A", uv: 400, pv: 1100, amt: 2400 },
+    { name: "Page B", uv: 200, pv: 1400, amt: 2100 },
+    { name: "Page C", uv: 400, pv: 1800, amt: 1200 },
+    { name: "Page D", uv: 100, pv: 1100, amt: 2300 },
+    { name: "Page E", uv: 600, pv: 800, amt: 1400 },
+    { name: "Page F", uv: 300, pv: 2100, amt: 900 },
+    { name: "Page G", uv: 100, pv: 1700, amt: 2100 },
+    { name: "Page H", uv: 800, pv: 1400, amt: 1100 },
   ];
   return (
-    <div>
-      <LineChart
-        width={600}
-        height={300}
-        data={data}
-        margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-      >
-        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
-      <BarChart width={600} height={300} data={data}>
-        <XAxis dataKey="name" stroke="#8884d8" />
-        <YAxis />
-        <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
-        <Legend
-          width={100}
-          wrapperStyle={{
-            top: 40,
-            right: 20,
-            backgroundColor: "#f5f5f5",
-            border: "1px solid #d5d5d5",
-            borderRadius: 3,
-            lineHeight: "40px",
-          }}
-        />
-        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-        <Bar dataKey="uv" fill="#8884d8" barSize={30} />
-      </BarChart>
+    <div className="grid grid-cols-2 p-4 justify-around">
+      <div>
+        <ChartArea data={data}></ChartArea>
+      </div>
+      <div>
+        <ChartBar data={data}></ChartBar>
+      </div>
+      <div>
+        <ChartLine data={data}></ChartLine>
+      </div>
     </div>
   );
 };

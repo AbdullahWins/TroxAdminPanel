@@ -81,7 +81,7 @@ const TopNav = () => {
           </div>
         </div>
         <div>
-          <button className="btn btn-sm bg-orange-500 border-none text-white">
+          <button className="btn btn-sm bg-primaryMain border-none text-white">
             Generate Report
           </button>
         </div>
