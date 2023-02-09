@@ -6,7 +6,6 @@ import {
   Tooltip,
   AreaChart,
   Area,
-  ResponsiveContainer,
 } from "recharts";
 
 const ChartArea = ({ data }) => {
