@@ -5,9 +5,9 @@ import TopNav from "../Components/Shared/TopNav/TopNav";
 
 const Main = () => {
   return (
-    <div>
+    <div className="bg-whiteMid">
       <TopNav></TopNav>
-      <div className="flex items-center justify-between">
+      <div className="flex gap-4">
         <SideNav></SideNav> <Outlet></Outlet>
       </div>
     </div>
