@@ -1,4 +1,5 @@
 import React from "react";
+import CustomerChart from "../HomeBody/CustomerChart";
 import DeliveryChart from "../HomeBody/DeliveryChart";
 import TotalSalesChart from "../HomeBody/TotalSalesChart";
 import ChartLine from "./ChartLine";
@@ -15,17 +16,20 @@ const Chart = () => {
     { name: "Page H", uv: 800, pv: 1400, amt: 1100 },
   ];
   return (
-    <div className="grid grid-cols-2 p-4 items-center justify-around gap-4">
+    <section className="grid grid-cols-2 p-4 items-center justify-around gap-4">
+      <div className="bg-whiteHigh rounded-xl p-8">
+        <ChartLine data={data}></ChartLine>
+      </div>
       <div className="bg-whiteHigh rounded-xl p-8">
         <TotalSalesChart></TotalSalesChart>
       </div>
       <div className="bg-whiteHigh rounded-xl p-8">
+        <CustomerChart></CustomerChart>
+      </div>
+      <div className="bg-whiteHigh rounded-xl p-8">
         <DeliveryChart></DeliveryChart>
       </div>
-      <div>
-        <ChartLine data={data}></ChartLine>
-      </div>
-    </div>
+    </section>
   );
 };
 
