@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <div className="bg-whiteMid">
       <TopNav></TopNav>
-      <div className="flex gap-4">
+      <div className="flex gap-8">
         <SideNav></SideNav> <Outlet></Outlet>
       </div>
     </div>

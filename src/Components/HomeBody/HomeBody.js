@@ -3,9 +3,9 @@ import Chart from "../Charts/Chart";
 
 const HomeBody = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-start justify-center pt-10 gap-4 w-full">
       {/* 4 top cards */}
-      <section className="flex items-center justify-center">
+      <section className="flex items-center justify-center gap-8">
         {/* orange */}
         <div className="flex items-center justify-center bg-primaryMainLight px-12 py-10 rounded-xl">
           <div className="p-4 bg-whiteHigh bg-opacity-30 rounded-full">

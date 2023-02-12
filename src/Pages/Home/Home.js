@@ -3,7 +3,7 @@ import HomeBody from "../../Components/HomeBody/HomeBody";
 
 const Home = () => {
   return (
-    <div>
+    <div className="w-full">
       <HomeBody></HomeBody>
     </div>
   );
