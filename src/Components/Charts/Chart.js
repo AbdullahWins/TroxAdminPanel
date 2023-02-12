@@ -1,6 +1,6 @@
 import React from "react";
-import ChartArea from "./ChartArea";
-import ChartBar from "./ChartBar";
+import DeliveryChart from "../HomeBody/DeliveryChart";
+import TotalSalesChart from "../HomeBody/TotalSalesChart";
 import ChartLine from "./ChartLine";
 
 const Chart = () => {
@@ -15,12 +15,12 @@ const Chart = () => {
     { name: "Page H", uv: 800, pv: 1400, amt: 1100 },
   ];
   return (
-    <div className="grid grid-cols-2 p-4 justify-around">
-      <div>
-        <ChartArea data={data}></ChartArea>
+    <div className="grid grid-cols-2 p-4 items-center justify-around gap-4">
+      <div className="bg-whiteHigh rounded-xl p-8">
+        <TotalSalesChart></TotalSalesChart>
       </div>
-      <div>
-        <ChartBar data={data}></ChartBar>
+      <div className="bg-whiteHigh rounded-xl p-8">
+        <DeliveryChart></DeliveryChart>
       </div>
       <div>
         <ChartLine data={data}></ChartLine>

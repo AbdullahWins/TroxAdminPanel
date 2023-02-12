@@ -76,11 +76,15 @@ const SideNav = () => {
                 />
               </svg>
 
-              <p className={`${isOpen ? "hidden" : "block"}`}>Orders</p>
+              <p
+                className={`${isOpen ? "hidden" : "block"} font-bold`}
+              >
+                Orders
+              </p>
             </div>
           </div>
           <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start">
+            <div class="flex flex-col justify-start items-start ">
               <Link to="/processing">
                 <p>Processing</p>
               </Link>
