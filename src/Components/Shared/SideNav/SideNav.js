@@ -3,16 +3,34 @@ import { Link } from "react-router-dom";
 import avater from "../../../Assets/img/profile/avater.png";
 
 const SideNav = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isClosed, setIsClosed] = useState(false);
 
   const toggleSideNav = () => {
-    setIsOpen(!isOpen);
-    console.log(isOpen);
+    setIsClosed(!isClosed);
+    console.log(isClosed);
   };
+
+  const openSideNav = (e) => {
+    setIsClosed(false);
+    console.log(e);
+    console.log(isClosed);
+  };
+
+  const handleMouseEnter = () => {
+    setIsClosed(false);
+    console.log(isClosed);
+  };
+  const handleMouseLeave = () => {
+    setIsClosed(true);
+    console.log(isClosed);
+  };
+
   return (
     <div
-      className={`${
-        isOpen ? "w-28" : "w-96"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`transition-width transition-slowest ease ${
+        isClosed ? "w-28" : "w-96"
       } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
     >
       <section className="flex items-start justify-between p-4 gap-4 bg-secondaryMainLightest rounded-tr-lg">
@@ -21,13 +39,13 @@ const SideNav = () => {
         </div>
         <div
           className={`${
-            isOpen ? "hidden" : "block"
+            isClosed ? "hidden" : "block"
           } flex flex-col items-start justify-center`}
         >
           <p className="text-bold text-2xl font-black">William</p>
           <p className="text-xl">Super Admin</p>
         </div>
-        <div className={`${isOpen ? "hidden" : "block"}`}>
+        <div className={`${isClosed ? "hidden" : "block"}`}>
           <button>
             <svg
               width="36"
@@ -49,7 +67,7 @@ const SideNav = () => {
         {/* dashboard */}
         <div
           className={`flex items-center ${
-            isOpen ? "justify-center" : "justify-start"
+            isClosed ? "justify-center" : "justify-start"
           }  p-3 bg-primaryMainLightest w-full text-primaryMain`}
         >
           <svg
@@ -64,15 +82,22 @@ const SideNav = () => {
             />
           </svg>
 
-          <p className={`${isOpen ? "hidden" : "block"} text-xl`}>Dashboard</p>
+          <p className={`${isClosed ? "hidden" : "block"} text-xl`}>
+            Dashboard
+          </p>
         </div>
         {/* order */}
-        <div className="collapse w-full mx-auto">
+        <div
+          onClick={openSideNav}
+          className={`collapse ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto`}
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isOpen ? "justify-center" : "justify-start"
+                isClosed ? "justify-center" : "justify-start"
               }`}
             >
               <svg
@@ -87,10 +112,9 @@ const SideNav = () => {
                   fill="#6C6C6C"
                 />
               </svg>
-
               <p
                 className={`${
-                  isOpen ? "hidden" : "block"
+                  isClosed ? "hidden" : "block"
                 } text-xl flex items-center justify-between w-full`}
               >
                 <span>Orders</span>
@@ -127,12 +151,16 @@ const SideNav = () => {
           </div>
         </div>
         {/* Delivery Man */}
-        <div className="collapse w-full mx-auto">
+        <div
+          className={`collapse ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto`}
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isOpen ? "justify-center" : "justify-start"
+                isClosed ? "justify-center" : "justify-start"
               }`}
             >
               <svg
@@ -157,7 +185,7 @@ const SideNav = () => {
               </svg>
               <p
                 className={`${
-                  isOpen ? "hidden" : "block"
+                  isClosed ? "hidden" : "block"
                 } text-xl flex items-center justify-between w-full`}
               >
                 <span>Delivery Man</span>
@@ -194,12 +222,16 @@ const SideNav = () => {
           </div>
         </div>
         {/* Customers */}
-        <div className="collapse w-full mx-auto">
+        <div
+          className={`collapse ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto`}
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isOpen ? "justify-center" : "justify-start"
+                isClosed ? "justify-center" : "justify-start"
               }`}
             >
               <svg
@@ -216,7 +248,7 @@ const SideNav = () => {
               </svg>
               <p
                 className={`${
-                  isOpen ? "hidden" : "block"
+                  isClosed ? "hidden" : "block"
                 } text-xl flex items-center justify-between w-full`}
               >
                 <span>Customer</span>
@@ -250,12 +282,16 @@ const SideNav = () => {
           </div>
         </div>
         {/* Locations */}
-        <div className="collapse w-full mx-auto">
+        <div
+          className={`collapse ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto`}
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isOpen ? "justify-center" : "justify-start"
+                isClosed ? "justify-center" : "justify-start"
               }`}
             >
               <svg
@@ -272,7 +308,7 @@ const SideNav = () => {
               </svg>
               <p
                 className={`${
-                  isOpen ? "hidden" : "block"
+                  isClosed ? "hidden" : "block"
                 } text-xl flex items-center justify-between w-full`}
               >
                 <span>Locations</span>
@@ -300,12 +336,16 @@ const SideNav = () => {
           </div>
         </div>
         {/* Transaction */}
-        <div className="collapse w-full mx-auto">
+        <div
+          className={`collapse ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto`}
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isOpen ? "justify-center" : "justify-start"
+                isClosed ? "justify-center" : "justify-start"
               }`}
             >
               <svg
@@ -338,7 +378,7 @@ const SideNav = () => {
               </svg>
               <p
                 className={`${
-                  isOpen ? "hidden" : "block"
+                  isClosed ? "hidden" : "block"
                 } text-xl flex items-center justify-between w-full`}
               >
                 <span>Transaction</span>
@@ -372,12 +412,16 @@ const SideNav = () => {
           </div>
         </div>
         {/* Warehouse */}
-        <div className="collapse w-full mx-auto">
+        <div
+          className={`collapse ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto`}
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isOpen ? "justify-center" : "justify-start"
+                isClosed ? "justify-center" : "justify-start"
               }`}
             >
               <svg
@@ -394,7 +438,7 @@ const SideNav = () => {
               </svg>
               <p
                 className={`${
-                  isOpen ? "hidden" : "block"
+                  isClosed ? "hidden" : "block"
                 } text-xl flex items-center justify-between w-full`}
               >
                 <span>Warehouse</span>
@@ -425,12 +469,16 @@ const SideNav = () => {
           </div>
         </div>
         {/* Staff */}
-        <div className="collapse w-full mx-auto">
+        <div
+          className={`collapse ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto`}
+        >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isOpen ? "justify-center" : "justify-start"
+                isClosed ? "justify-center" : "justify-start"
               }`}
             >
               <svg
@@ -447,7 +495,7 @@ const SideNav = () => {
               </svg>
               <p
                 className={`${
-                  isOpen ? "hidden" : "block"
+                  isClosed ? "hidden" : "block"
                 } text-xl flex items-center justify-between w-full`}
               >
                 <span>Staff</span>
@@ -480,7 +528,7 @@ const SideNav = () => {
         {/* Logout */}
         <div
           className={`flex items-center ${
-            isOpen ? "justify-center" : "justify-start"
+            isClosed ? "justify-center" : "justify-start"
           }  p-3 bg-primaryMainLightest w-full text-primaryMain`}
         >
           <svg
@@ -499,7 +547,7 @@ const SideNav = () => {
               fill="#6C6C6C"
             />
           </svg>
-          <p className={`${isOpen ? "hidden" : "block"}`}>Logout</p>
+          <p className={`${isClosed ? "hidden" : "block"}`}>Logout</p>
         </div>
         {/* toggle */}
         <div className="pt-20 p-4 w-full rounded-br-xl">

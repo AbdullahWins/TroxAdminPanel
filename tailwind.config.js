@@ -39,7 +39,11 @@ module.exports = {
       secondaryMainLighter: "#AFE2E2",
       secondaryMainLightest: "#D7F0F0",
     },
-    extend: {},
+    extend: {
+      transitionProperty: {
+        width: "width",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {

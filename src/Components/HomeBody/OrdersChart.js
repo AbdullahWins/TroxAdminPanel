@@ -62,6 +62,34 @@ const OrdersChart = () => {
                 <td>Red</td>
                 <td>Red</td>
               </tr>
+              <tr>
+                <th>354654654</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+                <td>Red</td>
+              </tr>
+              <tr>
+                <th>354654654</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+                <td>Red</td>
+              </tr>
+              <tr>
+                <th>354654654</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+                <td>Red</td>
+              </tr>
+              <tr>
+                <th>354654654</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+                <td>Red</td>
+              </tr>
             </tbody>
           </table>
         </div>
