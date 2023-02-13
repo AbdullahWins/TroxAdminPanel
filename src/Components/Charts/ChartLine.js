@@ -12,8 +12,8 @@ import {
 const ChartLine = ({ data }) => {
   return (
         <LineChart
-          width={500}
-          height={300}
+      width={800}
+      height={550}
           data={data}
           margin={{
             top: 5,

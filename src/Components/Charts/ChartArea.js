@@ -11,8 +11,8 @@ import {
 const ChartArea = ({ data }) => {
   return (
     <AreaChart
-      width={600}
-      height={300}
+      width={800}
+      height={550}
       data={data}
       margin={{
         top: 0,

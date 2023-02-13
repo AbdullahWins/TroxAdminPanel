@@ -61,7 +61,9 @@ const TopNav = () => {
                   fill="#919191"
                 />
               </svg>
-              <span className="badge badge-sm indicator-item">5</span>
+              <span className="badge badge-sm rounded-full bg-successColor border-none indicator-item">
+                5
+              </span>
             </div>
           </label>
           <div
@@ -81,7 +83,7 @@ const TopNav = () => {
           </div>
         </div>
         <div>
-          <button className="btn btn-sm bg-primaryMain border-none text-white">
+          <button className="btn bg-primaryMain border-none text-white ml-3">
             Generate Report
           </button>
         </div>

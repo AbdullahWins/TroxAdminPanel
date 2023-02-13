@@ -12,22 +12,26 @@ const SideNav = () => {
   return (
     <div
       className={`${
-        isOpen ? "w-24" : "w-72"
-      } bg-whiteHigh h-full rounded-r-lg mt-10`}
+        isOpen ? "w-28" : "w-96"
+      } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
     >
-      <section className="flex items-start justify-between p-4 gap-2 bg-secondaryMainLightest rounded-tr-lg">
+      <section className="flex items-start justify-between p-4 gap-4 bg-secondaryMainLightest rounded-tr-lg">
         <div>
-          <img className="w-14" src={avater} alt="" />
+          <img className="w-20" src={avater} alt="" />
         </div>
-        <div className={`${isOpen ? "hidden" : "block"}`}>
-          <p className="text-bold text-lg font-black">William</p>
-          <p>Super Admin</p>
+        <div
+          className={`${
+            isOpen ? "hidden" : "block"
+          } flex flex-col items-start justify-center`}
+        >
+          <p className="text-bold text-2xl font-black">William</p>
+          <p className="text-xl">Super Admin</p>
         </div>
         <div className={`${isOpen ? "hidden" : "block"}`}>
           <button>
             <svg
-              width="24"
-              height="24"
+              width="36"
+              height="36"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -41,12 +45,16 @@ const SideNav = () => {
         </div>
       </section>
       {/* routes */}
-      <section className="flex flex-col justify-start items-start mt-2">
+      <section className="flex flex-col justify-start items-start gap-3 mt-2">
         {/* dashboard */}
-        <div className="flex justify-start items-center p-3 bg-primaryMainLightest w-full text-primaryMain">
+        <div
+          className={`flex items-center ${
+            isOpen ? "justify-center" : "justify-start"
+          }  p-3 bg-primaryMainLightest w-full text-primaryMain`}
+        >
           <svg
-            width="24"
-            height="24"
+            width="36"
+            height="36"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -56,16 +64,20 @@ const SideNav = () => {
             />
           </svg>
 
-          <p className={`${isOpen ? "hidden" : "block"}`}>Dashboard</p>
+          <p className={`${isOpen ? "hidden" : "block"} text-xl`}>Dashboard</p>
         </div>
         {/* order */}
-        <div className="collapse p-0 m-0">
+        <div className="collapse w-full mx-auto">
           <input type="checkbox" />
           <div className="collapse-title">
-            <div className="flex justify-start items-center">
+            <div
+              className={`flex items-center ${
+                isOpen ? "justify-center" : "justify-start"
+              }`}
+            >
               <svg
-                width="24"
-                height="24"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,14 +89,28 @@ const SideNav = () => {
               </svg>
 
               <p
-                className={`${isOpen ? "hidden" : "block"} font-bold`}
+                className={`${
+                  isOpen ? "hidden" : "block"
+                } text-xl flex items-center justify-between w-full`}
               >
-                Orders
+                <span>Orders</span>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
+                    fill="#6C6C6C"
+                  />
+                </svg>
               </p>
             </div>
           </div>
           <div className="collapse-content">
-            <div className="flex flex-col justify-start items-start ">
+            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
               <Link to="/processing">
                 <p>Processing</p>
               </Link>
@@ -101,13 +127,17 @@ const SideNav = () => {
           </div>
         </div>
         {/* Delivery Man */}
-        <div className="collapse p-0 m-0">
+        <div className="collapse w-full mx-auto">
           <input type="checkbox" />
           <div className="collapse-title">
-            <div className="flex justify-start items-center">
+            <div
+              className={`flex items-center ${
+                isOpen ? "justify-center" : "justify-start"
+              }`}
+            >
               <svg
-                width="24"
-                height="24"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +155,25 @@ const SideNav = () => {
                   fill="#6C6C6C"
                 />
               </svg>
-
-              <p className={`${isOpen ? "hidden" : "block"}`}> Delivery</p>
+              <p
+                className={`${
+                  isOpen ? "hidden" : "block"
+                } text-xl flex items-center justify-between w-full`}
+              >
+                <span>Delivery Man</span>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
+                    fill="#6C6C6C"
+                  />
+                </svg>
+              </p>
             </div>
           </div>
           <div className="collapse-content">
@@ -147,13 +194,17 @@ const SideNav = () => {
           </div>
         </div>
         {/* Customers */}
-        <div className="collapse p-0 m-0">
+        <div className="collapse w-full mx-auto">
           <input type="checkbox" />
           <div className="collapse-title">
-            <div className="flex justify-start items-center">
+            <div
+              className={`flex items-center ${
+                isOpen ? "justify-center" : "justify-start"
+              }`}
+            >
               <svg
-                width="24"
-                height="24"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -163,8 +214,25 @@ const SideNav = () => {
                   fill="#6C6C6C"
                 />
               </svg>
-
-              <p className={`${isOpen ? "hidden" : "block"}`}>Customers</p>
+              <p
+                className={`${
+                  isOpen ? "hidden" : "block"
+                } text-xl flex items-center justify-between w-full`}
+              >
+                <span>Customer</span>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
+                    fill="#6C6C6C"
+                  />
+                </svg>
+              </p>
             </div>
           </div>
           <div className="collapse-content">
@@ -182,13 +250,17 @@ const SideNav = () => {
           </div>
         </div>
         {/* Locations */}
-        <div className="collapse p-0 m-0">
+        <div className="collapse w-full mx-auto">
           <input type="checkbox" />
           <div className="collapse-title">
-            <div className="flex justify-start items-center">
+            <div
+              className={`flex items-center ${
+                isOpen ? "justify-center" : "justify-start"
+              }`}
+            >
               <svg
-                width="24"
-                height="24"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -198,8 +270,25 @@ const SideNav = () => {
                   fill="#6C6C6C"
                 />
               </svg>
-
-              <p className={`${isOpen ? "hidden" : "block"}`}>Locations</p>
+              <p
+                className={`${
+                  isOpen ? "hidden" : "block"
+                } text-xl flex items-center justify-between w-full`}
+              >
+                <span>Locations</span>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
+                    fill="#6C6C6C"
+                  />
+                </svg>
+              </p>
             </div>
           </div>
           <div className="collapse-content">
@@ -211,13 +300,17 @@ const SideNav = () => {
           </div>
         </div>
         {/* Transaction */}
-        <div className="collapse p-0 m-0">
+        <div className="collapse w-full mx-auto">
           <input type="checkbox" />
           <div className="collapse-title">
-            <div className="flex justify-start items-center">
+            <div
+              className={`flex items-center ${
+                isOpen ? "justify-center" : "justify-start"
+              }`}
+            >
               <svg
-                width="24"
-                height="24"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -243,8 +336,25 @@ const SideNav = () => {
                   fill="#6C6C6C"
                 />
               </svg>
-
-              <p className={`${isOpen ? "hidden" : "block"}`}>Transaction</p>
+              <p
+                className={`${
+                  isOpen ? "hidden" : "block"
+                } text-xl flex items-center justify-between w-full`}
+              >
+                <span>Transaction</span>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
+                    fill="#6C6C6C"
+                  />
+                </svg>
+              </p>
             </div>
           </div>
           <div className="collapse-content">
@@ -262,13 +372,17 @@ const SideNav = () => {
           </div>
         </div>
         {/* Warehouse */}
-        <div className="collapse p-0 m-0">
+        <div className="collapse w-full mx-auto">
           <input type="checkbox" />
           <div className="collapse-title">
-            <div className="flex justify-start items-center">
+            <div
+              className={`flex items-center ${
+                isOpen ? "justify-center" : "justify-start"
+              }`}
+            >
               <svg
-                width="24"
-                height="24"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -278,8 +392,25 @@ const SideNav = () => {
                   fill="#6C6C6C"
                 />
               </svg>
-
-              <p className={`${isOpen ? "hidden" : "block"}`}>Warehouse</p>
+              <p
+                className={`${
+                  isOpen ? "hidden" : "block"
+                } text-xl flex items-center justify-between w-full`}
+              >
+                <span>Warehouse</span>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
+                    fill="#6C6C6C"
+                  />
+                </svg>
+              </p>
             </div>
           </div>
           <div className="collapse-content">
@@ -294,13 +425,17 @@ const SideNav = () => {
           </div>
         </div>
         {/* Staff */}
-        <div className="collapse p-0 m-0">
+        <div className="collapse w-full mx-auto">
           <input type="checkbox" />
           <div className="collapse-title">
-            <div className="flex justify-start items-center">
+            <div
+              className={`flex items-center ${
+                isOpen ? "justify-center" : "justify-start"
+              }`}
+            >
               <svg
-                width="24"
-                height="24"
+                width="36"
+                height="36"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -310,8 +445,25 @@ const SideNav = () => {
                   fill="#6C6C6C"
                 />
               </svg>
-
-              <p className={`${isOpen ? "hidden" : "block"}`}>Staff</p>
+              <p
+                className={`${
+                  isOpen ? "hidden" : "block"
+                } text-xl flex items-center justify-between w-full`}
+              >
+                <span>Staff</span>
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
+                    fill="#6C6C6C"
+                  />
+                </svg>
+              </p>
             </div>
           </div>
           <div className="collapse-content">
@@ -326,10 +478,14 @@ const SideNav = () => {
           </div>
         </div>
         {/* Logout */}
-        <div className="flex justify-start items-center p-4 w-full">
+        <div
+          className={`flex items-center ${
+            isOpen ? "justify-center" : "justify-start"
+          }  p-3 bg-primaryMainLightest w-full text-primaryMain`}
+        >
           <svg
-            width="24"
-            height="24"
+            width="36"
+            height="36"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -345,12 +501,12 @@ const SideNav = () => {
           </svg>
           <p className={`${isOpen ? "hidden" : "block"}`}>Logout</p>
         </div>
-        <hr />
-        <div className="p-4 w-full rounded-br-xl">
+        {/* toggle */}
+        <div className="pt-20 p-4 w-full rounded-br-xl">
           <button onClick={toggleSideNav} className="btn-btn-ghost">
             <svg
-              width="24"
-              height="24"
+              width="36"
+              height="36"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

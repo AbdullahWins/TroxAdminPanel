@@ -12,8 +12,8 @@ import {
 const ChartBar = ({ data }) => {
   return (
     <BarChart
-      width={600}
-      height={300}
+    width={800}
+    height={550}
       data={data}
       margin={{
         top: 0,
