@@ -59,10 +59,10 @@ const SideNav = () => {
           <p className={`${isOpen ? "hidden" : "block"}`}>Dashboard</p>
         </div>
         {/* order */}
-        <div class="collapse p-0 m-0">
+        <div className="collapse p-0 m-0">
           <input type="checkbox" />
-          <div class="collapse-title">
-            <div class="flex justify-start items-center">
+          <div className="collapse-title">
+            <div className="flex justify-start items-center">
               <svg
                 width="24"
                 height="24"
@@ -83,8 +83,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start ">
+          <div className="collapse-content">
+            <div className="flex flex-col justify-start items-start ">
               <Link to="/processing">
                 <p>Processing</p>
               </Link>
@@ -101,10 +101,10 @@ const SideNav = () => {
           </div>
         </div>
         {/* Delivery Man */}
-        <div class="collapse p-0 m-0">
+        <div className="collapse p-0 m-0">
           <input type="checkbox" />
-          <div class="collapse-title">
-            <div class="flex justify-start items-center">
+          <div className="collapse-title">
+            <div className="flex justify-start items-center">
               <svg
                 width="24"
                 height="24"
@@ -129,8 +129,8 @@ const SideNav = () => {
               <p className={`${isOpen ? "hidden" : "block"}`}> Delivery</p>
             </div>
           </div>
-          <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start">
+          <div className="collapse-content">
+            <div className="flex flex-col justify-start items-start">
               <Link to="/dmpending">
                 <p>Pending Request</p>
               </Link>
@@ -147,10 +147,10 @@ const SideNav = () => {
           </div>
         </div>
         {/* Customers */}
-        <div class="collapse p-0 m-0">
+        <div className="collapse p-0 m-0">
           <input type="checkbox" />
-          <div class="collapse-title">
-            <div class="flex justify-start items-center">
+          <div className="collapse-title">
+            <div className="flex justify-start items-center">
               <svg
                 width="24"
                 height="24"
@@ -167,8 +167,8 @@ const SideNav = () => {
               <p className={`${isOpen ? "hidden" : "block"}`}>Customers</p>
             </div>
           </div>
-          <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start">
+          <div className="collapse-content">
+            <div className="flex flex-col justify-start items-start">
               <Link to="/processing">
                 <p>Processing</p>
               </Link>
@@ -182,10 +182,10 @@ const SideNav = () => {
           </div>
         </div>
         {/* Locations */}
-        <div class="collapse p-0 m-0">
+        <div className="collapse p-0 m-0">
           <input type="checkbox" />
-          <div class="collapse-title">
-            <div class="flex justify-start items-center">
+          <div className="collapse-title">
+            <div className="flex justify-start items-center">
               <svg
                 width="24"
                 height="24"
@@ -202,8 +202,8 @@ const SideNav = () => {
               <p className={`${isOpen ? "hidden" : "block"}`}>Locations</p>
             </div>
           </div>
-          <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start">
+          <div className="collapse-content">
+            <div className="flex flex-col justify-start items-start">
               <Link to="/lcaddnew">
                 <p>Add New Location</p>
               </Link>
@@ -211,10 +211,10 @@ const SideNav = () => {
           </div>
         </div>
         {/* Transaction */}
-        <div class="collapse p-0 m-0">
+        <div className="collapse p-0 m-0">
           <input type="checkbox" />
-          <div class="collapse-title">
-            <div class="flex justify-start items-center">
+          <div className="collapse-title">
+            <div className="flex justify-start items-center">
               <svg
                 width="24"
                 height="24"
@@ -247,8 +247,8 @@ const SideNav = () => {
               <p className={`${isOpen ? "hidden" : "block"}`}>Transaction</p>
             </div>
           </div>
-          <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start">
+          <div className="collapse-content">
+            <div className="flex flex-col justify-start items-start">
               <Link to="/trpending">
                 <p>Pending Withdraw</p>
               </Link>
@@ -262,10 +262,10 @@ const SideNav = () => {
           </div>
         </div>
         {/* Warehouse */}
-        <div class="collapse p-0 m-0">
+        <div className="collapse p-0 m-0">
           <input type="checkbox" />
-          <div class="collapse-title">
-            <div class="flex justify-start items-center">
+          <div className="collapse-title">
+            <div className="flex justify-start items-center">
               <svg
                 width="24"
                 height="24"
@@ -282,8 +282,8 @@ const SideNav = () => {
               <p className={`${isOpen ? "hidden" : "block"}`}>Warehouse</p>
             </div>
           </div>
-          <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start">
+          <div className="collapse-content">
+            <div className="flex flex-col justify-start items-start">
               <Link to="/whall">
                 <p>All Warehouse</p>
               </Link>
@@ -294,10 +294,10 @@ const SideNav = () => {
           </div>
         </div>
         {/* Staff */}
-        <div class="collapse p-0 m-0">
+        <div className="collapse p-0 m-0">
           <input type="checkbox" />
-          <div class="collapse-title">
-            <div class="flex justify-start items-center">
+          <div className="collapse-title">
+            <div className="flex justify-start items-center">
               <svg
                 width="24"
                 height="24"
@@ -314,8 +314,8 @@ const SideNav = () => {
               <p className={`${isOpen ? "hidden" : "block"}`}>Staff</p>
             </div>
           </div>
-          <div class="collapse-content">
-            <div class="flex flex-col justify-start items-start">
+          <div className="collapse-content">
+            <div className="flex flex-col justify-start items-start">
               <Link to="/stall">
                 <p>All Staff</p>
               </Link>

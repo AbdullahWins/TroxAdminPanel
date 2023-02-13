@@ -3,7 +3,7 @@ import Chart from "../Charts/Chart";
 
 const HomeBody = () => {
   return (
-    <div className="flex flex-col items-start justify-center pt-10 gap-4 w-full">
+    <div className="flex flex-col items-center justify-center pt-10 gap-4 w-full">
       {/* 4 top cards */}
       <section className="flex items-center justify-center gap-8">
         {/* orange */}
