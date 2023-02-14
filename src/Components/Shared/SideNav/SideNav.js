@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import avater from "../../../Assets/img/profile/avater.png";
 
 const SideNav = () => {
   const [isClosed, setIsClosed] = useState(false);
+  const [isActive, setIsActive] = useState("dashboard");
+
+  const navigate = useNavigate();
 
   const toggleSideNav = () => {
     setIsClosed(!isClosed);
     console.log(isClosed);
   };
 
-  const openSideNav = (e) => {
-    setIsClosed(false);
-    console.log(e);
-    console.log(isClosed);
-  };
+  // const openSideNav = (e) => {
+  //   setIsClosed(false);
+  //   console.log(e);
+  //   console.log(isClosed);
+  // };
 
   const handleMouseEnter = () => {
     setIsClosed(false);
@@ -23,6 +26,18 @@ const SideNav = () => {
   const handleMouseLeave = () => {
     setIsClosed(true);
     console.log(isClosed);
+  };
+
+  const activateMenu = (index) => {
+    setIsActive(index);
+    console.log(isActive);
+  };
+
+  const handleNavigation = (navRoute) => {
+    const navigationRoute = `/${navRoute}`;
+    navigate(navigationRoute, { replace: true });
+    activateMenu(navRoute);
+    console.log(navRoute);
   };
 
   return (
@@ -66,32 +81,42 @@ const SideNav = () => {
       <section className="flex flex-col justify-start items-start gap-3 mt-2">
         {/* dashboard */}
         <div
-          className={`flex items-center ${
-            isClosed ? "justify-center" : "justify-start"
-          }  p-3 bg-primaryMainLightest w-full text-primaryMain`}
+          onClick={() => activateMenu("dashboard")}
+          className={`p-3 w-full ${
+            isActive === "dashboard"
+              ? "bg-primaryMainLightest text-primaryMain"
+              : ""
+          }`}
         >
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <Link
+            className={`flex items-center ${
+              isClosed ? "justify-center" : "justify-start"
+            }`}
+            to="/"
           >
-            <path
-              d="M4 13H10C10.55 13 11 12.55 11 12V4C11 3.45 10.55 3 10 3H4C3.45 3 3 3.45 3 4V12C3 12.55 3.45 13 4 13ZM4 21H10C10.55 21 11 20.55 11 20V16C11 15.45 10.55 15 10 15H4C3.45 15 3 15.45 3 16V20C3 20.55 3.45 21 4 21ZM14 21H20C20.55 21 21 20.55 21 20V12C21 11.45 20.55 11 20 11H14C13.45 11 13 11.45 13 12V20C13 20.55 13.45 21 14 21ZM13 4V8C13 8.55 13.45 9 14 9H20C20.55 9 21 8.55 21 8V4C21 3.45 20.55 3 20 3H14C13.45 3 13 3.45 13 4Z"
-              fill="#6C6C6C"
-            />
-          </svg>
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 13H10C10.55 13 11 12.55 11 12V4C11 3.45 10.55 3 10 3H4C3.45 3 3 3.45 3 4V12C3 12.55 3.45 13 4 13ZM4 21H10C10.55 21 11 20.55 11 20V16C11 15.45 10.55 15 10 15H4C3.45 15 3 15.45 3 16V20C3 20.55 3.45 21 4 21ZM14 21H20C20.55 21 21 20.55 21 20V12C21 11.45 20.55 11 20 11H14C13.45 11 13 11.45 13 12V20C13 20.55 13.45 21 14 21ZM13 4V8C13 8.55 13.45 9 14 9H20C20.55 9 21 8.55 21 8V4C21 3.45 20.55 3 20 3H14C13.45 3 13 3.45 13 4Z"
+                fill="#6C6C6C"
+              />
+            </svg>
 
-          <p className={`${isClosed ? "hidden" : "block"} text-xl`}>
-            Dashboard
-          </p>
+            <p className={`${isClosed ? "hidden" : "block"} text-xl`}>
+              Dashboard
+            </p>
+          </Link>
         </div>
         {/* order */}
         <div
-          onClick={openSideNav}
-          className={`collapse ${
-            isClosed ? "collapse-close" : ""
-          } w-full mx-auto`}
+          onClick={() => activateMenu(2)}
+          className={`collapse ${isClosed ? "collapse-close" : ""} ${
+            isActive === 2 ? "bg-primaryMainLightest" : ""
+          } w-full mx-auto `}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -133,18 +158,28 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content">
+          <div className="collapse-content bg-whiteMid text-blackMid">
             <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/processing">
+              {/* <button
+                onClick={() => handleNavigation("ordersProcessing")}
+                className={`p-3 w-full ${
+                  isActive === "ordersProcessing"
+                    ? "bg-primaryMainLightest text-primaryMain"
+                    : ""
+                }`}
+              >
+                change route
+              </button> */}
+              <Link className="w-full" to="/ordersprocessing">
                 <p>Processing</p>
               </Link>
-              <Link to="/pickedup">
+              <Link className="w-full" to="/orderspickedup">
                 <p>Pickedup</p>
               </Link>
-              <Link to="/delivered">
+              <Link className="w-full" to="/ordersdelivered">
                 <p>Delivered</p>
               </Link>
-              <Link to="/cancelled">
+              <Link className="w-full" to="/orderscancelled">
                 <p>Cancelled</p>
               </Link>
             </div>
@@ -152,9 +187,12 @@ const SideNav = () => {
         </div>
         {/* Delivery Man */}
         <div
+          onClick={() => activateMenu(3)}
           className={`collapse ${
             isClosed ? "collapse-close" : ""
-          } w-full mx-auto`}
+          } w-full mx-auto ${
+            isActive === 3 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -204,8 +242,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content">
-            <div className="flex flex-col justify-start items-start">
+          <div className="collapse-content bg-whiteMid text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
               <Link to="/dmpending">
                 <p>Pending Request</p>
               </Link>
@@ -223,9 +261,12 @@ const SideNav = () => {
         </div>
         {/* Customers */}
         <div
+          onClick={() => activateMenu(4)}
           className={`collapse ${
             isClosed ? "collapse-close" : ""
-          } w-full mx-auto`}
+          } w-full mx-auto ${
+            isActive === 4 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -267,8 +308,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content">
-            <div className="flex flex-col justify-start items-start">
+          <div className="collapse-content bg-whiteMid text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
               <Link to="/processing">
                 <p>Processing</p>
               </Link>
@@ -283,9 +324,12 @@ const SideNav = () => {
         </div>
         {/* Locations */}
         <div
+          onClick={() => activateMenu(5)}
           className={`collapse ${
             isClosed ? "collapse-close" : ""
-          } w-full mx-auto`}
+          } w-full mx-auto ${
+            isActive === 5 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -327,8 +371,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content">
-            <div className="flex flex-col justify-start items-start">
+          <div className="collapse-content bg-whiteMid text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
               <Link to="/lcaddnew">
                 <p>Add New Location</p>
               </Link>
@@ -337,9 +381,12 @@ const SideNav = () => {
         </div>
         {/* Transaction */}
         <div
+          onClick={() => activateMenu(6)}
           className={`collapse ${
             isClosed ? "collapse-close" : ""
-          } w-full mx-auto`}
+          } w-full mx-auto ${
+            isActive === 6 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -397,8 +444,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content">
-            <div className="flex flex-col justify-start items-start">
+          <div className="collapse-content bg-whiteMid text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
               <Link to="/trpending">
                 <p>Pending Withdraw</p>
               </Link>
@@ -413,9 +460,12 @@ const SideNav = () => {
         </div>
         {/* Warehouse */}
         <div
+          onClick={() => activateMenu(7)}
           className={`collapse ${
             isClosed ? "collapse-close" : ""
-          } w-full mx-auto`}
+          } w-full mx-auto ${
+            isActive === 7 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -457,8 +507,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content">
-            <div className="flex flex-col justify-start items-start">
+          <div className="collapse-content bg-whiteMid text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
               <Link to="/whall">
                 <p>All Warehouse</p>
               </Link>
@@ -470,9 +520,12 @@ const SideNav = () => {
         </div>
         {/* Staff */}
         <div
+          onClick={() => activateMenu(8)}
           className={`collapse ${
             isClosed ? "collapse-close" : ""
-          } w-full mx-auto`}
+          } w-full mx-auto ${
+            isActive === 8 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -514,8 +567,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content">
-            <div className="flex flex-col justify-start items-start">
+          <div className="collapse-content bg-whiteMid text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
               <Link to="/stall">
                 <p>All Staff</p>
               </Link>
@@ -527,9 +580,12 @@ const SideNav = () => {
         </div>
         {/* Logout */}
         <div
+          onClick={() => activateMenu(9)}
           className={`flex items-center ${
             isClosed ? "justify-center" : "justify-start"
-          }  p-3 bg-primaryMainLightest w-full text-primaryMain`}
+          }  p-3 ${
+            isActive === 9 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <svg
             width="36"
