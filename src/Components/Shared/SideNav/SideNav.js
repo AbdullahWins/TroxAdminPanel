@@ -43,7 +43,7 @@ const SideNav = () => {
   return (
     <div
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      // onMouseLeave={handleMouseLeave}
       className={`transition-width transition-slowest ease ${
         isClosed ? "w-28" : "w-96"
       } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
@@ -244,16 +244,16 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteMid text-blackMid">
             <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/dmpending">
+              <Link to="/deliveryPendingRequests">
                 <p>Pending Request</p>
               </Link>
-              <Link to="/dmall">
+              <Link to="/deliveryAllDeliveryMan">
                 <p>All Delivery Man</p>
               </Link>
-              <Link to="/dmadd">
+              <Link to="/deliveryAddNew">
                 <p>Add New</p>
               </Link>
-              <Link to="/dmblocked">
+              <Link to="/deliveryBlocked">
                 <p>Blocked</p>
               </Link>
             </div>
@@ -310,13 +310,13 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteMid text-blackMid">
             <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/processing">
+              <Link to="/customerProcessing">
                 <p>Processing</p>
               </Link>
-              <Link to="/cmall">
+              <Link to="/customerAll">
                 <p>All Customers</p>
               </Link>
-              <Link to="/cmblocked">
+              <Link to="/customerBlocked">
                 <p>Blocked</p>
               </Link>
             </div>
@@ -373,7 +373,7 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteMid text-blackMid">
             <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/lcaddnew">
+              <Link to="/locationsAddNew">
                 <p>Add New Location</p>
               </Link>
             </div>
@@ -446,13 +446,13 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteMid text-blackMid">
             <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/trpending">
+              <Link to="/transactionPendingWithdraw">
                 <p>Pending Withdraw</p>
               </Link>
-              <Link to="/trunsettled">
+              <Link to="/transactionUnsettledBalance">
                 <p>Unsettled Balance</p>
               </Link>
-              <Link to="/trrevenue">
+              <Link to="/transactionRevenue">
                 <p>Revenue</p>
               </Link>
             </div>
@@ -509,10 +509,10 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteMid text-blackMid">
             <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/whall">
+              <Link to="/WarehouseAll">
                 <p>All Warehouse</p>
               </Link>
-              <Link to="/whaddnew">
+              <Link to="/WarehouseAddNew">
                 <p>Add New Warehouse</p>
               </Link>
             </div>
@@ -569,10 +569,10 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteMid text-blackMid">
             <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/stall">
+              <Link to="/staffAll">
                 <p>All Staff</p>
               </Link>
-              <Link to="/staddnew">
+              <Link to="/staffAddNew">
                 <p>Add New Staff</p>
               </Link>
             </div>
