@@ -45,7 +45,7 @@ const SideNav = () => {
       onMouseEnter={handleMouseEnter}
       // onMouseLeave={handleMouseLeave}
       className={`transition-width transition-slowest ease ${
-        isClosed ? "w-28" : "w-96"
+        isClosed ? "min-w-28 w-24" : "min-w-96 w-92"
       } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
     >
       <section className="flex items-start justify-between p-4 gap-4 bg-secondaryMainLightest rounded-tr-lg">
@@ -61,7 +61,7 @@ const SideNav = () => {
           <p className="text-xl">Super Admin</p>
         </div>
         <div className={`${isClosed ? "hidden" : "block"}`}>
-          <button>
+          <button onClick={toggleSideNav} className="btn-btn-ghost">
             <svg
               width="36"
               height="36"
@@ -70,15 +70,15 @@ const SideNav = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M20 23.0025H4C2.9 23.0025 2 22.1025 2 21.0025C2 19.9025 2.9 19.0025 4 19.0025H20C21.1 19.0025 22 19.9025 22 21.0025C22 22.1025 21.1 23.0025 20 23.0025ZM13.06 4.1925L16.81 7.9425L8.04 16.7125C7.86 16.9025 7.6 17.0025 7.34 17.0025H5C4.45 17.0025 4 16.5525 4 16.0025V13.6625C4 13.3925 4.11 13.1425 4.29 12.9525L13.06 4.1925ZM17.88 6.8725L14.13 3.1225L15.96 1.2925C16.35 0.9025 16.98 0.9025 17.37 1.2925L19.71 3.6325C20.1 4.0225 20.1 4.6525 19.71 5.0425L17.88 6.8725Z"
-                fill="#37B6B6"
+                d="M4.20312 18H15.2031C15.7531 18 16.2031 17.55 16.2031 17C16.2031 16.45 15.7531 16 15.2031 16H4.20312C3.65312 16 3.20312 16.45 3.20312 17C3.20312 17.55 3.65312 18 4.20312 18ZM4.20312 13H12.2031C12.7531 13 13.2031 12.55 13.2031 12C13.2031 11.45 12.7531 11 12.2031 11H4.20312C3.65312 11 3.20312 11.45 3.20312 12C3.20312 12.55 3.65312 13 4.20312 13ZM3.20312 7C3.20312 7.55 3.65312 8 4.20312 8H15.2031C15.7531 8 16.2031 7.55 16.2031 7C16.2031 6.45 15.7531 6 15.2031 6H4.20312C3.65312 6 3.20312 6.45 3.20312 7ZM20.5031 14.88L17.6231 12L20.5031 9.12C20.8931 8.73 20.8931 8.1 20.5031 7.71C20.1131 7.32 19.4831 7.32 19.0931 7.71L15.5031 11.3C15.1131 11.69 15.1131 12.32 15.5031 12.71L19.0931 16.3C19.4831 16.69 20.1131 16.69 20.5031 16.3C20.8831 15.91 20.8931 15.27 20.5031 14.88Z"
+                fill="#6C6C6C"
               />
             </svg>
           </button>
         </div>
       </section>
       {/* routes */}
-      <section className="flex flex-col justify-start items-start gap-3 mt-2">
+      <section className="flex flex-col justify-start items-start gap-1 mt-2">
         {/* dashboard */}
         <div
           onClick={() => activateMenu("dashboard")}
@@ -158,8 +158,8 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content bg-whiteMid text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
               {/* <button
                 onClick={() => handleNavigation("ordersProcessing")}
                 className={`p-3 w-full ${
@@ -242,18 +242,18 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content bg-whiteMid text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/deliveryPendingRequests">
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+              <Link className="w-full" to="/deliveryPendingRequests">
                 <p>Pending Request</p>
               </Link>
-              <Link to="/deliveryAllDeliveryMan">
+              <Link className="w-full" to="/deliveryAllDeliveryMan">
                 <p>All Delivery Man</p>
               </Link>
-              <Link to="/deliveryAddNew">
+              <Link className="w-full" to="/deliveryAddNew">
                 <p>Add New</p>
               </Link>
-              <Link to="/deliveryBlocked">
+              <Link className="w-full" to="/deliveryBlocked">
                 <p>Blocked</p>
               </Link>
             </div>
@@ -308,15 +308,15 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content bg-whiteMid text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/customerProcessing">
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+              <Link className="w-full" to="/customerProcessing">
                 <p>Processing</p>
               </Link>
-              <Link to="/customerAll">
+              <Link className="w-full" to="/customerAll">
                 <p>All Customers</p>
               </Link>
-              <Link to="/customerBlocked">
+              <Link className="w-full" to="/customerBlocked">
                 <p>Blocked</p>
               </Link>
             </div>
@@ -371,9 +371,9 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content bg-whiteMid text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/locationsAddNew">
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+              <Link className="w-full" to="/locationsAddNew">
                 <p>Add New Location</p>
               </Link>
             </div>
@@ -444,15 +444,15 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content bg-whiteMid text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/transactionPendingWithdraw">
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+              <Link className="w-full" to="/transactionPendingWithdraw">
                 <p>Pending Withdraw</p>
               </Link>
-              <Link to="/transactionUnsettledBalance">
+              <Link className="w-full" to="/transactionUnsettledBalance">
                 <p>Unsettled Balance</p>
               </Link>
-              <Link to="/transactionRevenue">
+              <Link className="w-full" to="/transactionRevenue">
                 <p>Revenue</p>
               </Link>
             </div>
@@ -507,12 +507,12 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content bg-whiteMid text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
-              <Link to="/WarehouseAll">
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+              <Link className="w-full" to="/WarehouseAll">
                 <p>All Warehouse</p>
               </Link>
-              <Link to="/WarehouseAddNew">
+              <Link className="w-full" to="/WarehouseAddNew">
                 <p>Add New Warehouse</p>
               </Link>
             </div>
@@ -567,19 +567,19 @@ const SideNav = () => {
               </p>
             </div>
           </div>
-          <div className="collapse-content bg-whiteMid text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-4 pl-8 text-xl">
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
               <Link to="/staffAll">
                 <p>All Staff</p>
               </Link>
-              <Link to="/staffAddNew">
+              <Link className="w-full" to="/staffAddNew">
                 <p>Add New Staff</p>
               </Link>
             </div>
           </div>
         </div>
         {/* Logout */}
-        <div
+        {/* <div
           onClick={() => activateMenu(9)}
           className={`flex items-center ${
             isClosed ? "justify-center" : "justify-start"
@@ -604,24 +604,7 @@ const SideNav = () => {
             />
           </svg>
           <p className={`${isClosed ? "hidden" : "block"}`}>Logout</p>
-        </div>
-        {/* toggle */}
-        <div className="pt-20 p-4 w-full rounded-br-xl">
-          <button onClick={toggleSideNav} className="btn-btn-ghost">
-            <svg
-              width="36"
-              height="36"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.20312 18H15.2031C15.7531 18 16.2031 17.55 16.2031 17C16.2031 16.45 15.7531 16 15.2031 16H4.20312C3.65312 16 3.20312 16.45 3.20312 17C3.20312 17.55 3.65312 18 4.20312 18ZM4.20312 13H12.2031C12.7531 13 13.2031 12.55 13.2031 12C13.2031 11.45 12.7531 11 12.2031 11H4.20312C3.65312 11 3.20312 11.45 3.20312 12C3.20312 12.55 3.65312 13 4.20312 13ZM3.20312 7C3.20312 7.55 3.65312 8 4.20312 8H15.2031C15.7531 8 16.2031 7.55 16.2031 7C16.2031 6.45 15.7531 6 15.2031 6H4.20312C3.65312 6 3.20312 6.45 3.20312 7ZM20.5031 14.88L17.6231 12L20.5031 9.12C20.8931 8.73 20.8931 8.1 20.5031 7.71C20.1131 7.32 19.4831 7.32 19.0931 7.71L15.5031 11.3C15.1131 11.69 15.1131 12.32 15.5031 12.71L19.0931 16.3C19.4831 16.69 20.1131 16.69 20.5031 16.3C20.8831 15.91 20.8931 15.27 20.5031 14.88Z"
-                fill="#6C6C6C"
-              />
-            </svg>
-          </button>
-        </div>
+        </div> */}
       </section>
     </div>
   );

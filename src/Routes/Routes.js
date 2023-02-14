@@ -20,6 +20,7 @@ import LocationsAddNew from "../Pages/Locations/LocationsAddNew";
 import CustomerAll from "../Pages/Customer/CustomerAll";
 import CustomerBlocked from "../Pages/Customer/CustomerBlocked";
 import CustomerProcessing from "../Pages/Customer/CustomerProcessing";
+import UserProfile from "../Pages/User/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,6 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-
       // orders route
       {
         path: "/ordersprocessing",
@@ -121,6 +121,10 @@ export const router = createBrowserRouter([
         element: <StaffAddNew></StaffAddNew>,
       },
     ],
+  },
+  {
+    path: "/userProfile",
+    element: <UserProfile></UserProfile>,
   },
   {
     path: "*",
