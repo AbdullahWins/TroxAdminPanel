@@ -20,7 +20,7 @@ const CustomerChart = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 h-full">
       <section className="flex items-center justify-between">
         <p className="text-2xl text-blackMid  font-bold">Total Sales</p>
         <div className="flex gap-2">

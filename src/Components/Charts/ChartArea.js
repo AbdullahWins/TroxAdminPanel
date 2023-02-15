@@ -10,36 +10,38 @@ import {
 
 const ChartArea = ({ data }) => {
   return (
-    <AreaChart
-      width={800}
-      height={550}
-      data={data}
-      margin={{
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Area
-        type="monotone"
-        dataKey="uv"
-        stackId="1"
-        stroke="#CA4922"
-        fill="#FD7C55"
-      />
-      <Area
-        type="monotone"
-        dataKey="pv"
-        stackId="1"
-        stroke="#CA4922"
-        fill="#AFE2E2"
-      />
-    </AreaChart>
+    <div className="overflow-x-auto">
+      <AreaChart
+        width={800}
+        height={450}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Area
+          type="monotone"
+          dataKey="uv"
+          stackId="1"
+          stroke="#CA4922"
+          fill="#FD7C55"
+        />
+        <Area
+          type="monotone"
+          dataKey="pv"
+          stackId="1"
+          stroke="#CA4922"
+          fill="#AFE2E2"
+        />
+      </AreaChart>
+    </div>
   );
 };
 
