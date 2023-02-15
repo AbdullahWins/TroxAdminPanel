@@ -11,15 +11,15 @@ import {
 
 const ChartBar = ({ data }) => {
   return (
-    <div className="overflow-auto">
+    <div className="overflow-x-auto overflow-y-hidden flex items-center justify-center">
       <BarChart
         width={800}
         height={450}
         data={data}
         margin={{
           top: 5,
-          right: 30,
-          left: 20,
+          right: 5,
+          left: 5,
           bottom: 5,
         }}
       >
