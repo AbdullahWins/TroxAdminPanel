@@ -55,7 +55,7 @@ const OrdersProcessing = () => {
         <section className="flex items-center gap-4">
           <input className="py-3 px-12 rounded-md" type="text" />
           <p>
-            <button className="btn bg-whiteHigh border-none rounded-full">
+            <button className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full">
               <svg
                 width="16"
                 height="18"
@@ -89,7 +89,12 @@ const OrdersProcessing = () => {
           return (
             <tbody key={i}>
               <tr>
-                <th>{order.serial}</th>
+                <th>
+                  <p className="flex items-center justify-center">
+                    <input type="checkbox" className="checkbox" /> &nbsp; &nbsp;
+                    {order.serial}
+                  </p>
+                </th>
                 <td>{order.orderId}</td>
                 <td>{order.created}</td>
                 <th>{order.customer}</th>
@@ -97,7 +102,10 @@ const OrdersProcessing = () => {
                 <td>{order.pickupAddress}</td>
                 <td>{order.destinationAddress}</td>
                 <th>
-                  <button className="btn btn-warning">click!</button>
+                  <select className="select select-sm w-full max-w-xs">
+                    <option>Pending</option>
+                    <option>Confirmed</option>
+                  </select>
                 </th>
               </tr>
             </tbody>
