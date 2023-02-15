@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import avater from "../../../Assets/img/profile/avater.png";
 
 const SideNav = () => {
   const [isClosed, setIsClosed] = useState(false);
   const [isActive, setIsActive] = useState("dashboard");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const toggleSideNav = () => {
     setIsClosed(!isClosed);
@@ -33,17 +33,17 @@ const SideNav = () => {
     console.log(isActive);
   };
 
-  const handleNavigation = (navRoute) => {
-    const navigationRoute = `/${navRoute}`;
-    navigate(navigationRoute, { replace: true });
-    activateMenu(navRoute);
-    console.log(navRoute);
-  };
+  // const handleNavigation = (navRoute) => {
+  //   const navigationRoute = `/${navRoute}`;
+  //   navigate(navigationRoute, { replace: true });
+  //   activateMenu(navRoute);
+  //   console.log(navRoute);
+  // };
 
   return (
     <div
       onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
+      onMouseLeave={handleMouseLeave}
       className={`transition-width transition-slowest ease ${
         isClosed ? "min-w-28 w-24" : "min-w-96 w-92"
       } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
