@@ -97,16 +97,16 @@ const OrdersProcessing = () => {
                 </th>
                 <td>{order.orderId}</td>
                 <td>{order.created}</td>
-                <th>{order.customer}</th>
-                <th>{order.totalAmount}</th>
+                <td>{order.customer}</td>
+                <td>${order.totalAmount}.00</td>
                 <td>{order.pickupAddress}</td>
                 <td>{order.destinationAddress}</td>
-                <th>
+                <td>
                   <select className="select select-sm w-full max-w-xs">
                     <option>Pending</option>
                     <option>Confirmed</option>
                   </select>
-                </th>
+                </td>
               </tr>
             </tbody>
           );
