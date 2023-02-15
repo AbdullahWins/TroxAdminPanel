@@ -10,9 +10,9 @@ const HomeBody = () => {
     { color: "bg-successColor" },
   ];
   return (
-    <div className="flex flex-col items-center justify-center pt-10 gap-4 w-full">
+    <div className="flex flex-col justify-around pt-10 gap-4 w-full">
       {/* 4 top cards */}
-      <section className="flex items-center justify-around gap-8">
+      <section className="flex justify-between gap-8 px-4">
         {backgroundColors.map((backgroundColor, index) => (
           <HomeTopCard
             backgroundColor={backgroundColor}
