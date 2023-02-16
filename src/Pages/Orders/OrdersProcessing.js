@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import orders from "../../Assets/json/orders.json";
 
 const OrdersProcessing = () => {
+  const [selectedOrders, setSelectedOrders] = useState([]);
   const ordersProcessing = orders;
-  console.log(ordersProcessing);
+
+  const handleCheckbox = (event) => {
+    const selectedOrdersList = [...selectedOrders];
+    if (event.target.checked) {
+      selectedOrdersList.push(event.target.value);
+    } else {
+      const index = selectedOrdersList.indexOf(event.target.value);
+      if (index > -1) {
+        selectedOrdersList.splice(index, 1);
+      }
+    }
+    setSelectedOrders(selectedOrdersList);
+  };
+
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -72,17 +86,44 @@ const OrdersProcessing = () => {
           </p>
         </section>
       </div>
+
+      <div className={` ${selectedOrders.length < 1 ? "hidden" : "flex items-center justify-start gap-4"} p-4 bg-whiteHigh`}>
+        <button className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow">
+          Select All
+        </button>
+        <button className="btn btn-sm border-none bg-primaryMain">
+          Delete
+        </button>
+      </div>
+
+
       <table className="table w-full">
         <thead>
           <tr className="font-bold text-3xl">
-            <th className="bg-secondaryMainLightest text-bold">Serial</th>
-            <th className="bg-secondaryMainLightest ">Order ID</th>
-            <th className="bg-secondaryMainLightest ">Created</th>
-            <th className="bg-secondaryMainLightest ">Customer</th>
-            <th className="bg-secondaryMainLightest ">Total Amount</th>
-            <th className="bg-secondaryMainLightest ">Pickup Address</th>
-            <th className="bg-secondaryMainLightest ">Destination Address</th>
-            <th className="bg-secondaryMainLightest ">Actions</th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Serial
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Order ID
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Created
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Customer
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Total
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Pickup Address
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Destination Address
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Actions
+            </th>
           </tr>
         </thead>
         {ordersProcessing.map((order, i) => {
@@ -91,7 +132,13 @@ const OrdersProcessing = () => {
               <tr>
                 <th>
                   <p className="flex items-center justify-center">
-                    <input type="checkbox" className="checkbox" /> &nbsp; &nbsp;
+                    <input
+                      type="checkbox"
+                      className="checkbox"
+                      value={order.orderId}
+                      onChange={handleCheckbox}
+                    />{" "}
+                    &nbsp; &nbsp;
                     {order.serial}
                   </p>
                 </th>

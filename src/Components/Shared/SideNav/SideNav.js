@@ -10,34 +10,27 @@ const SideNav = () => {
 
   const toggleSideNav = () => {
     setIsClosed(!isClosed);
-    console.log(isClosed);
   };
 
   // const openSideNav = (e) => {
   //   setIsClosed(false);
-  //   console.log(e);
-  //   console.log(isClosed);
   // };
 
   const handleMouseEnter = () => {
     setIsClosed(false);
-    console.log(isClosed);
   };
   const handleMouseLeave = () => {
     setIsClosed(true);
-    console.log(isClosed);
   };
 
   const activateMenu = (index) => {
     setIsActive(index);
-    console.log(isActive);
   };
 
   // const handleNavigation = (navRoute) => {
   //   const navigationRoute = `/${navRoute}`;
   //   navigate(navigationRoute, { replace: true });
   //   activateMenu(navRoute);
-  //   console.log(navRoute);
   // };
 
   return (
