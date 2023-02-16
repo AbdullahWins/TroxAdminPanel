@@ -159,7 +159,7 @@ const OrdersPickedup = () => {
                 <td>${order.totalAmount}.00</td>
                 <td>{order.pickupAddress}</td>
                 <td>{order.destinationAddress}</td>
-                <td>
+                <td className="p-0">
                   <div className="flex items-center justify-center gap-2">
                     <label
                       htmlFor="pausePopup"

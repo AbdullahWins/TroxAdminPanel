@@ -159,7 +159,7 @@ const OrdersProcessing = () => {
                 <td>${order.totalAmount}.00</td>
                 <td>{order.pickupAddress}</td>
                 <td>{order.destinationAddress}</td>
-                <td>
+                <td className="p-0">
                   <select className="select select-sm w-full max-w-xs">
                     <option>Pending</option>
                     <option>Confirmed</option>
