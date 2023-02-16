@@ -28,7 +28,7 @@ const OrdersProcessing = () => {
           <div>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                Customer User
+                Customer User &nbsp; <i class="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -46,7 +46,7 @@ const OrdersProcessing = () => {
           <div>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                All Types
+                All Types &nbsp; <i class="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -65,8 +65,12 @@ const OrdersProcessing = () => {
             </div>
           </div>
         </section>
-        <section className="flex items-center gap-4">
-          <input className="py-3 px-12 rounded-md" type="text" />
+        <section className="flex items-center gap-4 w-2/5">
+          <input
+            className="p-3 w-full text-blackMid rounded-md border-none active:border-none"
+            type="text"
+            placeholder="&#x1F50D; Search"
+          />
           <p>
             <button className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full">
               <svg
@@ -144,7 +148,7 @@ const OrdersProcessing = () => {
                       className="checkbox"
                       value={order.orderId}
                       onChange={handleCheckbox}
-                    />{" "}
+                    />
                     &nbsp; &nbsp;
                     {order.serial}
                   </p>
