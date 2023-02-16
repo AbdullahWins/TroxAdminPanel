@@ -201,11 +201,17 @@ const OrdersProcessing = () => {
             <div>
               <p className="font-bold text-lg">Do you want to Delete?</p>
             </div>
-            <div className="modal-action">
-              <label htmlFor="deletePopup" className="btn">
+            <div className="modal-action flex items-center justify-center">
+              <label
+                htmlFor="deletePopup"
+                className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
+              >
                 Confirm
               </label>
-              <label htmlFor="deletePopup" className="btn">
+              <label
+                htmlFor="deletePopup"
+                className="btn rounded-full bg-whiteHigh text-primaryMain w-full border-primaryMain hover:border-primaryMain hover:bg-whiteHigh"
+              >
                 Cancel
               </label>
             </div>
