@@ -18,7 +18,6 @@ const OrdersProcessing = () => {
     setSelectedOrders(selectedOrdersList);
   };
 
-
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
       <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
@@ -87,15 +86,23 @@ const OrdersProcessing = () => {
         </section>
       </div>
 
-      <div className={` ${selectedOrders.length < 1 ? "hidden" : "flex items-center justify-start gap-4"} p-4 bg-whiteHigh`}>
+      <div
+        className={` ${
+          selectedOrders.length < 1
+            ? "hidden"
+            : "flex items-center justify-start gap-4"
+        } p-4 bg-whiteHigh`}
+      >
         <button className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow">
           Select All
         </button>
-        <button className="btn btn-sm border-none bg-primaryMain">
+        <label
+          htmlFor="deletePopup"
+          className="btn btn-sm border-none bg-primaryMain"
+        >
           Delete
-        </button>
+        </label>
       </div>
-
 
       <table className="table w-full">
         <thead>
@@ -159,6 +166,52 @@ const OrdersProcessing = () => {
           );
         })}
       </table>
+      {/* delete modal popup */}
+      <section>
+        <input type="checkbox" id="deletePopup" className="modal-toggle" />
+        <div className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box flex flex-col items-center justify-center gap-4">
+            <div>
+              <svg
+                width="120"
+                height="120"
+                viewBox="0 0 120 120"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M60 10C32.4 10 10 32.4 10 60C10 87.6 32.4 110 60 110C87.6 110 110 87.6 110 60C110 32.4 87.6 10 60 10ZM65 85H55V75H65V85ZM65 65H55V35H65V65Z"
+                  fill="url(#paint0_linear_630_70960)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_630_70960"
+                    x1="60"
+                    y1="10"
+                    x2="60"
+                    y2="110"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#37B6B6" />
+                    <stop offset="1" stop-color="#37B6B6" stop-opacity="0.18" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div>
+              <p className="font-bold text-lg">Do you want to Delete?</p>
+            </div>
+            <div className="modal-action">
+              <label htmlFor="deletePopup" className="btn">
+                Confirm
+              </label>
+              <label htmlFor="deletePopup" className="btn">
+                Cancel
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
