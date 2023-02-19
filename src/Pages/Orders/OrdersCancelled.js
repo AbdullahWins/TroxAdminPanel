@@ -28,7 +28,7 @@ const OrdersCancelled = () => {
           <div>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                Customer User &nbsp; <i class="fa-solid fa-angle-down"></i>
+                Customer User &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -46,7 +46,7 @@ const OrdersCancelled = () => {
           <div>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                All Types &nbsp; <i class="fa-solid fa-angle-down"></i>
+                All Types &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -158,7 +158,7 @@ const OrdersCancelled = () => {
                 <td>{order.pickupAddress}</td>
                 <td>{order.destinationAddress}</td>
                 <td>
-                  <span className="text-whiteHigh text-center py-1 px-2 rounded-full bg-errorColor">
+                  <span className="text-whiteHigh text-center py-2 px-6 rounded-full bg-errorColor">
                     Cancelled
                   </span>
                 </td>
@@ -193,8 +193,8 @@ const OrdersCancelled = () => {
                     y2="110"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#37B6B6" />
-                    <stop offset="1" stop-color="#37B6B6" stop-opacity="0.18" />
+                    <stop stopColor="#37B6B6" />
+                    <stop offset="1" stopColor="#37B6B6" stopOpacity="0.18" />
                   </linearGradient>
                 </defs>
               </svg>

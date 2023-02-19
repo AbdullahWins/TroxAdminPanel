@@ -1,0 +1,25 @@
+import React from "react";
+
+const PhotoModal = ({ data }) => {
+  console.log(data);
+  return (
+    <div>
+      <input type="checkbox" id="photoModal" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box w-11/12 max-w-5xl flex flex-col items-center justify-center gap-4">
+          <img className="w-full rounded-xl" src={data.photoUrl} alt="" />
+          <div>
+            <label
+              htmlFor="photoModal"
+              className="btn btn-sm py-2 px-8 rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain"
+            >
+              Okay
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PhotoModal;
