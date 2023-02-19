@@ -170,7 +170,7 @@ const DeliveryPendingRequests = () => {
                     htmlFor="photoModal"
                     onClick={() => handlePhotoModal(order.image)}
                   >
-                    <img className="h-14 w-14" src={order.image} alt="panda" />
+                    <img className="h-14 w-14 p-1" src={order.image} alt="panda" />
                   </label>
                 </td>
                 <td className="p-0">
