@@ -3,12 +3,13 @@ import orders from "../../Assets/json/orders.json";
 import PhotoModal from "../../Components/Modals/PhotoModal";
 
 const DeliveryPendingRequests = () => {
+  const [allOrders, setAllOrders] = useState(orders);
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [showPhotoModal, setShowPhotoModal] = useState({
     state: false,
     photoUrl: null,
   });
-  const ordersProcessing = orders;
+  const ordersProcessing = allOrders;
 
   const handleCheckbox = (event) => {
     const selectedOrdersList = [...selectedOrders];
@@ -25,6 +26,14 @@ const DeliveryPendingRequests = () => {
 
   const handlePhotoModal = (photoUrl) => {
     setShowPhotoModal({ state: true, photoUrl });
+  };
+
+  const handleToggle = (event, order) => {
+    const status = event.target.value;
+    if (status) {
+    }
+    console.log(status);
+    console.log(order);
   };
 
   return (
@@ -170,13 +179,23 @@ const DeliveryPendingRequests = () => {
                     htmlFor="photoModal"
                     onClick={() => handlePhotoModal(order.image)}
                   >
-                    <img className="h-14 w-14 p-1" src={order.image} alt="panda" />
+                    <img
+                      className="h-14 w-14 p-1"
+                      src={order.image}
+                      alt="panda"
+                    />
                   </label>
                 </td>
                 <td className="p-0">
-                  <select className="select select-sm w-full max-w-xs">
-                    <option>Pending</option>
-                    <option>Confirmed</option>
+                  <select
+                    disabled={order.orderStatus === "confirmed"}
+                    onChange={(event) => {
+                      handleToggle(event, order);
+                    }}
+                    className="select select-sm w-full max-w-xs"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
                   </select>
                 </td>
               </tr>

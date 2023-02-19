@@ -1,7 +1,6 @@
 import React from "react";
 
 const PhotoModal = ({ data }) => {
-  console.log(data);
   return (
     <div>
       <input type="checkbox" id="photoModal" className="modal-toggle" />
@@ -11,9 +10,9 @@ const PhotoModal = ({ data }) => {
           <div>
             <label
               htmlFor="photoModal"
-              className="btn btn-sm py-2 px-8 rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain"
+              className="btn btn-sm py-2 px-8 rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain "
             >
-              Okay
+              Close
             </label>
           </div>
         </div>
