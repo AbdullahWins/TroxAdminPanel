@@ -10,42 +10,37 @@ const SideNav = () => {
 
   const toggleSideNav = () => {
     setIsClosed(!isClosed);
-    console.log(isClosed);
   };
 
   // const openSideNav = (e) => {
   //   setIsClosed(false);
-  //   console.log(e);
-  //   console.log(isClosed);
   // };
 
   const handleMouseEnter = () => {
     setIsClosed(false);
-    console.log(isClosed);
   };
   const handleMouseLeave = () => {
     setIsClosed(true);
-    console.log(isClosed);
   };
 
   const activateMenu = (index) => {
     setIsActive(index);
-    console.log(isActive);
   };
 
   // const handleNavigation = (navRoute) => {
   //   const navigationRoute = `/${navRoute}`;
   //   navigate(navigationRoute, { replace: true });
   //   activateMenu(navRoute);
-  //   console.log(navRoute);
   // };
 
   return (
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`transition-width transition-slowest ease ${
-        isClosed ? "min-w-28 w-24" : "min-w-96 w-92"
+      className={`${
+        isClosed
+          ? "min-w-28 w-24"
+          : "min-w-96 w-92"
       } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
     >
       <section className="flex items-start justify-between p-4 gap-4 bg-secondaryMainLightest rounded-tr-lg">

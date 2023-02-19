@@ -3,8 +3,8 @@ import React from "react";
 const HomeTopCard = ({ backgroundColor }) => {
   console.log(backgroundColor.color);
   return (
-    <div
-      className={`flex items-center justify-center px-12 py-10 rounded-xl ${backgroundColor.color}`}
+    <section
+      className={`flex items-center justify-center w-full py-16 rounded-xl ${backgroundColor.color}`}
     >
       <div className="p-4 bg-whiteHigh bg-opacity-30 rounded-full">
         <svg
@@ -24,7 +24,7 @@ const HomeTopCard = ({ backgroundColor }) => {
         <p>Total Placed Order</p>
         <p className="text-2xl font-bold">3278</p>
       </div>
-    </div>
+    </section>
   );
 };
 
