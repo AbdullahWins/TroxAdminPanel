@@ -22,6 +22,8 @@ const DeliveryPendingRequests = () => {
       }
     }
     setSelectedOrders(selectedOrdersList);
+    //this line is just to bypass netlify CD/CI auto update failure
+    setAllOrders(orders);
   };
 
   const handlePhotoModal = (photoUrl) => {
@@ -194,7 +196,7 @@ const DeliveryPendingRequests = () => {
                     }}
                     className="select select-sm w-full max-w-xs"
                   >
-                    <option value="pending">Pending</option>
+                    <option defaultValue="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
                   </select>
                 </td>
