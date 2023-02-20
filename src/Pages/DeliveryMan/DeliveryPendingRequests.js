@@ -159,7 +159,7 @@ const DeliveryPendingRequests = () => {
           return (
             <tbody key={i}>
               <tr>
-                <th>
+                <th className="px-0">
                   <p className="flex items-center justify-center">
                     <input
                       type="checkbox"
@@ -171,11 +171,11 @@ const DeliveryPendingRequests = () => {
                     {order.serial}
                   </p>
                 </th>
-                <td className="p-0">{order.customer}</td>
-                <td className="p-0">{order.created}</td>
-                <td className="p-0">{order.gender}</td>
-                <td className="p-0">{order.phoneNumber}</td>
-                <td className="p-0">{order.email}</td>
+                <td className="px-0">{order.customer}</td>
+                <td className="px-0">{order.created}</td>
+                <td className="px-0">{order.gender}</td>
+                <td className="px-0">{order.phoneNumber}</td>
+                <td className="px-0">{order.email}</td>
                 <td className="p-0 flex items-center justify-center">
                   <label
                     htmlFor="photoModal"
