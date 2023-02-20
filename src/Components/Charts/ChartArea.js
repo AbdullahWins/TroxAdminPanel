@@ -29,7 +29,7 @@ const ChartArea = ({ data }) => {
         <Area
           type="monotone"
           dataKey="uv"
-          stackId="1"
+          stackId="2"
           stroke="#CA4922"
           fill="#FD7C55"
         />
@@ -37,8 +37,8 @@ const ChartArea = ({ data }) => {
           type="monotone"
           dataKey="pv"
           stackId="1"
-          stroke="#CA4922"
-          fill="#AFE2E2"
+          stroke="#37B6B6"
+          fill="#5FC5C5"
         />
       </AreaChart>
     </div>

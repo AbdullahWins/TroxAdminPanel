@@ -38,27 +38,31 @@ const SideNav = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`${
-        isClosed ? "min-w-28 w-24" : "min-w-96 w-92"
-      } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
+        isClosed ? "min-w-24 w-24" : "min-w-96 w-96"
+      } bg-whiteHigh flex flex-col gap-1 h-full mt-10 rounded-r-lg`}
     >
-      <section className="flex items-start justify-between p-4 gap-4 bg-secondaryMainLightest rounded-tr-lg">
+      <section
+        className={`flex items-center ${
+          isClosed ? "justify-center" : "justify-between"
+        } p-3 gap-2 bg-secondaryMainLightest rounded-tr-lg`}
+      >
         <div>
-          <img className="w-20" src={avater} alt="" />
+          <img className="w-12" src={avater} alt="" />
         </div>
         <div
           className={`${
             isClosed ? "hidden" : "block"
           } flex flex-col items-start justify-center`}
         >
-          <p className="text-bold text-2xl font-black">William</p>
-          <p className="text-xl">Super Admin</p>
+          <p className="font-black">William</p>
+          <p className="text-sm">Super Admin</p>
         </div>
         <div className={`${isClosed ? "hidden" : "block"}`}>
           <button onClick={toggleSideNav} className="btn-btn-ghost">
             <svg
               width="36"
               height="36"
-              viewBox="0 0 24 24"
+              viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -71,11 +75,11 @@ const SideNav = () => {
         </div>
       </section>
       {/* routes */}
-      <section className="flex flex-col justify-start items-start gap-1 mt-2">
+      <section className="flex flex-col justify-start items-start gap-1">
         {/* dashboard */}
         <div
           onClick={() => activateMenu("dashboard")}
-          className={`p-3 w-full ${
+          className={`px-3 w-full ${
             isActive === "dashboard"
               ? "bg-primaryMainLightest text-primaryMain"
               : ""
@@ -90,7 +94,7 @@ const SideNav = () => {
             <svg
               width="36"
               height="36"
-              viewBox="0 0 24 24"
+              viewBox="0 0 32 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -99,29 +103,27 @@ const SideNav = () => {
               />
             </svg>
 
-            <p className={`${isClosed ? "hidden" : "block"} text-xl`}>
-              Dashboard
-            </p>
+            <p className={`${isClosed ? "hidden" : "block"}`}>Dashboard</p>
           </Link>
         </div>
         {/* order */}
         <div
           onClick={() => activateMenu(2)}
-          className={`collapse ${isClosed ? "collapse-close" : ""} ${
+          className={`collapse  ${isClosed ? "collapse-close" : ""} ${
             isActive === 2 ? "bg-primaryMainLightest" : ""
-          } w-full mx-auto `}
+          } w-full mx-auto`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-3" : "justify-start"
               }`}
             >
               <svg
                 width="36"
                 height="36"
-                viewBox="0 0 24 24"
+                viewBox="0 0 28 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -133,7 +135,7 @@ const SideNav = () => {
               <p
                 className={`${
                   isClosed ? "hidden" : "block"
-                } text-xl flex items-center justify-between w-full`}
+                } flex items-center justify-between w-full`}
               >
                 <span>Orders</span>
                 <svg
@@ -152,7 +154,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8">
               {/* <button
                 onClick={() => handleNavigation("ordersProcessing")}
                 className={`p-3 w-full ${
@@ -191,13 +193,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-3" : "justify-start"
               }`}
             >
               <svg
                 width="36"
                 height="36"
-                viewBox="0 0 24 24"
+                viewBox="0 0 28 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -217,7 +219,7 @@ const SideNav = () => {
               <p
                 className={`${
                   isClosed ? "hidden" : "block"
-                } text-xl flex items-center justify-between w-full`}
+                } flex items-center justify-between w-full`}
               >
                 <span>Delivery Man</span>
                 <svg
@@ -236,7 +238,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8">
               <Link className="w-full" to="/deliveryPendingRequests">
                 <p>Pending Request</p>
               </Link>
@@ -268,13 +270,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-3" : "justify-start"
               }`}
             >
               <svg
                 width="36"
                 height="36"
-                viewBox="0 0 24 24"
+                viewBox="0 0 28 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -286,7 +288,7 @@ const SideNav = () => {
               <p
                 className={`${
                   isClosed ? "hidden" : "block"
-                } text-xl flex items-center justify-between w-full`}
+                }  flex items-center justify-between w-full`}
               >
                 <span>Customer</span>
                 <svg
@@ -305,7 +307,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
               <Link className="w-full" to="/customerProcessing">
                 <p>Processing</p>
               </Link>
@@ -331,13 +333,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-3" : "justify-start"
               }`}
             >
               <svg
                 width="36"
                 height="36"
-                viewBox="0 0 24 24"
+                viewBox="0 0 28 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -349,7 +351,7 @@ const SideNav = () => {
               <p
                 className={`${
                   isClosed ? "hidden" : "block"
-                } text-xl flex items-center justify-between w-full`}
+                }  flex items-center justify-between w-full`}
               >
                 <span>Locations</span>
                 <svg
@@ -368,7 +370,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
               <Link className="w-full" to="/locationsAddNew">
                 <p>Add New Location</p>
               </Link>
@@ -388,13 +390,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-3" : "justify-start"
               }`}
             >
               <svg
                 width="36"
                 height="36"
-                viewBox="0 0 24 24"
+                viewBox="0 0 28 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -422,7 +424,7 @@ const SideNav = () => {
               <p
                 className={`${
                   isClosed ? "hidden" : "block"
-                } text-xl flex items-center justify-between w-full`}
+                }  flex items-center justify-between w-full`}
               >
                 <span>Transaction</span>
                 <svg
@@ -441,7 +443,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
               <Link className="w-full" to="/transactionPendingWithdraw">
                 <p>Pending Withdraw</p>
               </Link>
@@ -467,13 +469,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-3" : "justify-start"
               }`}
             >
               <svg
                 width="36"
                 height="36"
-                viewBox="0 0 24 24"
+                viewBox="0 0 28 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -485,7 +487,7 @@ const SideNav = () => {
               <p
                 className={`${
                   isClosed ? "hidden" : "block"
-                } text-xl flex items-center justify-between w-full`}
+                }  flex items-center justify-between w-full`}
               >
                 <span>Warehouse</span>
                 <svg
@@ -504,7 +506,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
               <Link className="w-full" to="/WarehouseAll">
                 <p>All Warehouse</p>
               </Link>
@@ -527,13 +529,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-3" : "justify-start"
               }`}
             >
               <svg
                 width="36"
                 height="36"
-                viewBox="0 0 24 24"
+                viewBox="0 0 28 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -545,7 +547,7 @@ const SideNav = () => {
               <p
                 className={`${
                   isClosed ? "hidden" : "block"
-                } text-xl flex items-center justify-between w-full`}
+                }  flex items-center justify-between w-full`}
               >
                 <span>Staff</span>
                 <svg
@@ -564,7 +566,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 text-xl">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
               <Link to="/staffAll">
                 <p>All Staff</p>
               </Link>
