@@ -1,7 +1,6 @@
 import React from "react";
 
 const HomeTopCard = ({ backgroundColor }) => {
-  console.log(backgroundColor.color);
   return (
     <section
       className={`flex items-center justify-center w-full py-16 rounded-xl ${backgroundColor.color}`}

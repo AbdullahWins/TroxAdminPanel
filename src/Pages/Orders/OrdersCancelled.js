@@ -109,7 +109,7 @@ const OrdersCancelled = () => {
       </div>
       <table className="table w-full">
         <thead>
-          <tr className="font-bold text-3xl">
+          <tr className="font-bold text-center text-3xl">
             <th className="bg-secondaryMainLightest text-bold text-lg">
               Serial
             </th>
@@ -139,7 +139,7 @@ const OrdersCancelled = () => {
         {ordersProcessing.map((order, i) => {
           return (
             <tbody key={i}>
-              <tr>
+              <tr className="text-center">
                 <th className="px-0">
                   <p className="flex items-center justify-center">
                     <input

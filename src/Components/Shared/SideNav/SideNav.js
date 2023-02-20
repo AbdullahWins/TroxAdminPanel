@@ -79,7 +79,7 @@ const SideNav = () => {
         {/* dashboard */}
         <div
           onClick={() => activateMenu("dashboard")}
-          className={`px-3 w-full ${
+          className={`p-3 w-full ${
             isActive === "dashboard"
               ? "bg-primaryMainLightest text-primaryMain"
               : ""
