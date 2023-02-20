@@ -31,10 +31,10 @@ const ChartLine = ({ data }) => {
         <Line
           type="monotone"
           dataKey="pv"
-          stroke="#8884d8"
+          stroke="#FC5B2B"
           activeDot={{ r: 8 }}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="uv" stroke="#37B6B6" />
       </LineChart>
     </div>
   );

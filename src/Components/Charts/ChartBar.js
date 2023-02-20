@@ -28,8 +28,8 @@ const ChartBar = ({ data }) => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" fill="#FD7C55" />
-        <Bar dataKey="uv" fill="#AFE2E2" />
+        <Bar dataKey="pv" fill="#FC5B2B" />
+        <Bar dataKey="uv" fill="#37B6B6" />
       </BarChart>
     </div>
   );
