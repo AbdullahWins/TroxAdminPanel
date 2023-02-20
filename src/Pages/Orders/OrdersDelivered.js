@@ -139,7 +139,7 @@ const OrdersDelivered = () => {
           return (
             <tbody key={i}>
               <tr>
-                <th>
+                <th className="px-0">
                   <p className="flex items-center justify-center">
                     <input
                       type="checkbox"
@@ -151,13 +151,13 @@ const OrdersDelivered = () => {
                     {order.serial}
                   </p>
                 </th>
-                <td>{order.orderId}</td>
-                <td>{order.created}</td>
-                <td>{order.customer}</td>
-                <td>${order.totalAmount}.00</td>
-                <td>{order.pickupAddress}</td>
-                <td>{order.destinationAddress}</td>
-                <td>
+                <td className="px-0">{order.orderId}</td>
+                <td className="px-0">{order.created}</td>
+                <td className="px-0">{order.customer}</td>
+                <td className="px-0">${order.totalAmount}.00</td>
+                <td className="px-0">{order.pickupAddress}</td>
+                <td className="px-0">{order.destinationAddress}</td>
+                <td className="px-0">
                   <span className="text-whiteHigh text-center py-2 px-6 rounded-full bg-successColor">
                     Delivered
                   </span>

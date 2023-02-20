@@ -141,7 +141,7 @@ const OrdersPickedup = () => {
           return (
             <tbody key={i}>
               <tr>
-                <th>
+                <th className="px-0">
                   <p className="flex items-center justify-center">
                     <input
                       type="checkbox"
@@ -153,14 +153,14 @@ const OrdersPickedup = () => {
                     {order.serial}
                   </p>
                 </th>
-                <td>{order.orderId}</td>
-                <td>{order.created}</td>
-                <td>{order.customer}</td>
-                <td>${order.totalAmount}.00</td>
-                <td>{order.pickupAddress}</td>
-                <td>{order.destinationAddress}</td>
-                <td className="p-0">
-                  <div className="flex items-center justify-center gap-2">
+                <td className="px-0">{order.orderId}</td>
+                <td className="px-0">{order.created}</td>
+                <td className="px-0">{order.customer}</td>
+                <td className="px-0">${order.totalAmount}.00</td>
+                <td className="px-0">{order.pickupAddress}</td>
+                <td className="px-0">{order.destinationAddress}</td>
+                <td className="px-0 py-0">
+                  <div className="flex items-center justify-center">
                     <label
                       htmlFor="pausePopup"
                       className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"

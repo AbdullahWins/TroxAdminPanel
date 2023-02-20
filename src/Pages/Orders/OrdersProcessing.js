@@ -139,9 +139,9 @@ const OrdersProcessing = () => {
         </thead>
         {ordersProcessing.map((order, i) => {
           return (
-            <tbody key={i}>
+            <tbody className="text-center" key={i}>
               <tr>
-                <th>
+                <th className="px-0">
                   <p className="flex items-center justify-center">
                     <input
                       type="checkbox"
@@ -153,13 +153,13 @@ const OrdersProcessing = () => {
                     {order.serial}
                   </p>
                 </th>
-                <td>{order.orderId}</td>
-                <td>{order.created}</td>
-                <td>{order.customer}</td>
-                <td>${order.totalAmount}.00</td>
-                <td>{order.pickupAddress}</td>
-                <td>{order.destinationAddress}</td>
-                <td className="p-0">
+                <td className="px-0">{order.orderId}</td>
+                <td className="px-0">{order.created}</td>
+                <td className="px-0">{order.customer}</td>
+                <td className="px-0">${order.totalAmount}.00</td>
+                <td className="px-0">{order.pickupAddress}</td>
+                <td className="px-0">{order.destinationAddress}</td>
+                <td className="px-0 py-0">
                   <select className="select select-sm w-full max-w-xs">
                     <option>Pending</option>
                     <option>Confirmed</option>
