@@ -38,9 +38,7 @@ const SideNav = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`${
-        isClosed
-          ? "min-w-28 w-24"
-          : "min-w-96 w-92"
+        isClosed ? "min-w-28 w-24" : "min-w-96 w-92"
       } bg-whiteHigh flex flex-col gap-4 h-full mt-10 rounded-r-lg`}
     >
       <section className="flex items-start justify-between p-4 gap-4 bg-secondaryMainLightest rounded-tr-lg">
@@ -250,6 +248,9 @@ const SideNav = () => {
               </Link>
               <Link className="w-full" to="/deliveryBlocked">
                 <p>Blocked</p>
+              </Link>
+              <Link className="w-full" to="/deliveryCancelled">
+                <p>Cancelled</p>
               </Link>
             </div>
           </div>

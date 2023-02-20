@@ -21,6 +21,7 @@ import CustomerAll from "../Pages/Customer/CustomerAll";
 import CustomerBlocked from "../Pages/Customer/CustomerBlocked";
 import CustomerProcessing from "../Pages/Customer/CustomerProcessing";
 import UserProfile from "../Pages/User/UserProfile";
+import DeliveryCancelled from "../Pages/DeliveryMan/DeliveryCancelled";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "/deliveryBlocked",
         element: <DeliveryBlocked></DeliveryBlocked>,
+      },
+      {
+        path: "/deliveryCancelled",
+        element: <DeliveryCancelled></DeliveryCancelled>,
       },
 
       // customer

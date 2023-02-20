@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 
-const DeliveryBlocked = () => {
+const DeliveryCancelled = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const ordersProcessing = orders;
 
@@ -18,6 +18,7 @@ const DeliveryBlocked = () => {
     }
     setSelectedOrders(selectedOrdersList);
   };
+
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
       <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
@@ -280,4 +281,4 @@ const DeliveryBlocked = () => {
   );
 };
 
-export default DeliveryBlocked;
+export default DeliveryCancelled;
