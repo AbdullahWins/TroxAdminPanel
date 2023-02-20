@@ -2,45 +2,32 @@ import React from "react";
 import {
   CartesianGrid,
   XAxis,
-  YAxis,
   Tooltip,
-  AreaChart,
   Area,
+  ComposedChart,
+  Line,
 } from "recharts";
 
 const ChartArea = ({ data }) => {
   return (
     <div className="overflow-x-auto overflow-y-hidden flex items-center justify-center">
-      <AreaChart
-        width={800}
-        height={450}
-        data={data}
-        margin={{
-          top: 5,
-          right: 5,
-          left: 5,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Area
-          type="monotone"
-          dataKey="uv"
-          stackId="1"
-          stroke="#CA4922"
-          fill="#FD7C55"
-        />
-        <Area
-          type="monotone"
-          dataKey="pv"
-          stackId="1"
-          stroke="#CA4922"
-          fill="#AFE2E2"
-        />
-      </AreaChart>
+      <ComposedChart
+          width={800}
+          height={450}
+          data={data}
+          margin={{
+            top: 5,
+            right: 5,
+            bottom: 5,
+            left: 5,
+          }}
+        >
+          <CartesianGrid stroke="#f5f5f5" />
+          <XAxis dataKey="name" />
+          <Tooltip />
+          <Area type="monotone" dataKey="uv" fill="#FC5B2B" stroke="#FC5B2B" />
+          <Line type="monotone" dataKey="pv" stroke="#00AE5B" />
+        </ComposedChart>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 
-const OrdersPickedup = () => {
+const DeliveryCancelled = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const ordersProcessing = orders;
 
@@ -24,7 +24,7 @@ const OrdersPickedup = () => {
       <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
         <section className="flex items-center gap-4">
           <div>
-            <p className="font-bold text-2xl">Orders</p>
+            <p className="font-bold text-2xl">Delivery Man</p>
           </div>
           <div>
             <div className="dropdown dropdown-hover">
@@ -109,29 +109,27 @@ const OrdersPickedup = () => {
         </label>
       </div>
 
-      <table className="table w-full">
+      <table className="table w-full text-center">
         <thead>
-          <tr className="font-bold text-center text-3xl">
+          <tr className="font-bold text-3xl">
             <th className="bg-secondaryMainLightest text-bold text-lg">
               Serial
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg">
-              Order ID
+              User ID
+            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">Name</th>
+            <th className="bg-secondaryMainLightest text-bold text-lg">
+              Work Address
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg">
-              Created
+              Gender
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg">
-              Customer
+              Earnings
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg">
-              Total
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Pickup Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Destination Address
+              Account Status
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg">
               Actions
@@ -141,7 +139,7 @@ const OrdersPickedup = () => {
         {ordersProcessing.map((order, i) => {
           return (
             <tbody key={i}>
-              <tr className="text-center">
+              <tr>
                 <th className="px-0">
                   <p className="flex items-center justify-center">
                     <input
@@ -155,15 +153,16 @@ const OrdersPickedup = () => {
                   </p>
                 </th>
                 <td className="px-0">{order.orderId}</td>
-                <td className="px-0">{order.created}</td>
                 <td className="px-0">{order.customer}</td>
-                <td className="px-0">${order.totalAmount}.00</td>
                 <td className="px-0">{order.pickupAddress}</td>
-                <td className="px-0">{order.destinationAddress}</td>
-                <td className="px-0 py-0">
+                <td className="px-0">{order.gender}</td>
+                {/* hardcoded for now */}
+                <td className="px-0">150 rupaiya</td>
+                <td className="px-0">Active Ache</td>
+                <td className="p-0">
                   <div className="flex items-center justify-center">
                     <label
-                      htmlFor="blockPopup"
+                      htmlFor="pausePopup"
                       className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"
                     >
                       <svg
@@ -224,59 +223,6 @@ const OrdersPickedup = () => {
           );
         })}
       </table>
-
-      {/* block modal popup */}
-      <section>
-        <input type="checkbox" id="blockPopup" className="modal-toggle" />
-        <div className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box flex flex-col items-center justify-center gap-4">
-            <div>
-              <svg
-                width="120"
-                height="120"
-                viewBox="0 0 120 120"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M60 10C32.4 10 10 32.4 10 60C10 87.6 32.4 110 60 110C87.6 110 110 87.6 110 60C110 32.4 87.6 10 60 10ZM65 85H55V75H65V85ZM65 65H55V35H65V65Z"
-                  fill="url(#paint0_linear_630_70960)"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_630_70960"
-                    x1="60"
-                    y1="10"
-                    x2="60"
-                    y2="110"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="#37B6B6" />
-                    <stop offset="1" stopColor="#37B6B6" stopOpacity="0.18" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div>
-              <p className="font-bold text-lg">Do you want to block?</p>
-            </div>
-            <div className="modal-action flex items-center justify-center">
-              <label
-                htmlFor="blockPopup"
-                className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
-              >
-                Confirm
-              </label>
-              <label
-                htmlFor="blockPopup"
-                className="btn rounded-full bg-whiteHigh text-primaryMain w-full border-primaryMain hover:border-primaryMain hover:bg-whiteHigh"
-              >
-                Cancel
-              </label>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* pause modal popup */}
       <section>
         <input type="checkbox" id="pausePopup" className="modal-toggle" />
@@ -310,7 +256,7 @@ const OrdersPickedup = () => {
               </svg>
             </div>
             <div>
-              <p className="font-bold text-lg">Do you want to pause?</p>
+              <p className="font-bold text-lg">Do you want to Pause?</p>
             </div>
             <div className="modal-action flex items-center justify-center">
               <label
@@ -335,4 +281,4 @@ const OrdersPickedup = () => {
   );
 };
 
-export default OrdersPickedup;
+export default DeliveryCancelled;

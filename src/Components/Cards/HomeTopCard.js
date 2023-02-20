@@ -1,10 +1,9 @@
 import React from "react";
 
 const HomeTopCard = ({ backgroundColor }) => {
-  console.log(backgroundColor.color);
   return (
     <section
-      className={`flex items-center justify-center w-full py-16 rounded-xl ${backgroundColor.color}`}
+      className={`flex items-center justify-center w-full md:py-4 lg:py-14 rounded-xl ${backgroundColor.color}`}
     >
       <div className="p-4 bg-whiteHigh bg-opacity-30 rounded-full">
         <svg
