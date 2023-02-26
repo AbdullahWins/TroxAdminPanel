@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 
-const WarehouseAll = () => {
+const LocationsCity = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const ordersProcessing = orders;
 
@@ -24,7 +24,7 @@ const WarehouseAll = () => {
       <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
         <section className="flex items-center gap-4">
           <div>
-            <p className="font-bold text-2xl">Customer</p>
+            <p className="font-bold text-2xl">Locations</p>
           </div>
           <div>
             <div className="dropdown dropdown-hover">
@@ -129,15 +129,20 @@ const WarehouseAll = () => {
             <th className="bg-secondaryMainLightest text-bold text-lg">
               Serial
             </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
+            <th className="bg-secondaryMainLightest text-bold text-lg text-start">
               Name
             </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Email
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Location
-            </th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
+            <th className="bg-secondaryMainLightest text-bold text-lg"></th>
             <th className="bg-secondaryMainLightest text-bold text-lg">
               Actions
             </th>
@@ -159,12 +164,20 @@ const WarehouseAll = () => {
                     {order.serial}
                   </p>
                 </th>
-                <td className="px-0">{order.customer}</td>
-                <td className="px-0">{order.email}</td>
-                <td className="px-0">{order.pickupAddress}</td>
+                <td className="px-0 text-start">{order.customer}</td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
+                <td className="px-0"></td>
                 <td className="p-0">
                   <div className="flex items-center justify-center">
-
                     <label
                       htmlFor="pausePopup"
                       className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"
@@ -241,7 +254,7 @@ const WarehouseAll = () => {
               </svg>
             </div>
             <div>
-              <p className="font-bold text-lg">Do you want to Pause?</p>
+              <p className="font-bold text-lg">Do you want to Edit?</p>
             </div>
             <div className="modal-action flex items-center justify-center">
               <label
@@ -266,4 +279,4 @@ const WarehouseAll = () => {
   );
 };
 
-export default WarehouseAll;
+export default LocationsCity;

@@ -16,12 +16,14 @@ import StaffAddNew from "../Pages/Staff/StaffAddNew";
 import TransactionPendingWithdraw from "../Pages/Transaction/TransactionPendingWithdraw";
 import TransactionUnsettledBalance from "../Pages/Transaction/TransactionUnsettledBalance";
 import TransactionRevenue from "../Pages/Transaction/TransactionRevenue";
-import LocationsAddNew from "../Pages/Locations/LocationsAddNew";
 import CustomerAll from "../Pages/Customer/CustomerAll";
 import CustomerBlocked from "../Pages/Customer/CustomerBlocked";
 import CustomerProcessing from "../Pages/Customer/CustomerProcessing";
 import UserProfile from "../Pages/User/UserProfile";
 import DeliveryCancelled from "../Pages/DeliveryMan/DeliveryCancelled";
+import LocationsCountry from "../Pages/Locations/LocationsCountry";
+import LocationsCity from "../Pages/Locations/LocationsCity";
+import LocationsState from "../Pages/Locations/LocationsState";
 
 export const router = createBrowserRouter([
   {
@@ -88,8 +90,16 @@ export const router = createBrowserRouter([
 
       // location
       {
-        path: "/locationsAddNew",
-        element: <LocationsAddNew></LocationsAddNew>,
+        path: "/locationsCountry",
+        element: <LocationsCountry></LocationsCountry>,
+      },
+      {
+        path: "/locationsState",
+        element: <LocationsState></LocationsState>,
+      },
+      {
+        path: "/locationsCity",
+        element: <LocationsCity></LocationsCity>,
       },
 
       // transaction
