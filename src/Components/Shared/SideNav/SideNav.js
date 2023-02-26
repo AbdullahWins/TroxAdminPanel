@@ -371,8 +371,14 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
             <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
-              <Link className="w-full" to="/locationsAddNew">
-                <p>Add New Location</p>
+              <Link className="w-full" to="/locationsCountry">
+                <p>Country</p>
+              </Link>
+              <Link className="w-full" to="/locationsState">
+                <p>State</p>
+              </Link>
+              <Link className="w-full" to="/locationsCity">
+                <p>City</p>
               </Link>
             </div>
           </div>
@@ -577,8 +583,8 @@ const SideNav = () => {
           </div>
         </div>
 
-{/* dashboard 2 */}
-<div
+        {/* dashboard 2 */}
+        <div
           onClick={() => activateMenu("dashboard")}
           className={`p-3 w-full ${
             isActive === "dashboard"
