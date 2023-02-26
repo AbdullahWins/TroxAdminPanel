@@ -159,7 +159,7 @@ const OrdersCancelled = () => {
                 <td className="px-0">{order.pickupAddress}</td>
                 <td className="px-0">{order.destinationAddress}</td>
                 <td className="px-0">
-                  <span className="text-whiteHigh text-center py-2 px-6 rounded-full bg-errorColor">
+                  <span className="text-primaryMain text-center py-2 px-6 rounded-xl bg-primaryMainLightest">
                     Cancelled
                   </span>
                 </td>
