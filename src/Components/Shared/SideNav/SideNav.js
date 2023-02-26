@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./SideNav.css";
 import avater from "../../../Assets/img/profile/avater.png";
 
 const SideNav = () => {
@@ -39,14 +40,14 @@ const SideNav = () => {
       onMouseLeave={handleMouseLeave}
       className={`${
         isClosed ? "min-w-24 w-24" : "min-w-96 w-96"
-      } bg-whiteHigh flex flex-col gap-1 h-full mt-10 rounded-r-lg`}
+      } bg-whiteHigh flex flex-col gap-1 h-full mt-10 rounded-r-lg sideNav`}
     >
       <section
         className={`flex items-center ${
           isClosed ? "justify-center" : "justify-between"
         } p-3 gap-2 bg-secondaryMainLightest rounded-tr-lg`}
       >
-        <div>
+        <div className="w-12">
           <img className="w-12" src={avater} alt="" />
         </div>
         <div
