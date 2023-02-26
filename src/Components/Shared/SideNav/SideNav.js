@@ -102,16 +102,17 @@ const SideNav = () => {
                 fill="#6C6C6C"
               />
             </svg>
-
             <p className={`${isClosed ? "hidden" : "block"}`}>Dashboard</p>
           </Link>
         </div>
         {/* order */}
         <div
           onClick={() => activateMenu(2)}
-          className={`collapse ${isClosed ? "collapse-close" : ""} ${
-            isActive === 2 ? "bg-primaryMainLightest" : ""
-          } w-full mx-auto`}
+          className={`collapse ${!isClosed ? "collapse-arrow" : null} ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto ${
+            isActive === 2 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
         >
           <input type="checkbox" />
           <div className="collapse-title">
@@ -138,18 +139,6 @@ const SideNav = () => {
                 } flex items-center justify-between w-full`}
               >
                 <span>Orders</span>
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
-                    fill="#6C6C6C"
-                  />
-                </svg>
               </p>
             </div>
           </div>
@@ -183,7 +172,7 @@ const SideNav = () => {
         {/* Delivery Man */}
         <div
           onClick={() => activateMenu(3)}
-          className={`collapse ${
+          className={`collapse ${!isClosed ? "collapse-arrow" : null} ${
             isClosed ? "collapse-close" : ""
           } w-full mx-auto ${
             isActive === 3 ? "bg-primaryMainLightest text-primaryMain" : ""
@@ -222,18 +211,6 @@ const SideNav = () => {
                 } flex items-center justify-between w-full`}
               >
                 <span>Delivery Man</span>
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
-                    fill="#6C6C6C"
-                  />
-                </svg>
               </p>
             </div>
           </div>
@@ -260,7 +237,7 @@ const SideNav = () => {
         {/* Customers */}
         <div
           onClick={() => activateMenu(4)}
-          className={`collapse ${
+          className={`collapse  ${!isClosed ? "collapse-arrow" : null} ${
             isClosed ? "collapse-close" : ""
           } w-full mx-auto ${
             isActive === 4 ? "bg-primaryMainLightest text-primaryMain" : ""
@@ -291,18 +268,6 @@ const SideNav = () => {
                 }  flex items-center justify-between w-full`}
               >
                 <span>Customer</span>
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
-                    fill="#6C6C6C"
-                  />
-                </svg>
               </p>
             </div>
           </div>
@@ -323,7 +288,7 @@ const SideNav = () => {
         {/* Locations */}
         <div
           onClick={() => activateMenu(5)}
-          className={`collapse ${
+          className={`collapse  ${!isClosed ? "collapse-arrow" : null} ${
             isClosed ? "collapse-close" : ""
           } w-full mx-auto ${
             isActive === 5 ? "bg-primaryMainLightest text-primaryMain" : ""
@@ -354,18 +319,6 @@ const SideNav = () => {
                 }  flex items-center justify-between w-full`}
               >
                 <span>Locations</span>
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
-                    fill="#6C6C6C"
-                  />
-                </svg>
               </p>
             </div>
           </div>
@@ -386,7 +339,7 @@ const SideNav = () => {
         {/* Transaction */}
         <div
           onClick={() => activateMenu(6)}
-          className={`collapse ${
+          className={`collapse  ${!isClosed ? "collapse-arrow" : null} ${
             isClosed ? "collapse-close" : ""
           } w-full mx-auto ${
             isActive === 6 ? "bg-primaryMainLightest text-primaryMain" : ""
@@ -433,18 +386,6 @@ const SideNav = () => {
                 }  flex items-center justify-between w-full`}
               >
                 <span>Transaction</span>
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
-                    fill="#6C6C6C"
-                  />
-                </svg>
               </p>
             </div>
           </div>
@@ -465,7 +406,7 @@ const SideNav = () => {
         {/* Warehouse */}
         <div
           onClick={() => activateMenu(7)}
-          className={`collapse ${
+          className={`collapse  ${!isClosed ? "collapse-arrow" : null} ${
             isClosed ? "collapse-close" : ""
           } w-full mx-auto ${
             isActive === 7 ? "bg-primaryMainLightest text-primaryMain" : ""
@@ -496,18 +437,6 @@ const SideNav = () => {
                 }  flex items-center justify-between w-full`}
               >
                 <span>Warehouse</span>
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
-                    fill="#6C6C6C"
-                  />
-                </svg>
               </p>
             </div>
           </div>
@@ -525,7 +454,7 @@ const SideNav = () => {
         {/* Staff */}
         <div
           onClick={() => activateMenu(8)}
-          className={`collapse ${
+          className={`collapse  ${!isClosed ? "collapse-arrow" : null} ${
             isClosed ? "collapse-close" : ""
           } w-full mx-auto ${
             isActive === 8 ? "bg-primaryMainLightest text-primaryMain" : ""
@@ -556,18 +485,6 @@ const SideNav = () => {
                 }  flex items-center justify-between w-full`}
               >
                 <span>Staff</span>
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.8746 8.99953L11.9946 12.8795L8.11461 8.99953C7.72461 8.60953 7.09461 8.60953 6.70461 8.99953C6.31461 9.38953 6.31461 10.0195 6.70461 10.4095L11.2946 14.9995C11.6846 15.3895 12.3146 15.3895 12.7046 14.9995L17.2946 10.4095C17.6846 10.0195 17.6846 9.38953 17.2946 8.99953C16.9046 8.61953 16.2646 8.60953 15.8746 8.99953Z"
-                    fill="#6C6C6C"
-                  />
-                </svg>
               </p>
             </div>
           </div>
