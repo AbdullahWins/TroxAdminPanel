@@ -61,26 +61,17 @@ const SideNav = () => {
         <div
           className={`${
             canShow ? "hidden" : "block"
-          } flex items-center justify-between gap-4 overflow-auto`}
+          } flex items-start justify-between gap-4 overflow-auto`}
         >
           <div>
-            <p className="font-black">William</p>
-            <p className="text-sm">Super Admin</p>
+            <p className="font-black text-blackMid">William</p>
+            <p className="text-sm text-blackMid">Super Admin</p>
           </div>
           <div>
             <button onClick={toggleSideNav} className="btn-btn-ghost">
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4.20312 18H15.2031C15.7531 18 16.2031 17.55 16.2031 17C16.2031 16.45 15.7531 16 15.2031 16H4.20312C3.65312 16 3.20312 16.45 3.20312 17C3.20312 17.55 3.65312 18 4.20312 18ZM4.20312 13H12.2031C12.7531 13 13.2031 12.55 13.2031 12C13.2031 11.45 12.7531 11 12.2031 11H4.20312C3.65312 11 3.20312 11.45 3.20312 12C3.20312 12.55 3.65312 13 4.20312 13ZM3.20312 7C3.20312 7.55 3.65312 8 4.20312 8H15.2031C15.7531 8 16.2031 7.55 16.2031 7C16.2031 6.45 15.7531 6 15.2031 6H4.20312C3.65312 6 3.20312 6.45 3.20312 7ZM20.5031 14.88L17.6231 12L20.5031 9.12C20.8931 8.73 20.8931 8.1 20.5031 7.71C20.1131 7.32 19.4831 7.32 19.0931 7.71L15.5031 11.3C15.1131 11.69 15.1131 12.32 15.5031 12.71L19.0931 16.3C19.4831 16.69 20.1131 16.69 20.5031 16.3C20.8831 15.91 20.8931 15.27 20.5031 14.88Z"
-                  fill="#6C6C6C"
-                />
-              </svg>
+              <span class="material-symbols-outlined text-blackMid">
+                menu_open
+              </span>
             </button>
           </div>
         </div>
@@ -90,10 +81,10 @@ const SideNav = () => {
         {/* dashboard */}
         <div
           onClick={() => activateMenu("dashboard")}
-          className={`p-3 w-full ${
+          className={`px-2 py-4 w-full ${
             isActive === "dashboard"
               ? "bg-primaryMainLightest text-primaryMain"
-              : ""
+              : null
           }`}
         >
           <Link
@@ -105,6 +96,7 @@ const SideNav = () => {
             <span class="material-symbols-outlined text-blackMid">
               dashboard
             </span>
+            &nbsp;
             <p className={`${canShow ? "hidden" : "block"}`}>Dashboard</p>
           </Link>
         </div>
@@ -421,7 +413,7 @@ const SideNav = () => {
         {/* Payment Gateway */}
         <div
           onClick={() => activateMenu("payment")}
-          className={`p-3 w-full ${
+          className={`px-3 py-4 w-full ${
             isActive === "payment"
               ? "bg-primaryMainLightest text-primaryMain"
               : ""
@@ -443,7 +435,7 @@ const SideNav = () => {
         {/* Withdraw Request */}
         <div
           onClick={() => activateMenu("withdraw")}
-          className={`p-3 w-full ${
+          className={`px-3 py-4 w-full ${
             isActive === "withdraw"
               ? "bg-primaryMainLightest text-primaryMain"
               : ""
@@ -467,7 +459,7 @@ const SideNav = () => {
         {/* Business Setup */}
         <div
           onClick={() => activateMenu("business")}
-          className={`p-3 w-full ${
+          className={`px-3 py-4 w-full ${
             isActive === "business"
               ? "bg-primaryMainLightest text-primaryMain"
               : ""
