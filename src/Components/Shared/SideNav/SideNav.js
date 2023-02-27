@@ -500,12 +500,11 @@ const SideNav = () => {
             </div>
           </div>
         </div>
-
-        {/* dashboard 2 */}
+        {/* Payment Gateway */}
         <div
-          onClick={() => activateMenu("dashboard")}
+          onClick={() => activateMenu("payment")}
           className={`p-3 w-full ${
-            isActive === "dashboard"
+            isActive === "payment"
               ? "bg-primaryMainLightest text-primaryMain"
               : ""
           }`}
@@ -528,37 +527,69 @@ const SideNav = () => {
               />
             </svg>
 
-            <p className={`${isClosed ? "hidden" : "block"}`}>Dashboard</p>
+            <p className={`${isClosed ? "hidden" : "block"}`}>Payment Gateway</p>
           </Link>
         </div>
-
-        {/* Logout */}
-        {/* <div
-          onClick={() => activateMenu(9)}
-          className={`flex items-center ${
-            isClosed ? "justify-center" : "justify-start"
-          }  p-3 ${
-            isActive === 9 ? "bg-primaryMainLightest text-primaryMain" : ""
+        {/* Withdraw Request */}
+        <div
+          onClick={() => activateMenu("withdraw")}
+          className={`p-3 w-full ${
+            isActive === "withdraw"
+              ? "bg-primaryMainLightest text-primaryMain"
+              : ""
           }`}
         >
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <Link
+            className={`flex items-center ${
+              isClosed ? "justify-center" : "justify-start"
+            }`}
+            to="/"
           >
-            <path
-              d="M5.10449 5H11.1045C11.6545 5 12.1045 4.55 12.1045 4C12.1045 3.45 11.6545 3 11.1045 3H5.10449C4.00449 3 3.10449 3.9 3.10449 5V19C3.10449 20.1 4.00449 21 5.10449 21H11.1045C11.6545 21 12.1045 20.55 12.1045 20C12.1045 19.45 11.6545 19 11.1045 19H5.10449V5Z"
-              fill="#6C6C6C"
-            />
-            <path
-              d="M20.7545 11.65L17.9645 8.86C17.6445 8.54 17.1045 8.76 17.1045 9.21V11H10.1045C9.55449 11 9.10449 11.45 9.10449 12C9.10449 12.55 9.55449 13 10.1045 13H17.1045V14.79C17.1045 15.24 17.6445 15.46 17.9545 15.14L20.7445 12.35C20.9445 12.16 20.9445 11.84 20.7545 11.65Z"
-              fill="#6C6C6C"
-            />
-          </svg>
-          <p className={`${isClosed ? "hidden" : "block"}`}>Logout</p>
-        </div> */}
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 32 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 13H10C10.55 13 11 12.55 11 12V4C11 3.45 10.55 3 10 3H4C3.45 3 3 3.45 3 4V12C3 12.55 3.45 13 4 13ZM4 21H10C10.55 21 11 20.55 11 20V16C11 15.45 10.55 15 10 15H4C3.45 15 3 15.45 3 16V20C3 20.55 3.45 21 4 21ZM14 21H20C20.55 21 21 20.55 21 20V12C21 11.45 20.55 11 20 11H14C13.45 11 13 11.45 13 12V20C13 20.55 13.45 21 14 21ZM13 4V8C13 8.55 13.45 9 14 9H20C20.55 9 21 8.55 21 8V4C21 3.45 20.55 3 20 3H14C13.45 3 13 3.45 13 4Z"
+                fill="#6C6C6C"
+              />
+            </svg>
+
+            <p className={`${isClosed ? "hidden" : "block"}`}>Withdraw Request</p>
+          </Link>
+        </div>
+        {/* Business Setup */}
+        <div
+          onClick={() => activateMenu("business")}
+          className={`p-3 w-full ${
+            isActive === "business"
+              ? "bg-primaryMainLightest text-primaryMain"
+              : ""
+          }`}
+        >
+          <Link
+            className={`flex items-center ${
+              isClosed ? "justify-center" : "justify-start"
+            }`}
+            to="/"
+          >
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 32 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 13H10C10.55 13 11 12.55 11 12V4C11 3.45 10.55 3 10 3H4C3.45 3 3 3.45 3 4V12C3 12.55 3.45 13 4 13ZM4 21H10C10.55 21 11 20.55 11 20V16C11 15.45 10.55 15 10 15H4C3.45 15 3 15.45 3 16V20C3 20.55 3.45 21 4 21ZM14 21H20C20.55 21 21 20.55 21 20V12C21 11.45 20.55 11 20 11H14C13.45 11 13 11.45 13 12V20C13 20.55 13.45 21 14 21ZM13 4V8C13 8.55 13.45 9 14 9H20C20.55 9 21 8.55 21 8V4C21 3.45 20.55 3 20 3H14C13.45 3 13 3.45 13 4Z"
+                fill="#6C6C6C"
+              />
+            </svg>
+
+            <p className={`${isClosed ? "hidden" : "block"}`}>Business Setup</p>
+          </Link>
+        </div>
       </section>
     </div>
   );
