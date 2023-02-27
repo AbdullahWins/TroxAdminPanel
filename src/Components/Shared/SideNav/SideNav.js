@@ -98,11 +98,13 @@ const SideNav = () => {
         >
           <Link
             className={`flex items-center ${
-              isClosed ? "justify-center" : "justify-start pl-3"
+              isClosed ? "justify-center" : "justify-start pl-2"
             }`}
             to="/"
           >
-            <span class="material-symbols-outlined">dashboard</span>
+            <span class="material-symbols-outlined text-blackMid">
+              dashboard
+            </span>
             <p className={`${canShow ? "hidden" : "block"}`}>Dashboard</p>
           </Link>
         </div>
@@ -119,10 +121,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center" : "justify-start"
+                isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined">list_alt</span> &nbsp;
+              <span class="material-symbols-outlined text-blackMid">
+                list_alt
+              </span>{" "}
+              &nbsp;
               <p
                 className={`${
                   canShow ? "hidden" : "block"
@@ -172,10 +177,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center pl-3" : "justify-start"
+                isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <i class="fa-solid fa-truck text-2xl text-blackMid"></i> &nbsp;
+              <span class="material-symbols-outlined text-blackMid">
+                directions_bike
+              </span>
+              &nbsp;
               <p
                 className={`${
                   canShow ? "hidden" : "block"
@@ -218,10 +226,13 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center pl-3" : "justify-start"
+                isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <i class="fa-solid fa-user text-2xl text-blackMid"></i> &nbsp;
+              <span class="material-symbols-outlined text-blackMid">
+                person
+              </span>{" "}
+              &nbsp;
               <p
                 className={`${
                   canShow ? "hidden" : "block"
@@ -258,10 +269,12 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center pl-3" : "justify-start"
+                isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <i class="fa-solid fa-location-dot text-2xl text-blackMid"></i>{" "}
+              <span class="material-symbols-outlined text-blackMid">
+                location_on
+              </span>
               &nbsp;
               <p
                 className={`${
@@ -299,10 +312,12 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center pl-3" : "justify-start"
+                isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <i class="fa-solid fa-newspaper text-2xl text-blackMid"></i>{" "}
+              <span class="material-symbols-outlined text-blackMid">
+                receipt_long
+              </span>
               &nbsp;
               <p
                 className={`${
@@ -340,10 +355,10 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center pl-3" : "justify-start"
+                isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <i class="fa-solid fa-house-chimney text-2xl text-blackMid"></i>{" "}
+              <span class="material-symbols-outlined text-blackMid">house</span>
               &nbsp;
               <p
                 className={`${
@@ -378,10 +393,10 @@ const SideNav = () => {
           <div className="collapse-title">
             <div
               className={`flex items-center ${
-                isClosed ? "justify-center pl-3" : "justify-start"
+                isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <i class="fa-solid fa-user-group text-2xl text-blackMid"></i>{" "}
+              <span class="material-symbols-outlined text-blackMid">group</span>
               &nbsp;
               <p
                 className={`${
@@ -418,7 +433,9 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <i class="fa-regular fa-credit-card text-2xl text-blackMid"></i>{" "}
+            <span class="material-symbols-outlined text-blackMid">
+              credit_card
+            </span>
             &nbsp;
             <p className={`${canShow ? "hidden" : "block"}`}>Payment Gateway</p>
           </Link>
@@ -438,7 +455,9 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <i class="fa-solid fa-money-bill-transfer text-2xl text-blackMid"></i>{" "}
+            <span class="material-symbols-outlined text-blackMid">
+              payments
+            </span>
             &nbsp;{" "}
             <p className={`${canShow ? "hidden" : "block"}`}>
               Withdraw Request
@@ -460,7 +479,8 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <i class="fa-solid fa-briefcase text-2xl text-blackMid"></i> &nbsp;
+            <span class="material-symbols-outlined text-blackMid">work</span>{" "}
+            &nbsp;
             <p className={`${canShow ? "hidden" : "block"}`}>Business Setup</p>
           </Link>
         </div>
