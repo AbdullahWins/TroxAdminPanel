@@ -155,7 +155,7 @@ const DeliveryAddNew = () => {
             <tbody key={i}>
               <tr>
                 <th className="px-0">
-                  <p className="flex items-center justify-center">
+                  <p className="flex items-center justify-start pl-4">
                     <input
                       type="checkbox"
                       className="checkbox"

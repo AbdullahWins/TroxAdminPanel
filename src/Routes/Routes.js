@@ -24,6 +24,7 @@ import DeliveryCancelled from "../Pages/DeliveryMan/DeliveryCancelled";
 import LocationsCountry from "../Pages/Locations/LocationsCountry";
 import LocationsCity from "../Pages/Locations/LocationsCity";
 import LocationsState from "../Pages/Locations/LocationsState";
+import StaffRole from "../Pages/Staff/StaffRole";
 
 export const router = createBrowserRouter([
   {
@@ -134,6 +135,10 @@ export const router = createBrowserRouter([
       {
         path: "/staffAddNew",
         element: <StaffAddNew></StaffAddNew>,
+      },
+      {
+        path: "/staffRole",
+        element: <StaffRole></StaffRole>,
       },
     ],
   },

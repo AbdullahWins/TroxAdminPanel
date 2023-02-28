@@ -362,7 +362,7 @@ const SideNav = () => {
             </div>
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
-            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
+            <div className="flex flex-col justify-start items-start gap- pl-8 ">
               <Link className="w-full" to="/WarehouseAll">
                 <p>All Warehouse</p>
               </Link>
@@ -401,8 +401,15 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
             <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
-              <Link to="/staffAll">
-                <p>All Staff</p>
+              <Link className="w-full" to="/staffRole">
+                <p>
+                  Role
+                </p>
+              </Link>
+              <Link className="w-full" to="/staffAll">
+                <p>
+                  All Staff
+                </p>
               </Link>
               <Link className="w-full" to="/staffAddNew">
                 <p>Add New Staff</p>
