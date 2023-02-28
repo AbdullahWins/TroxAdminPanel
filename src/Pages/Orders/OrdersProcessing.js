@@ -1,12 +1,17 @@
-import React, { useContext, useState } from "react";
-import orders from "../../Assets/json/orders.json";
+import React, { useContext, useEffect, useState } from "react";
+// import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
-  const { fetchPost } = useContext(AuthContext);
-  const ordersProcessing = orders;
+  const [pendingOrders, setPendingOrders] = useState([]);
+  const { fetchPost, orders } = useContext(AuthContext);
+
+  //first time fetching on load
+  useEffect(() => {
+    setPendingOrders(orders);
+  }, [orders]);
 
   const handleCheckbox = (event) => {
     const selectedOrdersList = [...selectedOrders];
@@ -143,7 +148,7 @@ const OrdersProcessing = () => {
             </th>
           </tr>
         </thead>
-        {ordersProcessing.map((order, i) => {
+        {pendingOrders?.map((order, i) => {
           return (
             <tbody className="text-center" key={i}>
               <tr className="text-center">
@@ -156,15 +161,15 @@ const OrdersProcessing = () => {
                       onChange={handleCheckbox}
                     />
                     &nbsp; &nbsp;
-                    {order.serial}
+                    {i + 1}
                   </p>
                 </th>
-                <td className="px-0">{order.orderId}</td>
-                <td className="px-0">{order.created}</td>
-                <td className="px-0">{order.customer}</td>
+                <td className="px-0">{order.order_id}</td>
+                <td className="px-0">{order?.timestamp?.seconds}</td>
+                <td className="px-0">{order.sender_name}</td>
                 <td className="px-0">${order.totalAmount}.00</td>
-                <td className="px-0">{order.pickupAddress}</td>
-                <td className="px-0">{order.destinationAddress}</td>
+                <td className="px-0">{order.sender_address}</td>
+                <td className="px-0">{order.receiver_address}</td>
                 <td className="px-0 py-0">
                   <select className="select select-sm w-full max-w-xs">
                     <option>Pending</option>

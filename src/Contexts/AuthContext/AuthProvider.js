@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const fetchPost = async () => {
-    await getDocs(collection(firebaseFirestore, "Countries")).then(
+    await getDocs(collection(firebaseFirestore, "orders")).then(
       (querySnapshot) => {
         const newData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
@@ -44,6 +44,23 @@ const AuthProvider = ({ children }) => {
       }
     );
   };
+
+  useEffect(() => {
+    fetchPost();
+  }, []);
+
+  //   const fetchPost = async () => {
+  //     await getDocs(collection(firebaseFirestore, "Countries")).then(
+  //       (querySnapshot) => {
+  //         const newData = querySnapshot.docs.map((doc) => ({
+  //           ...doc.data(),
+  //           id: doc.id,
+  //         }));
+  //         setOrders(newData);
+  //         console.log(newData);
+  //       }
+  //     );
+  //   };
 
   useEffect(() => {
     console.log(orders);
@@ -96,6 +113,7 @@ const AuthProvider = ({ children }) => {
     loading,
     addTodo,
     fetchPost,
+    orders,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
