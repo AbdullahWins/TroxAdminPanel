@@ -69,7 +69,7 @@ const SideNav = () => {
           </div>
           <div>
             <button onClick={toggleSideNav} className="btn-btn-ghost">
-              <span class="material-symbols-outlined text-blackMid">
+              <span className="material-symbols-outlined text-blackMid">
                 menu_open
               </span>
             </button>
@@ -93,7 +93,7 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <span class="material-symbols-outlined text-blackMid">
+            <span className="material-symbols-outlined text-blackMid">
               dashboard
             </span>
             &nbsp;
@@ -116,7 +116,7 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined text-blackMid">
+              <span className="material-symbols-outlined text-blackMid">
                 list_alt
               </span>{" "}
               &nbsp;
@@ -172,7 +172,7 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined text-blackMid">
+              <span className="material-symbols-outlined text-blackMid">
                 directions_bike
               </span>
               &nbsp;
@@ -221,7 +221,7 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined text-blackMid">
+              <span className="material-symbols-outlined text-blackMid">
                 person
               </span>{" "}
               &nbsp;
@@ -264,7 +264,7 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined text-blackMid">
+              <span className="material-symbols-outlined text-blackMid">
                 location_on
               </span>
               &nbsp;
@@ -307,7 +307,7 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined text-blackMid">
+              <span className="material-symbols-outlined text-blackMid">
                 receipt_long
               </span>
               &nbsp;
@@ -350,7 +350,7 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined text-blackMid">house</span>
+              <span className="material-symbols-outlined text-blackMid">house</span>
               &nbsp;
               <p
                 className={`${
@@ -388,7 +388,7 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span class="material-symbols-outlined text-blackMid">group</span>
+              <span className="material-symbols-outlined text-blackMid">group</span>
               &nbsp;
               <p
                 className={`${
@@ -432,7 +432,7 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <span class="material-symbols-outlined text-blackMid">
+            <span className="material-symbols-outlined text-blackMid">
               credit_card
             </span>
             &nbsp;
@@ -454,7 +454,7 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <span class="material-symbols-outlined text-blackMid">
+            <span className="material-symbols-outlined text-blackMid">
               payments
             </span>
             &nbsp;{" "}
@@ -478,7 +478,7 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <span class="material-symbols-outlined text-blackMid">work</span>{" "}
+            <span className="material-symbols-outlined text-blackMid">work</span>{" "}
             &nbsp;
             <p className={`${canShow ? "hidden" : "block"}`}>Business Setup</p>
           </Link>

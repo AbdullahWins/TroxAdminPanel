@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
+  const { fetchPost } = useContext(AuthContext);
   const ordersProcessing = orders;
 
   const handleCheckbox = (event) => {
@@ -73,7 +75,10 @@ const OrdersProcessing = () => {
             placeholder="&#x1F50D; Search"
           />
           <p>
-            <button className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full">
+            <button
+              onClick={fetchPost}
+              className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full"
+            >
               <svg
                 width="16"
                 height="18"
