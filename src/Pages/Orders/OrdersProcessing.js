@@ -156,7 +156,7 @@ const OrdersProcessing = () => {
                   <p className="flex items-center justify-center">
                     <input
                       type="checkbox"
-                      className="checkbox"
+                      className="checkbox rounded-none"
                       value={order.orderId}
                       onChange={handleCheckbox}
                     />
@@ -171,10 +171,33 @@ const OrdersProcessing = () => {
                 <td className="px-0">{order.sender_address}</td>
                 <td className="px-0">{order.receiver_address}</td>
                 <td className="px-0 py-0">
-                  <select className="select select-sm w-full max-w-xs">
-                    <option>Pending</option>
-                    <option>Confirmed</option>
-                  </select>
+                  <div className="dropdown dropdown-bottom dropdown-end">
+                    <label tabIndex={0} className="rounded-lg select select-sm w-28 active:border-none bg-gradientColor">Pending</label>
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content menu p-1 mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
+                    >
+                      <li>
+                        <p className="text-successColor py-1 active:bg-blackLow w-full rounded-none">
+                          Confirm
+                        </p>
+                      </li>
+                      <hr className="text-disabledColor opacity-10" />
+                      <li>
+                        <p className="py-1 active:bg-blackLow">Edit</p>
+                      </li>
+                      <hr className="text-disabledColor opacity-10" />
+                      <li>
+                        <p className="py-1 active:bg-blackLow">Delete</p>
+                      </li>
+                      <hr className="text-disabledColor opacity-10" />
+                      <li>
+                        <p className="text-errorColor py-1 active:bg-blackLow">
+                          Decline
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
                 </td>
               </tr>
             </tbody>
