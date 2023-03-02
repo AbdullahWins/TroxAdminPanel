@@ -7,7 +7,9 @@ function App() {
   const Router = router;
   return (
     <AuthProvider>
-      <RouterProvider router={Router}></RouterProvider>
+      <div className="h-screen">
+        <RouterProvider router={Router}></RouterProvider>
+      </div>
     </AuthProvider>
   );
 }

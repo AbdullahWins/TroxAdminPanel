@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 // import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import TableComponent from "../../Components/Tables/TableComponent";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 
 const OrdersProcessing = () => {
@@ -13,22 +14,22 @@ const OrdersProcessing = () => {
     setPendingOrders(orders);
   }, [orders]);
 
-  const handleCheckbox = (event) => {
-    const selectedOrdersList = [...selectedOrders];
-    if (event.target.checked) {
-      selectedOrdersList.push(event.target.value);
-    } else {
-      const index = selectedOrdersList.indexOf(event.target.value);
-      if (index > -1) {
-        selectedOrdersList.splice(index, 1);
-      }
-    }
-    setSelectedOrders(selectedOrdersList);
-  };
+  // const handleCheckbox = (event) => {
+  //   const selectedOrdersList = [...selectedOrders];
+  //   if (event.target.checked) {
+  //     selectedOrdersList.push(event.target.value);
+  //   } else {
+  //     const index = selectedOrdersList.indexOf(event.target.value);
+  //     if (index > -1) {
+  //       selectedOrdersList.splice(index, 1);
+  //     }
+  //   }
+  //   setSelectedOrders(selectedOrdersList);
+  // };
 
-  const handleAllCheckbox = () => {
-    console.log("selected all");
-  };
+  // const handleAllCheckbox = () => {
+  //   console.log("selected all");
+  // };
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -123,102 +124,7 @@ const OrdersProcessing = () => {
         </label>
       </div>
 
-      <table className="table w-full">
-        <thead>
-          <tr className="font-bold text-center text-3xl">
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              <input
-                type="checkbox"
-                className="checkbox rounded-none"
-                value="allChecked"
-                onChange={handleAllCheckbox}
-              />
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Serial
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Order ID
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Created
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Customer
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Total
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Pickup Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Destination Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Actions
-            </th>
-          </tr>
-        </thead>
-          {pendingOrders?.map((order, i) => {
-            return (
-              <tbody className="text-center" key={i}>
-                <tr className="text-center">
-                  <th className="px-0">
-                    <input
-                      type="checkbox"
-                      className="checkbox rounded-none"
-                      value={order.orderId}
-                      onChange={handleCheckbox}
-                    />
-                  </th>
-                  <td className="px-0">{i + 1}</td>
-                  <td className="px-0">{order.order_id}</td>
-                  <td className="px-0">{order?.timestamp?.seconds}</td>
-                  <td className="px-0">{order.sender_name}</td>
-                  <td className="px-0">${order.totalAmount}.00</td>
-                  <td className="px-0">{order.sender_address}</td>
-                  <td className="px-0">{order.receiver_address}</td>
-                  <td className="px-0 py-0">
-                    <div className="dropdown dropdown-bottom dropdown-end">
-                      <label
-                        tabIndex={1}
-                        className="rounded-lg px-2 py-1 w-24 focus:outline-none active:border-none text-primaryMain bg-primaryMainLightest"
-                      >
-                        Pending
-                        <i className="fa-solid fa-angle-down text-sm"></i>
-                      </label>
-                      <ul
-                        tabIndex={1}
-                        className="dropdown-content menu p-1 mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
-                      >
-                        <li>
-                          <p className="text-successColor py-1 active:bg-blackLow w-full rounded-none">
-                            Confirm
-                          </p>
-                        </li>
-                        <hr className="text-disabledColor opacity-10" />
-                        <li>
-                          <p className="py-1 active:bg-blackLow">Edit</p>
-                        </li>
-                        <hr className="text-disabledColor opacity-10" />
-                        <li>
-                          <p className="py-1 active:bg-blackLow">Delete</p>
-                        </li>
-                        <hr className="text-disabledColor opacity-10" />
-                        <li>
-                          <p className="text-errorColor py-1 active:bg-blackLow">
-                            Decline
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
-      </table>
+      <TableComponent rows={orders}></TableComponent>
       {/* delete modal popup */}
       <ConfirmationModal actionName="delete"></ConfirmationModal>
     </div>
