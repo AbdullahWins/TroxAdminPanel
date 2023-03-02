@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
           id: doc.id,
         }));
         setOrders(newData);
-        console.log(newData);
+        // console.log(newData);
       }
     );
   };
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
   //   };
 
   useEffect(() => {
-    console.log(orders);
+    // console.log(orders);
   }, [orders]);
 
   const updateUser = (profile) => {

@@ -1,26 +1,12 @@
 import React, { useState } from "react";
 
-const TableComponent = ({ rows }) => {
-  const [selectedOrders, setSelectedOrders] = useState([]);
+const TableComponent = ({ rows , handleSelectCheckbox }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = rows?.slice(indexOfFirstRow, indexOfLastRow);
-
-  const handleCheckbox = (event) => {
-    const selectedOrdersList = [...selectedOrders];
-    if (event?.target?.checked) {
-      selectedOrdersList?.push(event?.target?.value);
-    } else {
-      const index = selectedOrdersList?.indexOf(event?.target?.value);
-      if (index > -1) {
-        selectedOrdersList?.splice(index, 1);
-      }
-    }
-    setSelectedOrders(selectedOrdersList);
-  };
 
   const handleItemsPerPage = (value) => {
     const elem = document.activeElement;
@@ -114,11 +100,11 @@ const TableComponent = ({ rows }) => {
                     type="checkbox"
                     className="checkbox rounded-none"
                     value={order.orderId}
-                    onChange={handleCheckbox}
+                    onChange={handleSelectCheckbox}
                   />
                 </th>
                 <td className="px-0">{i + 1}</td>
-                <td className="px-0 mx-0">{order.order_id}</td>
+                <td className="px-0 mx-0">#{order.order_id}</td>
                 <td className="px-0 mx-0">{order?.timestamp?.seconds}</td>
                 <td className="px-0 mx-0">{order.sender_name}</td>
                 <td className="px-0 mx-0">${order.totalAmount}.00</td>
@@ -148,11 +134,7 @@ const TableComponent = ({ rows }) => {
                       </li>
                       <hr className="text-disabledColor opacity-10" />
                       <li>
-                        <p
-                          className="py-1 active:bg-blackLow"
-                        >
-                          Delete
-                        </p>
+                        <p className="py-1 active:bg-blackLow">Delete</p>
                       </li>
                       <hr className="text-disabledColor opacity-10" />
                       <li>

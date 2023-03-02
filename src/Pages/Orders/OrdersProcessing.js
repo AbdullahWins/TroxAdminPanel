@@ -5,31 +5,32 @@ import TableComponent from "../../Components/Tables/TableComponent";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 
 const OrdersProcessing = () => {
-  const [selectedOrders] = useState([]);
+  const [selectedOrders, setSelectedOrders] = useState([]);
   // const [pendingOrders, setPendingOrders] = useState([]);
   const { fetchPost, orders } = useContext(AuthContext);
 
-  //first time fetching on load
-  // useEffect(() => {
-  //   setPendingOrders(orders);
-  // }, [orders]);
+  const handleSelectCheckbox = (event) => {
+    const selectedOrdersList = [...selectedOrders];
+    if (event.target.checked) {
+      selectedOrdersList.push(event.target.value);
+    } else {
+      const index = selectedOrdersList.indexOf(event.target.value);
+      if (index > -1) {
+        selectedOrdersList.splice(index, 1);
+      }
+    }
+    setSelectedOrders(selectedOrdersList);
+  };
 
-  // const handleCheckbox = (event) => {
-  //   const selectedOrdersList = [...selectedOrders];
-  //   if (event.target.checked) {
-  //     selectedOrdersList.push(event.target.value);
-  //   } else {
-  //     const index = selectedOrdersList.indexOf(event.target.value);
-  //     if (index > -1) {
-  //       selectedOrdersList.splice(index, 1);
-  //     }
-  //   }
-  //   setSelectedOrders(selectedOrdersList);
-  // };
-
+  console.log(selectedOrders);
   // const handleAllCheckbox = () => {
   //   console.log("selected all");
   // };
+
+  const handleSearchItems = (e) => {
+    const searchValue = e.target.value;
+    console.log(searchValue);
+  };
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -80,9 +81,11 @@ const OrdersProcessing = () => {
         </section>
         <section className="flex items-center gap-4 w-2/5">
           <input
-            className="p-3 w-full text-blackMid rounded-md border-none active:border-none"
+            onChange={handleSearchItems}
+            className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
             type="text"
-            placeholder="&#x1F50D; Search"
+            name="searchInput"
+            placeholder="search"
           />
           <p>
             <button
@@ -124,7 +127,10 @@ const OrdersProcessing = () => {
         </label>
       </div>
 
-      <TableComponent rows={orders}></TableComponent>
+      <TableComponent
+        rows={orders}
+        handleSelectCheckbox={handleSelectCheckbox}
+      ></TableComponent>
       {/* delete modal popup */}
       <ConfirmationModal actionName="delete"></ConfirmationModal>
     </div>
