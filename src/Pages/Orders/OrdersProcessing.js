@@ -9,12 +9,12 @@ const OrdersProcessing = () => {
   // const [pendingOrders, setPendingOrders] = useState([]);
   const { fetchPost, orders } = useContext(AuthContext);
 
-  const handleSelectCheckbox = (event) => {
+  const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
-    if (event.target.checked) {
-      selectedOrdersList.push(event.target.value);
+    if (e.target.checked) {
+      selectedOrdersList.push(orderId);
     } else {
-      const index = selectedOrdersList.indexOf(event.target.value);
+      const index = selectedOrdersList.indexOf(e.target.value);
       if (index > -1) {
         selectedOrdersList.splice(index, 1);
       }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TableComponent = ({ rows , handleSelectCheckbox }) => {
+const TableComponent = ({ rows, handleSelectCheckbox }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -99,8 +99,10 @@ const TableComponent = ({ rows , handleSelectCheckbox }) => {
                   <input
                     type="checkbox"
                     className="checkbox rounded-none"
-                    value={order.orderId}
-                    onChange={handleSelectCheckbox}
+                    name="checkbox"
+                    onChange={(e) => {
+                      handleSelectCheckbox(order.order_id, e);
+                    }}
                   />
                 </th>
                 <td className="px-0">{i + 1}</td>
