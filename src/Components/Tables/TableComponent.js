@@ -6,13 +6,13 @@ const TableComponent = ({ rows, cols }) => {
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = rows.slice(indexOfFirstRow, indexOfLastRow);
+  const currentRows = rows?.slice(indexOfFirstRow, indexOfLastRow);
 
   const renderTableHeader = () => {
     return (
       <thead>
         <tr>
-          {cols.map((col, index) => (
+          {cols?.map((col, index) => (
             <th key={index}>{col}</th>
           ))}
         </tr>
@@ -23,9 +23,9 @@ const TableComponent = ({ rows, cols }) => {
   const renderTableBody = () => {
     return (
       <tbody>
-        {currentRows.map((row, rowIndex) => (
+        {currentRows?.map((row, rowIndex) => (
           <tr key={rowIndex}>
-            {cols.map((col, colIndex) => (
+            {cols?.map((col, colIndex) => (
               <td key={colIndex}>{row[col]}</td>
             ))}
           </tr>

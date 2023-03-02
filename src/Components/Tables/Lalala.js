@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 import TableComponent from "./TableComponent";
 
 const Lalala = () => {
-  const rows = [
+  const {orders} = useContext(AuthContext);
+  const rows=orders;
+  const rowss = [
     { id: 1, name: "John", age: 30 },
     { id: 2, name: "Jane", age: 25 },
     { id: 3, name: "Bob", age: 40 },
