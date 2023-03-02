@@ -23,6 +23,11 @@ const TableComponent = ({ rows }) => {
   };
 
   const handleItemsPerPage = (value) => {
+    const elem = document.activeElement;
+    if (elem) {
+      elem?.blur();
+    }
+    setCurrentPage(1);
     setRowsPerPage(value);
     console.log(value);
   };
@@ -143,7 +148,11 @@ const TableComponent = ({ rows }) => {
                       </li>
                       <hr className="text-disabledColor opacity-10" />
                       <li>
-                        <p className="py-1 active:bg-blackLow">Delete</p>
+                        <p
+                          className="py-1 active:bg-blackLow"
+                        >
+                          Delete
+                        </p>
                       </li>
                       <hr className="text-disabledColor opacity-10" />
                       <li>
