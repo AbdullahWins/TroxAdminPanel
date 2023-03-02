@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 // import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 import TableComponent from "../../Components/Tables/TableComponent";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 
 const OrdersProcessing = () => {
-  const [selectedOrders, setSelectedOrders] = useState([]);
-  const [pendingOrders, setPendingOrders] = useState([]);
+  const [selectedOrders] = useState([]);
+  // const [pendingOrders, setPendingOrders] = useState([]);
   const { fetchPost, orders } = useContext(AuthContext);
 
   //first time fetching on load
-  useEffect(() => {
-    setPendingOrders(orders);
-  }, [orders]);
+  // useEffect(() => {
+  //   setPendingOrders(orders);
+  // }, [orders]);
 
   // const handleCheckbox = (event) => {
   //   const selectedOrdersList = [...selectedOrders];
