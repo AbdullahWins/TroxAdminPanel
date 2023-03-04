@@ -7,7 +7,7 @@ import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   // const [pendingOrders, setPendingOrders] = useState([]);
-  const { fetchPost, orders } = useContext(AuthContext);
+  const { fetchPost, orders, setOrders } = useContext(AuthContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -34,7 +34,7 @@ const OrdersProcessing = () => {
       order.order_id.includes(searchValue)
     );
     console.log(filteredOrders);
-    setSelectedOrders(filteredOrders);
+    setOrders(filteredOrders);
   };
 
   return (
@@ -133,7 +133,7 @@ const OrdersProcessing = () => {
       </div>
 
       <TableComponent
-        rows={selectedOrders}
+        rows={orders}
         handleSelectCheckbox={handleSelectCheckbox}
       ></TableComponent>
       {/* delete modal popup */}

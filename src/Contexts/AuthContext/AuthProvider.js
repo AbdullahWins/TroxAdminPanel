@@ -114,6 +114,7 @@ const AuthProvider = ({ children }) => {
     addTodo,
     fetchPost,
     orders,
+    setOrders,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
