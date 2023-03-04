@@ -5,6 +5,7 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 export const OrderContext = createContext();
 const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
 
   const addTodo = async (e) => {
     e.preventDefault();
@@ -27,9 +28,21 @@ const OrdersProvider = ({ children }) => {
           id: doc.id,
         }));
         setOrders(newData);
-        // console.log(newData);
+        setFilteredOrders(newData);
       }
     );
+  };
+
+  const handleSearchItems = (e) => {
+    const searchValue = e.target.value;
+    if (searchValue === null) {
+      setFilteredOrders(orders);
+    }
+    const filteredOrders = orders?.filter((order) =>
+      order.order_id.includes(searchValue)
+    );
+    console.log(filteredOrders);
+    setFilteredOrders(filteredOrders);
   };
 
   useEffect(() => {
@@ -41,6 +54,9 @@ const OrdersProvider = ({ children }) => {
     fetchOrders,
     orders,
     setOrders,
+    filteredOrders,
+    setFilteredOrders,
+    handleSearchItems,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>

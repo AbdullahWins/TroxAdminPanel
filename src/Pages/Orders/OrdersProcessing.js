@@ -7,7 +7,7 @@ import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   // const [pendingOrders, setPendingOrders] = useState([]);
-  const { fetchOrders, orders, setOrders } = useContext(OrderContext);
+  const { fetchOrders, filteredOrders, handleSearchItems } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -27,15 +27,6 @@ const OrdersProcessing = () => {
   //   console.log("selected all");
   // };
 
-  const handleSearchItems = (e) => {
-    const searchValue = e.target.value;
-    console.log(orders);
-    const filteredOrders = orders?.filter((order) =>
-      order.order_id.includes(searchValue)
-    );
-    console.log(filteredOrders);
-    setOrders(filteredOrders);
-  };
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -133,7 +124,7 @@ const OrdersProcessing = () => {
       </div>
 
       <TableComponent
-        rows={orders}
+        rows={filteredOrders}
         handleSelectCheckbox={handleSelectCheckbox}
       ></TableComponent>
       {/* delete modal popup */}
