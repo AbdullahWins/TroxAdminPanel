@@ -29,7 +29,12 @@ const OrdersProcessing = () => {
 
   const handleSearchItems = (e) => {
     const searchValue = e.target.value;
-    console.log(searchValue);
+    console.log(orders);
+    const filteredOrders = orders?.filter((order) =>
+      order.order_id.includes(searchValue)
+    );
+    console.log(filteredOrders);
+    setSelectedOrders(filteredOrders);
   };
 
   return (
@@ -128,7 +133,7 @@ const OrdersProcessing = () => {
       </div>
 
       <TableComponent
-        rows={orders}
+        rows={selectedOrders}
         handleSelectCheckbox={handleSelectCheckbox}
       ></TableComponent>
       {/* delete modal popup */}
