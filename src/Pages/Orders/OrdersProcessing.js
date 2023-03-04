@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 // import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 import TableComponent from "../../Components/Tables/TableComponent";
-import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
+import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   // const [pendingOrders, setPendingOrders] = useState([]);
-  const { fetchPost, orders, setOrders } = useContext(AuthContext);
+  const { fetchOrders, orders, setOrders } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -94,7 +94,7 @@ const OrdersProcessing = () => {
           />
           <p>
             <button
-              onClick={fetchPost}
+              onClick={fetchOrders}
               className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full"
             >
               <svg
