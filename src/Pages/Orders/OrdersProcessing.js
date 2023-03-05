@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import orders from "../../Assets/json/orders.json";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 import TableComponent from "../../Components/Tables/TableComponent";
@@ -6,8 +6,9 @@ import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
-  // const [pendingOrders, setPendingOrders] = useState([]);
-  const { fetchOrders, filteredOrders, handleSearchItems } = useContext(OrderContext);
+  const [pendingOrders, setPendingOrders] = useState([]);
+  const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
+    useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -22,11 +23,18 @@ const OrdersProcessing = () => {
     setSelectedOrders(selectedOrdersList);
   };
 
+  useEffect(() => {
+    const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
+      (order) => order?.order_status === "Pending"
+    );
+    setPendingOrders(filteredOrdersByStatus);
+  }, [filteredOrdersBySearch]);
+
   console.log(selectedOrders);
+  
   // const handleAllCheckbox = () => {
   //   console.log("selected all");
   // };
-
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -77,7 +85,7 @@ const OrdersProcessing = () => {
         </section>
         <section className="flex items-center gap-4 w-2/5">
           <input
-            onChange={handleSearchItems}
+            onChange={filterOrdersBySearch}
             className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
             type="text"
             name="searchInput"
@@ -124,7 +132,7 @@ const OrdersProcessing = () => {
       </div>
 
       <TableComponent
-        rows={filteredOrders}
+        rows={pendingOrders}
         handleSelectCheckbox={handleSelectCheckbox}
       ></TableComponent>
       {/* delete modal popup */}

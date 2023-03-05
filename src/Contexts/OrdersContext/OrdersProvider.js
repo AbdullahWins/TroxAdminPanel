@@ -6,7 +6,7 @@ export const OrderContext = createContext();
 const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [searchBarValue, setSearchBarValue] = useState(null);
-  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [filteredOrdersBySearch, setFilteredOrdersBySearch] = useState([]);
 
   const addTodo = async (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const OrdersProvider = ({ children }) => {
           id: doc.id,
         }));
         setOrders(newData);
-        setFilteredOrders(newData);
+        setFilteredOrdersBySearch(newData);
       }
     );
   };
@@ -38,29 +38,18 @@ const OrdersProvider = ({ children }) => {
     setCurrentPage(1);
   };
 
-  const filterOrdersByStatus = (setFilteredByStatus, status) => {
-    const filteredOrdersByStatus = [];
-    orders?.map((order) => {
-      if (order?.order_status === status) {
-        filteredOrdersByStatus.push(order);
-      }
-    });
-    setFilteredByStatus(filteredOrdersByStatus);
-    console.log(filteredOrdersByStatus);
-  };
-
   // filterOrdersByStatus(orders, "pending");
 
-  const handleSearchItems = (e) => {
+  const filterOrdersBySearch = (e) => {
     const searchValue = e.target.value;
     if (searchValue === null) {
-      setFilteredOrders(orders);
+      setFilteredOrdersBySearch(orders);
     }
     const filteredOrders = orders?.filter((order) =>
       order?.order_id?.includes(searchValue)
     );
     console.log(filteredOrders);
-    setFilteredOrders(filteredOrders);
+    setFilteredOrdersBySearch(filteredOrders);
     setSearchBarValue(searchValue);
   };
 
@@ -73,13 +62,12 @@ const OrdersProvider = ({ children }) => {
     fetchOrders,
     orders,
     setOrders,
-    filteredOrders,
-    setFilteredOrders,
-    handleSearchItems,
-    reloadCurrentPage,
     searchBarValue,
-    filterOrdersByStatus,
     setSearchBarValue,
+    filterOrdersBySearch,
+    filteredOrdersBySearch,
+    setFilteredOrdersBySearch,
+    reloadCurrentPage,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>
