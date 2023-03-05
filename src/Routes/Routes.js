@@ -8,6 +8,7 @@ import Home from "../Pages/Home/Home";
 import OrdersCancelled from "../Pages/Orders/OrdersCancelled";
 import OrdersDelivered from "../Pages/Orders/OrdersDelivered";
 import OrdersPickedup from "../Pages/Orders/OrdersPickedup";
+import OrdersPending from "../Pages/Orders/OrdersPending";
 import OrdersProcessing from "../Pages/Orders/OrdersProcessing";
 import WarehouseAll from "../Pages/Warehouse/WarehouseAll";
 import WarehouseAddNew from "../Pages/Warehouse/WarehouseAddNew";
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       // orders route
+      {
+        path: "/orderspending",
+        element: <OrdersPending></OrdersPending>,
+      },
       {
         path: "/ordersprocessing",
         element: <OrdersProcessing></OrdersProcessing>,

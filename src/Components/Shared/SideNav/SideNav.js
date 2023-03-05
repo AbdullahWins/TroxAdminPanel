@@ -141,6 +141,9 @@ const SideNav = () => {
               >
                 change route
               </button> */}
+              <Link className="w-full" to="/orderspending">
+                <p>Pending</p>
+              </Link>
               <Link className="w-full" to="/ordersprocessing">
                 <p>Processing</p>
               </Link>

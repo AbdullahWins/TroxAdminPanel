@@ -3,7 +3,7 @@ import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 import TableComponent from "../../Components/Tables/TableComponent";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
-const OrdersProcessing = () => {
+const OrdersPending = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [pendingOrders, setPendingOrders] = useState([]);
   const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
@@ -24,7 +24,7 @@ const OrdersProcessing = () => {
 
   useEffect(() => {
     const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
-      (order) => order?.order_status?.toLowerCase() === "processing"
+      (order) => order?.order_status?.toLowerCase() === "pending"
     );
     setPendingOrders(filteredOrdersByStatus);
   }, [filteredOrdersBySearch]);
@@ -140,4 +140,4 @@ const OrdersProcessing = () => {
   );
 };
 
-export default OrdersProcessing;
+export default OrdersPending;
