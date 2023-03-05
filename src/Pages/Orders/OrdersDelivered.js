@@ -1,23 +1,38 @@
-import React, { useState } from "react";
-import orders from "../../Assets/json/orders.json";
-import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import React, { useContext, useEffect, useState } from "react";
+import OrdersDeliveredTable from "../../Components/Tables/Orders/OrdersDeliveredTable";
+import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersDelivered = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
-  const ordersProcessing = orders;
+  const [cancelledOrders, setCancelledOrders] = useState([]);
+  const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
+    useContext(OrderContext);
 
-  const handleCheckbox = (event) => {
+  const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
-    if (event.target.checked) {
-      selectedOrdersList.push(event.target.value);
+    if (e.target.checked) {
+      selectedOrdersList.push(orderId);
     } else {
-      const index = selectedOrdersList.indexOf(event.target.value);
+      const index = selectedOrdersList.indexOf(e.target.value);
       if (index > -1) {
         selectedOrdersList.splice(index, 1);
       }
     }
     setSelectedOrders(selectedOrdersList);
   };
+
+  useEffect(() => {
+    const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
+      (order) => order?.order_status?.toLowerCase() === "delivered"
+    );
+    setCancelledOrders(filteredOrdersByStatus);
+  }, [filteredOrdersBySearch]);
+
+  console.log(selectedOrders);
+
+  // const handleAllCheckbox = () => {
+  //   console.log("selected all");
+  // };
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -68,12 +83,17 @@ const OrdersDelivered = () => {
         </section>
         <section className="flex items-center gap-4 w-2/5">
           <input
-            className="p-3 w-full text-blackMid rounded-md border-none active:border-none"
+            onChange={filterOrdersBySearch}
+            className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
             type="text"
-            placeholder="&#x1F50D; Search"
+            name="searchInput"
+            placeholder="search"
           />
           <p>
-            <button className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full">
+            <button
+              onClick={fetchOrders}
+              className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full"
+            >
               <svg
                 width="16"
                 height="18"
@@ -90,6 +110,7 @@ const OrdersDelivered = () => {
           </p>
         </section>
       </div>
+
       <div
         className={` ${
           selectedOrders.length < 1
@@ -107,69 +128,10 @@ const OrdersDelivered = () => {
           Delete
         </label>
       </div>
-      <table className="table w-full">
-        <thead>
-          <tr className="font-bold text-center text-3xl">
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Serial
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Order ID
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Created
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Customer
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Total
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Pickup Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Destination Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        {ordersProcessing.map((order, i) => {
-          return (
-            <tbody key={i}>
-              <tr className="text-center">
-                <th className="px-0">
-                  <p className="flex items-center justify-center">
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      value={order.orderId}
-                      onChange={handleCheckbox}
-                    />
-                    &nbsp; &nbsp;
-                    {order.serial}
-                  </p>
-                </th>
-                <td className="px-0">{order.orderId}</td>
-                <td className="px-0">{order.created}</td>
-                <td className="px-0">{order.customer}</td>
-                <td className="px-0">${order.totalAmount}.00</td>
-                <td className="px-0">{order.pickupAddress}</td>
-                <td className="px-0">{order.destinationAddress}</td>
-                <td className="px-0">
-                  <span className="text-whiteHigh text-center py-2 px-6 rounded-xl bg-successColor">
-                    Delivered
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          );
-        })}
-      </table>
-      {/* delete modal popup */}
-      <ConfirmationModal actionName="delete"></ConfirmationModal>
+      <OrdersDeliveredTable
+        rows={cancelledOrders}
+        handleSelectCheckbox={handleSelectCheckbox}
+      ></OrdersDeliveredTable>
     </div>
   );
 };
