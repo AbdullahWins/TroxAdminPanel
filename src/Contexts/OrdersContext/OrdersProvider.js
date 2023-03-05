@@ -38,6 +38,19 @@ const OrdersProvider = ({ children }) => {
     setCurrentPage(1);
   };
 
+  const filterOrdersByStatus = (setFilteredByStatus, status) => {
+    const filteredOrdersByStatus = [];
+    orders?.map((order) => {
+      if (order?.order_status === status) {
+        filteredOrdersByStatus.push(order);
+      }
+    });
+    setFilteredByStatus(filteredOrdersByStatus);
+    console.log(filteredOrdersByStatus);
+  };
+
+  // filterOrdersByStatus(orders, "pending");
+
   const handleSearchItems = (e) => {
     const searchValue = e.target.value;
     if (searchValue === null) {
@@ -50,7 +63,6 @@ const OrdersProvider = ({ children }) => {
     setFilteredOrders(filteredOrders);
     setSearchBarValue(searchValue);
   };
-  console.log(searchBarValue);
 
   useEffect(() => {
     fetchOrders();
@@ -66,6 +78,7 @@ const OrdersProvider = ({ children }) => {
     handleSearchItems,
     reloadCurrentPage,
     searchBarValue,
+    filterOrdersByStatus,
     setSearchBarValue,
   };
   return (
