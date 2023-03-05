@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../../../Contexts/OrdersContext/OrdersProvider";
 
-const OrdersProcessingTable = ({ rows, handleSelectCheckbox }) => {
+const OrdersProcessingTable = ({
+  rows,
+  setCurrentOrder,
+  handleSelectCheckbox,
+}) => {
   const { searchBarValue } = useContext(OrderContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
@@ -134,6 +138,7 @@ const OrdersProcessingTable = ({ rows, handleSelectCheckbox }) => {
                 <td className="px-0 py-0">
                   <div className="flex items-center justify-center">
                     <label
+                      onClick={() => setCurrentOrder(order)}
                       htmlFor="blockPopup"
                       className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"
                     >
@@ -148,24 +153,6 @@ const OrdersProcessingTable = ({ rows, handleSelectCheckbox }) => {
                           d="M17.2536 6.04355L17.6522 5.64491L17.2088 5.29674C15.7736 4.16987 13.9656 3.5 12 3.5C7.30386 3.5 3.5 7.30386 3.5 12C3.5 13.9656 4.16987 15.7736 5.29674 17.2088L5.64491 17.6522L6.04355 17.2536L17.2536 6.04355ZM6.74645 17.9564L6.3478 18.3551L6.79122 18.7033C8.22638 19.8301 10.0344 20.5 12 20.5C16.6961 20.5 20.5 16.6961 20.5 12C20.5 10.0344 19.8301 8.22638 18.7033 6.79122L18.3551 6.3478L17.9564 6.74645L6.74645 17.9564ZM2.5 12C2.5 6.75614 6.75614 2.5 12 2.5C17.2439 2.5 21.5 6.75614 21.5 12C21.5 17.2439 17.2439 21.5 12 21.5C6.75614 21.5 2.5 17.2439 2.5 12Z"
                           fill="black"
                           stroke="#797979"
-                        />
-                      </svg>
-                    </label>
-
-                    <label
-                      htmlFor="deletePopup"
-                      className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"
-                    >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V9C18 7.9 17.1 7 16 7H8C6.9 7 6 7.9 6 9V19ZM18 4H15.5L14.79 3.29C14.61 3.11 14.35 3 14.09 3H9.91C9.65 3 9.39 3.11 9.21 3.29L8.5 4H6C5.45 4 5 4.45 5 5C5 5.55 5.45 6 6 6H18C18.55 6 19 5.55 19 5C19 4.45 18.55 4 18 4Z"
-                          fill="#F4A100"
                         />
                       </svg>
                     </label>

@@ -7,6 +7,7 @@ import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 const OrdersPickup = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [pickupOrders, setPickupOrders] = useState([]);
+  const [currentOrder, setCurrentOrder] = useState(null);
   const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
     useContext(OrderContext);
 
@@ -22,6 +23,8 @@ const OrdersPickup = () => {
     }
     setSelectedOrders(selectedOrdersList);
   };
+
+  console.log(currentOrder);
 
   useEffect(() => {
     const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
@@ -131,11 +134,14 @@ const OrdersPickup = () => {
         </label>
       </div>
       <OrdersProcessingTable
+        setCurrentOrder={setCurrentOrder}
         rows={pickupOrders}
         handleSelectCheckbox={handleSelectCheckbox}
       ></OrdersProcessingTable>
       {/* confirmation modals popup */}
-      <ConfirmationModalBlock></ConfirmationModalBlock>
+      <ConfirmationModalBlock
+        currentOrder={currentOrder}
+      ></ConfirmationModalBlock>
       <ConfirmationModalDelete></ConfirmationModalDelete>
     </div>
   );

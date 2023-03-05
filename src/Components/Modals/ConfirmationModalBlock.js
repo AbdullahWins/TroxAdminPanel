@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmationModalBlock = () => {
+const ConfirmationModalBlock = ({ currentOrder }) => {
   return (
     <section>
       <input type="checkbox" id="blockPopup" className="modal-toggle" />
@@ -34,7 +34,9 @@ const ConfirmationModalBlock = () => {
             </svg>
           </div>
           <div>
-            <p className="font-bold text-lg">Do you want to block?</p>
+            <p className="font-bold text-lg">
+              Do you want to block {currentOrder?.sender_name}?
+            </p>
           </div>
           <div className="modal-action flex items-center justify-center">
             <label
