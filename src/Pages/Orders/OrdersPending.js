@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
-import TableComponent from "../../Components/Tables/TableComponent";
+import OrdersPendingTable from "../../Components/Tables/Orders/OrdersPendingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersPending = () => {
@@ -129,11 +129,10 @@ const OrdersPending = () => {
           Delete
         </label>
       </div>
-
-      <TableComponent
+      <OrdersPendingTable
         rows={pendingOrders}
         handleSelectCheckbox={handleSelectCheckbox}
-      ></TableComponent>
+      ></OrdersPendingTable>
       {/* delete modal popup */}
       <ConfirmationModal actionName="delete"></ConfirmationModal>
     </div>

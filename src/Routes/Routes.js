@@ -26,7 +26,6 @@ import LocationsCountry from "../Pages/Locations/LocationsCountry";
 import LocationsCity from "../Pages/Locations/LocationsCity";
 import LocationsState from "../Pages/Locations/LocationsState";
 import StaffRole from "../Pages/Staff/StaffRole";
-import Lalala from "../Components/Tables/Lalala";
 
 export const router = createBrowserRouter([
   {
@@ -145,10 +144,6 @@ export const router = createBrowserRouter([
       {
         path: "/staffRole",
         element: <StaffRole></StaffRole>,
-      },
-      {
-        path: "/lala",
-        element: <Lalala></Lalala>,
       },
     ],
   },

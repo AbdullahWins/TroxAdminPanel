@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
-import TableComponent from "../../Components/Tables/TableComponent";
+import OrdersProcessingTable from "../../Components/Tables/Orders/OrdersProcessingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
-  const [pendingOrders, setPendingOrders] = useState([]);
+  const [processingOrders, setProcessingOrders] = useState([]);
   const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
     useContext(OrderContext);
 
@@ -26,7 +26,7 @@ const OrdersProcessing = () => {
     const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
       (order) => order?.order_status?.toLowerCase() === "processing"
     );
-    setPendingOrders(filteredOrdersByStatus);
+    setProcessingOrders(filteredOrdersByStatus);
   }, [filteredOrdersBySearch]);
 
   console.log(selectedOrders);
@@ -129,11 +129,10 @@ const OrdersProcessing = () => {
           Delete
         </label>
       </div>
-
-      <TableComponent
-        rows={pendingOrders}
+      <OrdersProcessingTable
+        rows={processingOrders}
         handleSelectCheckbox={handleSelectCheckbox}
-      ></TableComponent>
+      ></OrdersProcessingTable>
       {/* delete modal popup */}
       <ConfirmationModal actionName="delete"></ConfirmationModal>
     </div>
