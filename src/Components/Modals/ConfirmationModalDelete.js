@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmationModalDelete = ({ actionName }) => {
+const ConfirmationModalDelete = () => {
   return (
     <section>
       <input type="checkbox" id="deletePopup" className="modal-toggle" />
@@ -34,7 +34,7 @@ const ConfirmationModalDelete = ({ actionName }) => {
             </svg>
           </div>
           <div>
-            <p className="font-bold text-lg">Do you want to {actionName}?</p>
+            <p className="font-bold text-lg">Do you want to delete?</p>
           </div>
           <div className="modal-action flex items-center justify-center">
             <label

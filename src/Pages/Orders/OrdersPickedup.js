@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import orders from "../../Assets/json/orders.json";
-import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
+import ConfirmationModalDelete from "../../Components/Modals/ConfirmationModalDelete";
 
 const OrdersPickedup = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
@@ -182,25 +183,6 @@ const OrdersPickedup = () => {
                     </label>
 
                     <label
-                      htmlFor="pausePopup"
-                      className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"
-                    >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M19 19.5015H12.2071L15.2071 16.5015H19C19.8239 16.5015 20.5 17.1777 20.5 18.0015C20.5 18.8254 19.8239 19.5015 19 19.5015ZM3.64355 16.3151L12.0605 7.89816L15.1124 10.942L6.70191 19.3525C6.59727 19.4498 6.46935 19.5015 6.34 19.5015H4C3.72614 19.5015 3.5 19.2754 3.5 19.0015V16.6615C3.5 16.5356 3.55625 16.4024 3.64355 16.3151ZM18.3564 6.98508C18.5512 7.17981 18.5512 7.49323 18.3564 7.68797L16.88 9.16442L13.8371 6.12152L15.3136 4.64508C15.5083 4.45034 15.8217 4.45034 16.0164 4.64508L18.3564 6.98508Z"
-                          fill="#F4A100"
-                          stroke="#F4A100"
-                        />
-                      </svg>
-                    </label>
-
-                    <label
                       htmlFor="deletePopup"
                       className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"
                     >
@@ -225,112 +207,9 @@ const OrdersPickedup = () => {
         })}
       </table>
 
-      {/* block modal popup */}
-      <section>
-        <input type="checkbox" id="blockPopup" className="modal-toggle" />
-        <div className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box flex flex-col items-center justify-center gap-4">
-            <div>
-              <svg
-                width="120"
-                height="120"
-                viewBox="0 0 120 120"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M60 10C32.4 10 10 32.4 10 60C10 87.6 32.4 110 60 110C87.6 110 110 87.6 110 60C110 32.4 87.6 10 60 10ZM65 85H55V75H65V85ZM65 65H55V35H65V65Z"
-                  fill="url(#paint0_linear_630_70960)"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_630_70960"
-                    x1="60"
-                    y1="10"
-                    x2="60"
-                    y2="110"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="#37B6B6" />
-                    <stop offset="1" stopColor="#37B6B6" stopOpacity="0.18" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div>
-              <p className="font-bold text-lg">Do you want to block?</p>
-            </div>
-            <div className="modal-action flex items-center justify-center">
-              <label
-                htmlFor="blockPopup"
-                className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
-              >
-                Confirm
-              </label>
-              <label
-                htmlFor="blockPopup"
-                className="btn rounded-full bg-whiteHigh text-primaryMain w-full border-primaryMain hover:border-primaryMain hover:bg-whiteHigh"
-              >
-                Cancel
-              </label>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* pause modal popup */}
-      <section>
-        <input type="checkbox" id="pausePopup" className="modal-toggle" />
-        <div className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box flex flex-col items-center justify-center gap-4">
-            <div>
-              <svg
-                width="120"
-                height="120"
-                viewBox="0 0 120 120"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M60 10C32.4 10 10 32.4 10 60C10 87.6 32.4 110 60 110C87.6 110 110 87.6 110 60C110 32.4 87.6 10 60 10ZM65 85H55V75H65V85ZM65 65H55V35H65V65Z"
-                  fill="url(#paint0_linear_630_70960)"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_630_70960"
-                    x1="60"
-                    y1="10"
-                    x2="60"
-                    y2="110"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="#37B6B6" />
-                    <stop offset="1" stopColor="#37B6B6" stopOpacity="0.18" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div>
-              <p className="font-bold text-lg">Do you want to pause?</p>
-            </div>
-            <div className="modal-action flex items-center justify-center">
-              <label
-                htmlFor="pausePopup"
-                className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
-              >
-                Confirm
-              </label>
-              <label
-                htmlFor="pausePopup"
-                className="btn rounded-full bg-whiteHigh text-primaryMain w-full border-primaryMain hover:border-primaryMain hover:bg-whiteHigh"
-              >
-                Cancel
-              </label>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* delete modal popup */}
-      <ConfirmationModal actionName="delete"></ConfirmationModal>
+      {/* confirmation modals popup */}
+      <ConfirmationModalBlock></ConfirmationModalBlock>
+      <ConfirmationModalDelete></ConfirmationModalDelete>
     </div>
   );
 };

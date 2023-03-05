@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
+import ConfirmationModalDelete from "../../Components/Modals/ConfirmationModalDelete";
 import OrdersProcessingTable from "../../Components/Tables/Orders/OrdersProcessingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
@@ -133,8 +134,9 @@ const OrdersProcessing = () => {
         rows={processingOrders}
         handleSelectCheckbox={handleSelectCheckbox}
       ></OrdersProcessingTable>
-      {/* delete modal popup */}
-      <ConfirmationModal actionName="delete"></ConfirmationModal>
+      {/* confirmation modals popup */}
+      <ConfirmationModalBlock></ConfirmationModalBlock>
+      <ConfirmationModalDelete></ConfirmationModalDelete>
     </div>
   );
 };
