@@ -17,20 +17,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
-  //   const fetchPost = async () => {
-  //     await getDocs(collection(firebaseFirestore, "Countries")).then(
-  //       (querySnapshot) => {
-  //         const newData = querySnapshot.docs.map((doc) => ({
-  //           ...doc.data(),
-  //           id: doc.id,
-  //         }));
-  //         setOrders(newData);
-  //         console.log(newData);
-  //       }
-  //     );
-  //   };
-
   const updateUser = (profile) => {
     setLoading(true);
     return updateProfile(auth.currentUser, profile);

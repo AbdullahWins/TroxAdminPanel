@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const TableComponent = ({ rows, handleSelectCheckbox }) => {
+  const { searchBarValue } = useContext(OrderContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -8,6 +10,13 @@ const TableComponent = ({ rows, handleSelectCheckbox }) => {
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = rows?.slice(indexOfFirstRow, indexOfLastRow);
+
+  useEffect(() => {
+    if (searchBarValue !== null) {
+      setCurrentPage(1);
+      setActiveButton(1);
+    }
+  }, [searchBarValue]);
 
   const handleItemsPerPage = (value) => {
     const elem = document.activeElement;
