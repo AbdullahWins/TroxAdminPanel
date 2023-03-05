@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const TableComponent = ({ rows, handleSelectCheckbox }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -16,6 +17,11 @@ const TableComponent = ({ rows, handleSelectCheckbox }) => {
     setCurrentPage(1);
     setRowsPerPage(value);
     console.log(value);
+  };
+
+  const handleClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setActiveButton(pageNumber);
   };
 
   const handleAllCheckbox = () => {
@@ -40,8 +46,12 @@ const TableComponent = ({ rows, handleSelectCheckbox }) => {
               }`}
             >
               <button
-                className="page-link btn btn-sm text-primaryMain bg-primaryMainLightest border-primaryMain hover:bg-primaryMain hover:text-whiteHigh hover:border-primaryMain"
-                onClick={() => setCurrentPage(pageNumber)}
+                className={`page-link btn btn-sm ${
+                  activeButton === pageNumber
+                    ? "text-primaryMainLightest bg-primaryMain border-primaryMain hover:bg-primaryMain hover:text-whiteHigh hover:border-primaryMain"
+                    : "text-blackMid bg-whiteMid border-primaryMainLighter hover:bg-primaryMain hover:text-whiteHigh hover:border-primaryMain"
+                }`}
+                onClick={() => handleClick(pageNumber)}
               >
                 {pageNumber}
               </button>
