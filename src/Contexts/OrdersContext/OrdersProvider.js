@@ -1,6 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 export const OrderContext = createContext();
 const OrdersProvider = ({ children }) => {
@@ -10,7 +16,6 @@ const OrdersProvider = ({ children }) => {
 
   const addTodo = async (e) => {
     e.preventDefault();
-
     try {
       const docRef = await addDoc(collection(firebaseFirestore, "todos"), {
         todo: "lol",
@@ -20,6 +25,41 @@ const OrdersProvider = ({ children }) => {
       console.error("Error adding document: ", e);
     }
   };
+
+  const updateOrderStatus = async (order, status) => {
+    try {
+      const db = firebaseFirestore; // get the Firestore instance
+      const orderDocRef = doc(db, "orders", order); // get a reference to the "orders" collection
+      try {
+        // update the order document if it exists
+        await updateDoc(orderDocRef, {
+          order_status: status,
+        });
+        console.log("Order status updated successfully");
+      } catch {
+        console.error("Order document not found");
+      }
+    } catch (error) {
+      console.error("Error updating order status", error);
+    }
+  };
+
+  // const updateOrderStatus = async (order, status) => {
+  //   try {
+  //     const db = firebaseFirestore; // get the Firestore instance
+  //     const ordersRef = db.collection("orders"); // get a reference to the "orders" collection
+  //     const orderDoc = await ordersRef.doc(order).get(); // get the order document
+  //     if (orderDoc.exists) {
+  //       // update the order document if it exists
+  //       await ordersRef.doc(order).update({ order_status: status });
+  //       console.log("Order status updated successfully");
+  //     } else {
+  //       console.error("Order document not found");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating order status", error);
+  //   }
+  // };
 
   const fetchOrders = async () => {
     await getDocs(collection(firebaseFirestore, "orders")).then(
@@ -68,6 +108,7 @@ const OrdersProvider = ({ children }) => {
     filteredOrdersBySearch,
     setFilteredOrdersBySearch,
     reloadCurrentPage,
+    updateOrderStatus,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>

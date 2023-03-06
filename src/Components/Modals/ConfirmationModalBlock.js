@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
-const ConfirmationModalBlock = ({ currentOrder }) => {
+const ConfirmationModalBlock = ({ currentOrder}) => {
+  const { updateOrderStatus } =
+    useContext(OrderContext);
+
+  const handleClick = (order) => {
+    updateOrderStatus(order.order_id, "Returned");
+  };
   return (
     <section>
       <input type="checkbox" id="blockPopup" className="modal-toggle" />
@@ -40,6 +47,9 @@ const ConfirmationModalBlock = ({ currentOrder }) => {
           </div>
           <div className="modal-action flex items-center justify-center">
             <label
+              onClick={() => {
+                handleClick(currentOrder);
+              }}
               htmlFor="blockPopup"
               className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
             >

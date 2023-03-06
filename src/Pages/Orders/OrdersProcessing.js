@@ -24,8 +24,6 @@ const OrdersProcessing = () => {
     setSelectedOrders(selectedOrdersList);
   };
 
-  console.log(currentOrder);
-
   useEffect(() => {
     const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
       (order) => order?.order_status?.toLowerCase() === "processing"
