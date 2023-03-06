@@ -47,6 +47,31 @@ const OrdersProvider = ({ children }) => {
     }
   };
 
+  const updateManyOrderStatus = async (orders, status) => {
+    try {
+      const db = firebaseFirestore; // get the Firestore instance
+      const orderDocsRefs = orders.map(
+        (order) => doc(db, "orders", order) // get a reference to the "orders" collection for each order
+      );
+      try {
+        // update the order documents if they exist
+        await Promise.all(
+          orderDocsRefs.map((orderDocRef) =>
+            updateDoc(orderDocRef, {
+              order_status: status,
+            })
+          )
+        );
+        fetchOrders();
+        console.log("Order statuses updated successfully");
+      } catch {
+        console.error("One or more order documents not found");
+      }
+    } catch (error) {
+      console.error("Error updating order statuses", error);
+    }
+  };
+
   // const updateOrderStatus = async (order, status) => {
   //   try {
   //     const db = firebaseFirestore; // get the Firestore instance
@@ -114,6 +139,7 @@ const OrdersProvider = ({ children }) => {
     setFilteredOrdersBySearch,
     reloadCurrentPage,
     updateOrderStatus,
+    updateManyOrderStatus,
     isLoading,
     setIsLoading,
     currentOrder,
