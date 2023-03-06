@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
-import ConfirmationModalDelete from "../../Components/Modals/ConfirmationModalDelete";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import OrdersProcessingTable from "../../Components/Tables/Orders/OrdersProcessingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
@@ -8,12 +7,13 @@ import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 const OrdersPickup = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [pickupOrders, setPickupOrders] = useState([]);
-  const [currentOrder, setCurrentOrder] = useState(null);
   const {
     isLoading,
     fetchOrders,
     filteredOrdersBySearch,
     filterOrdersBySearch,
+    currentOrder,
+    setCurrentOrder,
   } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
@@ -28,8 +28,6 @@ const OrdersPickup = () => {
     }
     setSelectedOrders(selectedOrdersList);
   };
-
-  console.log(currentOrder);
 
   useEffect(() => {
     const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
@@ -152,7 +150,6 @@ const OrdersPickup = () => {
       <ConfirmationModalBlock
         currentOrder={currentOrder}
       ></ConfirmationModalBlock>
-      <ConfirmationModalDelete></ConfirmationModalDelete>
     </div>
   );
 };

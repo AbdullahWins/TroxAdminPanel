@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersPendingTable = ({ rows, handleSelectCheckbox }) => {
-  const { searchBarValue } = useContext(OrderContext);
+  const { searchBarValue, setCurrentOrder, updateOrderStatus } =
+    useContext(OrderContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -144,25 +145,31 @@ const OrdersPendingTable = ({ rows, handleSelectCheckbox }) => {
                       tabIndex={1}
                       className="dropdown-content menu p-1 mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
                     >
-                      <li>
-                        <p className="text-successColor py-1 active:bg-blackLow w-full rounded-none">
-                          Confirm
-                        </p>
-                      </li>
+                      <label
+                        onClick={() => updateOrderStatus(order.order_id, "Processing")}
+                        // htmlFor="blockPopup"
+                      >
+                        <li>
+                          <p className="text-successColor py-1 active:bg-blackLow w-full rounded-none">
+                            Confirm
+                          </p>
+                        </li>
+                      </label>
                       <hr className="text-disabledColor opacity-10" />
                       <li>
                         <p className="py-1 active:bg-blackLow">Edit</p>
                       </li>
                       <hr className="text-disabledColor opacity-10" />
-                      <li>
-                        <p className="py-1 active:bg-blackLow">Delete</p>
-                      </li>
-                      <hr className="text-disabledColor opacity-10" />
-                      <li>
-                        <p className="text-errorColor py-1 active:bg-blackLow">
-                          Decline
-                        </p>
-                      </li>
+                      <label
+                        onClick={() => setCurrentOrder(order)}
+                        htmlFor="blockPopup"
+                      >
+                        <li>
+                          <p className="text-errorColor py-1 active:bg-blackLow">
+                            Decline
+                          </p>
+                        </li>
+                      </label>
                     </ul>
                   </div>
                 </td>

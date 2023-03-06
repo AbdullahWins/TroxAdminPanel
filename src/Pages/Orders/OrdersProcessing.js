@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
-import ConfirmationModalDelete from "../../Components/Modals/ConfirmationModalDelete";
 import OrdersProcessingTable from "../../Components/Tables/Orders/OrdersProcessingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
@@ -8,12 +7,13 @@ import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading"
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [processingOrders, setProcessingOrders] = useState([]);
-  const [currentOrder, setCurrentOrder] = useState(null);
   const {
     isLoading,
     fetchOrders,
     filteredOrdersBySearch,
     filterOrdersBySearch,
+    currentOrder,
+    setCurrentOrder,
   } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
@@ -35,8 +35,6 @@ const OrdersProcessing = () => {
     );
     setProcessingOrders(filteredOrdersByStatus);
   }, [filteredOrdersBySearch]);
-
-  console.log(selectedOrders);
 
   // const handleAllCheckbox = () => {
   //   console.log("selected all");
@@ -151,7 +149,6 @@ const OrdersProcessing = () => {
       <ConfirmationModalBlock
         currentOrder={currentOrder}
       ></ConfirmationModalBlock>
-      <ConfirmationModalDelete></ConfirmationModalDelete>
     </div>
   );
 };

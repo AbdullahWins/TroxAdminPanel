@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import OrdersPendingTable from "../../Components/Tables/Orders/OrdersPendingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
@@ -12,6 +13,8 @@ const OrdersPending = () => {
     fetchOrders,
     filteredOrdersBySearch,
     filterOrdersBySearch,
+    currentOrder,
+    setCurrentOrder,
   } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
@@ -139,11 +142,14 @@ const OrdersPending = () => {
       ) : (
         <OrdersPendingTable
           rows={pendingOrders}
+          setCurrentOrder={setCurrentOrder}
           handleSelectCheckbox={handleSelectCheckbox}
         ></OrdersPendingTable>
       )}
       {/* delete modal popup */}
-      <ConfirmationModal actionName="delete"></ConfirmationModal>
+      <ConfirmationModalBlock
+        currentOrder={currentOrder}
+      ></ConfirmationModalBlock>
     </div>
   );
 };

@@ -13,6 +13,7 @@ const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
+  const [currentOrder, setCurrentOrder] = useState(null);
   const [filteredOrdersBySearch, setFilteredOrdersBySearch] = useState([]);
 
   const addTodo = async (e) => {
@@ -115,6 +116,8 @@ const OrdersProvider = ({ children }) => {
     updateOrderStatus,
     isLoading,
     setIsLoading,
+    currentOrder,
+    setCurrentOrder,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>
