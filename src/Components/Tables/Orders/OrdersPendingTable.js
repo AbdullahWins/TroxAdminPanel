@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../../../Contexts/OrdersContext/OrdersProvider";
 
-const OrdersPendingTable = ({ rows, handleSelectCheckbox }) => {
+const OrdersPendingTable = ({
+  rows,
+  handleSelectCheckbox,
+  handleSelectAllCheckbox,
+}) => {
   const { searchBarValue, setCurrentOrder, updateOrderStatus } =
     useContext(OrderContext);
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,8 +38,11 @@ const OrdersPendingTable = ({ rows, handleSelectCheckbox }) => {
     setActiveButton(pageNumber);
   };
 
-  const handleAllCheckbox = () => {
-    console.log("selected all");
+  const handleCheckbox = (order, e) => {
+    handleSelectCheckbox(order, e);
+  };
+  const handleAllCheckbox = (orders, e) => {
+    handleSelectAllCheckbox(orders, e);
   };
 
   const renderPagination = () => {
@@ -81,8 +88,10 @@ const OrdersPendingTable = ({ rows, handleSelectCheckbox }) => {
               <input
                 type="checkbox"
                 className="checkbox rounded-none"
-                value="allChecked"
-                onChange={handleAllCheckbox}
+                name="allCheckbox"
+                onChange={(e) => {
+                  handleAllCheckbox(currentRows, e);
+                }}
               />
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
@@ -121,7 +130,7 @@ const OrdersPendingTable = ({ rows, handleSelectCheckbox }) => {
                     className="checkbox rounded-none"
                     name="checkbox"
                     onChange={(e) => {
-                      handleSelectCheckbox(order.order_id, e);
+                      handleCheckbox(order, e);
                     }}
                   />
                 </th>
@@ -146,7 +155,9 @@ const OrdersPendingTable = ({ rows, handleSelectCheckbox }) => {
                       className="dropdown-content menu p-1 mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
                     >
                       <label
-                        onClick={() => updateOrderStatus(order.order_id, "Processing")}
+                        onClick={() =>
+                          updateOrderStatus(order.order_id, "Processing")
+                        }
                         // htmlFor="blockPopup"
                       >
                         <li>

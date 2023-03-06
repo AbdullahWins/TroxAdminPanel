@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
 import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import OrdersPendingTable from "../../Components/Tables/Orders/OrdersPendingTable";
@@ -17,17 +16,29 @@ const OrdersPending = () => {
     setCurrentOrder,
   } = useContext(OrderContext);
 
-  const handleSelectCheckbox = (orderId, e) => {
+  const handleSelectCheckbox = (order, e) => {
     const selectedOrdersList = [...selectedOrders];
     if (e.target.checked) {
-      selectedOrdersList.push(orderId);
+      selectedOrdersList.push(order.order_id);
     } else {
-      const index = selectedOrdersList.indexOf(e.target.value);
-      if (index > -1) {
+      const index = selectedOrdersList.indexOf(order.order_id);
+      if (index !== -1) {
         selectedOrdersList.splice(index, 1);
       }
     }
     setSelectedOrders(selectedOrdersList);
+  };
+
+  const handleSelectAllCheckbox = (orders, e) => {
+    const selectAllOrder = [];
+    if (e.target.checked) {
+      orders?.map((order) => {
+        return selectAllOrder.push(order.order_id);
+      });
+    } else {
+      setSelectedOrders([]);
+    }
+    setSelectedOrders(selectAllOrder);
   };
 
   useEffect(() => {
@@ -38,10 +49,6 @@ const OrdersPending = () => {
   }, [filteredOrdersBySearch]);
 
   console.log(selectedOrders);
-
-  // const handleAllCheckbox = () => {
-  //   console.log("selected all");
-  // };
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -143,6 +150,7 @@ const OrdersPending = () => {
         <OrdersPendingTable
           rows={pendingOrders}
           setCurrentOrder={setCurrentOrder}
+          handleSelectAllCheckbox={handleSelectAllCheckbox}
           handleSelectCheckbox={handleSelectCheckbox}
         ></OrdersPendingTable>
       )}
