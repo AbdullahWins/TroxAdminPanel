@@ -22,6 +22,7 @@ const OrdersProcessingTable = ({
     }
   }, [searchBarValue]);
 
+
   const handleItemsPerPage = (value) => {
     const elem = document.activeElement;
     if (elem) {

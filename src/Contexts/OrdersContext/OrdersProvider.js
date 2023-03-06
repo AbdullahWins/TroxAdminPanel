@@ -11,6 +11,7 @@ import {
 export const OrderContext = createContext();
 const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [filteredOrdersBySearch, setFilteredOrdersBySearch] = useState([]);
 
@@ -35,6 +36,7 @@ const OrdersProvider = ({ children }) => {
         await updateDoc(orderDocRef, {
           order_status: status,
         });
+        fetchOrders();
         console.log("Order status updated successfully");
       } catch {
         console.error("Order document not found");
@@ -62,6 +64,7 @@ const OrdersProvider = ({ children }) => {
   // };
 
   const fetchOrders = async () => {
+    setIsLoading(true);
     await getDocs(collection(firebaseFirestore, "orders")).then(
       (querySnapshot) => {
         const newData = querySnapshot.docs.map((doc) => ({
@@ -70,6 +73,7 @@ const OrdersProvider = ({ children }) => {
         }));
         setOrders(newData);
         setFilteredOrdersBySearch(newData);
+        setIsLoading(false);
       }
     );
   };
@@ -109,6 +113,8 @@ const OrdersProvider = ({ children }) => {
     setFilteredOrdersBySearch,
     reloadCurrentPage,
     updateOrderStatus,
+    isLoading,
+    setIsLoading,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>

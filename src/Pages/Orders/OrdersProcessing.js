@@ -3,13 +3,18 @@ import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlo
 import ConfirmationModalDelete from "../../Components/Modals/ConfirmationModalDelete";
 import OrdersProcessingTable from "../../Components/Tables/Orders/OrdersProcessingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
+import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 
 const OrdersProcessing = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [processingOrders, setProcessingOrders] = useState([]);
   const [currentOrder, setCurrentOrder] = useState(null);
-  const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
-    useContext(OrderContext);
+  const {
+    isLoading,
+    fetchOrders,
+    filteredOrdersBySearch,
+    filterOrdersBySearch,
+  } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -36,6 +41,8 @@ const OrdersProcessing = () => {
   // const handleAllCheckbox = () => {
   //   console.log("selected all");
   // };
+
+  console.log(isLoading);
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -131,11 +138,15 @@ const OrdersProcessing = () => {
           Delete
         </label>
       </div>
-      <OrdersProcessingTable
-        setCurrentOrder={setCurrentOrder}
-        rows={processingOrders}
-        handleSelectCheckbox={handleSelectCheckbox}
-      ></OrdersProcessingTable>
+      {isLoading ? (
+        <OrdersLoading></OrdersLoading>
+      ) : (
+        <OrdersProcessingTable
+          setCurrentOrder={setCurrentOrder}
+          rows={processingOrders}
+          handleSelectCheckbox={handleSelectCheckbox}
+        ></OrdersProcessingTable>
+      )}
       {/* confirmation modals popup */}
       <ConfirmationModalBlock
         currentOrder={currentOrder}

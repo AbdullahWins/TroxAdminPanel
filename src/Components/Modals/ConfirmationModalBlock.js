@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
-const ConfirmationModalBlock = ({ currentOrder}) => {
-  const { updateOrderStatus } =
-    useContext(OrderContext);
+const ConfirmationModalBlock = ({ currentOrder }) => {
+  const { updateOrderStatus } = useContext(OrderContext);
 
   const handleClick = (order) => {
     updateOrderStatus(order.order_id, "Returned");
@@ -42,7 +41,7 @@ const ConfirmationModalBlock = ({ currentOrder}) => {
           </div>
           <div>
             <p className="font-bold text-lg">
-              Do you want to block {currentOrder?.sender_name}?
+              Do you want to {`cancel #${currentOrder?.order_id}`}?
             </p>
           </div>
           <div className="modal-action flex items-center justify-center">

@@ -1,12 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
+import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import OrdersDeliveredTable from "../../Components/Tables/Orders/OrdersDeliveredTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersDelivered = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [cancelledOrders, setCancelledOrders] = useState([]);
-  const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
-    useContext(OrderContext);
+  const {
+    isLoading,
+    fetchOrders,
+    filteredOrdersBySearch,
+    filterOrdersBySearch,
+  } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -128,10 +133,14 @@ const OrdersDelivered = () => {
           Delete
         </label>
       </div>
-      <OrdersDeliveredTable
-        rows={cancelledOrders}
-        handleSelectCheckbox={handleSelectCheckbox}
-      ></OrdersDeliveredTable>
+      {isLoading ? (
+        <OrdersLoading></OrdersLoading>
+      ) : (
+        <OrdersDeliveredTable
+          rows={cancelledOrders}
+          handleSelectCheckbox={handleSelectCheckbox}
+        ></OrdersDeliveredTable>
+      )}
     </div>
   );
 };

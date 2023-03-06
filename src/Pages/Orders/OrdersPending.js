@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import OrdersPendingTable from "../../Components/Tables/Orders/OrdersPendingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersPending = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [pendingOrders, setPendingOrders] = useState([]);
-  const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
-    useContext(OrderContext);
+  const {
+    isLoading,
+    fetchOrders,
+    filteredOrdersBySearch,
+    filterOrdersBySearch,
+  } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -129,10 +134,14 @@ const OrdersPending = () => {
           Delete
         </label>
       </div>
-      <OrdersPendingTable
-        rows={pendingOrders}
-        handleSelectCheckbox={handleSelectCheckbox}
-      ></OrdersPendingTable>
+      {isLoading ? (
+        <OrdersLoading></OrdersLoading>
+      ) : (
+        <OrdersPendingTable
+          rows={pendingOrders}
+          handleSelectCheckbox={handleSelectCheckbox}
+        ></OrdersPendingTable>
+      )}
       {/* delete modal popup */}
       <ConfirmationModal actionName="delete"></ConfirmationModal>
     </div>

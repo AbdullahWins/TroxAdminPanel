@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
 import ConfirmationModalDelete from "../../Components/Modals/ConfirmationModalDelete";
+import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import OrdersProcessingTable from "../../Components/Tables/Orders/OrdersProcessingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
@@ -8,8 +9,12 @@ const OrdersPickup = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [pickupOrders, setPickupOrders] = useState([]);
   const [currentOrder, setCurrentOrder] = useState(null);
-  const { fetchOrders, filteredOrdersBySearch, filterOrdersBySearch } =
-    useContext(OrderContext);
+  const {
+    isLoading,
+    fetchOrders,
+    filteredOrdersBySearch,
+    filterOrdersBySearch,
+  } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
@@ -133,11 +138,16 @@ const OrdersPickup = () => {
           Delete
         </label>
       </div>
-      <OrdersProcessingTable
-        setCurrentOrder={setCurrentOrder}
-        rows={pickupOrders}
-        handleSelectCheckbox={handleSelectCheckbox}
-      ></OrdersProcessingTable>
+      {isLoading ? (
+        <OrdersLoading></OrdersLoading>
+      ) : (
+        <OrdersProcessingTable
+          setCurrentOrder={setCurrentOrder}
+          rows={pickupOrders}
+          handleSelectCheckbox={handleSelectCheckbox}
+        ></OrdersProcessingTable>
+      )}
+
       {/* confirmation modals popup */}
       <ConfirmationModalBlock
         currentOrder={currentOrder}
