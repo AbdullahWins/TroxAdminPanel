@@ -54,8 +54,6 @@ const OrdersPending = () => {
     setPendingOrders(filteredOrdersByStatus);
   }, [filteredOrdersBySearch]);
 
-  console.log(selectedOrders);
-
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
       <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
@@ -73,7 +71,7 @@ const OrdersPending = () => {
                 className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Customer User</button>
+                  <button>Customer</button>
                 </li>
                 <li>
                   <button>Marchants</button>
@@ -94,7 +92,7 @@ const OrdersPending = () => {
                   <button>Local</button>
                 </li>
                 <li>
-                  <button>Local Distance</button>
+                  <button>Long Distance</button>
                 </li>
                 <li>
                   <button>International</button>
@@ -141,16 +139,16 @@ const OrdersPending = () => {
         } p-4 bg-whiteHigh`}
       >
         <label
-          htmlFor="deletePopup"
+          onClick={() => handleApproveAll(selectedOrders, "Returned")}
           className="btn btn-sm border-none bg-primaryMain"
         >
-          Delete
+          Decline Selected
         </label>
         <button
           className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow"
           onClick={() => handleApproveAll(selectedOrders, "Processing")}
         >
-          Approve All
+          Approve Selected
         </button>
       </div>
       {isLoading ? (

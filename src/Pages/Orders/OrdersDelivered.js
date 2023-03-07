@@ -33,8 +33,6 @@ const OrdersDelivered = () => {
     setCancelledOrders(filteredOrdersByStatus);
   }, [filteredOrdersBySearch]);
 
-  console.log(selectedOrders);
-
   // const handleAllCheckbox = () => {
   //   console.log("selected all");
   // };

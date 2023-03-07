@@ -106,7 +106,7 @@ const OrdersCancelledTable = ({ rows, handleSelectCheckbox }) => {
               Destination Address
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Actions
+              Status
             </th>
           </tr>
         </thead>

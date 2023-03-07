@@ -36,8 +36,6 @@ const OrdersPickup = () => {
     setPickupOrders(filteredOrdersByStatus);
   }, [filteredOrdersBySearch]);
 
-  console.log(selectedOrders);
-
   // const handleAllCheckbox = () => {
   //   console.log("selected all");
   // };

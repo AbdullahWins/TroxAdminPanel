@@ -106,7 +106,7 @@ const OrdersDeliveredTable = ({ rows, handleSelectCheckbox }) => {
               Destination Address
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Actions
+              Rating
             </th>
           </tr>
         </thead>
@@ -132,8 +132,8 @@ const OrdersDeliveredTable = ({ rows, handleSelectCheckbox }) => {
                 <td className="px-0">{order.sender_address}</td>
                 <td className="px-0 mx-0">{order.receiver_address}</td>
                 <td className="px-0 py-0">
-                  <span className="text-whiteHigh text-center py-2 px-6 rounded-xl bg-successColor">
-                    Delivered
+                  <span className="text-whiteHigh text-center py-2 px-3 rounded-xl bg-successColor">
+                    4.5
                   </span>
                 </td>
               </tr>

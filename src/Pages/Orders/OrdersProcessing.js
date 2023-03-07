@@ -40,8 +40,6 @@ const OrdersProcessing = () => {
   //   console.log("selected all");
   // };
 
-  console.log(isLoading);
-
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
       <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">

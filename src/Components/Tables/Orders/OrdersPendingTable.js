@@ -41,9 +41,10 @@ const OrdersPendingTable = ({
   const handleCheckbox = (order, e) => {
     handleSelectCheckbox(order, e);
   };
-  const handleAllCheckbox = (orders, e) => {
-    handleSelectAllCheckbox(orders, e);
-  };
+
+  // const handleAllCheckbox = (orders, e) => {
+  //   handleSelectAllCheckbox(orders, e);
+  // };
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -85,14 +86,14 @@ const OrdersPendingTable = ({
         <thead>
           <tr className="font-bold text-center text-3xl">
             <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              <input
+              {/* <input
                 type="checkbox"
                 className="checkbox rounded-none"
                 name="allCheckbox"
                 onChange={(e) => {
                   handleAllCheckbox(currentRows, e);
                 }}
-              />
+              /> */}
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
               Serial
