@@ -27,11 +27,13 @@ const OrdersProvider = ({ children }) => {
       console.error("Error adding document: ", e);
     }
   };
+  
 
+  //update one order status
   const updateOrderStatus = async (order, status) => {
     try {
-      const db = firebaseFirestore; // get the Firestore instance
-      const orderDocRef = doc(db, "orders", order); // get a reference to the "orders" collection
+      const db = firebaseFirestore;
+      const orderDocRef = doc(db, "orders", order);
       try {
         // update the order document if it exists
         await updateDoc(orderDocRef, {
@@ -47,14 +49,14 @@ const OrdersProvider = ({ children }) => {
     }
   };
 
+  //update many order status
   const updateManyOrderStatus = async (orders, status) => {
     try {
-      const db = firebaseFirestore; // get the Firestore instance
+      const db = firebaseFirestore;
       const orderDocsRefs = orders.map(
-        (order) => doc(db, "orders", order) // get a reference to the "orders" collection for each order
+        (order) => doc(db, "orders", order)
       );
       try {
-        // update the order documents if they exist
         await Promise.all(
           orderDocsRefs.map((orderDocRef) =>
             updateDoc(orderDocRef, {
@@ -89,6 +91,7 @@ const OrdersProvider = ({ children }) => {
   //   }
   // };
 
+  //fetch orders from database
   const fetchOrders = async () => {
     setIsLoading(true);
     await getDocs(collection(firebaseFirestore, "orders")).then(
@@ -104,12 +107,14 @@ const OrdersProvider = ({ children }) => {
     );
   };
 
+  // reload the current page id
   const reloadCurrentPage = (setCurrentPage) => {
     setCurrentPage(1);
   };
 
   // filterOrdersByStatus(orders, "pending");
 
+  //filter order by search value
   const filterOrdersBySearch = (e) => {
     const searchValue = e.target.value;
     if (searchValue === null) {

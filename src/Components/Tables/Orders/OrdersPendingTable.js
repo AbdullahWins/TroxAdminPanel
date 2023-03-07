@@ -155,7 +155,7 @@ const OrdersPendingTable = ({
                       </label>
                       <ul
                         tabIndex={1}
-                        className="dropdown-content menu p-1 mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
+                        className="dropdown-content menu mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
                       >
                         <label
                           onClick={() =>
@@ -164,7 +164,7 @@ const OrdersPendingTable = ({
                           // htmlFor="blockPopup"
                         >
                           <li>
-                            <p className="text-successColor py-1 active:bg-blackLow w-full rounded-none">
+                            <p className="text-successColor py-1 active:bg-blackLow w-full rounded-t-md">
                               Confirm
                             </p>
                           </li>
@@ -179,7 +179,7 @@ const OrdersPendingTable = ({
                           htmlFor="blockPopup"
                         >
                           <li>
-                            <p className="text-errorColor py-1 active:bg-blackLow">
+                            <p className="text-errorColor py-1 active:bg-blackLow rounded-b-md">
                               Decline
                             </p>
                           </li>
