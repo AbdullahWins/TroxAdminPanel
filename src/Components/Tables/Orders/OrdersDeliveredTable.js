@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../../../Contexts/OrdersContext/OrdersProvider";
+import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const OrdersDeliveredTable = ({ rows, handleSelectCheckbox }) => {
   const { searchBarValue } = useContext(OrderContext);
@@ -33,9 +34,9 @@ const OrdersDeliveredTable = ({ rows, handleSelectCheckbox }) => {
     setActiveButton(pageNumber);
   };
 
-  const handleAllCheckbox = () => {
-    console.log("selected all");
-  };
+  // const handleAllCheckbox = () => {
+  //   console.log("selected all");
+  // };
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -73,48 +74,49 @@ const OrdersDeliveredTable = ({ rows, handleSelectCheckbox }) => {
 
   return (
     <div className=" relative pb-16">
-      <table className="table w-full">
-        <thead>
-          <tr className="font-bold text-center text-3xl">
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+      {rows.length > 0 ? (
+        <table className="table w-full">
+          <thead>
+            <tr className="font-bold text-center text-3xl">
+              {/* <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
               <input
                 type="checkbox"
                 className="checkbox rounded-none"
                 value="allChecked"
                 onChange={handleAllCheckbox}
               />
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Serial
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Order ID
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Created
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Customer
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Total
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Pickup Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Destination Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Rating
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {currentRows?.map((order, i) => {
-            return (
-              <tr key={i} className="text-center">
-                <th className="px-0">
+            </th> */}
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Serial
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Order ID
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Created
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Customer
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Total
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Pickup Address
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Destination Address
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Rating
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-center">
+            {currentRows?.map((order, i) => {
+              return (
+                <tr key={i} className="text-center">
+                  {/* <th className="px-0">
                   <input
                     type="checkbox"
                     className="checkbox rounded-none"
@@ -123,24 +125,27 @@ const OrdersDeliveredTable = ({ rows, handleSelectCheckbox }) => {
                       handleSelectCheckbox(order.order_id, e);
                     }}
                   />
-                </th>
-                <td className="px-0">{i + 1}</td>
-                <td className="px-0 mx-0">#{order.order_id}</td>
-                <td className="px-0 mx-0">{order?.timestamp?.seconds}</td>
-                <td className="px-0 mx-0">{order.sender_name}</td>
-                <td className="px-0 mx-0">${order.totalAmount}.00</td>
-                <td className="px-0">{order.sender_address}</td>
-                <td className="px-0 mx-0">{order.receiver_address}</td>
-                <td className="px-0 py-0">
-                  <span className="text-whiteHigh text-center py-2 px-3 rounded-xl bg-successColor">
-                    4.5
-                  </span>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                </th> */}
+                  <th className="px-0">{i + 1}</th>
+                  <td className="px-0 mx-0">#{order.order_id}</td>
+                  <td className="px-0 mx-0">{order?.timestamp?.seconds}</td>
+                  <td className="px-0 mx-0">{order.sender_name}</td>
+                  <td className="px-0 mx-0">${order.totalAmount}.00</td>
+                  <td className="px-0">{order.sender_address}</td>
+                  <td className="px-0 mx-0">{order.receiver_address}</td>
+                  <td className="px-0 py-0">
+                    <span className="text-whiteHigh text-center py-2 px-3 rounded-xl bg-successColor">
+                      4.5
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <EmptyScreen></EmptyScreen>
+      )}
       <section className="flex items-center justify-end gap-4 py-4 absolute bottom-0 right-0">
         <div>{renderPagination()}</div>
         <div>

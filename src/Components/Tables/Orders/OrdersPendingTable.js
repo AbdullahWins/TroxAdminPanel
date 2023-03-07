@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../../../Contexts/OrdersContext/OrdersProvider";
+import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const OrdersPendingTable = ({
   rows,
@@ -82,11 +83,12 @@ const OrdersPendingTable = ({
 
   return (
     <div className=" relative pb-16">
-      <table className="table w-full">
-        <thead>
-          <tr className="font-bold text-center text-3xl">
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              {/* <input
+      {rows.length > 0 ? (
+        <table className="table w-full">
+          <thead>
+            <tr className="font-bold text-center text-3xl">
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                {/* <input
                 type="checkbox"
                 className="checkbox rounded-none"
                 name="allCheckbox"
@@ -94,102 +96,105 @@ const OrdersPendingTable = ({
                   handleAllCheckbox(currentRows, e);
                 }}
               /> */}
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Serial
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Order ID
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Created
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Customer
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Total
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Pickup Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Destination Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {currentRows?.map((order, i) => {
-            return (
-              <tr key={i} className="text-center">
-                <th className="px-0">
-                  <input
-                    type="checkbox"
-                    className="checkbox rounded-none"
-                    name="checkbox"
-                    onChange={(e) => {
-                      handleCheckbox(order, e);
-                    }}
-                  />
-                </th>
-                <td className="px-0">{i + 1}</td>
-                <td className="px-0 mx-0">#{order.order_id}</td>
-                <td className="px-0 mx-0">{order?.timestamp?.seconds}</td>
-                <td className="px-0 mx-0">{order.sender_name}</td>
-                <td className="px-0 mx-0">${order.totalAmount}.00</td>
-                <td className="px-0">{order.sender_address}</td>
-                <td className="px-0 mx-0">{order.receiver_address}</td>
-                <td className="px-0 py-0">
-                  <div className="dropdown dropdown-bottom dropdown-end">
-                    <label
-                      tabIndex={1}
-                      className="rounded-lg px-2 py-1 w-24 focus:outline-none active:border-none text-primaryMain bg-primaryMainLightest"
-                    >
-                      Pending &nbsp;
-                      <i className="fa-solid fa-angle-down text-sm"></i>
-                    </label>
-                    <ul
-                      tabIndex={1}
-                      className="dropdown-content menu p-1 mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
-                    >
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Serial
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Order ID
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Created
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Customer
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Total
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Pickup Address
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Destination Address
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-center">
+            {currentRows?.map((order, i) => {
+              return (
+                <tr key={i} className="text-center">
+                  <th className="px-0">
+                    <input
+                      type="checkbox"
+                      className="checkbox rounded-none"
+                      name="checkbox"
+                      onChange={(e) => {
+                        handleCheckbox(order, e);
+                      }}
+                    />
+                  </th>
+                  <td className="px-0">{i + 1}</td>
+                  <td className="px-0 mx-0">#{order.order_id}</td>
+                  <td className="px-0 mx-0">{order?.timestamp?.seconds}</td>
+                  <td className="px-0 mx-0">{order.sender_name}</td>
+                  <td className="px-0 mx-0">${order.totalAmount}.00</td>
+                  <td className="px-0">{order.sender_address}</td>
+                  <td className="px-0 mx-0">{order.receiver_address}</td>
+                  <td className="px-0 py-0">
+                    <div className="dropdown dropdown-bottom dropdown-end">
                       <label
-                        onClick={() =>
-                          updateOrderStatus(order.order_id, "Processing")
-                        }
-                        // htmlFor="blockPopup"
+                        tabIndex={1}
+                        className="rounded-lg px-2 py-1 w-24 focus:outline-none active:border-none text-primaryMain bg-primaryMainLightest"
                       >
-                        <li>
-                          <p className="text-successColor py-1 active:bg-blackLow w-full rounded-none">
-                            Confirm
-                          </p>
-                        </li>
+                        Pending &nbsp;
+                        <i className="fa-solid fa-angle-down text-sm"></i>
                       </label>
-                      <hr className="text-disabledColor opacity-10" />
-                      <li>
-                        <p className="py-1 active:bg-blackLow">Edit</p>
-                      </li>
-                      <hr className="text-disabledColor opacity-10" />
-                      <label
-                        onClick={() => setCurrentOrder(order)}
-                        htmlFor="blockPopup"
+                      <ul
+                        tabIndex={1}
+                        className="dropdown-content menu p-1 mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
                       >
+                        <label
+                          onClick={() =>
+                            updateOrderStatus(order.order_id, "Processing")
+                          }
+                          // htmlFor="blockPopup"
+                        >
+                          <li>
+                            <p className="text-successColor py-1 active:bg-blackLow w-full rounded-none">
+                              Confirm
+                            </p>
+                          </li>
+                        </label>
+                        <hr className="text-disabledColor opacity-10" />
                         <li>
-                          <p className="text-errorColor py-1 active:bg-blackLow">
-                            Decline
-                          </p>
+                          <p className="py-1 active:bg-blackLow">Edit</p>
                         </li>
-                      </label>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                        <hr className="text-disabledColor opacity-10" />
+                        <label
+                          onClick={() => setCurrentOrder(order)}
+                          htmlFor="blockPopup"
+                        >
+                          <li>
+                            <p className="text-errorColor py-1 active:bg-blackLow">
+                              Decline
+                            </p>
+                          </li>
+                        </label>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <EmptyScreen></EmptyScreen>
+      )}
       <section className="flex items-center justify-end gap-4 py-4 absolute bottom-0 right-0">
         <div>{renderPagination()}</div>
         <div>

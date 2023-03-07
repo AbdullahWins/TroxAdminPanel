@@ -46,15 +46,18 @@ const OrdersCancelled = () => {
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                Customer User &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                User Type &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
                 className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Customer User</button>
+                  <button>Customer</button>
                 </li>
                 <li>
                   <button>Marchants</button>
@@ -64,8 +67,11 @@ const OrdersCancelled = () => {
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                All Types &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                Location &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -75,7 +81,7 @@ const OrdersCancelled = () => {
                   <button>Local</button>
                 </li>
                 <li>
-                  <button>Local Distance</button>
+                  <button>Long Distance</button>
                 </li>
                 <li>
                   <button>International</button>

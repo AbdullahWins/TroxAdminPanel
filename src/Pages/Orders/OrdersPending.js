@@ -32,9 +32,9 @@ const OrdersPending = () => {
 
   const handleSelectAllCheckbox = (orders, e) => {
     const selectAllOrder = [];
-    if (e.target.checked) {
+    if (e?.target?.checked) {
       orders?.map((order) => {
-        return selectAllOrder.push(order.order_id);
+        return selectAllOrder?.push(order?.order_id);
       });
     } else {
       setSelectedOrders([]);
@@ -63,8 +63,11 @@ const OrdersPending = () => {
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                Customer User &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                User Type &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -81,8 +84,11 @@ const OrdersPending = () => {
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                All Types &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                Location &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}

@@ -40,21 +40,24 @@ const OrdersDelivered = () => {
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
       <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
-        <section className="flex items-center gap-4">
+      <section className="flex items-center gap-4">
           <div>
             <p className="font-bold text-2xl">Orders</p>
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                Customer User &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                User Type &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
                 className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Customer User</button>
+                  <button>Customer</button>
                 </li>
                 <li>
                   <button>Marchants</button>
@@ -64,8 +67,11 @@ const OrdersDelivered = () => {
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                All Types &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                Location &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
@@ -75,7 +81,7 @@ const OrdersDelivered = () => {
                   <button>Local</button>
                 </li>
                 <li>
-                  <button>Local Distance</button>
+                  <button>Long Distance</button>
                 </li>
                 <li>
                   <button>International</button>
