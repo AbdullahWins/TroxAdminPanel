@@ -38,9 +38,9 @@ const OrdersProcessingTable = ({
     setActiveButton(pageNumber);
   };
 
-  const handleAllCheckbox = () => {
-    console.log("selected all");
-  };
+  // const handleAllCheckbox = () => {
+  //   console.log("selected all");
+  // };
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -82,12 +82,12 @@ const OrdersProcessingTable = ({
         <thead>
           <tr className="font-bold text-center text-3xl">
             <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-              <input
+              {/* <input
                 type="checkbox"
                 className="checkbox rounded-none"
                 value="allChecked"
                 onChange={handleAllCheckbox}
-              />
+              /> */}
             </th>
             <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
               Serial

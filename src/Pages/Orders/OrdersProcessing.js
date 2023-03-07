@@ -14,6 +14,7 @@ const OrdersProcessing = () => {
     filterOrdersBySearch,
     currentOrder,
     setCurrentOrder,
+    updateManyOrderStatus,
   } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
@@ -27,6 +28,11 @@ const OrdersProcessing = () => {
       }
     }
     setSelectedOrders(selectedOrdersList);
+  };
+
+  const handleApproveAll = (order, status) => {
+    updateManyOrderStatus(order, status);
+    setSelectedOrders([]);
   };
 
   useEffect(() => {
@@ -124,15 +130,22 @@ const OrdersProcessing = () => {
             : "flex items-center justify-start gap-4"
         } p-4 bg-whiteHigh`}
       >
-        <button className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow">
-          Select All
+        <button
+          onClick={() => {
+            handleApproveAll(selectedOrders, "Returned");
+          }}
+          className="btn btn-sm border-none bg-primaryMain"
+        >
+          Decline Selected
         </button>
-        <label
-          htmlFor="deletePopup"
+        {/* <label
+          onClick={() => {
+            handleApproveAll(processingOrders, "Returned");
+          }}
           className="btn btn-sm border-none bg-primaryMain"
         >
           Delete
-        </label>
+        </label> */}
       </div>
       {isLoading ? (
         <OrdersLoading></OrdersLoading>

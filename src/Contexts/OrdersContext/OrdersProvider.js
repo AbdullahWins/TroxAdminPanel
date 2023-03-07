@@ -118,7 +118,6 @@ const OrdersProvider = ({ children }) => {
     const filteredOrders = orders?.filter((order) =>
       order?.order_id?.includes(searchValue)
     );
-    console.log(filteredOrders);
     setFilteredOrdersBySearch(filteredOrders);
     setSearchBarValue(searchValue);
   };
