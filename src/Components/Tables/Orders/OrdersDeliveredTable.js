@@ -128,7 +128,9 @@ const OrdersDeliveredTable = ({ rows, handleSelectCheckbox }) => {
                 </th> */}
                   <th className="px-0">{i + 1}</th>
                   <td className="px-0 mx-0">#{order.order_id}</td>
-                  <td className="px-0 mx-0">{order?.timestamp?.seconds}</td>
+                  <td className="px-0 mx-0">
+                    {order?.timestamp?.toDate().toLocaleDateString()}
+                  </td>
                   <td className="px-0 mx-0">{order.sender_name}</td>
                   <td className="px-0 mx-0">${order.totalAmount}.00</td>
                   <td className="px-0">{order.sender_address}</td>

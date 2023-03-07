@@ -10,6 +10,7 @@ import OrdersDelivered from "../Pages/Orders/OrdersDelivered";
 import OrdersPickedup from "../Pages/Orders/OrdersPickedup";
 import OrdersPending from "../Pages/Orders/OrdersPending";
 import OrdersProcessing from "../Pages/Orders/OrdersProcessing";
+import OrderEdit from "../Pages/EditPages/OrderEdit";
 import WarehouseAll from "../Pages/Warehouse/WarehouseAll";
 import WarehouseAddNew from "../Pages/Warehouse/WarehouseAddNew";
 import StaffAll from "../Pages/Staff/StaffAll";
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: "/orderscancelled",
         element: <OrdersCancelled></OrdersCancelled>,
+      },
+      {
+        path: "/ordersedit",
+        element: <OrderEdit></OrderEdit>,
       },
 
       // delivery man
