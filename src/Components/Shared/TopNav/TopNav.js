@@ -89,9 +89,9 @@ const TopNav = () => {
         </div>
         {/* report generation */}
         <div>
-          <button className="btn bg-primaryMain font-normal normal-case border-none text-white mx-3">
+          {/* <button className="btn bg-primaryMain font-normal normal-case border-none text-white mx-3">
             Generate Report
-          </button>
+          </button> */}
         </div>
         {/* user avater */}
         <div className="dropdown dropdown-end">
@@ -102,16 +102,19 @@ const TopNav = () => {
           </label>
           <ul
             tabIndex={3}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 shadow bg-base-100 rounded-box w-28"
           >
             <li>
-              <Link to="/userProfile" className="justify-between">
+              <Link
+                to="/profile"
+                className="justify-between active:bg-primaryMain"
+              >
                 Profile
-                <span className="badge">New</span>
+                {/* <span className="badge">New</span> */}
               </Link>
             </li>
             <li>
-              <button onClick={logout} className="btn btn-ghost">
+              <button onClick={logout} className="active:bg-primaryMain">
                 Logout
               </button>
             </li>

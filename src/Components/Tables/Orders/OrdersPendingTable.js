@@ -162,7 +162,7 @@ const OrdersPendingTable = ({
                       >
                         <label
                           onClick={() =>
-                            updateOrderStatus(order.order_id, "Processing")
+                            updateOrderStatus(order?.order_id, "Processing")
                           }
                           // htmlFor="blockPopup"
                         >
@@ -177,7 +177,7 @@ const OrdersPendingTable = ({
                           <Link
                             to={{
                               pathname: `/orderedit/${order?.order_id}`,
-                              orderId: order?.order_id,
+                              order: order,
                             }}
                             className="py-1 active:bg-blackLow"
                           >

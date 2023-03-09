@@ -4,6 +4,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   getDocs,
   updateDoc,
 } from "firebase/firestore";
@@ -14,6 +15,7 @@ const OrdersProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [currentOrder, setCurrentOrder] = useState(null);
+  const [orderToEdit, setOrderToEdit] = useState();
   const [filteredOrdersBySearch, setFilteredOrdersBySearch] = useState([]);
 
   const addTodo = async (e) => {
@@ -68,6 +70,25 @@ const OrdersProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error updating order statuses", error);
+    }
+  };
+
+  //fetch one order
+  const fetchSingleOrder = async (orderId) => {
+    console.log(orderId);
+    try {
+      const ref = doc(firebaseFirestore, "orders", orderId);
+      const docSnap = await getDoc(ref);
+      if (docSnap.exists()) {
+        const order = docSnap.data();
+        // setCurrentOrder(order);
+        console.log(order);
+        setOrderToEdit(order);
+      } else {
+        console.log("No such doCUMent!");
+      }
+    } catch (error) {
+      console.error("Error fetching doCUMent!", error);
     }
   };
 
@@ -153,7 +174,10 @@ const OrdersProvider = ({ children }) => {
   const OrderInfo = {
     addTodo,
     fetchOrders,
+    fetchSingleOrder,
     orders,
+    orderToEdit,
+    setOrderToEdit,
     setOrders,
     searchBarValue,
     setSearchBarValue,

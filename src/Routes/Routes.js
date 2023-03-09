@@ -156,8 +156,10 @@ export const router = createBrowserRouter([
         path: "/staffRole",
         element: <StaffRole></StaffRole>,
       },
+
+      //user
       {
-        path: "/userProfile",
+        path: "/profile",
         element: <UserProfile></UserProfile>,
       },
     ],

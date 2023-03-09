@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
-import OrdersLoading from "../Shared/LoadingScreens/OrdersLoading";
+// import OrdersLoading from "../Shared/LoadingScreens/OrdersLoading";
 
 const HomeOrders = () => {
   const { orders, isLoading } = useContext(OrderContext);
