@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { OrderContext } from "../../../Contexts/OrdersContext/OrdersProvider";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
@@ -173,7 +174,15 @@ const OrdersPendingTable = ({
                         </label>
                         <hr className="text-disabledColor opacity-10" />
                         <li>
-                          <p className="py-1 active:bg-blackLow">Edit</p>
+                          <Link
+                            to={{
+                              pathname: `/orderedit/${order?.order_id}`,
+                              orderId: order?.order_id,
+                            }}
+                            className="py-1 active:bg-blackLow"
+                          >
+                            Edit
+                          </Link>
                         </li>
                         <hr className="text-disabledColor opacity-10" />
                         <label

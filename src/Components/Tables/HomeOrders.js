@@ -8,7 +8,8 @@ const HomeOrders = () => {
     <section>
       <div className="overflow-x-auto overflow-y-auto max-h-64">
         {isLoading ? (
-          <OrdersLoading></OrdersLoading>
+          // <OrdersLoading></OrdersLoading>
+          ""
         ) : (
           <table className="table table-zebra w-full">
             <thead>

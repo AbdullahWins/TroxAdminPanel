@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import avater from "../../../Assets/img/profile/avater.png";
+import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 
 const TopNav = () => {
+  const { logout } = useContext(AuthContext);
   return (
     <div className="navbar bg-base-100 px-6 py-3">
       {/* top nav left */}
@@ -109,7 +111,9 @@ const TopNav = () => {
               </Link>
             </li>
             <li>
-              <button className="btn btn-ghost">Logout</button>
+              <button onClick={logout} className="btn btn-ghost">
+                Logout
+              </button>
             </li>
           </ul>
         </div>

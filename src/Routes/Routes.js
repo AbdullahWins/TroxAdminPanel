@@ -27,11 +27,17 @@ import LocationsCountry from "../Pages/Locations/LocationsCountry";
 import LocationsCity from "../Pages/Locations/LocationsCity";
 import LocationsState from "../Pages/Locations/LocationsState";
 import StaffRole from "../Pages/Staff/StaffRole";
+import Login from "../Pages/Authentication/Login/Login";
+import PrivateRoutes from "../Routes/PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: (
+      <PrivateRoutes>
+        <Main></Main>
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "/",
@@ -59,7 +65,7 @@ export const router = createBrowserRouter([
         element: <OrdersCancelled></OrdersCancelled>,
       },
       {
-        path: "/ordersedit",
+        path: "/orderedit/:id",
         element: <OrderEdit></OrderEdit>,
       },
 
@@ -150,11 +156,15 @@ export const router = createBrowserRouter([
         path: "/staffRole",
         element: <StaffRole></StaffRole>,
       },
+      {
+        path: "/userProfile",
+        element: <UserProfile></UserProfile>,
+      },
     ],
   },
   {
-    path: "/userProfile",
-    element: <UserProfile></UserProfile>,
+    path: "/login",
+    element: <Login></Login>,
   },
   {
     path: "*",
