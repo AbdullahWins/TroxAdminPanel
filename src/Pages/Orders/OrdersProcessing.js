@@ -10,8 +10,11 @@ const OrdersProcessing = () => {
   const {
     isLoading,
     fetchOrders,
+    searchBarValue,
     filteredOrdersBySearch,
     filterOrdersBySearch,
+    filterOrdersByUserType,
+    filterOrdersByLocationType,
     currentOrder,
     setCurrentOrder,
     updateManyOrderStatus,
@@ -33,6 +36,13 @@ const OrdersProcessing = () => {
   const handleApproveAll = (order, status) => {
     updateManyOrderStatus(order, status);
     setSelectedOrders([]);
+  };
+
+  const handleUserTypeToggle = (userType) => {
+    filterOrdersByUserType(userType);
+  };
+  const handleLocationTypeToggle = (locationType) => {
+    filterOrdersByLocationType(locationType);
   };
 
   useEffect(() => {
@@ -63,13 +73,27 @@ const OrdersProcessing = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
+                className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Customer</button>
+                  <button
+                    onClick={(e) => {
+                      handleUserTypeToggle("Customer", e);
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Customer
+                  </button>
                 </li>
                 <li>
-                  <button>Marchants</button>
+                  <button
+                    onClick={(e) => {
+                      handleUserTypeToggle("Marchant", e);
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Marchant
+                  </button>
                 </li>
               </ul>
             </div>
@@ -84,16 +108,37 @@ const OrdersProcessing = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
+                className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Local</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("Local");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Local
+                  </button>
                 </li>
                 <li>
-                  <button>Long Distance</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("Long Distance");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Long Distance
+                  </button>
                 </li>
                 <li>
-                  <button>International</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("International");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    International
+                  </button>
                 </li>
               </ul>
             </div>
@@ -101,6 +146,7 @@ const OrdersProcessing = () => {
         </section>
         <section className="flex items-center gap-4 w-2/5">
           <input
+            defaultValue={searchBarValue}
             onChange={filterOrdersBySearch}
             className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
             type="text"

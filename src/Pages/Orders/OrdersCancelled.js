@@ -9,7 +9,10 @@ const OrdersCancelled = () => {
   const {
     isLoading,
     fetchOrders,
+    searchBarValue,
     filteredOrdersBySearch,
+    filterOrdersByUserType,
+    filterOrdersByLocationType,
     filterOrdersBySearch,
   } = useContext(OrderContext);
 
@@ -24,6 +27,13 @@ const OrdersCancelled = () => {
       }
     }
     setSelectedOrders(selectedOrdersList);
+  };
+
+  const handleUserTypeToggle = (userType) => {
+    filterOrdersByUserType(userType);
+  };
+  const handleLocationTypeToggle = (locationType) => {
+    filterOrdersByLocationType(locationType);
   };
 
   useEffect(() => {
@@ -54,13 +64,27 @@ const OrdersCancelled = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
+                className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Customer</button>
+                  <button
+                    onClick={(e) => {
+                      handleUserTypeToggle("Customer", e);
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Customer
+                  </button>
                 </li>
                 <li>
-                  <button>Marchants</button>
+                  <button
+                    onClick={(e) => {
+                      handleUserTypeToggle("Marchant", e);
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Marchant
+                  </button>
                 </li>
               </ul>
             </div>
@@ -75,16 +99,37 @@ const OrdersCancelled = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
+                className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Local</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("Local");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Local
+                  </button>
                 </li>
                 <li>
-                  <button>Long Distance</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("Long Distance");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Long Distance
+                  </button>
                 </li>
                 <li>
-                  <button>International</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("International");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    International
+                  </button>
                 </li>
               </ul>
             </div>
@@ -92,6 +137,7 @@ const OrdersCancelled = () => {
         </section>
         <section className="flex items-center gap-4 w-2/5">
           <input
+            defaultValue={searchBarValue}
             onChange={filterOrdersBySearch}
             className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
             type="text"

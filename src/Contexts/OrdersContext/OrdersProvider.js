@@ -27,7 +27,6 @@ const OrdersProvider = ({ children }) => {
       console.error("Error adding document: ", e);
     }
   };
-  
 
   //update one order status
   const updateOrderStatus = async (order, status) => {
@@ -53,9 +52,7 @@ const OrdersProvider = ({ children }) => {
   const updateManyOrderStatus = async (orders, status) => {
     try {
       const db = firebaseFirestore;
-      const orderDocsRefs = orders.map(
-        (order) => doc(db, "orders", order)
-      );
+      const orderDocsRefs = orders.map((order) => doc(db, "orders", order));
       try {
         await Promise.all(
           orderDocsRefs.map((orderDocRef) =>
@@ -127,6 +124,28 @@ const OrdersProvider = ({ children }) => {
     setSearchBarValue(searchValue);
   };
 
+  //filter order by user type
+  const filterOrdersByUserType = (userType, e) => {
+    if (userType === null) {
+      setFilteredOrdersBySearch(orders);
+    }
+    const filteredOrders = orders?.filter((order) =>
+      order?.user_type?.includes(userType)
+    );
+    setFilteredOrdersBySearch(filteredOrders);
+  };
+
+  //filter order by user type
+  const filterOrdersByLocationType = (locationType, e) => {
+    if (locationType === null) {
+      setFilteredOrdersBySearch(orders);
+    }
+    const filteredOrders = orders?.filter((order) =>
+      order?.order_type?.includes(locationType)
+    );
+    setFilteredOrdersBySearch(filteredOrders);
+  };
+
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -141,6 +160,8 @@ const OrdersProvider = ({ children }) => {
     filterOrdersBySearch,
     filteredOrdersBySearch,
     setFilteredOrdersBySearch,
+    filterOrdersByUserType,
+    filterOrdersByLocationType,
     reloadCurrentPage,
     updateOrderStatus,
     updateManyOrderStatus,
