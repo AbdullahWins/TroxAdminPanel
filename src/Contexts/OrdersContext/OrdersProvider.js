@@ -15,7 +15,7 @@ const OrdersProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [currentOrder, setCurrentOrder] = useState(null);
-  const [orderToEdit, setOrderToEdit] = useState();
+  const [orderToEdit, setOrderToEdit] = useState(null);
   const [filteredOrdersBySearch, setFilteredOrdersBySearch] = useState([]);
 
   const addTodo = async (e) => {
@@ -83,7 +83,9 @@ const OrdersProvider = ({ children }) => {
         const order = docSnap.data();
         // setCurrentOrder(order);
         console.log(order);
-        // setOrderToEdit(order);
+        if (orderToEdit === null) {
+          setOrderToEdit(order);
+        }
       } else {
         console.log("No such doCUMent!");
       }
