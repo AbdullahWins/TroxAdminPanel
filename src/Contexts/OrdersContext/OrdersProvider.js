@@ -81,10 +81,10 @@ const OrdersProvider = ({ children }) => {
       const docSnap = await getDoc(ref);
       if (docSnap.exists()) {
         const order = docSnap.data();
-        // setCurrentOrder(order);
-        console.log(order);
-        if (orderToEdit === null) {
-          setOrderToEdit(order);
+        if (currentOrder?.order_id === order?.order_id) {
+          return;
+        } else {
+          setCurrentOrder(order);
         }
       } else {
         console.log("No such doCUMent!");
