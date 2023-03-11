@@ -83,7 +83,7 @@ const OrdersProvider = ({ children }) => {
         const order = docSnap.data();
         // setCurrentOrder(order);
         console.log(order);
-        setOrderToEdit(order);
+        // setOrderToEdit(order);
       } else {
         console.log("No such doCUMent!");
       }

@@ -8,7 +8,7 @@ const OrderEdit = () => {
 
   useEffect(() => {
     fetchSingleOrder(id);
-  }, []);
+  }, [fetchSingleOrder, id]);
 
   const handleEditBtn = (event) => {
     event.preventDefault();
