@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
 
@@ -8,10 +8,12 @@ const OrderEdit = () => {
   const { id } = useParams();
   const { updateSingleOrder } = useContext(OrderContext);
   const [currentOrder, setCurrentOrder] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/orderspending";
 
   useEffect(() => {
     const fetchSingleOrder = async () => {
-      console.log(id);
       try {
         const ref = doc(firebaseFirestore, "orders", id);
         const docSnap = await getDoc(ref);
@@ -52,6 +54,9 @@ const OrderEdit = () => {
     };
     console.log(newOrder);
     updateSingleOrder(newOrder, id);
+    setTimeout(() => {
+      navigate(from, { replace: true });
+    }, 1000);
   };
 
   return (
