@@ -85,12 +85,40 @@ const OrdersProvider = ({ children }) => {
           return;
         } else {
           setCurrentOrder(order);
+          console.log(order);
         }
       } else {
         console.log("No such doCUMent!");
       }
     } catch (error) {
       console.error("Error fetching doCUMent!", error);
+    }
+  };
+
+  //update one order
+  const updateSingleOrder = async (newOrder) => {
+    try {
+      const db = firebaseFirestore;
+      const orderDocRef = doc(db, "orders", currentOrder?.order_id);
+      try {
+        // update the order document if it exists
+        await updateDoc(orderDocRef, {
+          sender_name: newOrder?.sender_name,
+          sender_contact: newOrder?.sender_contact,
+          sender_address: newOrder?.sender_address,
+          receiver_name: newOrder?.receiver_name,
+          receiver_contact: newOrder?.receiver_contact,
+          receiver_address: newOrder?.receiver_address,
+          parcel_weight: newOrder?.parcel_weight,
+          price: newOrder?.price,
+        });
+        fetchOrders();
+        console.log("Order updated successfully");
+      } catch {
+        console.error("Order document not found");
+      }
+    } catch (error) {
+      console.error("Error updating order", error);
     }
   };
 
@@ -195,6 +223,7 @@ const OrdersProvider = ({ children }) => {
     setIsLoading,
     currentOrder,
     setCurrentOrder,
+    updateSingleOrder,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>

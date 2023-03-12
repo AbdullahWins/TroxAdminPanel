@@ -4,7 +4,8 @@ import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrderEdit = () => {
   const { id } = useParams();
-  const { currentOrder, fetchSingleOrder } = useContext(OrderContext);
+  const { currentOrder, fetchSingleOrder, updateSingleOrder } =
+    useContext(OrderContext);
 
   useEffect(() => {
     fetchSingleOrder(id);
@@ -15,8 +16,26 @@ const OrderEdit = () => {
     const orderId = id;
     const form = event.target;
     const senderName = form.senderName.value;
-    const recieverName = form.recieverName.value;
-    console.log(currentOrder, orderId, senderName, recieverName);
+    const senderContact = form.senderContact.value;
+    const senderAddress = form.senderAddress.value;
+    const receiverName = form.receiverName.value;
+    const receiverContact = form.receiverContact.value;
+    const receiverAddress = form.receiverAddress.value;
+    const parcelWeight = form.parcelWeight.value;
+    const deliveryFee = form.deliveryFee.value;
+
+    const newOrder = {
+      sender_name: senderName,
+      sender_contact: senderContact,
+      sender_address: senderAddress,
+      receiver_name: receiverName,
+      receiver_contact: receiverContact,
+      receiver_address: receiverAddress,
+      parcel_weight: parcelWeight,
+      price: deliveryFee,
+    };
+    console.log(orderId, newOrder);
+    updateSingleOrder(newOrder);
   };
 
   return (
@@ -48,7 +67,7 @@ const OrderEdit = () => {
                 <p className="w-96 text-end">Sender&nbsp;Number:</p>
                 <input
                   type="text"
-                  name="senderPhone"
+                  name="senderContact"
                   defaultValue={currentOrder?.sender_contact}
                   placeholder="sender's phone number"
                   className="input bg-whiteLow border-none focus:outline-none w-96 font-bold"
@@ -68,7 +87,7 @@ const OrderEdit = () => {
                 <p className=" w-96 text-end">Receiver&nbsp;Name:</p>
                 <input
                   type="text"
-                  name="recieverName"
+                  name="receiverName"
                   defaultValue={currentOrder?.receiver_name}
                   placeholder="enter full name"
                   className="input bg-whiteLow border-none focus:outline-none w-96 font-bold"
@@ -78,7 +97,7 @@ const OrderEdit = () => {
                 <p className=" w-96 text-end">Receiver&nbsp;Number:</p>
                 <input
                   type="text"
-                  name="recieverPhone"
+                  name="receiverContact"
                   defaultValue={currentOrder?.receiver_contact}
                   placeholder="reciever's phone number"
                   className="input bg-whiteLow border-none focus:outline-none w-96 font-bold"
@@ -88,7 +107,7 @@ const OrderEdit = () => {
                 <p className=" w-96 text-end">Receiver&nbsp;Address:</p>
                 <input
                   type="text"
-                  name="recieverAddress"
+                  name="receiverAddress"
                   defaultValue={currentOrder?.receiver_address}
                   placeholder="sender's address"
                   className="input bg-whiteLow border-none focus:outline-none w-96 font-bold"
@@ -98,7 +117,7 @@ const OrderEdit = () => {
                 <p className=" w-96 text-end">Weight:</p>
                 <input
                   type="number"
-                  name="percelWeight"
+                  name="parcelWeight"
                   defaultValue={currentOrder?.parcel_weight}
                   placeholder="enter weight in kg"
                   className="input bg-whiteLow border-none focus:outline-none w-96 font-bold"
@@ -119,7 +138,7 @@ const OrderEdit = () => {
                 <input
                   type="number"
                   name="discount"
-                  defaultValue={currentOrder?.receiver_name}
+                  defaultValue={currentOrder?.receiver_contact}
                   placeholder="discount"
                   className="input bg-whiteLow border-none focus:outline-none w-96 font-bold"
                 />
@@ -129,22 +148,22 @@ const OrderEdit = () => {
                 <input
                   type="number"
                   name="totalAmount"
-                  defaultValue={currentOrder?.receiver_name}
+                  defaultValue={currentOrder?.receiver_contact}
                   placeholder="total amount"
                   className="input bg-whiteLow border-none focus:outline-none w-96 font-bold"
                 />
               </div>
+              <div className="flex items-center justify-end gap-4">
+                <Link to={"/orderspending"}>
+                  <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
+                    Cancel
+                  </label>
+                </Link>
+                <button className="btn submit rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
+                  Save
+                </button>
+              </div>
             </form>
-            <div className="flex items-center justify-end gap-4">
-              <Link to={"/orderspending"}>
-                <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
-                  Cancel
-                </label>
-              </Link>
-              <label className="btn rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
-                Save
-              </label>
-            </div>
           </div>
         </section>
       </div>
