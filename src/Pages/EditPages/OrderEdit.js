@@ -1,19 +1,35 @@
-import React, { useContext, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
+import { firebaseFirestore } from "../../Firebase/firebase.config";
 
 const OrderEdit = () => {
   const { id } = useParams();
-  const { currentOrder, fetchSingleOrder, updateSingleOrder } =
-    useContext(OrderContext);
+  const { updateSingleOrder } = useContext(OrderContext);
+  const [currentOrder, setCurrentOrder] = useState(null);
 
   useEffect(() => {
-    fetchSingleOrder(id);
-  });
+    const fetchSingleOrder = async () => {
+      console.log(id);
+      try {
+        const ref = doc(firebaseFirestore, "orders", id);
+        const docSnap = await getDoc(ref);
+        if (docSnap.exists()) {
+          const order = docSnap.data();
+          return setCurrentOrder(order);
+        } else {
+          console.log("No such doCUMent!");
+        }
+      } catch (error) {
+        console.error("Error fetching doCUMent!", error);
+      }
+    };
+    fetchSingleOrder();
+  }, [id]);
 
   const handleEditBtn = (event) => {
     event.preventDefault();
-    const orderId = id;
     const form = event.target;
     const senderName = form.senderName.value;
     const senderContact = form.senderContact.value;
@@ -34,8 +50,8 @@ const OrderEdit = () => {
       parcel_weight: parcelWeight,
       price: deliveryFee,
     };
-    console.log(orderId, newOrder);
-    updateSingleOrder(newOrder);
+    console.log(newOrder);
+    updateSingleOrder(newOrder, id);
   };
 
   return (

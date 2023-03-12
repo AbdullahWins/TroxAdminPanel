@@ -4,7 +4,6 @@ import {
   addDoc,
   collection,
   doc,
-  getDoc,
   getDocs,
   updateDoc,
 } from "firebase/firestore";
@@ -73,33 +72,34 @@ const OrdersProvider = ({ children }) => {
     }
   };
 
-  //fetch one order
-  const fetchSingleOrder = async (orderId) => {
-    console.log(orderId);
-    try {
-      const ref = doc(firebaseFirestore, "orders", orderId);
-      const docSnap = await getDoc(ref);
-      if (docSnap.exists()) {
-        const order = docSnap.data();
-        if (currentOrder?.order_id === order?.order_id) {
-          return;
-        } else {
-          setCurrentOrder(order);
-          console.log(order);
-        }
-      } else {
-        console.log("No such doCUMent!");
-      }
-    } catch (error) {
-      console.error("Error fetching doCUMent!", error);
-    }
-  };
+  // //fetch one order
+  // const fetchSingleOrder = async (orderId) => {
+  //   console.log(orderId);
+  //   try {
+  //     const ref = doc(firebaseFirestore, "orders", orderId);
+  //     const docSnap = await getDoc(ref);
+  //     if (docSnap.exists()) {
+  //       const order = docSnap.data();
+  //       return order;
+  //       // if (currentOrder?.order_id === order?.order_id) {
+  //       //   return;
+  //       // } else {
+  //       //   setCurrentOrder(order);
+  //       //   console.log(order);
+  //       // }
+  //     } else {
+  //       console.log("No such doCUMent!");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching doCUMent!", error);
+  //   }
+  // };
 
   //update one order
-  const updateSingleOrder = async (newOrder) => {
+  const updateSingleOrder = async (newOrder, id) => {
     try {
       const db = firebaseFirestore;
-      const orderDocRef = doc(db, "orders", currentOrder?.order_id);
+      const orderDocRef = doc(db, "orders", id);
       try {
         // update the order document if it exists
         await updateDoc(orderDocRef, {
@@ -204,7 +204,6 @@ const OrdersProvider = ({ children }) => {
   const OrderInfo = {
     addTodo,
     fetchOrders,
-    fetchSingleOrder,
     orders,
     orderToEdit,
     setOrderToEdit,
