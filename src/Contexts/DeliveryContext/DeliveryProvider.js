@@ -161,6 +161,7 @@ const DeliveryProvider = ({ children }) => {
           rider_gender: newRider?.rider_gender,
           rider_work_location: newRider?.rider_work_location,
           rider_address: newRider?.rider_address,
+          rider_documents: newRider?.rider_documents,
         });
         fetchRiders();
         console.log("Rider successfully added");

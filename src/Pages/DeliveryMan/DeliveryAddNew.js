@@ -18,7 +18,7 @@ const DeliveryAddNew = () => {
     const riderGender = form.riderGender.value;
     const riderWorkLocation = form.riderWorkLocation.value;
     const riderAddress = form.riderAddress.value;
-    // const deliveryFee = form.deliveryFee.value;
+    const documentsImage = form.documentsImage.files[0];
 
     const newRider = {
       rider_name: riderName,
@@ -28,13 +28,12 @@ const DeliveryAddNew = () => {
       rider_gender: riderGender,
       rider_work_location: riderWorkLocation,
       rider_address: riderAddress,
-      // price: deliveryFee,
+      rider_documents: [documentsImage.name],
     };
-    console.log(newRider);
     addOneRider(newRider);
-    setTimeout(() => {
-      navigate(from, { replace: true });
-    }, 1000);
+    // setTimeout(() => {
+    //   navigate(from, { replace: true });
+    // }, 1000);
   };
 
   return (
@@ -122,7 +121,11 @@ const DeliveryAddNew = () => {
                   className="input bg-whiteLow border-none focus:outline-none w-96"
                 />
               </div>
-              <input type="file" className="file-input w-full max-w-xs" />
+              <input
+                type="file"
+                name="documentsImage"
+                className="file-input w-full max-w-xs"
+              />
               <div className="flex items-center justify-end gap-4">
                 <Link to={"/orderspending"}>
                   <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
