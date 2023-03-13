@@ -1,14 +1,20 @@
-import React, { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import DeliveryManAddConfirmationPopup from "../../Components/Modals/DeliveryManAddConfirmationPopup";
 import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
 
 const DeliveryAddNew = () => {
   const { addOneRider } = useContext(DeliveryContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/deliveryAllDeliveryMan";
+  const [popupIsOpen, setPopupIsOpen] = useState(null);
+  // const location = useLocation();
+  // const navigate = useNavigate();
+  // const from = location.state?.from?.pathname || "/deliveryAllDeliveryMan";
 
-  const handleSubmitBtn = (event) => {
+  const handlePopup = (value) => {
+    setPopupIsOpen(value);
+  };
+
+  const handleSubmitBtn = async (event) => {
     event.preventDefault();
     const form = event.target;
     const riderName = form.riderName.value;
@@ -18,8 +24,7 @@ const DeliveryAddNew = () => {
     const riderGender = form.riderGender.value;
     const riderWorkLocation = form.riderWorkLocation.value;
     const riderAddress = form.riderAddress.value;
-    const documentsImage = form.documentsImage.files[0];
-    const documentsImages = [documentsImage];
+    const documentsImages = form.documentsImage.files;
 
     const newRider = {
       rider_name: riderName,
@@ -33,8 +38,8 @@ const DeliveryAddNew = () => {
     try {
       addOneRider(newRider, documentsImages);
       setTimeout(() => {
-        navigate(from, { replace: true });
-      }, 1000);
+        handlePopup("modal-open");
+      }, 3000);
     } catch (error) {
       console.log(error.message);
     }
@@ -132,6 +137,7 @@ const DeliveryAddNew = () => {
               </div>
               <input
                 type="file"
+                multiple="multiple"
                 name="documentsImage"
                 className="file-input w-full max-w-xs"
               />
@@ -149,6 +155,10 @@ const DeliveryAddNew = () => {
           </div>
         </section>
       </div>
+      <DeliveryManAddConfirmationPopup
+        popupIsOpen={popupIsOpen}
+        handlePopup={handlePopup}
+      ></DeliveryManAddConfirmationPopup>
     </section>
   );
 };
