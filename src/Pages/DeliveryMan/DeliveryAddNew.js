@@ -19,6 +19,7 @@ const DeliveryAddNew = () => {
     const riderWorkLocation = form.riderWorkLocation.value;
     const riderAddress = form.riderAddress.value;
     const documentsImage = form.documentsImage.files[0];
+    const documentsImages = [documentsImage];
 
     const newRider = {
       rider_name: riderName,
@@ -28,12 +29,15 @@ const DeliveryAddNew = () => {
       rider_gender: riderGender,
       rider_work_location: riderWorkLocation,
       rider_address: riderAddress,
-      rider_documents: [documentsImage.name],
     };
-    addOneRider(newRider);
-    // setTimeout(() => {
-    //   navigate(from, { replace: true });
-    // }, 1000);
+    try {
+      addOneRider(newRider, documentsImages);
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 1000);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -46,6 +50,11 @@ const DeliveryAddNew = () => {
           <p className="text-center text-blackMid py-4 font-semibold text-xl">
             Add a Delivery Man
           </p>
+          {/* {riders.map((rider, i) => {
+            return rider?.rider_documents?.map((image) => {
+              return <img src={image} alt="" />;
+            });
+          })} */}
           <div className="grid items-center justify-center gap-4">
             <form
               className="flex flex-col w-full items-center justify-center gap-2"

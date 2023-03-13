@@ -9,26 +9,17 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const DeliveryContext = createContext();
 const DeliveryProvider = ({ children }) => {
   const [riders, setRiders] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [currentRider, setCurrentRider] = useState(null);
   const [filteredRidersBySearch, setFilteredRidersBySearch] = useState([]);
-
-  const addTodo = async (e) => {
-    e.preventDefault();
-    try {
-      const docRef = await addDoc(collection(firebaseFirestore, "todos"), {
-        todo: "lol",
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
 
   //update one rider status
   const updateRiderStatus = async (rider, status) => {
@@ -147,13 +138,71 @@ const DeliveryProvider = ({ children }) => {
   //   }
   // };
 
+  //images upload in firebase storage
+  // const uploadImages = async (images) => {
+  //   const storageRef = ref(storage);
+  //   const imageUrls = [];
+
+  //   for (const image of images) {
+  //     try {
+  //       // Resize the image
+  //       // const resizedImage = await resizeImage(image);
+  //       const resizedImage = image;
+
+  //       // Upload the image to Firebase Storage
+  //       const imageName = uuidv4(); // Generate a unique filename
+  //       const imageRef = storageRef.child(`images/${imageName}`);
+  //       const snapshot = await imageRef.put(resizedImage);
+
+  //       // Get the image URL
+  //       const imageUrl = await snapshot.ref.getDownloadURL();
+  //       imageUrls.push(imageUrl);
+  //     } catch (error) {
+  //       console.error("Error uploading image", error);
+  //     }
+  //   }
+
+  //   return imageUrls;
+  // };
+
+  // Upload images to Firebase Storage
+  const uploadImages = async (images) => {
+    const storage = getStorage();
+    const imageUrls = [];
+
+    for (const image of images) {
+      try {
+        const imageName = uuidv4();
+        const storageRef = ref(storage, `nadeImages/${imageName}`);
+        const snapshot = await uploadBytes(storageRef, image);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        imageUrls.push(downloadURL);
+      } catch (error) {
+        console.error("Error uploading image", error);
+      }
+    }
+    console.log(imageUrls);
+    return imageUrls;
+  };
+
+  const addTodo = async (e) => {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(firebaseFirestore, "todos"), {
+        todo: "lol",
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   // add one rider
-  const addOneRider = async (newRider) => {
+  const addOneRider = async (newRider, images) => {
     try {
       const db = firebaseFirestore;
-      const orderDocRef = doc(db, "riders", newRider.rider_email);
+      const orderDocRef = doc(db, "riderDetails", newRider.rider_email);
       try {
-        // add the rider document if it exists
         await setDoc(orderDocRef, {
           rider_name: newRider?.rider_name,
           rider_contact: newRider?.rider_contact,
@@ -161,7 +210,7 @@ const DeliveryProvider = ({ children }) => {
           rider_gender: newRider?.rider_gender,
           rider_work_location: newRider?.rider_work_location,
           rider_address: newRider?.rider_address,
-          rider_documents: newRider?.rider_documents,
+          rider_documents: await uploadImages(images),
         });
         fetchRiders();
         console.log("Rider successfully added");
@@ -193,7 +242,7 @@ const DeliveryProvider = ({ children }) => {
   //fetch orders from database
   const fetchRiders = async () => {
     setIsLoading(true);
-    await getDocs(collection(firebaseFirestore, "riders")).then(
+    await getDocs(collection(firebaseFirestore, "riderDetails")).then(
       (querySnapshot) => {
         const newData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
@@ -274,6 +323,7 @@ const DeliveryProvider = ({ children }) => {
     currentRider,
     setCurrentRider,
     updateSingleRider,
+    uploadImages,
   };
   return (
     <DeliveryContext.Provider value={RiderInfo}>
