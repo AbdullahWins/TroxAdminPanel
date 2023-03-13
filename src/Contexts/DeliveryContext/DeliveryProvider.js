@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  serverTimestamp,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -23,18 +24,18 @@ const DeliveryProvider = ({ children }) => {
   const updateRiderStatus = async (rider, status) => {
     try {
       const db = firebaseFirestore;
-      const orderDocRef = doc(db, "riders", rider);
+      const riderDocRef = doc(db, "riders", rider);
       try {
-        await updateDoc(orderDocRef, {
+        await updateDoc(riderDocRef, {
           rider_status: status,
         });
         fetchRiders();
-        console.log("Order status updated successfully");
+        console.log("Rider status updated successfully");
       } catch {
-        console.error("Order document not found");
+        console.error("Rider document not found");
       }
     } catch (error) {
-      console.error("Error updating order status", error);
+      console.error("Error updating rider status", error);
     }
   };
 
@@ -42,22 +43,22 @@ const DeliveryProvider = ({ children }) => {
   const updateManyRiderStatus = async (riders, status) => {
     try {
       const db = firebaseFirestore;
-      const orderDocsRefs = riders.map((rider) => doc(db, "riders", rider));
+      const riderDocsRefs = riders.map((rider) => doc(db, "riders", rider));
       try {
         await Promise.all(
-          orderDocsRefs.map((orderDocRef) =>
-            updateDoc(orderDocRef, {
-              order_status: status,
+          riderDocsRefs.map((riderDocRef) =>
+            updateDoc(riderDocRef, {
+              rider_status: status,
             })
           )
         );
         fetchRiders();
         console.log("Rider statuses updated successfully");
       } catch {
-        console.error("One or more order documents not found");
+        console.error("One or more eider documents not found");
       }
     } catch (error) {
-      console.error("Error updating order statuses", error);
+      console.error("Error updating rider statuses", error);
     }
   };
 
@@ -83,13 +84,13 @@ const DeliveryProvider = ({ children }) => {
     }
   };
 
-  //update one order
+  //update one rider
   const updateSingleRider = async (newRider, id) => {
     try {
       const db = firebaseFirestore;
-      const orderDocRef = doc(db, "riders", id);
+      const riderDocRef = doc(db, "riders", id);
       try {
-        await updateDoc(orderDocRef, {
+        await updateDoc(riderDocRef, {
           rider_name: newRider?.sender_name,
           rider_email: newRider?.sender_name,
           rider_contact: newRider?.sender_name,
@@ -99,12 +100,12 @@ const DeliveryProvider = ({ children }) => {
           rider_address: newRider?.sender_name,
         });
         fetchRiders();
-        console.log("Order updated successfully");
+        console.log("Rider updated successfully");
       } catch {
-        console.error("Order document not found");
+        console.error("Rider document not found");
       }
     } catch (error) {
-      console.error("Error updating order", error);
+      console.error("Error updating rider", error);
     }
   };
 
@@ -116,7 +117,7 @@ const DeliveryProvider = ({ children }) => {
     for (const image of images) {
       try {
         const imageName = uuidv4();
-        const storageRef = ref(storage, `nadeImages/${imageName}`);
+        const storageRef = ref(storage, `rider_documents/${imageName}`);
         const snapshot = await uploadBytes(storageRef, image);
         const downloadURL = await getDownloadURL(snapshot.ref);
         imageUrls.push(downloadURL);
@@ -132,15 +133,23 @@ const DeliveryProvider = ({ children }) => {
   const addOneRider = async (newRider, images) => {
     try {
       const db = firebaseFirestore;
-      const orderDocRef = doc(db, "riderDetails", newRider.rider_email);
+      const riderId = uuidv4();
+      const timeStamp = serverTimestamp();
+      const riderDocRef = doc(db, "riderDetails", riderId);
       try {
-        await setDoc(orderDocRef, {
+        await setDoc(riderDocRef, {
+          rider_id: riderId,
           rider_name: newRider?.rider_name,
+          rider_email: newRider?.rider_email,
           rider_contact: newRider?.rider_contact,
           rider_dob: newRider?.rider_dob,
           rider_gender: newRider?.rider_gender,
+          rider_country: newRider?.rider_country,
+          rider_state: newRider?.rider_state,
           rider_work_location: newRider?.rider_work_location,
           rider_address: newRider?.rider_address,
+          rider_status: newRider?.rider_status,
+          timestamp: timeStamp,
           rider_documents: await uploadImages(images),
         });
         fetchRiders();
@@ -163,7 +172,6 @@ const DeliveryProvider = ({ children }) => {
           id: doc.id,
         }));
         setRiders(newData);
-        console.log(newData);
         setIsLoading(false);
       }
     );
@@ -180,11 +188,12 @@ const DeliveryProvider = ({ children }) => {
     if (searchValue === null) {
       setFilteredRidersBySearch(riders);
     }
-    const filteredOrders = riders?.filter((rider) =>
-      rider?.rider_id?.includes(searchValue)
+    const filteredRiders = riders?.filter((rider) =>
+      rider?.rider_name?.includes(searchValue)
     );
-    setFilteredRidersBySearch(filteredOrders);
+    setFilteredRidersBySearch(filteredRiders);
     setSearchBarValue(searchValue);
+    console.log(setFilteredRidersBySearch);
   };
 
   //filter rider by user type
@@ -213,6 +222,10 @@ const DeliveryProvider = ({ children }) => {
   useEffect(() => {
     fetchRiders();
   }, []);
+
+  useEffect(() => {
+    setFilteredRidersBySearch(riders);
+  }, [riders]);
 
   //exports
   const RiderInfo = {

@@ -19,3 +19,4 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseFirestore = getFirestore(firebaseApp);
 export const analytics = getAnalytics(firebaseApp);
 export const storage = getStorage(firebaseApp);
+export const firebaseTimestamp = firebaseFirestore.Timestamp;

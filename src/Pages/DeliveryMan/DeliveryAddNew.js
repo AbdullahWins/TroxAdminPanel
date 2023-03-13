@@ -17,14 +17,17 @@ const DeliveryAddNew = () => {
   const handleSubmitBtn = async (event) => {
     event.preventDefault();
     const form = event.target;
-    const riderName = form.riderName.value;
-    const riderEmail = form.riderEmail.value;
-    const riderContact = form.riderContact.value;
-    const riderDOB = form.riderDOB.value;
-    const riderGender = form.riderGender.value;
-    const riderWorkLocation = form.riderWorkLocation.value;
-    const riderAddress = form.riderAddress.value;
-    const documentsImages = form.documentsImage.files;
+    const riderName = form?.riderName.value;
+    const riderEmail = form?.riderEmail.value;
+    const riderContact = form?.riderContact.value;
+    const riderDOB = form?.riderDOB.value;
+    const riderGender = form?.riderGender.value;
+    const riderCountry = form?.riderCountry.value;
+    const riderState = form?.riderState.value;
+    const riderWorkLocation = form?.riderWorkLocation.value;
+    const riderAddress = form?.riderAddress.value;
+    const documentsImages = form?.documentsImage.files;
+    const riderStatus = "Approved";
 
     const newRider = {
       rider_name: riderName,
@@ -32,8 +35,11 @@ const DeliveryAddNew = () => {
       rider_contact: riderContact,
       rider_dob: riderDOB,
       rider_gender: riderGender,
+      rider_country: riderCountry,
+      rider_state: riderState,
       rider_work_location: riderWorkLocation,
       rider_address: riderAddress,
+      rider_status: riderStatus,
     };
     try {
       addOneRider(newRider, documentsImages);
@@ -116,6 +122,26 @@ const DeliveryAddNew = () => {
                 />
               </div>
               <div className="flex items-center justify-center gap-1">
+                <p className=" w-96 text-end">Country:</p>
+                <input
+                  required
+                  type="text"
+                  name="riderCountry"
+                  placeholder="country"
+                  className="input bg-whiteLow border-none focus:outline-none w-96"
+                />
+              </div>
+              <div className="flex items-center justify-center gap-1">
+                <p className=" w-96 text-end">State:</p>
+                <input
+                  required
+                  type="text"
+                  name="riderState"
+                  placeholder="state"
+                  className="input bg-whiteLow border-none focus:outline-none w-96"
+                />
+              </div>
+              <div className="flex items-center justify-center gap-1">
                 <p className=" w-96 text-end">Work&nbsp;Location:</p>
                 <input
                   required
@@ -131,7 +157,7 @@ const DeliveryAddNew = () => {
                   required
                   type="text"
                   name="riderAddress"
-                  placeholder="enter weight in kg"
+                  placeholder="rider full address"
                   className="input bg-whiteLow border-none focus:outline-none w-96"
                 />
               </div>
@@ -139,7 +165,7 @@ const DeliveryAddNew = () => {
                 type="file"
                 multiple="multiple"
                 name="documentsImage"
-                className="file-input w-full max-w-xs"
+                className="file-input outline-none w-full max-w-xs my-4 focus:outline-none"
               />
               <div className="flex items-center justify-end gap-4">
                 <Link to={"/orderspending"}>
