@@ -22,9 +22,10 @@ const DeliveryProvider = ({ children }) => {
 
   //update one rider status
   const updateRiderStatus = async (rider, status) => {
+    console.log(rider);
     try {
       const db = firebaseFirestore;
-      const riderDocRef = doc(db, "riders", rider);
+      const riderDocRef = doc(db, "riderDetails", rider);
       try {
         await updateDoc(riderDocRef, {
           rider_status: status,
@@ -43,7 +44,9 @@ const DeliveryProvider = ({ children }) => {
   const updateManyRiderStatus = async (riders, status) => {
     try {
       const db = firebaseFirestore;
-      const riderDocsRefs = riders.map((rider) => doc(db, "riders", rider));
+      const riderDocsRefs = riders.map((rider) =>
+        doc(db, "riderDetails", rider?.rider_id)
+      );
       try {
         await Promise.all(
           riderDocsRefs.map((riderDocRef) =>

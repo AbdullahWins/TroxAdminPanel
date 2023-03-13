@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
+import DeliveryMainCancelConfirmationPopup from "../../Components/Modals/DeliveryMainCancelConfirmationPopup";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import DeliveryAllDeliveryManTable from "../../Components/Tables/DeliveryMan/DeliveryAllDeliveryManTable";
 import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
@@ -47,7 +47,6 @@ const DeliveryAllDeliveryMan = () => {
     updateManyRiderStatus(rider, status);
     setSelectedRiders([]);
   };
-
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -118,10 +117,10 @@ const DeliveryAllDeliveryMan = () => {
           handleSelectCheckbox={handleSelectCheckbox}
         ></DeliveryAllDeliveryManTable>
       )}
-      {/* delete modal popup */}
-      <ConfirmationModalBlock
+      {/* cancel modal popup */}
+      <DeliveryMainCancelConfirmationPopup
         currentRider={currentRider}
-      ></ConfirmationModalBlock>
+      ></DeliveryMainCancelConfirmationPopup>
     </div>
   );
 };

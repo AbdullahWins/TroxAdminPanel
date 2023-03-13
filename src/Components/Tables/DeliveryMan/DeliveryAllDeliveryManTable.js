@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { OrderContext } from "../../../Contexts/OrdersContext/OrdersProvider";
+import { DeliveryContext } from "../../../Contexts/DeliveryContext/DeliveryProvider";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const DeliveryAllDeliveryManTable = ({
@@ -9,7 +9,7 @@ const DeliveryAllDeliveryManTable = ({
   handleSelectAllCheckbox,
 }) => {
   const { searchBarValue, setCurrentRider, updateRiderStatus } =
-    useContext(OrderContext);
+    useContext(DeliveryContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -141,7 +141,7 @@ const DeliveryAllDeliveryManTable = ({
                     />
                   </th>
                   <td className="px-0">{i + 1}</td>
-                  <td className="px-0 mx-0">{rider?.rider_name}</td>
+                  <td className="px-0 mx-0">{rider?.rider_id}</td>
                   <td className="px-0 mx-0">{rider?.rider_name}</td>
                   {/* <td className="px-0 mx-0">
                     {rider?.timestamp?.toDate().toLocaleDateString()}
@@ -167,7 +167,6 @@ const DeliveryAllDeliveryManTable = ({
                           onClick={() =>
                             updateRiderStatus(rider?.rider_id, "Approved")
                           }
-                          // htmlFor="blockPopup"
                         >
                           <li>
                             <p className="text-successColor py-1 active:bg-blackLow w-full rounded-t-md">
