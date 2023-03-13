@@ -1,12 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocs,
-  updateDoc,
-} from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 
 export const OrderContext = createContext();
 const OrdersProvider = ({ children }) => {
@@ -17,27 +11,12 @@ const OrdersProvider = ({ children }) => {
   const [orderToEdit, setOrderToEdit] = useState(null);
   const [filteredOrdersBySearch, setFilteredOrdersBySearch] = useState([]);
 
-
-
-  const addTodo = async (e) => {
-    e.preventDefault();
-    try {
-      const docRef = await addDoc(collection(firebaseFirestore, "todos"), {
-        todo: "lol",
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
-
   //update one order status
   const updateOrderStatus = async (order, status) => {
     try {
       const db = firebaseFirestore;
       const orderDocRef = doc(db, "orders", order);
       try {
-        // update the order document if it exists
         await updateDoc(orderDocRef, {
           order_status: status,
         });
@@ -74,36 +53,12 @@ const OrdersProvider = ({ children }) => {
     }
   };
 
-  // //fetch one order
-  // const fetchSingleOrder = async (orderId) => {
-  //   console.log(orderId);
-  //   try {
-  //     const ref = doc(firebaseFirestore, "orders", orderId);
-  //     const docSnap = await getDoc(ref);
-  //     if (docSnap.exists()) {
-  //       const order = docSnap.data();
-  //       return order;
-  //       // if (currentOrder?.order_id === order?.order_id) {
-  //       //   return;
-  //       // } else {
-  //       //   setCurrentOrder(order);
-  //       //   console.log(order);
-  //       // }
-  //     } else {
-  //       console.log("No such doCUMent!");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching doCUMent!", error);
-  //   }
-  // };
-
   //update one order
   const updateSingleOrder = async (newOrder, id) => {
     try {
       const db = firebaseFirestore;
       const orderDocRef = doc(db, "orders", id);
       try {
-        // update the order document if it exists
         await updateDoc(orderDocRef, {
           sender_name: newOrder?.sender_name,
           sender_contact: newOrder?.sender_contact,
@@ -123,23 +78,6 @@ const OrdersProvider = ({ children }) => {
       console.error("Error updating order", error);
     }
   };
-
-  // const updateOrderStatus = async (order, status) => {
-  //   try {
-  //     const db = firebaseFirestore; // get the Firestore instance
-  //     const ordersRef = db.collection("orders"); // get a reference to the "orders" collection
-  //     const orderDoc = await ordersRef.doc(order).get(); // get the order document
-  //     if (orderDoc.exists) {
-  //       // update the order document if it exists
-  //       await ordersRef.doc(order).update({ order_status: status });
-  //       console.log("Order status updated successfully");
-  //     } else {
-  //       console.error("Order document not found");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error updating order status", error);
-  //   }
-  // };
 
   //fetch orders from database
   const fetchOrders = async () => {
@@ -161,8 +99,6 @@ const OrdersProvider = ({ children }) => {
   const reloadCurrentPage = (setCurrentPage) => {
     setCurrentPage(1);
   };
-
-  // filterOrdersByStatus(orders, "pending");
 
   //filter order by search value
   const filterOrdersBySearch = (e) => {
@@ -188,7 +124,7 @@ const OrdersProvider = ({ children }) => {
     setFilteredOrdersBySearch(filteredOrders);
   };
 
-  //filter order by user type
+  //filter order by location type
   const filterOrdersByLocationType = (locationType, e) => {
     if (locationType === null) {
       setFilteredOrdersBySearch(orders);
@@ -199,12 +135,13 @@ const OrdersProvider = ({ children }) => {
     setFilteredOrdersBySearch(filteredOrders);
   };
 
+  //fetches all orders upon load
   useEffect(() => {
     fetchOrders();
   }, []);
 
+  //exports
   const OrderInfo = {
-    addTodo,
     fetchOrders,
     orders,
     orderToEdit,

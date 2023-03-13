@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-// import { getAnalytics } from "firebase/analytics";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -14,7 +14,8 @@ const firebaseConfig = {
 };
 
 export const firebaseApp = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// Initialize Cloud Firestore and get a reference to the service
+
+//firebase services
 export const firebaseFirestore = getFirestore(firebaseApp);
+export const analytics = getAnalytics(firebaseApp);
 export const storage = getStorage(firebaseApp);
