@@ -1,9 +1,9 @@
 import React from "react";
 
-const HomeTopCard = ({ backgroundColor }) => {
+const HomeTopCard = ({ data }) => {
   return (
     <section
-      className={`flex items-center justify-center w-full md:py-4 lg:py-14 rounded-xl ${backgroundColor.color}`}
+      className={`flex items-center justify-center w-full md:py-4 lg:py-14 rounded-xl ${data?.color}`}
     >
       <div className="p-4 bg-whiteHigh bg-opacity-30 rounded-full">
         <svg
@@ -20,8 +20,8 @@ const HomeTopCard = ({ backgroundColor }) => {
         </svg>
       </div>
       <div className="text-whiteHigh pl-2">
-        <p>Total Placed Order</p>
-        <p className="text-2xl font-bold">3278</p>
+        <p>{data?.title}</p>
+        <p className="text-2xl font-bold">{data?.number}</p>
       </div>
     </section>
   );

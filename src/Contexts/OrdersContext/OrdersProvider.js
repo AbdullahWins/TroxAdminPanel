@@ -9,6 +9,7 @@ const OrdersProvider = ({ children }) => {
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [currentOrder, setCurrentOrder] = useState(null);
   const [orderToEdit, setOrderToEdit] = useState(null);
+  const [deliveredOrderCount, setDeliveredOrderCount] = useState(null);
   const [filteredOrdersBySearch, setFilteredOrdersBySearch] = useState([]);
 
   //update one order status
@@ -140,6 +141,17 @@ const OrdersProvider = ({ children }) => {
     fetchOrders();
   }, []);
 
+  useEffect(() => {
+    //filter order by location type
+    const getDeliveredOrdersCount = () => {
+      const filterDeliveredOrders = orders?.filter((order) =>
+        order?.order_status?.includes("Delivered")
+      );
+      setDeliveredOrderCount(filterDeliveredOrders.length);
+    };
+    getDeliveredOrdersCount();
+  }, [orders]);
+
   //exports
   const OrderInfo = {
     fetchOrders,
@@ -162,6 +174,7 @@ const OrdersProvider = ({ children }) => {
     currentOrder,
     setCurrentOrder,
     updateSingleOrder,
+    deliveredOrderCount,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>
