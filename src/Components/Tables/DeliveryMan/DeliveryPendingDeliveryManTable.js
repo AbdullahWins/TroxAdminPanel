@@ -3,7 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { DeliveryContext } from "../../../Contexts/DeliveryContext/DeliveryProvider";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
-const DeliveryPendingDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
+const DeliveryPendingDeliveryManTable = ({
+  rows,
+  handleSelectCheckbox,
+  handlePhotoModal,
+}) => {
   const { searchBarValue, setCurrentRider, updateRiderStatus } =
     useContext(DeliveryContext);
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,8 +47,6 @@ const DeliveryPendingDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
   // const handleAllCheckbox = (orders, e) => {
   //   handleSelectAllCheckbox(orders, e);
   // };
-
-  console.log(rows);
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -148,7 +150,13 @@ const DeliveryPendingDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
                   <td className="px-0 mx-0">{rider?.rider_gender}</td>
                   <td className="px-0 mx-0">{rider?.rider_contact}</td>
                   <td className="px-0">{rider?.rider_email}</td>
-                  <td className="px-0 flex items-center justify-center">
+                  <td
+                    htmlFor="photoModal"
+                    onClick={() => {
+                      handlePhotoModal(rider?.rider_documents?.[0]);
+                    }}
+                    className="px-0 flex items-center justify-center"
+                  >
                     <img
                       className="h-8 w-8"
                       src={rider?.rider_documents?.[0]}

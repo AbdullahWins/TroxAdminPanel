@@ -22,7 +22,6 @@ const DeliveryProvider = ({ children }) => {
 
   //update one rider status
   const updateRiderStatus = async (rider, status) => {
-    console.log(rider);
     try {
       const db = firebaseFirestore;
       const riderDocRef = doc(db, "riderDetails", rider);

@@ -55,6 +55,7 @@ const DeliveryPendingRequests = () => {
 
   const handlePhotoModal = (photoUrl) => {
     setShowPhotoModal({ state: true, photoUrl });
+    console.log(photoUrl);
   };
 
   const handleToggle = (event, rider) => {
