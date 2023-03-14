@@ -115,6 +115,9 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
                 Email
               </th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Income
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Work
               </th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
@@ -137,14 +140,14 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
                     />
                   </th>
                   <td className="px-0">{i + 1}</td>
-                  <td className="px-0 mx-0">{rider?.rider_id}</td>
                   <td className="px-0 mx-0">{rider?.rider_name}</td>
-                  {/* <td className="px-0 mx-0">
+                  <td className="px-0 mx-0">
                     {rider?.timestamp?.toDate().toLocaleDateString()}
-                  </td> */}
+                  </td>
                   <td className="px-0 mx-0">{rider?.rider_gender}</td>
                   <td className="px-0 mx-0">{rider?.rider_contact}</td>
                   <td className="px-0">{rider?.rider_email}</td>
+                  <td className="px-0">{rider?.rider_total_income}</td>
                   <td className="px-0 mx-0">{rider?.rider_work_location}</td>
                   <td className="px-0 py-0">
                     <div className="dropdown dropdown-bottom dropdown-end">

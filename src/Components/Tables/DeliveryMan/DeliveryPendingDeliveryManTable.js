@@ -142,11 +142,10 @@ const DeliveryPendingDeliveryManTable = ({
                     />
                   </th>
                   <td className="px-0">{i + 1}</td>
-                  <td className="px-0 mx-0">{rider?.rider_id}</td>
                   <td className="px-0 mx-0">{rider?.rider_name}</td>
-                  {/* <td className="px-0 mx-0">
+                  <td className="px-0 mx-0">
                     {rider?.timestamp?.toDate().toLocaleDateString()}
-                  </td> */}
+                  </td>
                   <td className="px-0 mx-0">{rider?.rider_gender}</td>
                   <td className="px-0 mx-0">{rider?.rider_contact}</td>
                   <td className="px-0">{rider?.rider_email}</td>
