@@ -1,43 +1,76 @@
-import React, { useState } from "react";
-import orders from "../../Assets/json/orders.json";
-import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import React, { useContext, useEffect, useState } from "react";
+import DeliveryMainCancelConfirmationPopup from "../../Components/Modals/DeliveryMainCancelConfirmationPopup";
 import PhotoModal from "../../Components/Modals/PhotoModal";
+import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
+import DeliveryPendingDeliveryManTable from "../../Components/Tables/DeliveryMan/DeliveryPendingDeliveryManTable";
+import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
 
 const DeliveryPendingRequests = () => {
-  const [allOrders, setAllOrders] = useState(orders);
-  const [selectedOrders, setSelectedOrders] = useState([]);
+  const {
+    isLoading,
+    fetchRiders,
+    searchBarValue,
+    filteredRidersBySearch,
+    filterRidersBySearch,
+    currentRider,
+    setCurrentRider,
+    updateManyRiderStatus,
+  } = useContext(DeliveryContext);
+  const [selectedRiders, setSelectedRiders] = useState([]);
+  const [pendingRiders, setPendingRiders] = useState([]);
   const [showPhotoModal, setShowPhotoModal] = useState({
     state: false,
     photoUrl: null,
   });
-  const ordersProcessing = allOrders;
 
-  const handleCheckbox = (event) => {
-    const selectedOrdersList = [...selectedOrders];
-    if (event.target.checked) {
-      selectedOrdersList.push(event.target.value);
+  const handleSelectCheckbox = (rider, e) => {
+    const selectedRidersList = [...selectedRiders];
+    if (e.target.checked) {
+      selectedRidersList.push(rider?.rider_id);
     } else {
-      const index = selectedOrdersList.indexOf(event.target.value);
-      if (index > -1) {
-        selectedOrdersList.splice(index, 1);
+      const index = selectedRidersList.indexOf(rider?.rider_id);
+      if (index !== -1) {
+        selectedRidersList.splice(index, 1);
       }
     }
-    setSelectedOrders(selectedOrdersList);
-    //this line is just to bypass netlify CD/CI auto update failure
-    setAllOrders(orders);
+    setSelectedRiders(selectedRidersList);
+  };
+
+  const handleSelectAllCheckbox = (riders, e) => {
+    const selectAllRider = [];
+    if (e?.target?.checked) {
+      riders?.map((rider) => {
+        return selectAllRider?.push(rider?.rider_id);
+      });
+    } else {
+      setSelectedRiders([]);
+    }
+    setSelectedRiders(selectAllRider);
+  };
+
+  const handleApproveAll = (rider, status) => {
+    updateManyRiderStatus(rider, status);
+    setSelectedRiders([]);
   };
 
   const handlePhotoModal = (photoUrl) => {
     setShowPhotoModal({ state: true, photoUrl });
   };
 
-  const handleToggle = (event, order) => {
+  const handleToggle = (event, rider) => {
     const status = event.target.value;
     if (status) {
     }
     console.log(status);
-    console.log(order);
+    console.log(rider);
   };
+
+  useEffect(() => {
+    const filteredRidersByStatus = filteredRidersBySearch?.filter(
+      (rider) => rider?.rider_status?.toLowerCase() === "pending"
+    );
+    setPendingRiders(filteredRidersByStatus);
+  }, [filteredRidersBySearch]);
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -46,54 +79,21 @@ const DeliveryPendingRequests = () => {
           <div>
             <p className="font-bold text-2xl">Delivery Man</p>
           </div>
-          <div>
-            <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                Customer User &nbsp; <i className="fa-solid fa-angle-down"></i>
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
-              >
-                <li>
-                  <button>Customer User</button>
-                </li>
-                <li>
-                  <button>Marchants</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                All Types &nbsp; <i className="fa-solid fa-angle-down"></i>
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
-              >
-                <li>
-                  <button>Local</button>
-                </li>
-                <li>
-                  <button>Local Distance</button>
-                </li>
-                <li>
-                  <button>International</button>
-                </li>
-              </ul>
-            </div>
-          </div>
         </section>
         <section className="flex items-center gap-4 w-2/5">
           <input
-            className="p-3 w-full text-blackMid rounded-md border-none active:border-none"
+            defaultValue={searchBarValue}
+            onChange={filterRidersBySearch}
+            className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
             type="text"
-            placeholder="&#x1F50D; Search"
+            name="searchInput"
+            placeholder="search"
           />
           <p>
-            <button className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full">
+            <button
+              onClick={fetchRiders}
+              className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full"
+            >
               <svg
                 width="16"
                 height="18"
@@ -113,101 +113,41 @@ const DeliveryPendingRequests = () => {
 
       <div
         className={` ${
-          selectedOrders.length < 1
+          selectedRiders?.length < 1
             ? "hidden"
             : "flex items-center justify-start gap-4"
         } p-4 bg-whiteHigh`}
       >
-        <button className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow">
-          Select All
-        </button>
         <label
-          htmlFor="deletePopup"
+          onClick={() => handleApproveAll(selectedRiders, "Cancelled")}
           className="btn btn-sm border-none bg-primaryMain"
         >
-          Delete
+          Decline Selected
         </label>
+        <button
+          className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow"
+          onClick={() => handleApproveAll(selectedRiders, "Approved")}
+        >
+          Approve Selected
+        </button>
       </div>
 
-      <table className="table w-full text-center">
-        <thead>
-          <tr className="font-bold text-3xl">
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Serial
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">Name</th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Created
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Gender
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Phone
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Email
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Document
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        {ordersProcessing.map((order, i) => {
-          return (
-            <tbody key={i}>
-              <tr>
-                <th className="px-0">
-                  <p className="flex items-center justify-center">
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      value={order.orderId}
-                      onChange={handleCheckbox}
-                    />
-                    &nbsp; &nbsp;
-                    {order.serial}
-                  </p>
-                </th>
-                <td className="px-0">{order.customer}</td>
-                <td className="px-0">{order.created}</td>
-                <td className="px-0">{order.gender}</td>
-                <td className="px-0">{order.phoneNumber}</td>
-                <td className="px-0">{order.email}</td>
-                <td className="p-0 flex items-center justify-center">
-                  <label
-                    htmlFor="photoModal"
-                    onClick={() => handlePhotoModal(order.image)}
-                  >
-                    <img
-                      className="h-14 w-14 p-1"
-                      src={order.image}
-                      alt="panda"
-                    />
-                  </label>
-                </td>
-                <td className="p-0">
-                  <select
-                    disabled={order.orderStatus === "confirmed"}
-                    onChange={(event) => {
-                      handleToggle(event, order);
-                    }}
-                    className="select select-sm w-full max-w-xs"
-                  >
-                    <option defaultValue="pending">Pending</option>
-                    <option value="confirmed">Confirmed</option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          );
-        })}
-      </table>
-      {/* delete modal popup */}
-      <ConfirmationModal actionName="delete"></ConfirmationModal>
+      {isLoading ? (
+        <OrdersLoading></OrdersLoading>
+      ) : (
+        <DeliveryPendingDeliveryManTable
+          rows={pendingRiders}
+          setCurrentRider={setCurrentRider}
+          handleSelectAllCheckbox={handleSelectAllCheckbox}
+          handleSelectCheckbox={handleSelectCheckbox}
+          handlePhotoModal={handlePhotoModal}
+          handleToggle={handleToggle}
+        ></DeliveryPendingDeliveryManTable>
+      )}
+      {/* cancel modal popup */}
+      <DeliveryMainCancelConfirmationPopup
+        currentRider={currentRider}
+      ></DeliveryMainCancelConfirmationPopup>
       {/* photo modal popup */}
       <PhotoModal data={showPhotoModal}></PhotoModal>
     </div>

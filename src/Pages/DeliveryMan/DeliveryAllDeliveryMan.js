@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DeliveryMainCancelConfirmationPopup from "../../Components/Modals/DeliveryMainCancelConfirmationPopup";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import DeliveryAllDeliveryManTable from "../../Components/Tables/DeliveryMan/DeliveryAllDeliveryManTable";
@@ -6,7 +6,7 @@ import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider
 
 const DeliveryAllDeliveryMan = () => {
   const [selectedRiders, setSelectedRiders] = useState([]);
-  // const [pendingRiders, setPendingRiders] = useState([]);
+  const [approvedRiders, setApprovedRiders] = useState([]);
   const {
     isLoading,
     fetchRiders,
@@ -47,6 +47,13 @@ const DeliveryAllDeliveryMan = () => {
     updateManyRiderStatus(rider, status);
     setSelectedRiders([]);
   };
+
+  useEffect(() => {
+    const filteredRidersByStatus = filteredRidersBySearch?.filter(
+      (rider) => rider?.rider_status?.toLowerCase() === "approved"
+    );
+    setApprovedRiders(filteredRidersByStatus);
+  }, [filteredRidersBySearch]);
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -111,7 +118,7 @@ const DeliveryAllDeliveryMan = () => {
         <OrdersLoading></OrdersLoading>
       ) : (
         <DeliveryAllDeliveryManTable
-          rows={filteredRidersBySearch}
+          rows={approvedRiders}
           setCurrentRider={setCurrentRider}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
           handleSelectCheckbox={handleSelectCheckbox}
