@@ -137,7 +137,13 @@ const DeliveryCancelledTable = ({ rows, handleSelectCheckbox }) => {
                   <td className="px-0 mx-0">{rider?.rider_gender}</td>
                   <td className="px-0 mx-0">{rider?.rider_contact}</td>
                   <td className="px-0 mx-0">{rider?.rider_email}</td>
-                  <td className="px-0">{rider?.rider_email}</td>
+                  <td className="px-0 flex items-center justify-center">
+                    <img
+                      className="h-8 w-8"
+                      src={rider?.rider_documents?.[0]}
+                      alt=""
+                    />
+                  </td>
                   <td className="px-0 mx-0">{rider?.rider_address}</td>
                   <td className="px-0 py-0">
                     <span className="text-primaryMain text-center py-2 px-6 rounded-xl bg-primaryMainLightest">
