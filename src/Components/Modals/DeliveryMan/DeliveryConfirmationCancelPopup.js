@@ -38,14 +38,14 @@ const DeliveryConfirmationCancelPopup = ({
           </div>
           <div>
             <p className="font-bold text-lg">
-              Do you want to delete {currentRider?.rider_name}?
+              Do you want to cancel {currentRider?.rider_name}?
             </p>
           </div>
           <div className="modal-action flex items-center justify-center">
             <label
               htmlFor="deliveryCancelPopup"
               onClick={() => {
-                clickHandlerForModals(currentRider?.rider_id, "Deleted");
+                clickHandlerForModals(currentRider?.rider_id, "Cancelled");
               }}
               className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
             >
