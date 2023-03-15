@@ -149,7 +149,7 @@ const DeliveryBlockedTable = ({ rows, handleSelectCheckbox }) => {
                       alt=""
                     />
                   </td>
-                  <td className="px-0 mx-0">{rider?.rider_address}</td>
+                  <td className="px-0 mx-0">{rider?.rider_work_location}</td>
                   <td className="px-0 py-0">
                     <label
                       htmlFor="deliveryCancelPopup"

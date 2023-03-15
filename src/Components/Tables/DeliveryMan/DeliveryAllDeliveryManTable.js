@@ -151,58 +151,14 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
                   <td className="px-0 mx-0">{rider?.rider_gender}</td>
                   <td className="px-0 mx-0">{rider?.rider_contact}</td>
                   <td className="px-0">{rider?.rider_email}</td>
-                  <td className="px-0">${rider?.rider_total_income}</td>
+                  <td className="px-0">
+                    ${" "}
+                    {rider?.rider_total_income
+                      ? rider?.rider_total_income
+                      : "00"}
+                    .00
+                  </td>
                   <td className="px-0 mx-0">{rider?.rider_work_location}</td>
-                  {/* <td className="px-0 py-0">
-                    <div className="dropdown dropdown-bottom dropdown-end">
-                      <label
-                        tabIndex={1}
-                        className="rounded-lg px-2 py-1 w-24 focus:outline-none active:border-none text-primaryMain bg-primaryMainLightest"
-                      >
-                        Pending &nbsp;
-                        <i className="fa-solid fa-angle-down text-sm"></i>
-                      </label>
-                      <ul
-                        tabIndex={1}
-                        className="dropdown-content menu mt-2 m-0.5 shadow bg-base-100 rounded-md w-36"
-                      >
-                        <label
-                          onClick={() =>
-                            updateRiderStatus(rider?.rider_id, "Approved")
-                          }
-                        >
-                          <li>
-                            <p className="text-successColor py-1 active:bg-blackLow w-full rounded-t-md">
-                              Confirm
-                            </p>
-                          </li>
-                        </label>
-                        <hr className="text-disabledColor opacity-10" />
-                        <li>
-                          <Link
-                            to={{
-                              pathname: `/rideredit/${rider?.rider_id}`,
-                              rider: rider,
-                            }}
-                            className="py-1 active:bg-blackLow"
-                          >
-                            Edit
-                          </Link>
-                        </li>
-                        <hr className="text-disabledColor opacity-10" />
-                        <label
-                          onClick={() => setCurrentRider(rider)}
-                          htmlFor="blockPopup"
-                        >
-                          <li>
-                            <p className="text-errorColor py-1 active:bg-blackLow rounded-b-md">
-                              Decline
-                            </p>
-                          </li>
-                        </label>
-                      </ul>
-                    </div>
-                  </td> */}
                   <td className="px-0 mx-0">
                     <div className="flex items-center justify-center gap-0">
                       <label
