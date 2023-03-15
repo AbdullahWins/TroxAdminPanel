@@ -10,7 +10,6 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
     searchBarValue,
     currentRider,
     setCurrentRider,
-    updateRiderStatus,
     clickHandlerForModals,
   } = useContext(DeliveryContext);
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,8 +49,6 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
   // const handleAllCheckbox = (orders, e) => {
   //   handleSelectAllCheckbox(orders, e);
   // };
-
-  console.log(rows);
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -210,9 +207,6 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
                     <div className="flex items-center justify-center gap-0">
                       <label
                         htmlFor="deliveryBlockPopup"
-                        onClick={() =>
-                          updateRiderStatus(rider?.rider_id, "Approved")
-                        }
                         className="btn rounded-full p-0 bg-whiteHigh text-blackMid border-none hover:bg-whiteHigh"
                       >
                         <span className="material-symbols-outlined p-0">
