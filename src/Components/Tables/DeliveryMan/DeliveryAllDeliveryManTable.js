@@ -133,7 +133,7 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
             {currentRows?.map((rider, i) => {
               return (
                 <tr key={i} className="text-center">
-                  <th className="px-0">
+                  <th className="px-0 pl-4">
                     <input
                       type="checkbox"
                       className="checkbox rounded-none"
@@ -163,6 +163,7 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
                     <div className="flex items-center justify-center gap-0">
                       <label
                         htmlFor="deliveryBlockPopup"
+                        onClick={() => setCurrentRider(rider)}
                         className="btn rounded-full p-0 bg-whiteHigh text-blackMid border-none hover:bg-whiteHigh"
                       >
                         <span className="material-symbols-outlined p-0">

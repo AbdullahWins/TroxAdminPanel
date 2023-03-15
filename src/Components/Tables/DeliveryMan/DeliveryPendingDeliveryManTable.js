@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import { DeliveryContext } from "../../../Contexts/DeliveryContext/DeliveryProvider";
+import DeliveryConfirmationCancelPopup from "../../Modals/DeliveryMan/DeliveryConfirmationCancelPopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const DeliveryPendingDeliveryManTable = ({
@@ -8,8 +9,13 @@ const DeliveryPendingDeliveryManTable = ({
   handleSelectCheckbox,
   handlePhotoModal,
 }) => {
-  const { searchBarValue, setCurrentRider, updateRiderStatus } =
-    useContext(DeliveryContext);
+  const {
+    searchBarValue,
+    updateRiderStatus,
+    currentRider,
+    setCurrentRider,
+    clickHandlerForModals,
+  } = useContext(DeliveryContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -40,12 +46,12 @@ const DeliveryPendingDeliveryManTable = ({
     setActiveButton(pageNumber);
   };
 
-  const handleCheckbox = (order, e) => {
-    handleSelectCheckbox(order, e);
+  const handleCheckbox = (rider, e) => {
+    handleSelectCheckbox(rider, e);
   };
 
-  // const handleAllCheckbox = (orders, e) => {
-  //   handleSelectAllCheckbox(orders, e);
+  // const handleAllCheckbox = (rider, e) => {
+  //   handleSelectAllCheckbox(rider, e);
   // };
 
   const renderPagination = () => {
@@ -131,7 +137,7 @@ const DeliveryPendingDeliveryManTable = ({
             {currentRows?.map((rider, i) => {
               return (
                 <tr key={i} className="text-center">
-                  <th className="px-0">
+                  <th className="px-0 pl-4">
                     <input
                       type="checkbox"
                       className="checkbox rounded-none"
@@ -202,7 +208,7 @@ const DeliveryPendingDeliveryManTable = ({
                         <hr className="text-disabledColor opacity-10" />
                         <label
                           onClick={() => setCurrentRider(rider)}
-                          htmlFor="blockPopup"
+                          htmlFor="deliveryCancelPopup"
                         >
                           <li>
                             <p className="text-errorColor py-1 active:bg-blackLow rounded-b-md">
@@ -272,6 +278,10 @@ const DeliveryPendingDeliveryManTable = ({
           </ul>
         </div>
       </section>
+      <DeliveryConfirmationCancelPopup
+        currentRider={currentRider}
+        clickHandlerForModals={clickHandlerForModals}
+      ></DeliveryConfirmationCancelPopup>
     </div>
   );
 };

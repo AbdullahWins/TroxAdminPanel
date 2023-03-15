@@ -131,7 +131,7 @@ const OrdersProvider = ({ children }) => {
       setFilteredOrdersBySearch(orders);
     }
     const filteredOrders = orders?.filter((order) =>
-      order?.order_type?.includes(locationType)
+      order?.order_type?.toLowerCase()?.includes(locationType.toLowerCase())
     );
     setFilteredOrdersBySearch(filteredOrders);
   };

@@ -49,7 +49,7 @@ const DeliveryProvider = ({ children }) => {
     try {
       const db = firebaseFirestore;
       const riderDocsRefs = riders.map((rider) =>
-        doc(db, "riderDetails", rider?.rider_id)
+        doc(db, "riderDetails", rider)
       );
       try {
         await Promise.all(

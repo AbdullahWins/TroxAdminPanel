@@ -8,6 +8,7 @@ const DeliveryBlockedTable = ({ rows, handleSelectCheckbox }) => {
     searchBarValue,
     currentRider,
     clickHandlerForModals,
+    setCurrentRider,
   } = useContext(DeliveryContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
@@ -153,6 +154,7 @@ const DeliveryBlockedTable = ({ rows, handleSelectCheckbox }) => {
                   <td className="px-0 py-0">
                     <label
                       htmlFor="deliveryCancelPopup"
+                      onClick={() => setCurrentRider(rider)}
                       className="btn rounded-full p-0 bg-whiteHigh text-errorColor border-none hover:bg-whiteHigh"
                     >
                       <span className="material-symbols-outlined">block</span>

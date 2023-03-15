@@ -48,8 +48,8 @@ const DeliveryPendingRequests = () => {
     setSelectedRiders(selectAllRider);
   };
 
-  const handleApproveAll = (rider, status) => {
-    updateManyRiderStatus(rider, status);
+  const handleApproveAll = (riderIds, status) => {
+    updateManyRiderStatus(riderIds, status);
     setSelectedRiders([]);
   };
 

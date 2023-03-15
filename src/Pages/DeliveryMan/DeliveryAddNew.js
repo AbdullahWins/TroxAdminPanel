@@ -54,7 +54,7 @@ const DeliveryAddNew = () => {
   return (
     <section className="w-full mt-10 mr-8">
       <div className="flex items-center bg-secondaryMain text-whiteHigh rounded-t-lg w-full">
-        <h2 className="p-4">Edit</h2>
+        <h2 className="font-bold text-2xl pl-4 py-6">Delivery Man</h2>
       </div>
       <div>
         <section className="">
