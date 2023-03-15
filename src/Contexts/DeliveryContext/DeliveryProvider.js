@@ -43,7 +43,7 @@ const DeliveryProvider = ({ children }) => {
   const clickHandlerForModals = (riderId, status) => {
     updateRiderStatus(riderId, status);
   };
-  
+
   //update many rider status
   const updateManyRiderStatus = async (riders, status) => {
     try {
@@ -196,11 +196,10 @@ const DeliveryProvider = ({ children }) => {
       setFilteredRidersBySearch(riders);
     }
     const filteredRiders = riders?.filter((rider) =>
-      rider?.rider_name?.includes(searchValue)
+      rider?.rider_name?.toLowerCase().includes(searchValue.toLowerCase())
     );
     setFilteredRidersBySearch(filteredRiders);
     setSearchBarValue(searchValue);
-    console.log(setFilteredRidersBySearch);
   };
 
   //filter rider by user type
