@@ -1,9 +1,12 @@
 import React from "react";
 
-const ConfirmationModalDelete = () => {
+const OrdersConfirmationBlockPopup = ({
+  currentOrder,
+  clickHandlerForModals,
+}) => {
   return (
     <section>
-      <input type="checkbox" id="deletePopup" className="modal-toggle" />
+      <input type="checkbox" id="ordersBlockPopup" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box flex flex-col items-center justify-center gap-4">
           <div>
@@ -34,17 +37,22 @@ const ConfirmationModalDelete = () => {
             </svg>
           </div>
           <div>
-            <p className="font-bold text-lg">Do you want to delete?</p>
+            <p className="font-bold text-lg">
+              Do you want to {`cancel #${currentOrder?.order_id}`}?
+            </p>
           </div>
           <div className="modal-action flex items-center justify-center">
             <label
-              htmlFor="deletePopup"
+              onClick={() => {
+                clickHandlerForModals(currentOrder?.order_id);
+              }}
+              htmlFor="ordersBlockPopup"
               className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
             >
               Confirm
             </label>
             <label
-              htmlFor="deletePopup"
+              htmlFor="ordersBlockPopup"
               className="btn rounded-full bg-whiteHigh text-primaryMain w-full border-primaryMain hover:border-primaryMain hover:bg-whiteHigh"
             >
               Cancel
@@ -56,4 +64,4 @@ const ConfirmationModalDelete = () => {
   );
 };
 
-export default ConfirmationModalDelete;
+export default OrdersConfirmationBlockPopup;

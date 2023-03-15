@@ -39,6 +39,11 @@ const DeliveryProvider = ({ children }) => {
     }
   };
 
+  //update state in modals
+  const clickHandlerForModals = (riderId, status) => {
+    updateRiderStatus(riderId, status);
+  };
+  
   //update many rider status
   const updateManyRiderStatus = async (riders, status) => {
     try {
@@ -252,6 +257,7 @@ const DeliveryProvider = ({ children }) => {
     setCurrentRider,
     updateSingleRider,
     uploadImages,
+    clickHandlerForModals,
   };
   return (
     <DeliveryContext.Provider value={RiderInfo}>

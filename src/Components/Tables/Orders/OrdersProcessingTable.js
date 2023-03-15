@@ -143,7 +143,7 @@ const OrdersProcessingTable = ({
                     <div className="flex items-center justify-center">
                       <label
                         onClick={() => setCurrentOrder(order)}
-                        htmlFor="blockPopup"
+                        htmlFor="ordersBlockPopup"
                         className="btn rounded-full bg-whiteHigh text-primaryMain border-none hover:bg-whiteHigh"
                       >
                         <svg

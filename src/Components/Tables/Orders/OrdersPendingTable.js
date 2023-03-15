@@ -164,7 +164,7 @@ const OrdersPendingTable = ({
                           onClick={() =>
                             updateOrderStatus(order?.order_id, "Processing")
                           }
-                          // htmlFor="blockPopup"
+                          // htmlFor="ordersBlockPopup"
                         >
                           <li>
                             <p className="text-successColor py-1 active:bg-blackLow w-full rounded-t-md">
@@ -187,7 +187,7 @@ const OrdersPendingTable = ({
                         <hr className="text-disabledColor opacity-10" />
                         <label
                           onClick={() => setCurrentOrder(order)}
-                          htmlFor="blockPopup"
+                          htmlFor="ordersBlockPopup"
                         >
                           <li>
                             <p className="text-errorColor py-1 active:bg-blackLow rounded-b-md">

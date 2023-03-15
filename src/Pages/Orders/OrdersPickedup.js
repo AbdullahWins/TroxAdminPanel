@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import ConfirmationModalBlock from "../../Components/Modals/ConfirmationModalBlock";
+import OrdersConfirmationBlockPopup from "../../Components/Modals/Orders/OrdersConfirmationBlockPopup";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import OrdersProcessingTable from "../../Components/Tables/Orders/OrdersProcessingTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
@@ -18,6 +18,7 @@ const OrdersPickup = () => {
     currentOrder,
     setCurrentOrder,
     updateManyOrderStatus,
+    clickHandlerForModals,
   } = useContext(OrderContext);
 
   const handleSelectCheckbox = (orderId, e) => {
@@ -208,9 +209,10 @@ const OrdersPickup = () => {
       )}
 
       {/* confirmation modals popup */}
-      <ConfirmationModalBlock
+      <OrdersConfirmationBlockPopup
         currentOrder={currentOrder}
-      ></ConfirmationModalBlock>
+        clickHandlerForModals={clickHandlerForModals}
+      ></OrdersConfirmationBlockPopup>
     </div>
   );
 };

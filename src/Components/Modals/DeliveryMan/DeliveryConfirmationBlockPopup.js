@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
-import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
+import React from "react";
 
-const ConfirmationModalBlock = ({ currentOrder }) => {
-  const { updateOrderStatus } = useContext(OrderContext);
-
-  const handleClick = (order) => {
-    updateOrderStatus(order.order_id, "Returned");
-  };
+const DeliveryConfirmationBlockPopup = ({
+  currentRider,
+  clickHandlerForModals,
+}) => {
   return (
     <section>
-      <input type="checkbox" id="blockPopup" className="modal-toggle" />
+      <input type="checkbox" id="deliveryBlockPopup" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box flex flex-col items-center justify-center gap-4">
           <div>
@@ -41,21 +38,21 @@ const ConfirmationModalBlock = ({ currentOrder }) => {
           </div>
           <div>
             <p className="font-bold text-lg">
-              Do you want to {`cancel #${currentOrder?.order_id}`}?
+              Do you want to delete {currentRider?.rider_name}?
             </p>
           </div>
           <div className="modal-action flex items-center justify-center">
             <label
+              htmlFor="deliveryBlockPopup"
               onClick={() => {
-                handleClick(currentOrder);
+                clickHandlerForModals(currentRider?.rider_id, "Deleted");
               }}
-              htmlFor="blockPopup"
               className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
             >
               Confirm
             </label>
             <label
-              htmlFor="blockPopup"
+              htmlFor="deliveryBlockPopup"
               className="btn rounded-full bg-whiteHigh text-primaryMain w-full border-primaryMain hover:border-primaryMain hover:bg-whiteHigh"
             >
               Cancel
@@ -67,4 +64,4 @@ const ConfirmationModalBlock = ({ currentOrder }) => {
   );
 };
 
-export default ConfirmationModalBlock;
+export default DeliveryConfirmationBlockPopup;

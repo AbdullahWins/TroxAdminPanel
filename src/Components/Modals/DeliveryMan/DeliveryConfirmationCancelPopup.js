@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
-import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
+import React from "react";
 
-const DeliveryMainCancelConfirmationPopup = ({ currentRider }) => {
-  const { updateRiderStatus } = useContext(DeliveryContext);
-
-  const handleClick = (rider) => {
-    updateRiderStatus(rider?.rider_id, "Cancelled");
-  };
+const DeliveryConfirmationCancelPopup = ({
+  currentRider,
+  clickHandlerForModals,
+}) => {
   return (
     <section>
       <input type="checkbox" id="deliveryCancelPopup" className="modal-toggle" />
@@ -41,15 +38,15 @@ const DeliveryMainCancelConfirmationPopup = ({ currentRider }) => {
           </div>
           <div>
             <p className="font-bold text-lg">
-              Do you want to {`cancel ${currentRider?.rider_name}'s request`}?
+              Do you want to delete {currentRider?.rider_name}?
             </p>
           </div>
           <div className="modal-action flex items-center justify-center">
             <label
-              onClick={() => {
-                handleClick(currentRider);
-              }}
               htmlFor="deliveryCancelPopup"
+              onClick={() => {
+                clickHandlerForModals(currentRider?.rider_id, "Deleted");
+              }}
               className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
             >
               Confirm
@@ -67,4 +64,4 @@ const DeliveryMainCancelConfirmationPopup = ({ currentRider }) => {
   );
 };
 
-export default DeliveryMainCancelConfirmationPopup;
+export default DeliveryConfirmationCancelPopup;

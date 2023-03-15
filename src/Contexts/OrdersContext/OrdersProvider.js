@@ -136,6 +136,11 @@ const OrdersProvider = ({ children }) => {
     setFilteredOrdersBySearch(filteredOrders);
   };
 
+  //update state in modals
+  const clickHandlerForModals = (id) => {
+    updateOrderStatus(id, "Returned");
+  };
+
   //fetches all orders upon load
   useEffect(() => {
     fetchOrders();
@@ -175,6 +180,7 @@ const OrdersProvider = ({ children }) => {
     setCurrentOrder,
     updateSingleOrder,
     deliveredOrderCount,
+    clickHandlerForModals,
   };
   return (
     <OrderContext.Provider value={OrderInfo}>{children}</OrderContext.Provider>
