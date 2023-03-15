@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import DeliveryMainCancelConfirmationPopup from "../../Components/Modals/DeliveryMainCancelConfirmationPopup";
+import DeliveryConfirmationCancelPopup from "../../Components/Modals/DeliveryMan/DeliveryConfirmationCancelPopup";
 import PhotoModal from "../../Components/Modals/PhotoModal";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import DeliveryPendingDeliveryManTable from "../../Components/Tables/DeliveryMan/DeliveryPendingDeliveryManTable";
@@ -146,9 +146,9 @@ const DeliveryPendingRequests = () => {
         ></DeliveryPendingDeliveryManTable>
       )}
       {/* cancel modal popup */}
-      <DeliveryMainCancelConfirmationPopup
+      <DeliveryConfirmationCancelPopup
         currentRider={currentRider}
-      ></DeliveryMainCancelConfirmationPopup>
+      ></DeliveryConfirmationCancelPopup>
       {/* photo modal popup */}
       <PhotoModal data={showPhotoModal}></PhotoModal>
     </div>

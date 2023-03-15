@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import DeliveryManAddConfirmationPopup from "../../Components/Modals/DeliveryManAddConfirmationPopup";
+import DeliveryManAddConfirmationPopup from "../../Components/Modals/DeliveryMan/DeliveryManAddConfirmationPopup";
 import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
 
 const DeliveryAddNew = () => {

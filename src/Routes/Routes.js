@@ -29,6 +29,7 @@ import LocationsState from "../Pages/Locations/LocationsState";
 import StaffRole from "../Pages/Staff/StaffRole";
 import Login from "../Pages/Authentication/Login/Login";
 import PrivateRoutes from "../Routes/PrivateRoutes";
+import DeliveryManEdit from "../Pages/EditPages/DeliveryManEdit";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
       {
         path: "/deliveryCancelled",
         element: <DeliveryCancelled></DeliveryCancelled>,
+      },
+      {
+        path: "/deliveryedit/:id",
+        element: <DeliveryManEdit></DeliveryManEdit>,
       },
 
       // customer

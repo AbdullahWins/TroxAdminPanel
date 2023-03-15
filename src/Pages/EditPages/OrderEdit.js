@@ -62,7 +62,7 @@ const OrderEdit = () => {
   return (
     <section className="w-full mt-10 mr-8">
       <div className="flex items-center bg-secondaryMain text-whiteHigh rounded-t-lg w-full">
-        <h2 className="p-4">Edit</h2>
+        <p className="font-bold text-2xl pl-4 py-6">Edit</p>
       </div>
       <div>
         <section className="">

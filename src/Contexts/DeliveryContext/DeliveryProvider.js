@@ -95,16 +95,16 @@ const DeliveryProvider = ({ children }) => {
   const updateSingleRider = async (newRider, id) => {
     try {
       const db = firebaseFirestore;
-      const riderDocRef = doc(db, "riders", id);
+      const riderDocRef = doc(db, "riderDetails", id);
       try {
         await updateDoc(riderDocRef, {
-          rider_name: newRider?.sender_name,
-          rider_email: newRider?.sender_name,
-          rider_contact: newRider?.sender_name,
-          rider_dob: newRider?.sender_name,
-          rider_gender: newRider?.sender_name,
-          rider_work_location: newRider?.sender_name,
-          rider_address: newRider?.sender_name,
+          rider_name: newRider?.rider_name,
+          rider_email: newRider?.rider_email,
+          rider_contact: newRider?.rider_contact,
+          rider_dob: newRider?.rider_dob,
+          rider_gender: newRider?.rider_gender,
+          rider_work_location: newRider?.rider_work_location,
+          rider_address: newRider?.rider_address,
         });
         fetchRiders();
         console.log("Rider updated successfully");

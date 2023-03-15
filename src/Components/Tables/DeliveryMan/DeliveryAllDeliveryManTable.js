@@ -172,7 +172,7 @@ const DeliveryAllDeliveryManTable = ({ rows, handleSelectCheckbox }) => {
                       </label>
                       <Link
                         to={{
-                          pathname: `/rideredit/${rider?.rider_id}`,
+                          pathname: `/deliveryedit/${rider?.rider_id}`,
                           rider: rider,
                         }}
                       >

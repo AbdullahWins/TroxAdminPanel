@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import DeliveryMainCancelConfirmationPopup from "../../Components/Modals/DeliveryMainCancelConfirmationPopup";
+import DeliveryConfirmationCancelPopup from "../../Components/Modals/DeliveryMan/DeliveryConfirmationCancelPopup";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import DeliveryAllDeliveryManTable from "../../Components/Tables/DeliveryMan/DeliveryAllDeliveryManTable";
 import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
@@ -125,9 +125,9 @@ const DeliveryAllDeliveryMan = () => {
         ></DeliveryAllDeliveryManTable>
       )}
       {/* cancel modal popup */}
-      <DeliveryMainCancelConfirmationPopup
+      <DeliveryConfirmationCancelPopup
         currentRider={currentRider}
-      ></DeliveryMainCancelConfirmationPopup>
+      ></DeliveryConfirmationCancelPopup>
     </div>
   );
 };
