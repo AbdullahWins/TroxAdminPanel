@@ -1,6 +1,8 @@
 import React, { createContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const BusinessContext = createContext();
 const BusinessProvider = ({ children }) => {
@@ -72,25 +74,45 @@ const BusinessProvider = ({ children }) => {
   //     }
   //   };
 
+  // Upload images to Firebase Storage
+  const uploadImages = async (images) => {
+    const storage = getStorage();
+    const imageUrls = [];
+
+    for (const image of images) {
+      try {
+        const imageName = uuidv4();
+        const storageRef = ref(storage, `parcel_type_logos/${imageName}`);
+        const snapshot = await uploadBytes(storageRef, image);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        imageUrls.push(downloadURL);
+      } catch (error) {
+        console.error("Error uploading image", error);
+      }
+    }
+    console.log(imageUrls);
+    return imageUrls;
+  };
+
   // add delivery cost
-  const addDeliveryCost = async (DeliveryCost) => {
+  const addDeliveryCost = async (deliveryCost) => {
     try {
       const db = firebaseFirestore;
-      const packageType = DeliveryCost?.package_type;
+      const packageType = deliveryCost?.package_type;
       const timeStamp = serverTimestamp();
       const deliveryCostDocRef = doc(db, "deliveryCost", packageType);
       try {
         await setDoc(deliveryCostDocRef, {
-          local_bellow_one: DeliveryCost?.local_bellow_one,
-          local_one_to_five: DeliveryCost?.local_one_to_five,
-          local_five_to_ten: DeliveryCost?.local_five_to_ten,
-          domestic_bellow_one: DeliveryCost?.domestic_bellow_one,
-          domestic_one_to_five: DeliveryCost?.domestic_one_to_five,
-          domestic_five_to_ten: DeliveryCost?.domestic_five_to_ten,
-          international_bellow_one: DeliveryCost?.international_bellow_one,
-          international_one_to_five: DeliveryCost?.international_one_to_five,
-          international_five_to_ten: DeliveryCost?.international_five_to_ten,
-          package_type: DeliveryCost?.package_type,
+          local_bellow_one: deliveryCost?.local_bellow_one,
+          local_one_to_five: deliveryCost?.local_one_to_five,
+          local_five_to_ten: deliveryCost?.local_five_to_ten,
+          domestic_bellow_one: deliveryCost?.domestic_bellow_one,
+          domestic_one_to_five: deliveryCost?.domestic_one_to_five,
+          domestic_five_to_ten: deliveryCost?.domestic_five_to_ten,
+          international_bellow_one: deliveryCost?.international_bellow_one,
+          international_one_to_five: deliveryCost?.international_one_to_five,
+          international_five_to_ten: deliveryCost?.international_five_to_ten,
+          package_type: deliveryCost?.package_type,
           timestamp: timeStamp,
         });
         console.log("Delivery Cost successfully added");
@@ -102,20 +124,20 @@ const BusinessProvider = ({ children }) => {
     }
   };
 
-  // add delivery cost
-  const addDeliveryManCharge = async (DeliveryManCharge) => {
+  // add delivery man charge
+  const addDeliveryManCharge = async (deliveryManCharge) => {
     try {
       const db = firebaseFirestore;
-      const packageType = DeliveryManCharge?.package_type;
+      const packageType = deliveryManCharge?.package_type;
       const timeStamp = serverTimestamp();
       const deliveryManChargeDocRef = doc(db, "deliveryManCharge", packageType);
       try {
         await setDoc(deliveryManChargeDocRef, {
-          local_delivery_charge: DeliveryManCharge?.local_delivery_charge,
-          domestic_delivery_charge: DeliveryManCharge?.domestic_delivery_charge,
+          local_delivery_charge: deliveryManCharge?.local_delivery_charge,
+          domestic_delivery_charge: deliveryManCharge?.domestic_delivery_charge,
           international_delivery_charge:
-            DeliveryManCharge?.international_delivery_charge,
-          package_type: DeliveryManCharge?.package_type,
+            deliveryManCharge?.international_delivery_charge,
+          package_type: deliveryManCharge?.package_type,
           timestamp: timeStamp,
         });
         console.log("Delivery Cost successfully added");
@@ -124,6 +146,29 @@ const BusinessProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error adding Delivery Cost", error);
+    }
+  };
+
+  // add delivery parcel types
+  const addParcelTypes = async (parcelType, images) => {
+    try {
+      const db = firebaseFirestore;
+      const typeOfParcel = parcelType?.parcel_type_name;
+      const timeStamp = serverTimestamp();
+      const parcelTypesDocRef = doc(db, "parcelTypes", typeOfParcel);
+      try {
+        await setDoc(parcelTypesDocRef, {
+          parcel_type_name: parcelType?.parcel_type_name,
+          parcel_type_subtitle: parcelType?.parcel_type_subtitle,
+          parcel_type_logo: await uploadImages(images),
+          timestamp: timeStamp,
+        });
+        console.log("Parcel Type successfully added");
+      } catch (error) {
+        console.error("Error adding Parcel Type", error);
+      }
+    } catch (error) {
+      console.error("Error adding Parcel Type", error);
     }
   };
 
@@ -135,6 +180,7 @@ const BusinessProvider = ({ children }) => {
     addDeliveryManCharge,
     currentParcelType,
     setCurrentParcelType,
+    addParcelTypes,
     allParcelTypes,
     setAllParcelTypes,
   };

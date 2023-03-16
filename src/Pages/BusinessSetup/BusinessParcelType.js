@@ -72,7 +72,7 @@ const BusinessParcelType = () => {
             name="searchInput"
             placeholder="search"
           />
-          <p>
+          <div className="flex items-center justify-center gap-2">
             <button
               onClick={fetchRiders}
               className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full"
@@ -90,7 +90,21 @@ const BusinessParcelType = () => {
                 />
               </svg>
             </button>
-          </p>
+            <button className="btn p-0 bg-whiteHigh hover:bg-whiteLow border-none rounded-full">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M30 25H25V30C25 30.55 24.55 31 24 31C23.45 31 23 30.55 23 30V25H18C17.45 25 17 24.55 17 24C17 23.45 17.45 23 18 23H23V18C23 17.45 23.45 17 24 17C24.55 17 25 17.45 25 18V23H30C30.55 23 31 23.45 31 24C31 24.55 30.55 25 30 25Z"
+                  fill="#37B6B6"
+                />
+              </svg>
+            </button>
+          </div>
         </section>
       </div>
 

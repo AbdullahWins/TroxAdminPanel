@@ -112,6 +112,13 @@ const BusinessParcelTypeTable = ({ rows, handleSelectCheckbox }) => {
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Actions
               </th>
@@ -133,6 +140,13 @@ const BusinessParcelTypeTable = ({ rows, handleSelectCheckbox }) => {
                   </th>
                   <td className="px-0">{i + 1}</td>
                   <td className="px-0 mx-0">{rider?.rider_name}</td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
                   <td className="px-0 mx-0"></td>
                   <td className="px-0 mx-0"></td>
                   <td className="px-0 mx-0"></td>
