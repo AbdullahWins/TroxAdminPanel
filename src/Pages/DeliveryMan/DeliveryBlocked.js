@@ -49,7 +49,7 @@ const DeliveryBlocked = () => {
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
-      <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
+      <div className="flex items-center justify-between p-3 bg-secondaryMain text-whiteHigh rounded-t-lg">
         <section className="flex items-center gap-4">
           <div>
             <h2 className="font-bold text-2xl">Delivery Man</h2>
