@@ -30,6 +30,14 @@ import StaffRole from "../Pages/Staff/StaffRole";
 import Login from "../Pages/Authentication/Login/Login";
 import PrivateRoutes from "../Routes/PrivateRoutes";
 import DeliveryManEdit from "../Pages/EditPages/DeliveryManEdit";
+import BusinessDeliveryCost from "../Pages/BusinessSetup/BusinessDeliveryCost";
+import BusinessDeliveryManCharge from "../Pages/BusinessSetup/BusinessDeliveryManCharge";
+import BusinessNotificationSettings from "../Pages/BusinessSetup/BusinessNotificationSettings";
+import BusinessParcelType from "../Pages/BusinessSetup/BusinessParcelType";
+import PaymentGateway from "../Pages/PaymentGateway/PaymentGateway";
+import WithdrawConfirmed from "../Pages/WithdrawRequest/WithdrawConfirmed";
+import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
+import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
 
 export const router = createBrowserRouter([
   {
@@ -160,6 +168,44 @@ export const router = createBrowserRouter([
       {
         path: "/staffRole",
         element: <StaffRole></StaffRole>,
+      },
+
+      //withdraw request
+      {
+        path: "/withdrawPending",
+        element: <WithdrawPending></WithdrawPending>,
+      },
+      {
+        path: "/withdrawConfirmed",
+        element: <WithdrawConfirmed></WithdrawConfirmed>,
+      },
+      {
+        path: "/withdrawCancelled",
+        element: <WithdrawCancelled></WithdrawCancelled>,
+      },
+
+      //business setup
+      {
+        path: "/businessDeliveryCost",
+        element: <BusinessDeliveryCost></BusinessDeliveryCost>,
+      },
+      {
+        path: "/businessDeliveryManCharge",
+        element: <BusinessDeliveryManCharge></BusinessDeliveryManCharge>,
+      },
+      {
+        path: "/businessParcelType",
+        element: <BusinessParcelType></BusinessParcelType>,
+      },
+      {
+        path: "/businessNotificationSettings",
+        element: <BusinessNotificationSettings></BusinessNotificationSettings>,
+      },
+
+      //payment gateway
+      {
+        path: "/paymentGateway",
+        element: <PaymentGateway></PaymentGateway>,
       },
 
       //user

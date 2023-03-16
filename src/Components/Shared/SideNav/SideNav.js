@@ -353,7 +353,9 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span className="material-symbols-outlined text-blackMid">house</span>
+              <span className="material-symbols-outlined text-blackMid">
+                house
+              </span>
               &nbsp;
               <p
                 className={`${
@@ -391,7 +393,9 @@ const SideNav = () => {
                 isClosed ? "justify-center pl-2" : "justify-start"
               }`}
             >
-              <span className="material-symbols-outlined text-blackMid">group</span>
+              <span className="material-symbols-outlined text-blackMid">
+                group
+              </span>
               &nbsp;
               <p
                 className={`${
@@ -405,14 +409,10 @@ const SideNav = () => {
           <div className="collapse-content bg-whiteHigh text-blackMid">
             <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
               <Link className="w-full" to="/staffRole">
-                <p>
-                  Role
-                </p>
+                <p>Role</p>
               </Link>
               <Link className="w-full" to="/staffAll">
-                <p>
-                  All Staff
-                </p>
+                <p>All Staff</p>
               </Link>
               <Link className="w-full" to="/staffAddNew">
                 <p>Add New Staff</p>
@@ -420,53 +420,99 @@ const SideNav = () => {
             </div>
           </div>
         </div>
-        {/* Payment Gateway */}
+
+        {/* withdraw request */}
         <div
-          onClick={() => activateMenu("payment")}
-          className={`px-3 py-4 w-full ${
-            isActive === "payment"
-              ? "bg-primaryMainLightest text-primaryMain"
-              : ""
+          onClick={() => activateMenu(9)}
+          className={`collapse  ${!isClosed ? "collapse-arrow" : null} ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto ${
+            isActive === 9 ? "bg-primaryMainLightest text-primaryMain" : ""
           }`}
         >
-          <Link
-            className={`flex items-center ${
-              isClosed ? "justify-center" : "justify-start"
-            }`}
-            to="/"
-          >
-            <span className="material-symbols-outlined text-blackMid">
-              credit_card
-            </span>
-            &nbsp;
-            <p className={`${canShow ? "hidden" : "block"}`}>Payment Gateway</p>
-          </Link>
+          <input type="checkbox" />
+          <div className="collapse-title">
+            <div
+              className={`flex items-center ${
+                isClosed ? "justify-center pl-2" : "justify-start"
+              }`}
+            >
+              <span className="material-symbols-outlined text-blackMid">
+                payments
+              </span>
+              &nbsp;
+              <p
+                className={`${
+                  canShow ? "hidden" : "block"
+                }  flex items-center justify-between w-full`}
+              >
+                <span>Withdraw Request</span>
+              </p>
+            </div>
+          </div>
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
+              <Link className="w-full" to="/withdrawPending">
+                <p>Pending</p>
+              </Link>
+              <Link className="w-full" to="/withdrawConfirmed">
+                <p>Confirmed</p>
+              </Link>
+              <Link className="w-full" to="/withdrawCancelled">
+                <p>Cancelled</p>
+              </Link>
+            </div>
+          </div>
         </div>
-        {/* Withdraw Request */}
-        <div
-          onClick={() => activateMenu("withdraw")}
-          className={`px-3 py-4 w-full ${
-            isActive === "withdraw"
-              ? "bg-primaryMainLightest text-primaryMain"
-              : ""
-          }`}
-        >
-          <Link
-            className={`flex items-center ${
-              isClosed ? "justify-center" : "justify-start"
-            }`}
-            to="/"
-          >
-            <span className="material-symbols-outlined text-blackMid">
-              payments
-            </span>
-            &nbsp;{" "}
-            <p className={`${canShow ? "hidden" : "block"}`}>
-              Withdraw Request
-            </p>
-          </Link>
-        </div>
+
         {/* Business Setup */}
+        <div
+          onClick={() => activateMenu(10)}
+          className={`collapse  ${!isClosed ? "collapse-arrow" : null} ${
+            isClosed ? "collapse-close" : ""
+          } w-full mx-auto ${
+            isActive === 10 ? "bg-primaryMainLightest text-primaryMain" : ""
+          }`}
+        >
+          <input type="checkbox" />
+          <div className="collapse-title">
+            <div
+              className={`flex items-center ${
+                isClosed ? "justify-center pl-2" : "justify-start"
+              }`}
+            >
+              <span className="material-symbols-outlined text-blackMid">
+                work
+              </span>
+              &nbsp;
+              <p
+                className={`${
+                  canShow ? "hidden" : "block"
+                }  flex items-center justify-between w-full`}
+              >
+                <span>Business Setup</span>
+              </p>
+            </div>
+          </div>
+          <div className="collapse-content bg-whiteHigh text-blackMid">
+            <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
+              <Link className="w-full" to="/businessDeliveryCost">
+                <p>Delivery Cost</p>
+              </Link>
+              <Link className="w-full" to="/businessDeliveryManCharge">
+                <p>Delivery Man Charge</p>
+              </Link>
+              <Link className="w-full" to="/businessParcelType">
+                <p>Parcel Type</p>
+              </Link>
+              <Link className="w-full" to="/businessNotificationSettings">
+                <p>Notification Settings</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Payment Gateway */}
         <div
           onClick={() => activateMenu("business")}
           className={`px-3 py-4 w-full ${
@@ -481,9 +527,11 @@ const SideNav = () => {
             }`}
             to="/"
           >
-            <span className="material-symbols-outlined text-blackMid">work</span>{" "}
+            <span className="material-symbols-outlined text-blackMid">
+              credit_card
+            </span>{" "}
             &nbsp;
-            <p className={`${canShow ? "hidden" : "block"}`}>Business Setup</p>
+            <p className={`${canShow ? "hidden" : "block"}`}>Payment Gateway</p>
           </Link>
         </div>
       </section>
