@@ -1,6 +1,7 @@
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import AuthProvider from "./Contexts/AuthContext/AuthProvider";
+import BusinessProvider from "./Contexts/BusinessContext/BusinessProvider";
 import DeliveryProvider from "./Contexts/DeliveryContext/DeliveryProvider";
 import OrdersProvider from "./Contexts/OrdersContext/OrdersProvider";
 import { router } from "./Routes/Routes";
@@ -11,9 +12,11 @@ function App() {
     <AuthProvider>
       <OrdersProvider>
         <DeliveryProvider>
-          <div className="h-screen">
-            <RouterProvider router={Router}></RouterProvider>
-          </div>
+          <BusinessProvider>
+            <div className="h-screen">
+              <RouterProvider router={Router}></RouterProvider>
+            </div>
+          </BusinessProvider>
         </DeliveryProvider>
       </OrdersProvider>
     </AuthProvider>

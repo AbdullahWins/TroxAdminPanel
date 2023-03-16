@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { BusinessContext } from "../../Contexts/BusinessContext/BusinessProvider";
 
 const BusinessDeliveryCost = () => {
+  const { addDeliveryCost } = useContext(BusinessContext);
   const [selectedValue, setSelectedValue] = useState("parcel");
 
   const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+    setSelectedValue(event?.target?.value);
   };
 
   const handleSubmitBtn = async (event) => {
     event.preventDefault();
-    const form = event.target;
-    const localBellowOnePrice = form?.localBellowOnePrice.value;
-    const localOneToFivePrice = form?.localBellowOnePrice.value;
-    const localFiveToTenPrice = form?.localBellowOnePrice.value;
-    const domesticBellowOnePrice = form?.domesticBellowOnePrice.value;
-    const domesticOneToFivePrice = form?.domesticBellowOnePrice.value;
-    const domesticFiveToTenPrice = form?.domesticBellowOnePrice.value;
-    const internationalBellowOnePrice = form?.internationalBellowOnePrice.value;
-    const internationalOneToFivePrice = form?.internationalBellowOnePrice.value;
-    const internationalFiveToTenPrice = form?.internationalBellowOnePrice.value;
+    const form = event?.target;
+    const localBellowOnePrice = form?.localBellowOnePrice?.value;
+    const localOneToFivePrice = form?.localOneToFivePrice?.value;
+    const localFiveToTenPrice = form?.localFiveToTenPrice?.value;
+    const domesticBellowOnePrice = form?.domesticBellowOnePrice?.value;
+    const domesticOneToFivePrice = form?.domesticOneToFivePrice?.value;
+    const domesticFiveToTenPrice = form?.domesticFiveToTenPrice?.value;
+    const internationalBellowOnePrice = form?.internationalBellowOnePrice?.value;
+    const internationalOneToFivePrice = form?.internationalOneToFivePrice?.value;
+    const internationalFiveToTenPrice = form?.internationalFiveToTenPrice?.value;
     const packageType = selectedValue;
 
     const DeliveryCost = {
@@ -34,6 +36,7 @@ const BusinessDeliveryCost = () => {
       package_type: packageType,
     };
     try {
+      addDeliveryCost(DeliveryCost);
       // addOneRider(newRider, documentsImages);
       console.log(DeliveryCost);
       setTimeout(() => {}, 3000);
@@ -46,7 +49,7 @@ const BusinessDeliveryCost = () => {
     <div className="w-full mt-10 mr-8">
       <section className=" bg-whiteHigh rounded-b-xl">
         <div className="flex items-center bg-secondaryMain text-whiteHigh rounded-t-lg w-full">
-          <h2 className="font-bold text-2xl pl-4 py-6">Business Setup</h2>
+          <h2 className="font-bold text-2xl pl-4 py-5">Business Setup</h2>
         </div>
         <div>
           <section className="">
