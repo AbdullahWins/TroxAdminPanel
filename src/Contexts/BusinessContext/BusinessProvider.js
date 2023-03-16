@@ -5,6 +5,8 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 export const BusinessContext = createContext();
 const BusinessProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [allParcelTypes, setAllParcelTypes] = useState(false);
+  const [currentParcelType, setCurrentParcelType] = useState(false);
 
   //   //update one rider status
   //   const updateRiderStatus = async (rider, status) => {
@@ -131,6 +133,10 @@ const BusinessProvider = ({ children }) => {
     setIsLoading,
     addDeliveryCost,
     addDeliveryManCharge,
+    currentParcelType,
+    setCurrentParcelType,
+    allParcelTypes,
+    setAllParcelTypes,
   };
   return (
     <BusinessContext.Provider value={BusinessInfo}>
