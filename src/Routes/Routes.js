@@ -20,7 +20,6 @@ import TransactionUnsettledBalance from "../Pages/Transaction/TransactionUnsettl
 import TransactionRevenue from "../Pages/Transaction/TransactionRevenue";
 import CustomerAll from "../Pages/Customer/CustomerAll";
 import CustomerBlocked from "../Pages/Customer/CustomerBlocked";
-import CustomerProcessing from "../Pages/Customer/CustomerProcessing";
 import UserProfile from "../Pages/User/UserProfile";
 import DeliveryCancelled from "../Pages/DeliveryMan/DeliveryCancelled";
 import LocationsCountry from "../Pages/Locations/LocationsCountry";
@@ -112,10 +111,6 @@ export const router = createBrowserRouter([
       {
         path: "/customerBlocked",
         element: <CustomerBlocked></CustomerBlocked>,
-      },
-      {
-        path: "/customerProcessing",
-        element: <CustomerProcessing></CustomerProcessing>,
       },
 
       // location

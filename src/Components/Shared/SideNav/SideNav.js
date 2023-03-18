@@ -239,9 +239,6 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
             <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
-              <Link className="w-full" to="/customerProcessing">
-                <p>Processing</p>
-              </Link>
               <Link className="w-full" to="/customerAll">
                 <p>All Customers</p>
               </Link>
