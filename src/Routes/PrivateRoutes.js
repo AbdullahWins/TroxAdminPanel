@@ -14,7 +14,7 @@ const PrivateRoutes = ({ children }) => {
       </div>
     );
   }
-  if (user && user.uid) {
+  if (user && user?.uid) {
     return children;
   }
 
