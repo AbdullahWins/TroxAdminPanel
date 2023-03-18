@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { CustomerContext } from "../../../Contexts/CustomerContext/CustomerProvider";
-import CustomerConfirmationBlockPopup from "../../Modals/Customer/CustomerConfirmationBlockPopup";
+import CustomerConfirmationUnblockPopup from "../../Modals/Customer/CustomerConfirmationUnblockPopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
-const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
+const CustomerBlockedTable = ({ rows, handleSelectCheckbox }) => {
   const {
     searchBarValue,
     currentCustomer,
@@ -149,31 +148,14 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
                   <td className="px-0 mx-0">
                     <div className="flex items-center justify-center gap-0">
                       <label
-                        htmlFor="customerBlockPopup"
+                        htmlFor="customerUnblockPopup"
                         onClick={() => setCurrentCustomer(customer)}
-                        className="btn rounded-full p-0 bg-whiteHigh text-blackMid border-none hover:bg-whiteHigh"
+                        className="btn rounded-full p-0 bg-whiteHigh text-errorColor border-none hover:bg-whiteHigh"
                       >
                         <span className="material-symbols-outlined p-0">
                           block
                         </span>
                       </label>
-
-                      {/* user_id er jaigai used_id hobe */}
-                      <Link
-                        to={{
-                          pathname: `/customeredit/${customer?.used_id}`,
-                          customer: customer,
-                        }}
-                      >
-                        <label
-                          htmlFor="pausePopup"
-                          className="btn rounded-full p-3 bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
-                        >
-                          <span className="material-symbols-outlined">
-                            border_color
-                          </span>
-                        </label>
-                      </Link>
                     </div>
                   </td>
                 </tr>
@@ -235,12 +217,12 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
           </ul>
         </div>
       </section>
-      <CustomerConfirmationBlockPopup
+      <CustomerConfirmationUnblockPopup
         currentCustomer={currentCustomer}
         clickHandlerForModals={clickHandlerForModals}
-      ></CustomerConfirmationBlockPopup>
+      ></CustomerConfirmationUnblockPopup>
     </div>
   );
 };
 
-export default CustomerAllTable;
+export default CustomerBlockedTable;

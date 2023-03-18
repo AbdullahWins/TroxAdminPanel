@@ -12,7 +12,6 @@ const CustomerAll = () => {
     searchBarValue,
     filteredCustomersBySearch,
     filterCustomersBySearch,
-    // currentCustomer,
     setCurrentCustomer,
     updateManyCustomerStatus,
   } = useContext(CustomerContext);
@@ -122,10 +121,6 @@ const CustomerAll = () => {
           handleSelectCheckbox={handleSelectCheckbox}
         ></CustomerAllTable>
       )}
-      {/* cancel modal popup */}
-      {/* <DeliveryConfirmationCancelPopup
-        currentCustomer={currentCustomer}
-      ></DeliveryConfirmationCancelPopup> */}
     </div>
   );
 };

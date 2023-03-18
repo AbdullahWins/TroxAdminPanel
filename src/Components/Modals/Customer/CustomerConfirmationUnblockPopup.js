@@ -1,12 +1,12 @@
 import React from "react";
 
-const CustomerConfirmationBlockPopup = ({
+const CustomerConfirmationUnblockPopup = ({
   currentCustomer,
   clickHandlerForModals,
 }) => {
   return (
     <section>
-      <input type="checkbox" id="customerBlockPopup" className="modal-toggle" />
+      <input type="checkbox" id="customerUnblockPopup" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box flex flex-col items-center justify-center gap-4">
           <div>
@@ -38,21 +38,21 @@ const CustomerConfirmationBlockPopup = ({
           </div>
           <div>
             <p className="font-bold text-lg">
-              Do you want to block {currentCustomer?.user_name}?
+              Do you want to unblock {currentCustomer?.user_name}?
             </p>
           </div>
           <div className="modal-action flex items-center justify-center">
             <label
-              htmlFor="customerBlockPopup"
+              htmlFor="customerUnblockPopup"
               onClick={() => {
-                clickHandlerForModals(currentCustomer?.used_id, "Blocked");
+                clickHandlerForModals(currentCustomer?.used_id, "Active");
               }}
               className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
             >
               Confirm
             </label>
             <label
-              htmlFor="customerBlockPopup"
+              htmlFor="customerUnblockPopup"
               className="btn rounded-full bg-whiteHigh text-primaryMain w-full border-primaryMain hover:border-primaryMain hover:bg-whiteHigh"
             >
               Cancel
@@ -64,4 +64,4 @@ const CustomerConfirmationBlockPopup = ({
   );
 };
 
-export default CustomerConfirmationBlockPopup;
+export default CustomerConfirmationUnblockPopup;
