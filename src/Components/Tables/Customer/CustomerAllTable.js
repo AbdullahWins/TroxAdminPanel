@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CustomerContext } from "../../../Contexts/CustomerContext/CustomerProvider";
-import DeliveryConfirmationBlockPopup from "../../Modals/DeliveryMan/DeliveryConfirmationBlockPopup";
-import DeliveryConfirmationCancelPopup from "../../Modals/DeliveryMan/DeliveryConfirmationCancelPopup";
+import CustomerConfirmationBlockPopup from "../../Modals/Customer/CustomerConfirmationBlockPopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
@@ -162,7 +161,7 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
                       {/* user_id er jaigai used_id hobe */}
                       <Link
                         to={{
-                          pathname: `/customeredit/${customer?.user_id}`,
+                          pathname: `/customeredit/${customer?.used_id}`,
                           customer: customer,
                         }}
                       >
@@ -236,14 +235,10 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
           </ul>
         </div>
       </section>
-      <DeliveryConfirmationCancelPopup
+      <CustomerConfirmationBlockPopup
         currentCustomer={currentCustomer}
         clickHandlerForModals={clickHandlerForModals}
-      ></DeliveryConfirmationCancelPopup>
-      <DeliveryConfirmationBlockPopup
-        currentCustomer={currentCustomer}
-        clickHandlerForModals={clickHandlerForModals}
-      ></DeliveryConfirmationBlockPopup>
+      ></CustomerConfirmationBlockPopup>
     </div>
   );
 };

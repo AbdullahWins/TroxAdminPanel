@@ -20,9 +20,9 @@ const CustomerAll = () => {
   const handleSelectCheckbox = (customer, e) => {
     const selectedCustomersList = [...selectedCustomers];
     if (e.target.checked) {
-      selectedCustomersList.push(customer?.user_id);
+      selectedCustomersList.push(customer?.used_id);
     } else {
-      const index = selectedCustomersList.indexOf(customer?.user_id);
+      const index = selectedCustomersList.indexOf(customer?.used_id);
       if (index !== -1) {
         selectedCustomersList.splice(index, 1);
       }
@@ -34,7 +34,7 @@ const CustomerAll = () => {
   //   const selectAllCustomer = [];
   //   if (e?.target?.checked) {
   //     customers?.map((customer) => {
-  //       return selectAllCustomer?.push(customer?.user_id);
+  //       return selectAllCustomer?.push(customer?.used_id);
   //     });
   //   } else {
   //     setSelectedCustomers([]);

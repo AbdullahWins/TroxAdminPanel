@@ -29,7 +29,7 @@ const CustomerProvider = ({ children }) => {
       const customerDocRef = doc(db, "userDetails", customer);
       try {
         await updateDoc(customerDocRef, {
-          customer_status: status,
+          user_status: status,
         });
         fetchCustomers();
         console.log("customer status updated successfully");
@@ -79,7 +79,7 @@ const CustomerProvider = ({ children }) => {
   //       const docSnap = await getDoc(ref);
   //       if (docSnap.exists()) {
   //         const customer = docSnap.data();
-  //         if (currentCustomer?.customer_id === customer?.customer_id) {
+  //         if (currentCustomer?.user_id === customer?.user_id) {
   //           return;
   //         } else {
   //           setCurrentCustomer(customer);
