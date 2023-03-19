@@ -32,7 +32,6 @@ import DeliveryManEdit from "../Pages/EditPages/DeliveryManEdit";
 import BusinessDeliveryCost from "../Pages/BusinessSetup/BusinessDeliveryCost";
 import BusinessDeliveryManCharge from "../Pages/BusinessSetup/BusinessDeliveryManCharge";
 import BusinessNotificationSettings from "../Pages/BusinessSetup/BusinessNotificationSettings";
-import BusinessParcelType from "../Pages/BusinessSetup/BusinessParcelType";
 import PaymentGateway from "../Pages/PaymentGateway/PaymentGateway";
 import WithdrawConfirmed from "../Pages/WithdrawRequest/WithdrawConfirmed";
 import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
@@ -192,10 +191,6 @@ export const router = createBrowserRouter([
       {
         path: "/businessDeliveryManCharge",
         element: <BusinessDeliveryManCharge></BusinessDeliveryManCharge>,
-      },
-      {
-        path: "/businessParcelType",
-        element: <BusinessParcelType></BusinessParcelType>,
       },
       {
         path: "/businessNotificationSettings",
