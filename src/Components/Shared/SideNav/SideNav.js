@@ -322,9 +322,6 @@ const SideNav = () => {
           </div>
           <div className="collapse-content bg-whiteHigh text-blackMid">
             <div className="flex flex-col justify-start items-start gap-2 pl-8 ">
-              <Link className="w-full" to="/transactionPendingWithdraw">
-                <p>Pending Withdraw</p>
-              </Link>
               <Link className="w-full" to="/transactionUnsettledBalance">
                 <p>Unsettled Balance</p>
               </Link>
@@ -519,7 +516,7 @@ const SideNav = () => {
             className={`flex items-center ${
               isClosed ? "justify-center" : "justify-start"
             }`}
-            to="/"
+            to="/paymentGateway"
           >
             <span className="material-symbols-outlined text-blackMid">
               credit_card

@@ -5,6 +5,7 @@ import BusinessProvider from "./Contexts/BusinessContext/BusinessProvider";
 import CustomerProvider from "./Contexts/CustomerContext/CustomerProvider";
 import DeliveryProvider from "./Contexts/DeliveryContext/DeliveryProvider";
 import OrdersProvider from "./Contexts/OrdersContext/OrdersProvider";
+import WarehouseProvider from "./Contexts/WarehouseContext/WarehouseProvider";
 import { router } from "./Routes/Routes";
 
 function App() {
@@ -15,9 +16,11 @@ function App() {
         <DeliveryProvider>
           <BusinessProvider>
             <CustomerProvider>
-              <div className="h-screen">
-                <RouterProvider router={Router}></RouterProvider>
-              </div>
+              <WarehouseProvider>
+                <div className="h-screen">
+                  <RouterProvider router={Router}></RouterProvider>
+                </div>
+              </WarehouseProvider>
             </CustomerProvider>
           </BusinessProvider>
         </DeliveryProvider>

@@ -15,7 +15,6 @@ import WarehouseAll from "../Pages/Warehouse/WarehouseAll";
 import WarehouseAddNew from "../Pages/Warehouse/WarehouseAddNew";
 import StaffAll from "../Pages/Staff/StaffAll";
 import StaffAddNew from "../Pages/Staff/StaffAddNew";
-import TransactionPendingWithdraw from "../Pages/Transaction/TransactionPendingWithdraw";
 import TransactionUnsettledBalance from "../Pages/Transaction/TransactionUnsettledBalance";
 import TransactionRevenue from "../Pages/Transaction/TransactionRevenue";
 import CustomerAll from "../Pages/Customer/CustomerAll";
@@ -132,10 +131,6 @@ export const router = createBrowserRouter([
       },
 
       // transaction
-      {
-        path: "/transactionPendingWithdraw",
-        element: <TransactionPendingWithdraw></TransactionPendingWithdraw>,
-      },
       {
         path: "/transactionUnsettledBalance",
         element: <TransactionUnsettledBalance></TransactionUnsettledBalance>,
