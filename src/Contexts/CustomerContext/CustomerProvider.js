@@ -3,6 +3,7 @@ import { firebaseFirestore } from "../../Firebase/firebase.config";
 import {
   collection,
   doc,
+  getDoc,
   //   getDoc,
   getDocs,
   //   serverTimestamp,
@@ -71,52 +72,52 @@ const CustomerProvider = ({ children }) => {
   //     }
   //   };
 
-  //fetch one customer
-  //   const fetchSingleCustomer = async (customerId) => {
-  //     console.log(customerId);
-  //     try {
-  //       const ref = doc(firebaseFirestore, "userDetails", customerId);
-  //       const docSnap = await getDoc(ref);
-  //       if (docSnap.exists()) {
-  //         const customer = docSnap.data();
-  //         if (currentCustomer?.user_id === customer?.user_id) {
-  //           return;
-  //         } else {
-  //           setCurrentCustomer(customer);
-  //           console.log(customer);
-  //         }
-  //       } else {
-  //         console.log("No such doCUMent!");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching doCUMent!", error);
-  //     }
-  //   };
+  // fetch one customer
+  const fetchSingleCustomer = async (customerId) => {
+    console.log(customerId);
+    try {
+      const ref = doc(firebaseFirestore, "userDetails", customerId);
+      const docSnap = await getDoc(ref);
+      if (docSnap.exists()) {
+        const customer = docSnap.data();
+        if (currentCustomer?.user_id === customer?.user_id) {
+          return;
+        } else {
+          setCurrentCustomer(customer);
+          console.log(customer);
+        }
+      } else {
+        console.log("No such doCUMent!");
+      }
+    } catch (error) {
+      console.error("Error fetching doCUMent!", error);
+    }
+  };
 
-  //update one customer
-  //   const updateSingleCustomer = async (newCustomer, id) => {
-  //     try {
-  //       const db = firebaseFirestore;
-  //       const customerDocRef = doc(db, "userDetails", id);
-  //       try {
-  //         await updateDoc(customerDocRef, {
-  //           rider_name: newCustomer?.rider_name,
-  //           rider_email: newCustomer?.rider_email,
-  //           rider_contact: newCustomer?.rider_contact,
-  //           rider_dob: newCustomer?.rider_dob,
-  //           rider_gender: newCustomer?.rider_gender,
-  //           rider_work_location: newCustomer?.rider_work_location,
-  //           rider_address: newCustomer?.rider_address,
-  //         });
-  //         fetchCustomers();
-  //         console.log("customer updated successfully");
-  //       } catch {
-  //         console.error("customer document not found");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error updating customer", error);
-  //     }
-  //   };
+  // update one customer
+  const updateSingleCustomer = async (newCustomer, id) => {
+    try {
+      const db = firebaseFirestore;
+      const customerDocRef = doc(db, "userDetails", id);
+      try {
+        await updateDoc(customerDocRef, {
+          user_name: newCustomer?.user_name,
+          user_email: newCustomer?.user_email,
+          user_contact: newCustomer?.user_contact,
+          user_dob: newCustomer?.user_dob,
+          user_gender: newCustomer?.user_gender,
+          user_country: newCustomer?.user_country,
+          user_address: newCustomer?.user_address,
+        });
+        fetchCustomers();
+        console.log("customer updated successfully");
+      } catch {
+        console.error("customer document not found");
+      }
+    } catch (error) {
+      console.error("Error updating customer", error);
+    }
+  };
 
   // Upload images to Firebase Storage
   //   const uploadImages = async (images) => {
@@ -238,7 +239,8 @@ const CustomerProvider = ({ children }) => {
   //exports
   const CustomerInfo = {
     fetchCustomers,
-    // fetchSingleCustomer,
+    fetchSingleCustomer,
+    updateSingleCustomer,
     customers,
     // addOneCustomer,
     setCustomers,
@@ -256,7 +258,6 @@ const CustomerProvider = ({ children }) => {
     setIsLoading,
     currentCustomer,
     setCurrentCustomer,
-    // updateSingleCustomer,
     // uploadImages,
     clickHandlerForModals,
   };

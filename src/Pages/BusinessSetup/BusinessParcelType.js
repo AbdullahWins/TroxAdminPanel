@@ -60,7 +60,7 @@ const BusinessParcelType = () => {
       <div className="flex items-center justify-between p-3 bg-secondaryMain text-whiteHigh rounded-t-lg">
         <section className="flex items-center gap-4">
           <div>
-            <p className="font-bold text-2xl">Delivery Man</p>
+            <p className="font-bold text-2xl">Business Setup</p>
           </div>
         </section>
         <section className="flex items-center gap-4 w-2/5">

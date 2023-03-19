@@ -157,11 +157,9 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
                           block
                         </span>
                       </label>
-
-                      {/* user_id er jaigai used_id hobe */}
                       <Link
                         to={{
-                          pathname: `/customeredit/${customer?.used_id}`,
+                          pathname: `/customeredit/${customer?.user_id}`,
                           customer: customer,
                         }}
                       >

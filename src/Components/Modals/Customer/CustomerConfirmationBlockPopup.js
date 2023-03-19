@@ -45,7 +45,7 @@ const CustomerConfirmationBlockPopup = ({
             <label
               htmlFor="customerBlockPopup"
               onClick={() => {
-                clickHandlerForModals(currentCustomer?.used_id, "Blocked");
+                clickHandlerForModals(currentCustomer?.user_id, "Blocked");
               }}
               className="btn rounded-full bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain w-full"
             >

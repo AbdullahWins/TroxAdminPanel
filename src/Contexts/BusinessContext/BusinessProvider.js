@@ -103,15 +103,21 @@ const BusinessProvider = ({ children }) => {
       const deliveryCostDocRef = doc(db, "deliveryCost", packageType);
       try {
         await setDoc(deliveryCostDocRef, {
-          local_bellow_one: deliveryCost?.local_bellow_one,
-          local_one_to_five: deliveryCost?.local_one_to_five,
-          local_five_to_ten: deliveryCost?.local_five_to_ten,
-          domestic_bellow_one: deliveryCost?.domestic_bellow_one,
-          domestic_one_to_five: deliveryCost?.domestic_one_to_five,
-          domestic_five_to_ten: deliveryCost?.domestic_five_to_ten,
-          international_bellow_one: deliveryCost?.international_bellow_one,
-          international_one_to_five: deliveryCost?.international_one_to_five,
-          international_five_to_ten: deliveryCost?.international_five_to_ten,
+          local_bellow_one: parseInt(deliveryCost?.local_bellow_one),
+          local_one_to_five: parseInt(deliveryCost?.local_one_to_five),
+          local_five_to_ten: parseInt(deliveryCost?.local_five_to_ten),
+          domestic_bellow_one: parseInt(deliveryCost?.domestic_bellow_one),
+          domestic_one_to_five: parseInt(deliveryCost?.domestic_one_to_five),
+          domestic_five_to_ten: parseInt(deliveryCost?.domestic_five_to_ten),
+          international_bellow_one: parseInt(
+            deliveryCost?.international_bellow_one
+          ),
+          international_one_to_five: parseInt(
+            deliveryCost?.international_one_to_five
+          ),
+          international_five_to_ten: parseInt(
+            deliveryCost?.international_five_to_ten
+          ),
           package_type: deliveryCost?.package_type,
           timestamp: timeStamp,
         });
@@ -133,10 +139,15 @@ const BusinessProvider = ({ children }) => {
       const deliveryManChargeDocRef = doc(db, "deliveryManCharge", packageType);
       try {
         await setDoc(deliveryManChargeDocRef, {
-          local_delivery_charge: deliveryManCharge?.local_delivery_charge,
-          domestic_delivery_charge: deliveryManCharge?.domestic_delivery_charge,
-          international_delivery_charge:
-            deliveryManCharge?.international_delivery_charge,
+          local_delivery_charge: parseInt(
+            deliveryManCharge?.local_delivery_charge
+          ),
+          domestic_delivery_charge: parseInt(
+            deliveryManCharge?.domestic_delivery_charge
+          ),
+          international_delivery_charge: parseInt(
+            deliveryManCharge?.international_delivery_charge
+          ),
           package_type: deliveryManCharge?.package_type,
           timestamp: timeStamp,
         });

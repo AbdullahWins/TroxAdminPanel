@@ -37,6 +37,7 @@ import PaymentGateway from "../Pages/PaymentGateway/PaymentGateway";
 import WithdrawConfirmed from "../Pages/WithdrawRequest/WithdrawConfirmed";
 import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
 import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
+import CustomerEdit from "../Pages/EditPages/CustomerEdit";
 
 export const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
       {
         path: "/customerBlocked",
         element: <CustomerBlocked></CustomerBlocked>,
+      },
+      {
+        path: "/customeredit/:id",
+        element: <CustomerEdit></CustomerEdit>,
       },
 
       // location
