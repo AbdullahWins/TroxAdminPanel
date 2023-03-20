@@ -8,12 +8,12 @@ const DeliveryAllDeliveryMan = () => {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const {
     isLoading,
-    countries,
     fetchCountries,
     searchBarValue,
     currentCountry,
     updateManyCountriesStatus,
     filterCountriesBySearch,
+    filteredCountriesBySearch,
     setCurrentCountry,
   } = useContext(LocationContext);
 
@@ -110,7 +110,7 @@ const DeliveryAllDeliveryMan = () => {
         <OrdersLoading></OrdersLoading>
       ) : (
         <LocationCountryTable
-          rows={countries}
+          rows={filteredCountriesBySearch}
           setCurrentCountry={setCurrentCountry}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
           handleSelectCheckbox={handleSelectCheckbox}

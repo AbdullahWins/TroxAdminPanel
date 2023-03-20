@@ -1,11 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
-import {
-  collection,
-  doc,
-  getDocs,
-  updateDoc,
-} from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 
 export const LocationContext = createContext();
 const LocationProvider = ({ children }) => {
@@ -13,13 +8,13 @@ const LocationProvider = ({ children }) => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedState, setSelectedState] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState("Bangladesh");
+  const [selectedState, setSelectedState] = useState("Rajshahi");
   const [selectedCity, setSelectedCity] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [filteredLocationsBySearch, setFilteredLocationsBySearch] = useState(
+  const [filteredCountriesBySearch, setFilteredCountriesBySearch] = useState(
     []
   );
 
@@ -42,22 +37,38 @@ const LocationProvider = ({ children }) => {
   };
 
   //fetch countries from database upon load
+
+  const fetchCountries = async () => {
+    setIsLoading(true);
+    await getDocs(collection(firebaseFirestore, "Countries")).then(
+      (querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setCountries(newData);
+        setFilteredCountriesBySearch(newData);
+        setIsLoading(false);
+      }
+    );
+  };
+
   useEffect(() => {
-    const fetchCountries = async () => {
-      setIsLoading(true);
-      await getDocs(collection(firebaseFirestore, "Countries")).then(
-        (querySnapshot) => {
-          const newData = querySnapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-          setCountries(newData);
-          setIsLoading(false);
-        }
-      );
-    };
     fetchCountries();
   }, []);
+
+  //filter Countries by search value
+  const filterCountriesBySearch = (e) => {
+    const searchValue = e.target.value;
+    if (searchValue === null) {
+      setFilteredCountriesBySearch(countries);
+    }
+    const filteredCountries = countries?.filter((country) =>
+      country?.name?.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredCountriesBySearch(filteredCountries);
+    setSearchBarValue(searchValue);
+  };
 
   //fetch states from database
   const fetchStates = async (selectedCountry) => {
@@ -109,7 +120,7 @@ const LocationProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    setFilteredLocationsBySearch(locations);
+    setFilteredCountriesBySearch(locations);
   }, [locations]);
 
   //exports
@@ -127,8 +138,9 @@ const LocationProvider = ({ children }) => {
     setLocations,
     searchBarValue,
     setSearchBarValue,
-    filteredLocationsBySearch,
-    setFilteredLocationsBySearch,
+    filterCountriesBySearch,
+    filteredCountriesBySearch,
+    setFilteredCountriesBySearch,
     reloadCurrentPage,
     updateLocationStatus,
     isLoading,
