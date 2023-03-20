@@ -49,8 +49,6 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
   //   handleSelectAllCheckbox(orders, e);
   // };
 
-  console.log(currentRows);
-
   const renderPagination = () => {
     const pageNumbers = [];
 

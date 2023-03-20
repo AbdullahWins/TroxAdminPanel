@@ -39,6 +39,7 @@ const WarehouseEdit = () => {
     const warehouseCountry = form?.warehouseCountry.value;
     const warehouseState = form?.warehouseState.value;
     const warehouseCity = form?.warehouseCity.value;
+    
 
     const newWarehouse = {
       warehouse_name: warehouseName,
