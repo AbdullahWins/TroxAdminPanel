@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { WarehouseContext } from "../../../Contexts/WarehouseContext/WarehouseProvider";
-import CustomerConfirmationBlockPopup from "../../Modals/Customer/CustomerConfirmationBlockPopup";
+import WarehouseConfirmationDeletePopup from "../../Modals/Warehouse/WarehouseConfirmationDeletePopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const WarehouseAllTable = ({ rows, handleSelectCheckbox }) => {
@@ -48,8 +48,6 @@ const WarehouseAllTable = ({ rows, handleSelectCheckbox }) => {
   // const handleAllCheckbox = (orders, e) => {
   //   handleSelectAllCheckbox(orders, e);
   // };
-
-  console.log(currentRows);
 
   const renderPagination = () => {
     const pageNumbers = [];
@@ -167,7 +165,7 @@ const WarehouseAllTable = ({ rows, handleSelectCheckbox }) => {
                       </Link>
 
                       <label
-                        htmlFor="customerBlockPopup"
+                        htmlFor="warehouseDeletePopup"
                         onClick={() => setCurrentWarehouse(warehouse)}
                         className="btn rounded-full p-0 bg-whiteHigh  text-alertColor border-none hover:bg-whiteHigh"
                       >
@@ -236,10 +234,10 @@ const WarehouseAllTable = ({ rows, handleSelectCheckbox }) => {
           </ul>
         </div>
       </section>
-      <CustomerConfirmationBlockPopup
-        currentCustomer={currentWarehouse}
+      <WarehouseConfirmationDeletePopup
+        currentWarehouse={currentWarehouse}
         clickHandlerForModals={clickHandlerForModals}
-      ></CustomerConfirmationBlockPopup>
+      ></WarehouseConfirmationDeletePopup>
     </div>
   );
 };

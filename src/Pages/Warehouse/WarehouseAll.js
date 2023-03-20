@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
-import CustomerAllTable from "../../Components/Tables/Customer/CustomerAllTable";
 import WarehouseAllTable from "../../Components/Tables/Warehouse/WarehouseAllTable";
 import { WarehouseContext } from "../../Contexts/WarehouseContext/WarehouseProvider";
 
-const CustomerAll = () => {
+const WarehouseAll = () => {
   const [selectedWarehouses, setSelectedWarehouses] = useState([]);
   const [approvedWarehouses, setApprovedWarehouses] = useState([]);
   const {
@@ -53,8 +52,6 @@ const CustomerAll = () => {
     );
     setApprovedWarehouses(filteredWarehousesByStatus);
   }, [filteredWarehousesBySearch]);
-
-  console.log(approvedWarehouses, "lol");
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -120,7 +117,7 @@ const CustomerAll = () => {
       ) : (
         <WarehouseAllTable
           rows={approvedWarehouses}
-          setCurrentCustomer={setCurrentWarehouse}
+          setCurrentWarehouse={setCurrentWarehouse}
           handleSelectCheckbox={handleSelectCheckbox}
         ></WarehouseAllTable>
       )}
@@ -128,4 +125,4 @@ const CustomerAll = () => {
   );
 };
 
-export default CustomerAll;
+export default WarehouseAll;

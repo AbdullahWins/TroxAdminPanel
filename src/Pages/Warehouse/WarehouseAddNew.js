@@ -1,18 +1,12 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import DeliveryManAddConfirmationPopup from "../../Components/Modals/DeliveryMan/DeliveryManAddConfirmationPopup";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { WarehouseContext } from "../../Contexts/WarehouseContext/WarehouseProvider";
 
 const WarehouseAddNew = () => {
   const { addOneWarehouse } = useContext(WarehouseContext);
-  const [popupIsOpen, setPopupIsOpen] = useState(null);
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  // const from = location.state?.from?.pathname || "/deliveryAllDeliveryMan";
-
-  const handlePopup = (value) => {
-    setPopupIsOpen(value);
-  };
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/warehouseAll";
 
   const handleSubmitBtn = async (event) => {
     event.preventDefault();
@@ -39,7 +33,7 @@ const WarehouseAddNew = () => {
     try {
       addOneWarehouse(newWarehouse);
       setTimeout(() => {
-        handlePopup("modal-open");
+        navigate(from, { replace: true });
       }, 3000);
     } catch (error) {
       console.log(error.message);
@@ -146,10 +140,6 @@ const WarehouseAddNew = () => {
             </div>
           </section>
         </div>
-        <DeliveryManAddConfirmationPopup
-          popupIsOpen={popupIsOpen}
-          handlePopup={handlePopup}
-        ></DeliveryManAddConfirmationPopup>
       </section>
     </div>
   );
