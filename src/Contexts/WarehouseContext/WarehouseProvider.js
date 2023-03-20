@@ -81,12 +81,9 @@ const WarehouseProvider = ({ children }) => {
         await updateDoc(warehouseDocRef, {
           warehouse_name: newWarehouse?.warehouse_name,
           warehouse_email: newWarehouse?.warehouse_email,
-          warehouse_password: newWarehouse?.warehouse_password,
-          warehouse_password_confirm: newWarehouse?.warehouse_password_confirm,
           warehouse_country: newWarehouse?.warehouse_country,
           warehouse_state: newWarehouse?.warehouse_state,
           warehouse_city: newWarehouse?.warehouse_city,
-          warehouse_status: newWarehouse?.warehouse_status,
         });
         fetchWarehouses();
         console.log("warehouse updated successfully");

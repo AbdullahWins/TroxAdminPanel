@@ -36,6 +36,7 @@ import WithdrawConfirmed from "../Pages/WithdrawRequest/WithdrawConfirmed";
 import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
 import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
 import CustomerEdit from "../Pages/EditPages/CustomerEdit";
+import WarehouseEdit from "../Pages/EditPages/WarehouseEdit";
 
 export const router = createBrowserRouter([
   {
@@ -148,6 +149,10 @@ export const router = createBrowserRouter([
       {
         path: "/warehouseAddNew",
         element: <WarehouseAddNew></WarehouseAddNew>,
+      },
+      {
+        path: "/warehouseedit/:id",
+        element: <WarehouseEdit></WarehouseEdit>,
       },
 
       // staff
