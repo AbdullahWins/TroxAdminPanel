@@ -38,7 +38,7 @@ const WarehouseAddNew = () => {
         addOneWarehouse(newWarehouse);
         setTimeout(() => {
           navigate(from, { replace: true });
-        }, 3000);
+        }, 5000);
       } catch (error) {
         console.log(error.message);
       }
