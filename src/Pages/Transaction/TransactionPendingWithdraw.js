@@ -3,7 +3,7 @@ import React from "react";
 const TransactionPendingWithdraw = () => {
   return (
     <div>
-      <h2>trans pending withd</h2>
+      <h2>This page was removed from figma file recently</h2>
     </div>
   );
 };

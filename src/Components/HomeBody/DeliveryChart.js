@@ -14,20 +14,20 @@ const DeliveryChart = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col justify-between h-96">
       <section className="flex items-center justify-between">
         <p className="text-2xl text-blackMid  font-bold">Delivery</p>
         <div className="flex gap-2">
-          <button className="btn btn-sm btn-ghost bordered border-2 border-blackMid text-blackMid rounded-full">
+          <button className="btn btn-sm btn-ghost bordered border-1 border-blackMid text-blackMid rounded-full">
             Today
           </button>
-          <button className="btn btn-sm btn-ghost bordered border-2 border-blackMid text-blackMid rounded-full">
+          <button className="btn btn-sm btn-ghost bordered border-1 border-blackMid text-blackMid rounded-full">
             Weekly
           </button>
-          <button className="btn btn-sm btn-ghost bordered border-2 bg-primaryMain text-whiteHigh rounded-full">
+          <button className="btn btn-sm btn-ghost bordered border-1 bg-primaryMain text-whiteHigh rounded-full">
             Monthly
           </button>
-          <button className="btn btn-sm btn-ghost bordered border-2 border-blackMid text-blackMid rounded-full">
+          <button className="btn btn-sm btn-ghost bordered border-1 border-blackMid text-blackMid rounded-full">
             Yearly
           </button>
         </div>

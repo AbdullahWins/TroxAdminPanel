@@ -13,8 +13,8 @@ const ChartBar = ({ data }) => {
   return (
     <div className="overflow-x-auto overflow-y-hidden flex items-center justify-center">
       <BarChart
-        width={800}
-        height={450}
+        width={700}
+        height={300}
         data={data}
         margin={{
           top: 5,

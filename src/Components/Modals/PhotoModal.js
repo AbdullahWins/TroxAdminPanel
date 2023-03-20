@@ -6,7 +6,7 @@ const PhotoModal = ({ data }) => {
       <input type="checkbox" id="photoModal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl flex flex-col items-center justify-center gap-4">
-          <img className="h-full rounded-xl" src={data.photoUrl} alt="" />
+          <img className="h-full rounded-xl" src={data?.photoUrl} alt="" />
           <div>
             <label
               htmlFor="photoModal"

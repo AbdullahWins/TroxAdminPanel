@@ -8,33 +8,53 @@ import Home from "../Pages/Home/Home";
 import OrdersCancelled from "../Pages/Orders/OrdersCancelled";
 import OrdersDelivered from "../Pages/Orders/OrdersDelivered";
 import OrdersPickedup from "../Pages/Orders/OrdersPickedup";
+import OrdersPending from "../Pages/Orders/OrdersPending";
 import OrdersProcessing from "../Pages/Orders/OrdersProcessing";
+import OrderEdit from "../Pages/EditPages/OrderEdit";
 import WarehouseAll from "../Pages/Warehouse/WarehouseAll";
 import WarehouseAddNew from "../Pages/Warehouse/WarehouseAddNew";
 import StaffAll from "../Pages/Staff/StaffAll";
 import StaffAddNew from "../Pages/Staff/StaffAddNew";
-import TransactionPendingWithdraw from "../Pages/Transaction/TransactionPendingWithdraw";
 import TransactionUnsettledBalance from "../Pages/Transaction/TransactionUnsettledBalance";
 import TransactionRevenue from "../Pages/Transaction/TransactionRevenue";
 import CustomerAll from "../Pages/Customer/CustomerAll";
 import CustomerBlocked from "../Pages/Customer/CustomerBlocked";
-import CustomerProcessing from "../Pages/Customer/CustomerProcessing";
 import UserProfile from "../Pages/User/UserProfile";
 import DeliveryCancelled from "../Pages/DeliveryMan/DeliveryCancelled";
 import LocationsCountry from "../Pages/Locations/LocationsCountry";
 import LocationsCity from "../Pages/Locations/LocationsCity";
 import LocationsState from "../Pages/Locations/LocationsState";
+import StaffRole from "../Pages/Staff/StaffRole";
+import Login from "../Pages/Authentication/Login/Login";
+import PrivateRoutes from "../Routes/PrivateRoutes";
+import DeliveryManEdit from "../Pages/EditPages/DeliveryManEdit";
+import BusinessDeliveryCost from "../Pages/BusinessSetup/BusinessDeliveryCost";
+import BusinessDeliveryManCharge from "../Pages/BusinessSetup/BusinessDeliveryManCharge";
+import BusinessNotificationSettings from "../Pages/BusinessSetup/BusinessNotificationSettings";
+import PaymentGateway from "../Pages/PaymentGateway/PaymentGateway";
+import WithdrawConfirmed from "../Pages/WithdrawRequest/WithdrawConfirmed";
+import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
+import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
+import CustomerEdit from "../Pages/EditPages/CustomerEdit";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: (
+      <PrivateRoutes>
+        <Main></Main>
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "/",
         element: <Home></Home>,
       },
       // orders route
+      {
+        path: "/orderspending",
+        element: <OrdersPending></OrdersPending>,
+      },
       {
         path: "/ordersprocessing",
         element: <OrdersProcessing></OrdersProcessing>,
@@ -50,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: "/orderscancelled",
         element: <OrdersCancelled></OrdersCancelled>,
+      },
+      {
+        path: "/orderedit/:id",
+        element: <OrderEdit></OrderEdit>,
       },
 
       // delivery man
@@ -73,6 +97,10 @@ export const router = createBrowserRouter([
         path: "/deliveryCancelled",
         element: <DeliveryCancelled></DeliveryCancelled>,
       },
+      {
+        path: "/deliveryedit/:id",
+        element: <DeliveryManEdit></DeliveryManEdit>,
+      },
 
       // customer
       {
@@ -84,8 +112,8 @@ export const router = createBrowserRouter([
         element: <CustomerBlocked></CustomerBlocked>,
       },
       {
-        path: "/customerProcessing",
-        element: <CustomerProcessing></CustomerProcessing>,
+        path: "/customeredit/:id",
+        element: <CustomerEdit></CustomerEdit>,
       },
 
       // location
@@ -103,10 +131,6 @@ export const router = createBrowserRouter([
       },
 
       // transaction
-      {
-        path: "/transactionPendingWithdraw",
-        element: <TransactionPendingWithdraw></TransactionPendingWithdraw>,
-      },
       {
         path: "/transactionUnsettledBalance",
         element: <TransactionUnsettledBalance></TransactionUnsettledBalance>,
@@ -135,11 +159,55 @@ export const router = createBrowserRouter([
         path: "/staffAddNew",
         element: <StaffAddNew></StaffAddNew>,
       },
+      {
+        path: "/staffRole",
+        element: <StaffRole></StaffRole>,
+      },
+
+      //withdraw request
+      {
+        path: "/withdrawPending",
+        element: <WithdrawPending></WithdrawPending>,
+      },
+      {
+        path: "/withdrawConfirmed",
+        element: <WithdrawConfirmed></WithdrawConfirmed>,
+      },
+      {
+        path: "/withdrawCancelled",
+        element: <WithdrawCancelled></WithdrawCancelled>,
+      },
+
+      //business setup
+      {
+        path: "/businessDeliveryCost",
+        element: <BusinessDeliveryCost></BusinessDeliveryCost>,
+      },
+      {
+        path: "/businessDeliveryManCharge",
+        element: <BusinessDeliveryManCharge></BusinessDeliveryManCharge>,
+      },
+      {
+        path: "/businessNotificationSettings",
+        element: <BusinessNotificationSettings></BusinessNotificationSettings>,
+      },
+
+      //payment gateway
+      {
+        path: "/paymentGateway",
+        element: <PaymentGateway></PaymentGateway>,
+      },
+
+      //user
+      {
+        path: "/profile",
+        element: <UserProfile></UserProfile>,
+      },
     ],
   },
   {
-    path: "/userProfile",
-    element: <UserProfile></UserProfile>,
+    path: "/login",
+    element: <Login></Login>,
   },
   {
     path: "*",

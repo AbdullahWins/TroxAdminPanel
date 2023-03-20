@@ -1,17 +1,27 @@
-import React, { useState } from "react";
-import orders from "../../Assets/json/orders.json";
-import ConfirmationModal from "../../Components/Modals/ConfirmationModal";
+import React, { useContext, useEffect, useState } from "react";
+import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
+import OrdersDeliveredTable from "../../Components/Tables/Orders/OrdersDeliveredTable";
+import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
 const OrdersDelivered = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
-  const ordersProcessing = orders;
+  const [cancelledOrders, setCancelledOrders] = useState([]);
+  const {
+    isLoading,
+    fetchOrders,
+    searchBarValue,
+    filteredOrdersBySearch,
+    filterOrdersByUserType,
+    filterOrdersByLocationType,
+    filterOrdersBySearch,
+  } = useContext(OrderContext);
 
-  const handleCheckbox = (event) => {
+  const handleSelectCheckbox = (orderId, e) => {
     const selectedOrdersList = [...selectedOrders];
-    if (event.target.checked) {
-      selectedOrdersList.push(event.target.value);
+    if (e.target.checked) {
+      selectedOrdersList.push(orderId);
     } else {
-      const index = selectedOrdersList.indexOf(event.target.value);
+      const index = selectedOrdersList.indexOf(e.target.value);
       if (index > -1) {
         selectedOrdersList.splice(index, 1);
       }
@@ -19,48 +29,107 @@ const OrdersDelivered = () => {
     setSelectedOrders(selectedOrdersList);
   };
 
+  const handleUserTypeToggle = (userType) => {
+    filterOrdersByUserType(userType);
+  };
+  const handleLocationTypeToggle = (locationType) => {
+    filterOrdersByLocationType(locationType);
+  };
+
+  useEffect(() => {
+    const filteredOrdersByStatus = filteredOrdersBySearch?.filter(
+      (order) => order?.order_status?.toLowerCase() === "delivered"
+    );
+    setCancelledOrders(filteredOrdersByStatus);
+  }, [filteredOrdersBySearch]);
+
+  // const handleAllCheckbox = () => {
+  //   console.log("selected all");
+  // };
+
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
-      <div className="flex items-center justify-between p-4 bg-secondaryMain text-whiteHigh rounded-t-lg">
+      <div className="flex items-center justify-between p-3 bg-secondaryMain text-whiteHigh rounded-t-lg">
         <section className="flex items-center gap-4">
           <div>
             <p className="font-bold text-2xl">Orders</p>
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                Customer User &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                User Type &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
+                className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Customer User</button>
+                  <button
+                    onClick={(e) => {
+                      handleUserTypeToggle("Customer", e);
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Customer
+                  </button>
                 </li>
                 <li>
-                  <button>Marchants</button>
+                  <button
+                    onClick={(e) => {
+                      handleUserTypeToggle("Marchant", e);
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Marchant
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
           <div>
             <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn btn-ghost btn-sm m-1">
-                All Types &nbsp; <i className="fa-solid fa-angle-down"></i>
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-sm normal-case m-1"
+              >
+                Location &nbsp; <i className="fa-solid fa-angle-down"></i>
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 text-blackMid rounded-box w-52"
+                className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
               >
                 <li>
-                  <button>Local</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("Local");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Local
+                  </button>
                 </li>
                 <li>
-                  <button>Local Distance</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("Long Distance");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    Long Distance
+                  </button>
                 </li>
                 <li>
-                  <button>International</button>
+                  <button
+                    onClick={() => {
+                      handleLocationTypeToggle("International");
+                    }}
+                    className="active:bg-primaryMain"
+                  >
+                    International
+                  </button>
                 </li>
               </ul>
             </div>
@@ -68,12 +137,18 @@ const OrdersDelivered = () => {
         </section>
         <section className="flex items-center gap-4 w-2/5">
           <input
-            className="p-3 w-full text-blackMid rounded-md border-none active:border-none"
+            defaultValue={searchBarValue}
+            onChange={filterOrdersBySearch}
+            className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
             type="text"
-            placeholder="&#x1F50D; Search"
+            name="searchInput"
+            placeholder="search"
           />
           <p>
-            <button className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full">
+            <button
+              onClick={fetchOrders}
+              className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full"
+            >
               <svg
                 width="16"
                 height="18"
@@ -90,6 +165,7 @@ const OrdersDelivered = () => {
           </p>
         </section>
       </div>
+
       <div
         className={` ${
           selectedOrders.length < 1
@@ -107,69 +183,14 @@ const OrdersDelivered = () => {
           Delete
         </label>
       </div>
-      <table className="table w-full">
-        <thead>
-          <tr className="font-bold text-center text-3xl">
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Serial
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Order ID
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Created
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Customer
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Total
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Pickup Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Destination Address
-            </th>
-            <th className="bg-secondaryMainLightest text-bold text-lg">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        {ordersProcessing.map((order, i) => {
-          return (
-            <tbody key={i}>
-              <tr className="text-center">
-                <th className="px-0">
-                  <p className="flex items-center justify-center">
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      value={order.orderId}
-                      onChange={handleCheckbox}
-                    />
-                    &nbsp; &nbsp;
-                    {order.serial}
-                  </p>
-                </th>
-                <td className="px-0">{order.orderId}</td>
-                <td className="px-0">{order.created}</td>
-                <td className="px-0">{order.customer}</td>
-                <td className="px-0">${order.totalAmount}.00</td>
-                <td className="px-0">{order.pickupAddress}</td>
-                <td className="px-0">{order.destinationAddress}</td>
-                <td className="px-0">
-                  <span className="text-whiteHigh text-center py-2 px-6 rounded-full bg-successColor">
-                    Delivered
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          );
-        })}
-      </table>
-      {/* delete modal popup */}
-      <ConfirmationModal actionName="delete"></ConfirmationModal>
+      {isLoading ? (
+        <OrdersLoading></OrdersLoading>
+      ) : (
+        <OrdersDeliveredTable
+          rows={cancelledOrders}
+          handleSelectCheckbox={handleSelectCheckbox}
+        ></OrdersDeliveredTable>
+      )}
     </div>
   );
 };

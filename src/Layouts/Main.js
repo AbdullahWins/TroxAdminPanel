@@ -5,7 +5,7 @@ import TopNav from "../Components/Shared/TopNav/TopNav";
 
 const Main = () => {
   return (
-    <div className="bg-whiteMid">
+    <div className="bg-whiteMid min-h-screen">
       <TopNav></TopNav>
       <div className="flex gap-8">
         <SideNav></SideNav> <Outlet></Outlet>
