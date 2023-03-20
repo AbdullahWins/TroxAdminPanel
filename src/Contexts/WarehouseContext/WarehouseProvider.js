@@ -124,7 +124,7 @@ const WarehouseProvider = ({ children }) => {
       const db = firebaseFirestore;
       const warehouseId = uuidv4();
       const timeStamp = serverTimestamp();
-      const warehouseDocRef = doc(db, "userDetails", warehouseId);
+      const warehouseDocRef = doc(db, "warehouseDetails", warehouseId);
       try {
         await setDoc(warehouseDocRef, {
           warehouse_id: warehouseId,
@@ -183,27 +183,6 @@ const WarehouseProvider = ({ children }) => {
     setSearchBarValue(searchValue);
   };
 
-  //filter warehouse by user type
-  const filterWarehousesByUserType = (userType, e) => {
-    if (userType === null) {
-      setFilteredWarehousesBySearch(warehouses);
-    }
-    const filteredWarehouses = warehouses?.filter((warehouse) =>
-      warehouse?.user_type?.includes(userType)
-    );
-    setFilteredWarehousesBySearch(filteredWarehouses);
-  };
-
-  //filter Warehouse by location type
-  const filterWarehousesByLocationType = (locationType, e) => {
-    if (locationType === null) {
-      setFilteredWarehousesBySearch(warehouses);
-    }
-    const filteredWarehouses = warehouses?.filter((warehouses) =>
-      warehouses?.user_type?.includes(locationType)
-    );
-    setFilteredWarehousesBySearch(filteredWarehouses);
-  };
 
   //fetches all warehouses upon load
   useEffect(() => {
@@ -227,8 +206,6 @@ const WarehouseProvider = ({ children }) => {
     filterWarehousesBySearch,
     filteredWarehousesBySearch,
     setFilteredWarehousesBySearch,
-    filterWarehousesByUserType,
-    filterWarehousesByLocationType,
     reloadCurrentPage,
     updateWarehouseStatus,
     // updateManyWarehouseStatus,

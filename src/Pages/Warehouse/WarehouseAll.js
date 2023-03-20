@@ -19,9 +19,9 @@ const CustomerAll = () => {
   const handleSelectCheckbox = (warehouse, e) => {
     const selectedWarehousesList = [...selectedWarehouses];
     if (e.target.checked) {
-      selectedWarehousesList.push(warehouse?.used_id);
+      selectedWarehousesList.push(warehouse?.warehouse_id);
     } else {
-      const index = selectedWarehousesList.indexOf(warehouse?.used_id);
+      const index = selectedWarehousesList.indexOf(warehouse?.warehouse_id);
       if (index !== -1) {
         selectedWarehousesList.splice(index, 1);
       }
@@ -48,10 +48,12 @@ const CustomerAll = () => {
 
   useEffect(() => {
     const filteredWarehousesByStatus = filteredWarehousesBySearch?.filter(
-      (warehouse) => warehouse?.user_status?.toLowerCase() === "active"
+      (warehouse) => warehouse?.warehouse_status?.toLowerCase() === "active"
     );
     setApprovedWarehouses(filteredWarehousesByStatus);
   }, [filteredWarehousesBySearch]);
+
+  console.log(approvedWarehouses, "lol");
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -107,7 +109,7 @@ const CustomerAll = () => {
         </label>
         <button
           className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow"
-          onClick={() => handleApproveAll(selectedWarehouses, "Approved")}
+          onClick={() => handleApproveAll(selectedWarehouses, "Active")}
         >
           Approve Selected
         </button>
