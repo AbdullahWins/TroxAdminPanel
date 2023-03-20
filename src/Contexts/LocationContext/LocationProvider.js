@@ -4,7 +4,6 @@ import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 
 export const LocationContext = createContext();
 const LocationProvider = ({ children }) => {
-  const [locations, setLocations] = useState([]);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -13,7 +12,6 @@ const LocationProvider = ({ children }) => {
   const [selectedCity, setSelectedCity] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
-  const [currentLocation, setCurrentLocation] = useState(null);
   const [filteredCountriesBySearch, setFilteredCountriesBySearch] = useState(
     []
   );
@@ -52,10 +50,6 @@ const LocationProvider = ({ children }) => {
       }
     );
   };
-
-  useEffect(() => {
-    fetchCountries();
-  }, []);
 
   //filter Countries by search value
   const filterCountriesBySearch = (e) => {
@@ -120,22 +114,25 @@ const LocationProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    setFilteredCountriesBySearch(locations);
-  }, [locations]);
+    fetchCountries();
+  }, []);
+
+  useEffect(() => {
+    setFilteredCountriesBySearch(countries);
+  }, [countries]);
 
   //exports
   const LocationInfo = {
+    fetchCountries,
     countries,
     states,
     cities,
-    locations,
     selectedCountry,
     setSelectedCountry,
     selectedState,
     setSelectedState,
     selectedCity,
     setSelectedCity,
-    setLocations,
     searchBarValue,
     setSearchBarValue,
     filterCountriesBySearch,
@@ -145,8 +142,6 @@ const LocationProvider = ({ children }) => {
     updateLocationStatus,
     isLoading,
     setIsLoading,
-    currentLocation,
-    setCurrentLocation,
   };
   return (
     <LocationContext.Provider value={LocationInfo}>
