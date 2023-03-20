@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import CustomerAllTable from "../../Components/Tables/Customer/CustomerAllTable";
+import WarehouseAllTable from "../../Components/Tables/Warehouse/WarehouseAllTable";
 import { WarehouseContext } from "../../Contexts/WarehouseContext/WarehouseProvider";
 
 const CustomerAll = () => {
@@ -117,11 +118,11 @@ const CustomerAll = () => {
       {isLoading ? (
         <OrdersLoading></OrdersLoading>
       ) : (
-        <CustomerAllTable
+        <WarehouseAllTable
           rows={approvedWarehouses}
           setCurrentCustomer={setCurrentWarehouse}
           handleSelectCheckbox={handleSelectCheckbox}
-        ></CustomerAllTable>
+        ></WarehouseAllTable>
       )}
     </div>
   );
