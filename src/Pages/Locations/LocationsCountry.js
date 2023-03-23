@@ -4,7 +4,7 @@ import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading"
 import LocationCountryTable from "../../Components/Tables/Locations/LocationCountryTabls";
 import { LocationContext } from "../../Contexts/LocationContext/LocationProvider";
 
-const DeliveryAllDeliveryMan = () => {
+const LocationCountry = () => {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const {
     isLoading,
@@ -124,4 +124,4 @@ const DeliveryAllDeliveryMan = () => {
   );
 };
 
-export default DeliveryAllDeliveryMan;
+export default LocationCountry;

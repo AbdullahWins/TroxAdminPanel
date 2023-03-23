@@ -15,6 +15,8 @@ const LocationProvider = ({ children }) => {
   const [filteredCountriesBySearch, setFilteredCountriesBySearch] = useState(
     []
   );
+  const [filteredStatesBySearch, setFilteredStatesBySearch] = useState([]);
+  const [filteredCitiesBySearch, setFilteredCitiesBySearch] = useState([]);
 
   //update one location status
   const updateLocationStatus = async (location, status) => {
@@ -35,7 +37,6 @@ const LocationProvider = ({ children }) => {
   };
 
   //fetch countries from database upon load
-
   const fetchCountries = async () => {
     setIsLoading(true);
     await getDocs(collection(firebaseFirestore, "Countries")).then(
@@ -64,7 +65,7 @@ const LocationProvider = ({ children }) => {
     setSearchBarValue(searchValue);
   };
 
-  //fetch states from database
+  //fetch States from database
   const fetchStates = async (selectedCountry) => {
     setIsLoading(true);
     await getDocs(
@@ -75,13 +76,26 @@ const LocationProvider = ({ children }) => {
         id: doc.id,
       }));
       setStates(newData);
-      console.log(newData);
+      setFilteredStatesBySearch(newData);
       setIsLoading(false);
     });
   };
   useEffect(() => {
     fetchStates(selectedCountry);
   }, [selectedCountry]);
+
+  //filter States by search value
+  const filterStatesBySearch = (e) => {
+    const searchValue = e.target.value;
+    if (searchValue === null) {
+      setFilteredStatesBySearch(states);
+    }
+    const filteredStates = states?.filter((state) =>
+      states?.name?.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredStatesBySearch(filteredStates);
+    setSearchBarValue(searchValue);
+  };
 
   //fetch Cities from database
   const fetchCities = async (selectedCountry, selectedState) => {
@@ -101,12 +115,26 @@ const LocationProvider = ({ children }) => {
         id: doc.id,
       }));
       setCities(newData);
+      setFilteredCitiesBySearch(newData);
       setIsLoading(false);
     });
   };
   useEffect(() => {
     fetchCities(selectedCountry, selectedState);
   }, [selectedCountry, selectedState]);
+
+  //filter Cities by search value
+  const filterCitiesBySearch = (e) => {
+    const searchValue = e.target.value;
+    if (searchValue === null) {
+      setFilteredCitiesBySearch(cities);
+    }
+    const filteredCities = cities?.filter((city) =>
+      city?.name?.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredCitiesBySearch(filteredCities);
+    setSearchBarValue(searchValue);
+  };
 
   // reload the current page id
   const reloadCurrentPage = (setCurrentPage) => {
@@ -138,6 +166,12 @@ const LocationProvider = ({ children }) => {
     filterCountriesBySearch,
     filteredCountriesBySearch,
     setFilteredCountriesBySearch,
+    filterStatesBySearch,
+    filteredStatesBySearch,
+    setFilteredStatesBySearch,
+    filterCitiesBySearch,
+    filteredCitiesBySearch,
+    setFilteredCitiesBySearch,
     reloadCurrentPage,
     updateLocationStatus,
     isLoading,
