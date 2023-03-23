@@ -145,10 +145,24 @@ const LocationProvider = ({ children }) => {
 
   //add new
 
-  // add new country
-
-  const addCountry = (countryName) => {
-    console.log(countryName);
+  //add country
+  const addCountry = async (countryData) => {
+    setIsLoading(true);
+    const countriesCollection = collection(firebaseFirestore, "Countries");
+    await addDoc(countriesCollection, countryData)
+      .then((docRef) => {
+        const newCountry = { ...countryData };
+        setStates((prevCountries) => [...prevCountries, newCountry]);
+        setFilteredCountriesBySearch((prevCountries) => [
+          ...prevCountries,
+          newCountry,
+        ]);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error adding country: ", error);
+        setIsLoading(false);
+      });
   };
 
   //add state

@@ -19,11 +19,11 @@ const LocationsCountryAdd = () => {
     const form = event.target;
     const countryName = form?.countryName.value;
 
-    const newRider = {
+    const newCountry = {
       name: countryName,
     };
     try {
-      addCountry(newRider);
+      addCountry(newCountry);
       setTimeout(() => {
         handlePopup("modal-open");
       }, 3000);
