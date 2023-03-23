@@ -145,7 +145,7 @@ const LocationCity = () => {
               </span>
             </button>
             <Link
-              to="/locationAddCity"
+              to="/locationsCityAdd"
               className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full h-12 w-12"
             >
               <span className="material-symbols-outlined text-secondaryMain">

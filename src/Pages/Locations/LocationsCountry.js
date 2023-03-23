@@ -73,7 +73,7 @@ const LocationCountry = () => {
               </span>
             </button>
             <Link
-              to="/locationAddCountry"
+              to="/locationsCountryAdd"
               className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full h-12 w-12"
             >
               <span className="material-symbols-outlined text-secondaryMain">

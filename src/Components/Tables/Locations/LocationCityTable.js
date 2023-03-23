@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { LocationContext } from "../../../Contexts/LocationContext/LocationProvider";
 import LocationsConfirmationDeletePopup from "../../Modals/Locations/LocationsConfirmationDeletePopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
@@ -105,9 +105,9 @@ const LocationCityTable = ({ rows, handleSelectCheckbox }) => {
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 City Name
               </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+              {/* <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Actions
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody className="text-center">
@@ -126,7 +126,7 @@ const LocationCityTable = ({ rows, handleSelectCheckbox }) => {
                   </th> */}
                   <td className="px-0">{i + 1}</td>
                   <td className="px-0 mx-0">{city?.name}</td>
-                  <td className="px-0 mx-0">
+                  {/* <td className="px-0 mx-0">
                     <div className="flex items-center justify-center gap-0">
                       <Link
                         to={{
@@ -143,7 +143,7 @@ const LocationCityTable = ({ rows, handleSelectCheckbox }) => {
                           </span>
                         </label>
                       </Link>
-                      {/* <label
+                      <label
                         htmlFor="locationDeletePopup"
                         onClick={() => setCurrentCountry(city?.name)}
                         className="btn rounded-full p-0 bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
@@ -151,9 +151,9 @@ const LocationCityTable = ({ rows, handleSelectCheckbox }) => {
                         <span className="material-symbols-outlined">
                           delete
                         </span>
-                      </label> */}
+                      </label>
                     </div>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}

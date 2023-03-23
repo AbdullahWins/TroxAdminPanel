@@ -24,6 +24,9 @@ import DeliveryCancelled from "../Pages/DeliveryMan/DeliveryCancelled";
 import LocationsCountry from "../Pages/Locations/LocationsCountry";
 import LocationsCity from "../Pages/Locations/LocationsCity";
 import LocationsState from "../Pages/Locations/LocationsState";
+import LocationsCountryAdd from "../Pages/Locations/LocationsCountryAdd";
+import LocationsCityAdd from "../Pages/Locations/LocationsCityAdd";
+import LocationsStateAdd from "../Pages/Locations/LocationsStateAdd";
 import StaffRole from "../Pages/Staff/StaffRole";
 import Login from "../Pages/Authentication/Login/Login";
 import PrivateRoutes from "../Routes/PrivateRoutes";
@@ -129,6 +132,18 @@ export const router = createBrowserRouter([
       {
         path: "/locationsCity",
         element: <LocationsCity></LocationsCity>,
+      },
+      {
+        path: "/locationsCountryAdd",
+        element: <LocationsCountryAdd></LocationsCountryAdd>,
+      },
+      {
+        path: "/locationsStateAdd",
+        element: <LocationsStateAdd></LocationsStateAdd>,
+      },
+      {
+        path: "/locationsCityAdd",
+        element: <LocationsCityAdd></LocationsCityAdd>,
       },
 
       // transaction

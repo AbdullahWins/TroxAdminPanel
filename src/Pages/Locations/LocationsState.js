@@ -110,7 +110,7 @@ const LocationState = () => {
               </span>
             </button>
             <Link
-              to="/locationAddState"
+              to="/locationsStateAdd"
               className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full h-12 w-12"
             >
               <span className="material-symbols-outlined text-secondaryMain">
