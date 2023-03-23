@@ -9,6 +9,10 @@ const LocationCity = () => {
   const {
     isLoading,
     fetchCities,
+    countries,
+    states,
+    setSelectedCountry,
+    setSelectedState,
     searchBarValue,
     currentCity,
     updateManyCitiesStatus,
@@ -42,6 +46,14 @@ const LocationCity = () => {
     setSelectedCities(selectAllCity);
   };
 
+  const handleStatesByCountry = (countryName) => {
+    setSelectedCountry(countryName);
+  };
+
+  const handleCitiesByState = (stateName) => {
+    setSelectedState(stateName);
+  };
+
   const handleApproveAll = (city, status) => {
     updateManyCitiesStatus(city, status);
     setSelectedCities([]);
@@ -53,6 +65,64 @@ const LocationCity = () => {
         <section className="flex items-center gap-4">
           <div>
             <p className="font-bold text-2xl">Location</p>
+          </div>
+        </section>
+        <section>
+          <div className="dropdown dropdown-hover">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-sm normal-case m-1"
+            >
+              Country &nbsp; <i className="fa-solid fa-angle-down"></i>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
+            >
+              {countries?.map((country, i) => {
+                return (
+                  <li key={i}>
+                    <button
+                      onClick={(e) => {
+                        handleStatesByCountry(country?.name, e);
+                      }}
+                      className="active:bg-primaryMain"
+                    >
+                      {country?.name}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div className="dropdown dropdown-hover">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-sm normal-case m-1"
+            >
+              State &nbsp; <i className="fa-solid fa-angle-down"></i>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
+            >
+              {states?.map((state, i) => {
+                return (
+                  <li key={i}>
+                    <button
+                      onClick={(e) => {
+                        handleCitiesByState(state?.name, e);
+                      }}
+                      className="active:bg-primaryMain"
+                    >
+                      {state?.name}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </section>
         <section className="flex items-center gap-4 w-2/5">
