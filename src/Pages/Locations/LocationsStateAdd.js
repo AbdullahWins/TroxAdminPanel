@@ -4,7 +4,8 @@ import DeliveryManAddConfirmationPopup from "../../Components/Modals/DeliveryMan
 import { LocationContext } from "../../Contexts/LocationContext/LocationProvider";
 
 const LocationsStateAdd = () => {
-  const { addState } = useContext(LocationContext);
+  const { addState, countries, selectedCountry, setSelectedCountry } =
+    useContext(LocationContext);
   const [popupIsOpen, setPopupIsOpen] = useState(null);
   // const location = useLocation();
   // const navigate = useNavigate();
@@ -32,6 +33,10 @@ const LocationsStateAdd = () => {
     }
   };
 
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event?.target?.value);
+  };
+
   return (
     <div className="w-full mt-10 mr-8">
       <section className="bg-whiteHigh rounded-b-lg">
@@ -53,16 +58,15 @@ const LocationsStateAdd = () => {
                 className="flex flex-col w-full items-center justify-center gap-2"
                 onSubmit={handleSubmitBtn}
               >
-                <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">Country Name:</p>
-                  <input
-                    required
-                    type="text"
-                    name="stateName"
-                    placeholder="Enter State name"
-                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
-                  />
-                </div>
+                <select
+                  className="select select-primary w-full max-w-xs"
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                >
+                  {countries?.map((country, i) => {
+                    return <option key={i}>{country?.name}</option>;
+                  })}
+                </select>
                 <div className="flex items-center justify-center gap-3">
                   <p className=" w-96 text-end">State Name:</p>
                   <input

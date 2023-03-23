@@ -4,7 +4,8 @@ import DeliveryManAddConfirmationPopup from "../../Components/Modals/DeliveryMan
 import { LocationContext } from "../../Contexts/LocationContext/LocationProvider";
 
 const LocationsCityAdd = () => {
-  const { addCity } = useContext(LocationContext);
+  const { addCity, countries, states,selectedCountry, setSelectedCountry, selectedState, setSelectedState } =
+    useContext(LocationContext);
   const [popupIsOpen, setPopupIsOpen] = useState(null);
   // const location = useLocation();
   // const navigate = useNavigate();
@@ -32,6 +33,14 @@ const LocationsCityAdd = () => {
     }
   };
 
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event?.target?.value);
+  };
+
+  const handleStateChange = (event) => {
+    setSelectedState(event?.target?.value);
+  };
+
   return (
     <div className="w-full mt-10 mr-8">
       <section className="bg-whiteHigh rounded-b-lg">
@@ -53,26 +62,24 @@ const LocationsCityAdd = () => {
                 className="flex flex-col w-full items-center justify-center gap-2"
                 onSubmit={handleSubmitBtn}
               >
-                <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">Country Name:</p>
-                  <input
-                    required
-                    type="text"
-                    name="cityName"
-                    placeholder="Enter City name"
-                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">State Name:</p>
-                  <input
-                    required
-                    type="text"
-                    name="cityName"
-                    placeholder="Enter City name"
-                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
-                  />
-                </div>
+                  <select
+                    className="select select-primary w-full max-w-xs"
+                    value={selectedCountry}
+                    onChange={handleCountryChange}
+                  >
+                    {countries?.map((country, i) => {
+                      return <option key={i}>{country?.name}</option>;
+                    })}
+                  </select>
+                  <select
+                    className="select select-primary w-full max-w-xs"
+                    value={selectedState}
+                    onChange={handleStateChange}
+                  >
+                    {states?.map((state, i) => {
+                      return <option key={i}>{state?.name}</option>;
+                    })}
+                  </select>
                 <div className="flex items-center justify-center gap-3">
                   <p className=" w-96 text-end">City Name:</p>
                   <input

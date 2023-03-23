@@ -137,6 +137,21 @@ const LocationProvider = ({ children }) => {
     setSearchBarValue(searchValue);
   };
 
+  //add new
+
+  // add new country
+
+  const addCountry = (countryName) => {
+    console.log(countryName);
+  };
+
+  const addState = (stateName) => {
+    console.log(selectedCountry, stateName);
+  };
+  const addCity = (cityName) => {
+    console.log(selectedCountry, selectedState, cityName);
+  };
+
   // reload the current page id
   const reloadCurrentPage = (setCurrentPage) => {
     setCurrentPage(1);
@@ -158,6 +173,9 @@ const LocationProvider = ({ children }) => {
     countries,
     states,
     cities,
+    addCountry,
+    addState,
+    addCity,
     selectedCountry,
     setSelectedCountry,
     selectedState,
