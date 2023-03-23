@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import DeliveryConfirmationCancelPopup from "../../Components/Modals/DeliveryMan/DeliveryConfirmationCancelPopup";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
-import LocationCountryTable from "../../Components/Tables/Locations/LocationCountryTabls";
+import LocationStateTable from "../../Components/Tables/Locations/LocationStateTable";
 import { LocationContext } from "../../Contexts/LocationContext/LocationProvider";
 
 const LocationState = () => {
@@ -144,12 +144,12 @@ const LocationState = () => {
       {isLoading ? (
         <OrdersLoading></OrdersLoading>
       ) : (
-        <LocationCountryTable
+        <LocationStateTable
           rows={filteredStatesBySearch}
           setCurrentCountry={setCurrentState}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
           handleSelectCheckbox={handleSelectCheckbox}
-        ></LocationCountryTable>
+        ></LocationStateTable>
       )}
       {/* cancel modal popup */}
       <DeliveryConfirmationCancelPopup
