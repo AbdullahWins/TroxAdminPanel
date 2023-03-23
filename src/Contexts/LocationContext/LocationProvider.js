@@ -1,6 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
-import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 export const LocationContext = createContext();
 const LocationProvider = ({ children }) => {
@@ -145,11 +151,50 @@ const LocationProvider = ({ children }) => {
     console.log(countryName);
   };
 
-  const addState = (stateName) => {
-    console.log(selectedCountry, stateName);
+  //add state
+  const addState = async (stateData) => {
+    setIsLoading(true);
+    const statesCollection = collection(
+      firebaseFirestore,
+      "Countries",
+      selectedCountry,
+      "States"
+    );
+    await addDoc(statesCollection, stateData)
+      .then((docRef) => {
+        const newState = { ...stateData };
+        setStates((prevStates) => [...prevStates, newState]);
+        setFilteredStatesBySearch((prevStates) => [...prevStates, newState]);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error adding state: ", error);
+        setIsLoading(false);
+      });
   };
-  const addCity = (cityName) => {
-    console.log(selectedCountry, selectedState, cityName);
+
+  //add city
+  const addCity = async (cityData) => {
+    setIsLoading(true);
+    const citiesCollection = collection(
+      firebaseFirestore,
+      "Countries",
+      selectedCountry,
+      "States",
+      selectedState,
+      "Cities"
+    );
+    await addDoc(citiesCollection, cityData)
+      .then((docRef) => {
+        const newCity = { ...cityData };
+        setCities((prevCities) => [...prevCities, newCity]);
+        setFilteredCitiesBySearch((prevCities) => [...prevCities, newCity]);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error adding city: ", error);
+        setIsLoading(false);
+      });
   };
 
   // reload the current page id

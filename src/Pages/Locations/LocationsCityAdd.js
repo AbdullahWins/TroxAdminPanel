@@ -26,7 +26,6 @@ const LocationsCityAdd = () => {
     event.preventDefault();
     const form = event.target;
     const cityName = form?.cityName.value;
-
     const newCity = {
       name: cityName,
     };
