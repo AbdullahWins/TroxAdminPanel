@@ -9,6 +9,7 @@ const LocationState = () => {
   const {
     isLoading,
     fetchStates,
+    countries,
     searchBarValue,
     currentState,
     setSelectedCountry,
@@ -72,26 +73,20 @@ const LocationState = () => {
               tabIndex={0}
               className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
             >
-              <li>
-                <button
-                  onClick={(e) => {
-                    handleStatesByCountry("Bangladesh", e);
-                  }}
-                  className="active:bg-primaryMain"
-                >
-                  Bangladesh
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={(e) => {
-                    handleStatesByCountry("India", e);
-                  }}
-                  className="active:bg-primaryMain"
-                >
-                  India
-                </button>
-              </li>
+              {countries?.map((country) => {
+                return (
+                  <li>
+                    <button
+                      onClick={(e) => {
+                        handleStatesByCountry(country?.name, e);
+                      }}
+                      className="active:bg-primaryMain"
+                    >
+                      {country?.name}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
