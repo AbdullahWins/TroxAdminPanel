@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { LocationContext } from "../../../Contexts/LocationContext/LocationProvider";
+import LocationsConfirmationDeletePopup from "../../Modals/Locations/LocationsConfirmationDeletePopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const LocationStateTable = ({ rows, handleSelectCheckbox }) => {
   const {
     searchBarValue,
-    // currentCountry,
-    setCurrentCountry,
-    // clickHandlerForModals,
+    currentCountry,
+    // setCurrentCountry,
+    clickHandlerForModals,
   } = useContext(LocationContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
@@ -127,15 +128,6 @@ const LocationStateTable = ({ rows, handleSelectCheckbox }) => {
                   <td className="px-0 mx-0">{state?.name}</td>
                   <td className="px-0 mx-0">
                     <div className="flex items-center justify-center gap-0">
-                      <label
-                        htmlFor="countryBlockPopup"
-                        onClick={() => setCurrentCountry(state?.name)}
-                        className="btn rounded-full p-0 bg-whiteHigh text-blackMid border-none hover:bg-whiteHigh"
-                      >
-                        <span className="material-symbols-outlined p-0">
-                          block
-                        </span>
-                      </label>
                       <Link
                         to={{
                           pathname: `/stateedit/${state?.name}`,
@@ -151,6 +143,13 @@ const LocationStateTable = ({ rows, handleSelectCheckbox }) => {
                           </span>
                         </label>
                       </Link>
+                      {/* <label
+                        htmlFor="locationDeletePopup"
+                        onClick={() => setCurrentCountry(state?.name)}
+                        className="btn rounded-full p-0 bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
+                      >
+                        <span className="material-symbols-outlined">delete</span>
+                      </label> */}
                     </div>
                   </td>
                 </tr>
@@ -212,6 +211,10 @@ const LocationStateTable = ({ rows, handleSelectCheckbox }) => {
           </ul>
         </div>
       </section>
+      <LocationsConfirmationDeletePopup
+        currentCountry={currentCountry}
+        clickHandlerForModals={clickHandlerForModals}
+      ></LocationsConfirmationDeletePopup>
     </div>
   );
 };

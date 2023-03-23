@@ -8,6 +8,7 @@ const LocationProvider = ({ children }) => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("Bangladesh");
+  const [currentCountry, setCurrentCountry] = useState(null);
   const [selectedState, setSelectedState] = useState("Rajshahi");
   const [selectedCity, setSelectedCity] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -152,6 +153,8 @@ const LocationProvider = ({ children }) => {
   //exports
   const LocationInfo = {
     fetchCountries,
+    fetchStates,
+    fetchCities,
     countries,
     states,
     cities,
@@ -176,6 +179,8 @@ const LocationProvider = ({ children }) => {
     updateLocationStatus,
     isLoading,
     setIsLoading,
+    currentCountry,
+    setCurrentCountry,
   };
   return (
     <LocationContext.Provider value={LocationInfo}>
