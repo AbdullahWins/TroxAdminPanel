@@ -54,7 +54,17 @@ const LocationsStateAdd = () => {
                 onSubmit={handleSubmitBtn}
               >
                 <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">Name:</p>
+                  <p className=" w-96 text-end">Country Name:</p>
+                  <input
+                    required
+                    type="text"
+                    name="stateName"
+                    placeholder="Enter State name"
+                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
+                  />
+                </div>
+                <div className="flex items-center justify-center gap-3">
+                  <p className=" w-96 text-end">State Name:</p>
                   <input
                     required
                     type="text"

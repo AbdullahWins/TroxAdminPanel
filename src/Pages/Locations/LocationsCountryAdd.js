@@ -54,7 +54,7 @@ const LocationsCountryAdd = () => {
                 onSubmit={handleSubmitBtn}
               >
                 <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">Name:</p>
+                  <p className=" w-96 text-end">Country Name:</p>
                   <input
                     required
                     type="text"
