@@ -11,6 +11,7 @@ const LocationState = () => {
     fetchStates,
     searchBarValue,
     currentState,
+    setSelectedCountry,
     updateManyStatesStatus,
     filterStatesBySearch,
     filteredStatesBySearch,
@@ -42,6 +43,10 @@ const LocationState = () => {
     setSelectedStates(selectAllState);
   };
 
+  const handleStatesByCountry = (countryName) => {
+    setSelectedCountry(countryName);
+  };
+
   const handleApproveAll = (state, status) => {
     updateManyStatesStatus(state, status);
     setSelectedStates([]);
@@ -53,6 +58,41 @@ const LocationState = () => {
         <section className="flex items-center gap-4">
           <div>
             <p className="font-bold text-2xl">Location</p>
+          </div>
+        </section>
+        <section>
+          <div className="dropdown dropdown-hover">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-sm normal-case m-1"
+            >
+              Country &nbsp; <i className="fa-solid fa-angle-down"></i>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
+            >
+              <li>
+                <button
+                  onClick={(e) => {
+                    handleStatesByCountry("Bangladesh", e);
+                  }}
+                  className="active:bg-primaryMain"
+                >
+                  Bangladesh
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={(e) => {
+                    handleStatesByCountry("India", e);
+                  }}
+                  className="active:bg-primaryMain"
+                >
+                  India
+                </button>
+              </li>
+            </ul>
           </div>
         </section>
         <section className="flex items-center gap-4 w-2/5">
