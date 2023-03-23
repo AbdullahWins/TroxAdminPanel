@@ -9,7 +9,7 @@ const LocationProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("Bangladesh");
   const [currentCountry, setCurrentCountry] = useState(null);
-  const [selectedState, setSelectedState] = useState("Rajshahi");
+  const [selectedState, setSelectedState] = useState("select one");
   const [selectedCity, setSelectedCity] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);

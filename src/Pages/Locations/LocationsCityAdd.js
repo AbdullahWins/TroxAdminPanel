@@ -4,8 +4,15 @@ import DeliveryManAddConfirmationPopup from "../../Components/Modals/DeliveryMan
 import { LocationContext } from "../../Contexts/LocationContext/LocationProvider";
 
 const LocationsCityAdd = () => {
-  const { addCity, countries, states,selectedCountry, setSelectedCountry, selectedState, setSelectedState } =
-    useContext(LocationContext);
+  const {
+    addCity,
+    countries,
+    states,
+    selectedCountry,
+    setSelectedCountry,
+    selectedState,
+    setSelectedState,
+  } = useContext(LocationContext);
   const [popupIsOpen, setPopupIsOpen] = useState(null);
   // const location = useLocation();
   // const navigate = useNavigate();
@@ -62,24 +69,26 @@ const LocationsCityAdd = () => {
                 className="flex flex-col w-full items-center justify-center gap-2"
                 onSubmit={handleSubmitBtn}
               >
-                  <select
-                    className="select select-primary w-full max-w-xs"
-                    value={selectedCountry}
-                    onChange={handleCountryChange}
-                  >
-                    {countries?.map((country, i) => {
-                      return <option key={i}>{country?.name}</option>;
-                    })}
-                  </select>
-                  <select
-                    className="select select-primary w-full max-w-xs"
-                    value={selectedState}
-                    onChange={handleStateChange}
-                  >
-                    {states?.map((state, i) => {
-                      return <option key={i}>{state?.name}</option>;
-                    })}
-                  </select>
+                <select
+                  className="select select-primary w-full max-w-xs"
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                >
+                  <option>select one</option>
+                  {countries?.map((country, i) => {
+                    return <option key={i}>{country?.name}</option>;
+                  })}
+                </select>
+                <select
+                  className="select select-primary w-full max-w-xs"
+                  value={selectedState}
+                  onChange={handleStateChange}
+                >
+                  <option>select one</option>
+                  {states?.map((state, i) => {
+                    return <option key={i}>{state?.name}</option>;
+                  })}
+                </select>
                 <div className="flex items-center justify-center gap-3">
                   <p className=" w-96 text-end">City Name:</p>
                   <input

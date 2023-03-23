@@ -74,6 +74,7 @@ const LocationState = () => {
               tabIndex={0}
               className="dropdown-content menu shadow bg-base-100 text-blackMid rounded-box w-52"
             >
+              <option>select one</option>
               {countries?.map((country, i) => {
                 return (
                   <li key={i}>
