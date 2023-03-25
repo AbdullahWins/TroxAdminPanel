@@ -48,49 +48,43 @@ const LocationsStateAdd = () => {
             <p className="text-center text-blackMid py-4 font-semibold text-xl">
               Add a State
             </p>
-            {/* {riders.map((rider, i) => {
-            return rider?.rider_documents?.map((image) => {
-              return <img src={image} alt="" />;
-            });
-          })} */}
             <div className="grid items-center justify-center gap-4">
-              <form
-                className="flex flex-col w-full items-center justify-center gap-2"
-                onSubmit={handleSubmitBtn}
-              >
-                <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">Country:</p>
-                  <select
-                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
-                    value={selectedCountry}
-                    onChange={handleCountryChange}
-                  >
-                    {countries?.map((country, i) => {
-                      return <option key={i}>{country?.name}</option>;
-                    })}
-                  </select>
-                </div>
-                <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">State Name:</p>
-                  <input
-                    required
-                    type="text"
-                    name="stateName"
-                    placeholder="Enter State name"
-                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
-                  />
-                </div>
-                <div className="flex items-center justify-end gap-4 pb-4">
-                  <Link to="/locationsState">
-                    <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
-                      Cancel
-                    </label>
-                  </Link>
-                  <button className="btn submit rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
-                    Save
-                  </button>
-                </div>
-              </form>
+              <div className="flex flex-col w-full items-center justify-center gap-2">
+                <form className="flex flex-col gap-2" onSubmit={handleSubmitBtn}>
+                  <div className="flex items-center justify-center gap-3">
+                    <p className=" w-96 text-end">Country:</p>
+                    <select
+                      className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
+                      value={selectedCountry}
+                      onChange={handleCountryChange}
+                    >
+                      {countries?.map((country, i) => {
+                        return <option key={i}>{country?.name}</option>;
+                      })}
+                    </select>
+                  </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <p className=" w-96 text-end">State Name:</p>
+                    <input
+                      required
+                      type="text"
+                      name="stateName"
+                      placeholder="Enter State name"
+                      className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
+                    />
+                  </div>
+                  <div className="flex items-center justify-end gap-4 pb-4">
+                    <Link to="/locationsState">
+                      <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
+                        Cancel
+                      </label>
+                    </Link>
+                    <button className="btn submit rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </section>
         </div>
