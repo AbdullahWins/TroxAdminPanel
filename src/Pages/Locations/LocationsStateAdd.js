@@ -58,15 +58,18 @@ const LocationsStateAdd = () => {
                 className="flex flex-col w-full items-center justify-center gap-2"
                 onSubmit={handleSubmitBtn}
               >
-                <select
-                  className="select select-primary w-full max-w-xs"
-                  value={selectedCountry}
-                  onChange={handleCountryChange}
-                >
-                  {countries?.map((country, i) => {
-                    return <option key={i}>{country?.name}</option>;
-                  })}
-                </select>
+                <div className="flex items-center justify-center gap-3">
+                  <p className=" w-96 text-end">Country:</p>
+                  <select
+                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
+                    value={selectedCountry}
+                    onChange={handleCountryChange}
+                  >
+                    {countries?.map((country, i) => {
+                      return <option key={i}>{country?.name}</option>;
+                    })}
+                  </select>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                   <p className=" w-96 text-end">State Name:</p>
                   <input
