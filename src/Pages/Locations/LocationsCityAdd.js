@@ -64,51 +64,59 @@ const LocationsCityAdd = () => {
             });
           })} */}
             <div className="grid items-center justify-center gap-4">
-              <form
-                className="flex flex-col w-full items-center justify-center gap-2"
-                onSubmit={handleSubmitBtn}
-              >
-                <select
-                  className="select select-primary w-full max-w-xs"
-                  value={selectedCountry}
-                  onChange={handleCountryChange}
+              <div className="flex flex-col w-full items-center justify-center gap-2">
+                <form
+                  className="flex flex-col gap-2"
+                  onSubmit={handleSubmitBtn}
                 >
-                  <option>select one</option>
-                  {countries?.map((country, i) => {
-                    return <option key={i}>{country?.name}</option>;
-                  })}
-                </select>
-                <select
-                  className="select select-primary w-full max-w-xs"
-                  value={selectedState}
-                  onChange={handleStateChange}
-                >
-                  <option>select one</option>
-                  {states?.map((state, i) => {
-                    return <option key={i}>{state?.name}</option>;
-                  })}
-                </select>
-                <div className="flex items-center justify-center gap-3">
-                  <p className=" w-96 text-end">City Name:</p>
-                  <input
-                    required
-                    type="text"
-                    name="cityName"
-                    placeholder="Enter City name"
-                    className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
-                  />
-                </div>
-                <div className="flex items-center justify-end gap-4 pb-4">
-                  <Link to="/locationsCity">
-                    <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
-                      Cancel
-                    </label>
-                  </Link>
-                  <button className="btn submit rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
-                    Save
-                  </button>
-                </div>
-              </form>
+                  <div className="flex items-center justify-center gap-3">
+                    <p className=" w-96 text-end">Country:</p>
+                    <select
+                      className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
+                      value={selectedCountry}
+                      onChange={handleCountryChange}
+                    >
+                      <option>select one</option>
+                      {countries?.map((country, i) => {
+                        return <option key={i}>{country?.name}</option>;
+                      })}
+                    </select>
+                  </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <p className=" w-96 text-end">State:</p>
+                    <select
+                      className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
+                      value={selectedState}
+                      onChange={handleStateChange}
+                    >
+                      <option>select one</option>
+                      {states?.map((state, i) => {
+                        return <option key={i}>{state?.name}</option>;
+                      })}
+                    </select>
+                  </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <p className=" w-96 text-end">City Name:</p>
+                    <input
+                      required
+                      type="text"
+                      name="cityName"
+                      placeholder="Enter City name"
+                      className="input border-2 border-blackLow border-opacity-20 p-2 focus:outline-none w-96"
+                    />
+                  </div>
+                  <div className="flex items-center justify-end gap-4 pb-4">
+                    <Link to="/locationsCity">
+                      <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
+                        Cancel
+                      </label>
+                    </Link>
+                    <button className="btn submit rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </section>
         </div>
