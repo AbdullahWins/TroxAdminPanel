@@ -40,7 +40,6 @@ const PaymentGateway = () => {
     const dob = form.dob.value;
     const gender = form.gender.value;
     const country = form.country.value;
-    const presentAddress = form.presentAddress.value;
 
     const newCustomer = {
       user_name: name,
@@ -49,7 +48,6 @@ const PaymentGateway = () => {
       user_dob: dob,
       user_gender: gender,
       user_country: country,
-      user_address: presentAddress,
     };
     console.log(newCustomer);
     updateSingleCustomer(newCustomer, id);
@@ -129,16 +127,6 @@ const PaymentGateway = () => {
                     name="country"
                     defaultValue={currentCustomer?.user_country}
                     placeholder="work location"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Present&nbsp;Address:</p>
-                  <input
-                    type="text"
-                    name="presentAddress"
-                    defaultValue={currentCustomer?.user_address}
-                    placeholder="full address"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
