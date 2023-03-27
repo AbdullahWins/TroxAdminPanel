@@ -1,153 +1,135 @@
-import { doc, getDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { CustomerContext } from "../../Contexts/CustomerContext/CustomerProvider";
-import { firebaseFirestore } from "../../Firebase/firebase.config";
+import React, { useContext, useEffect, useState } from "react";
+import DeliveryConfirmationCancelPopup from "../../Components/Modals/DeliveryMan/DeliveryConfirmationCancelPopup";
+import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
+import DeliveryAllDeliveryManTable from "../../Components/Tables/DeliveryMan/DeliveryAllDeliveryManTable";
+import { PaymentContext } from "../../Contexts/PaymentContext/PaymentProvider";
 
 const PaymentGateway = () => {
-  const { id } = useParams();
-  const { updateSingleCustomer } = useContext(CustomerContext);
-  const [currentCustomer, setCurrentCustomer] = useState(null);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/customerAll";
+  const [selectedGateways, setSelectedGateways] = useState([]);
+  const [activeGateways, setActiveGateways] = useState([]);
+  const {
+    isLoading,
+    fetchGateways,
+    searchBarValue,
+    filteredGatewaysBySearch,
+    filterGatewaysBySearch,
+    currentGateway,
+    setCurrentGateway,
+    updateManyGatewayStatus,
+  } = useContext(PaymentContext);
 
-  useEffect(() => {
-    const fetchSingleCustomer = async () => {
-      try {
-        const ref = doc(firebaseFirestore, "userDetails", id);
-        const docSnap = await getDoc(ref);
-        if (docSnap.exists()) {
-          const customer = docSnap.data();
-          return setCurrentCustomer(customer);
-        } else {
-          console.log("No such doCUMent!");
-        }
-      } catch (error) {
-        console.error("Error fetching doCUMent!", error);
+  const handleSelectCheckbox = (gateway, e) => {
+    const selectedGatewaysList = [...selectedGateways];
+    if (e.target.checked) {
+      selectedGatewaysList.push(gateway?.gateway_id);
+    } else {
+      const index = selectedGatewaysList.indexOf(gateway?.gateway_id);
+      if (index !== -1) {
+        selectedGatewaysList.splice(index, 1);
       }
-    };
-    fetchSingleCustomer();
-  }, [id]);
-
-  const handleEditBtn = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const contact = form.contact.value;
-    const dob = form.dob.value;
-    const gender = form.gender.value;
-    const country = form.country.value;
-
-    const newCustomer = {
-      user_name: name,
-      user_email: email,
-      user_contact: contact,
-      user_dob: dob,
-      user_gender: gender,
-      user_country: country,
-    };
-    console.log(newCustomer);
-    updateSingleCustomer(newCustomer, id);
-    setTimeout(() => {
-      navigate(from, { replace: true });
-    }, 1000);
+    }
+    setSelectedGateways(selectedGatewaysList);
   };
 
+  const handleSelectAllCheckbox = (gateways, e) => {
+    const selectAllGateway = [];
+    if (e?.target?.checked) {
+      gateways?.map((gateway) => {
+        return selectAllGateway?.push(gateway?.gateway_id);
+      });
+    } else {
+      setSelectedGateways([]);
+    }
+    setSelectedGateways(selectAllGateway);
+  };
+
+  const handleApproveAll = (gateway, status) => {
+    updateManyGatewayStatus(gateway, status);
+    setSelectedGateways([]);
+  };
+
+  useEffect(() => {
+    const filteredGatewaysByStatus = filteredGatewaysBySearch?.filter(
+      (gateway) => gateway?.gateway_status?.toLowerCase() === "active"
+    );
+    setActiveGateways(filteredGatewaysByStatus);
+  }, [filteredGatewaysBySearch]);
+
   return (
-    <section className="w-full mt-10 mr-8">
-      <div className="flex items-center bg-secondaryMain text-whiteHigh rounded-t-lg w-full">
-        <p className="font-bold text-2xl pl-4 py-5">Edit</p>
-      </div>
-      <div>
-        <section className="">
-          <p className="text-center text-blackMid py-4 font-semibold text-xl">
-            Editing the Customer: {currentCustomer?.user_name}
-          </p>
-          <div className="grid items-center justify-center gap-4">
-            <form className="flex flex-col gap-4" onSubmit={handleEditBtn}>
-              <div className="flex flex-col w-full items-center justify-center gap-2">
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Email:</p>
-                  <input
-                    disabled
-                    type="email"
-                    name="email"
-                    defaultValue={currentCustomer?.user_email}
-                    placeholder="email"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Name:</p>
-                  <input
-                    type="text"
-                    name="name"
-                    defaultValue={currentCustomer?.user_name}
-                    placeholder="enter full name"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Phone&nbsp;No:</p>
-                  <input
-                    type="text"
-                    name="contact"
-                    defaultValue={currentCustomer?.user_contact}
-                    placeholder="rider contact"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Date&nbsp;of&nbsp;Birth:</p>
-                  <input
-                    type="text"
-                    name="dob"
-                    defaultValue={currentCustomer?.user_dob}
-                    placeholder="date of birth"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Gender:</p>
-                  <input
-                    type="text"
-                    name="gender"
-                    defaultValue={currentCustomer?.user_gender}
-                    placeholder="gender"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Country:</p>
-                  <input
-                    type="text"
-                    name="country"
-                    defaultValue={currentCustomer?.user_country}
-                    placeholder="work location"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-              </div>
-              <div className="flex items-center justify-end gap-4">
-                <Link to={"/deliveryAllDeliveryMan"}>
-                  <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
-                    Cancel
-                  </label>
-                </Link>
-                <button className="btn submit rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
-                  Save
-                </button>
-              </div>
-            </form>
+    <div className="overflow-x-auto w-full py-10 pr-10">
+      <div className="flex items-center justify-between p-3 bg-secondaryMain text-whiteHigh rounded-t-lg">
+        <section className="flex items-center gap-4">
+          <div>
+            <p className="font-bold text-2xl">Payment Gateway</p>
           </div>
         </section>
+        <section className="flex items-center gap-4 w-2/5">
+          <input
+            defaultValue={searchBarValue}
+            onChange={filterGatewaysBySearch}
+            className="p-3 w-full text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
+            type="text"
+            name="searchInput"
+            placeholder="search"
+          />
+          <p>
+            <button
+              onClick={fetchGateways}
+              className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full"
+            >
+              <svg
+                width="16"
+                height="18"
+                viewBox="0 0 16 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.6415 3.35146C12.0115 1.72146 9.70148 0.781457 7.16148 1.04146C3.49148 1.41146 0.471476 4.39146 0.0614764 8.06146C-0.488524 12.9115 3.26148 17.0015 7.99148 17.0015C11.1815 17.0015 13.9215 15.1315 15.2015 12.4415C15.5215 11.7715 15.0415 11.0015 14.3015 11.0015C13.9315 11.0015 13.5815 11.2015 13.4215 11.5315C12.2915 13.9615 9.58148 15.5015 6.62148 14.8415C4.40148 14.3515 2.61148 12.5415 2.14148 10.3215C1.30148 6.44146 4.25148 3.00146 7.99148 3.00146C9.65148 3.00146 11.1315 3.69146 12.2115 4.78146L10.7015 6.29146C10.0715 6.92146 10.5115 8.00146 11.4015 8.00146H14.9915C15.5415 8.00146 15.9915 7.55146 15.9915 7.00146V3.41146C15.9915 2.52146 14.9115 2.07146 14.2815 2.70146L13.6415 3.35146Z"
+                  fill="#37B6B6"
+                />
+              </svg>
+            </button>
+          </p>
+        </section>
       </div>
-    </section>
+
+      <div
+        className={` ${
+          selectedGateways?.length < 1
+            ? "hidden"
+            : "flex items-center justify-start gap-4"
+        } p-4 bg-whiteHigh`}
+      >
+        <label
+          onClick={() => handleApproveAll(selectedGateways, "Cancelled")}
+          className="btn btn-sm border-none bg-primaryMain"
+        >
+          Decline Selected
+        </label>
+        <button
+          className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow"
+          onClick={() => handleApproveAll(selectedGateways, "Approved")}
+        >
+          Approve Selected
+        </button>
+      </div>
+      {isLoading ? (
+        <OrdersLoading></OrdersLoading>
+      ) : (
+        <DeliveryAllDeliveryManTable
+          rows={activeGateways}
+          setCurrentGateway={setCurrentGateway}
+          handleSelectAllCheckbox={handleSelectAllCheckbox}
+          handleSelectCheckbox={handleSelectCheckbox}
+        ></DeliveryAllDeliveryManTable>
+      )}
+      {/* cancel modal popup */}
+      <DeliveryConfirmationCancelPopup
+        currentRider={currentGateway}
+      ></DeliveryConfirmationCancelPopup>
+    </div>
   );
 };
 
 export default PaymentGateway;
-
