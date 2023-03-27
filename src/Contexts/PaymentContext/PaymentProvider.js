@@ -1,32 +1,18 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
-import { doc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const PaymentContext = createContext();
 const PaymentProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  //   const [allPaymentTypes, setAllPaymentTypes] = useState(false);
-  //   const [currentPaymentType, setCurrentPaymentType] = useState(false);
+  const [allGateways, setAllGateways] = useState(false);
+  const [searchBarValue, setSearchBarValue] = useState(null);
+  const [filteredGatewaysBySearch, setFilteredGatewaysBySearch] =
+    useState(false);
 
-  //   //update one rider status
-  //   const updateRiderStatus = async (rider, status) => {
-  //     try {
-  //       const db = firebaseFirestore;
-  //       const riderDocRef = doc(db, "riderDetails", rider);
-  //       try {
-  //         await updateDoc(riderDocRef, {
-  //           rider_status: status,
-  //         });
-  //         console.log("Rider status updated successfully");
-  //       } catch {
-  //         console.error("Rider document not found");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error updating rider status", error);
-  //     }
-  //   };
+  //   const [currentPaymentType, setCurrentPaymentType] = useState(false);
 
   //   //fetch one rider
   //   const fetchSingleRider = async (riderId) => {
@@ -50,15 +36,27 @@ const PaymentProvider = ({ children }) => {
   //     }
   //   };
 
+  //fetch orders from database
+  const fetchGateways = async () => {
+    setIsLoading(true);
+    await getDocs(collection(firebaseFirestore, "paymentDetails")).then(
+      (querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setAllGateways(newData);
+        setFilteredGatewaysBySearch(newData);
+        setIsLoading(false);
+      }
+    );
+  };
+
   //   update one payment method
-  const updateSinglePaymentMethod = async (newGateway, logo) => {
+  const updateSingleGateway = async (newGateway, id, logo) => {
     try {
       const db = firebaseFirestore;
-      const paymentDocRef = doc(
-        db,
-        "paymentDetails",
-        newGateway?.gateway_name
-      );
+      const paymentDocRef = doc(db, "paymentDetails", id);
       try {
         await updateDoc(paymentDocRef, {
           gateway_name: newGateway?.gateway_name,
@@ -96,14 +94,37 @@ const PaymentProvider = ({ children }) => {
     return imageUrls;
   };
 
+  //filter order by search value
+  const filterGatewaysBySearch = (e) => {
+    const searchValue = e.target.value;
+    if (searchValue === null) {
+      setFilteredGatewaysBySearch(allGateways);
+    }
+    const filteredGateways = allGateways?.filter((gateway) =>
+      gateway?.gateway_name?.toLowerCase().includes(searchValue)
+    );
+    setFilteredGatewaysBySearch(filteredGateways);
+    setSearchBarValue(searchValue);
+  };
+
+  //fetches all gateways upon load
+  useEffect(() => {
+    fetchGateways();
+  }, []);
+
   //exports
-  const PaymentInfo = {
+  const GatewayInfo = {
     isLoading,
     setIsLoading,
-    updateSinglePaymentMethod,
+    fetchGateways,
+    updateSingleGateway,
+    filterGatewaysBySearch,
+    searchBarValue,
+    filteredGatewaysBySearch,
+    allGateways,
   };
   return (
-    <PaymentContext.Provider value={PaymentInfo}>
+    <PaymentContext.Provider value={GatewayInfo}>
       {children}
     </PaymentContext.Provider>
   );

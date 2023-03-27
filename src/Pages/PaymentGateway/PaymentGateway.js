@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import DeliveryConfirmationCancelPopup from "../../Components/Modals/DeliveryMan/DeliveryConfirmationCancelPopup";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
-import DeliveryAllDeliveryManTable from "../../Components/Tables/DeliveryMan/DeliveryAllDeliveryManTable";
+import PaymentGatewaysTable from "../../Components/Tables/PaymentGateways/PaymentGatewaysTable";
 import { PaymentContext } from "../../Contexts/PaymentContext/PaymentProvider";
 
 const PaymentGateway = () => {
   const [selectedGateways, setSelectedGateways] = useState([]);
-  const [activeGateways, setActiveGateways] = useState([]);
   const {
     isLoading,
     fetchGateways,
@@ -47,13 +46,6 @@ const PaymentGateway = () => {
     updateManyGatewayStatus(gateway, status);
     setSelectedGateways([]);
   };
-
-  useEffect(() => {
-    const filteredGatewaysByStatus = filteredGatewaysBySearch?.filter(
-      (gateway) => gateway?.gateway_status?.toLowerCase() === "active"
-    );
-    setActiveGateways(filteredGatewaysByStatus);
-  }, [filteredGatewaysBySearch]);
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">
@@ -117,12 +109,12 @@ const PaymentGateway = () => {
       {isLoading ? (
         <OrdersLoading></OrdersLoading>
       ) : (
-        <DeliveryAllDeliveryManTable
-          rows={activeGateways}
+        <PaymentGatewaysTable
+          rows={filteredGatewaysBySearch}
           setCurrentGateway={setCurrentGateway}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
           handleSelectCheckbox={handleSelectCheckbox}
-        ></DeliveryAllDeliveryManTable>
+        ></PaymentGatewaysTable>
       )}
       {/* cancel modal popup */}
       <DeliveryConfirmationCancelPopup

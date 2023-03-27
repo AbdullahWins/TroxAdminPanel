@@ -2,25 +2,25 @@ import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { CustomerContext } from "../../Contexts/CustomerContext/CustomerProvider";
+import { PaymentContext } from "../../Contexts/PaymentContext/PaymentProvider";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
 
 const PaymentGatewayEdit = () => {
   const { id } = useParams();
-  const { updateSingleCustomer } = useContext(CustomerContext);
-  const [currentCustomer, setCurrentCustomer] = useState(null);
+  const { updateSingleGateway } = useContext(PaymentContext);
+  const [currentGateway, setCurrentGateway] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/customerAll";
 
   useEffect(() => {
-    const fetchSingleCustomer = async () => {
+    const fetchSingleGateway = async () => {
       try {
-        const ref = doc(firebaseFirestore, "userDetails", id);
+        const ref = doc(firebaseFirestore, "paymentDetails", id);
         const docSnap = await getDoc(ref);
         if (docSnap.exists()) {
-          const customer = docSnap.data();
-          return setCurrentCustomer(customer);
+          const gateway = docSnap.data();
+          return setCurrentGateway(gateway);
         } else {
           console.log("No such doCUMent!");
         }
@@ -28,29 +28,27 @@ const PaymentGatewayEdit = () => {
         console.error("Error fetching doCUMent!", error);
       }
     };
-    fetchSingleCustomer();
+    fetchSingleGateway();
   }, [id]);
 
   const handleEditBtn = (event) => {
     event.preventDefault();
     const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const contact = form.contact.value;
-    const dob = form.dob.value;
-    const gender = form.gender.value;
-    const country = form.country.value;
+    const name = form.gateway_name.value;
+    const status = form.gateway_status.value;
+    const secretKey = form.gateway_secret_key.value;
+    const publicKey = form.gateway_public_key.value;
+    const logo = form?.gateway_logo.files;
 
-    const newCustomer = {
-      user_name: name,
-      user_email: email,
-      user_contact: contact,
-      user_dob: dob,
-      user_gender: gender,
-      user_country: country,
+    const newGateway = {
+      gateway_name: name,
+      gateway_status: status,
+      gateway_secret_key: secretKey,
+      gateway_public_key: publicKey,
+      // gateway_logo: logo,
     };
-    console.log(newCustomer);
-    updateSingleCustomer(newCustomer, id);
+    console.log(newGateway);
+    updateSingleGateway(newGateway, id, logo);
     setTimeout(() => {
       navigate(from, { replace: true });
     }, 1000);
@@ -64,72 +62,56 @@ const PaymentGatewayEdit = () => {
       <div>
         <section className="">
           <p className="text-center text-blackMid py-4 font-semibold text-xl">
-            Editing the Customer: {currentCustomer?.user_name}
+            Editing the Gateway: {currentGateway?.gateway_name}
           </p>
           <div className="grid items-center justify-center gap-4">
             <form className="flex flex-col gap-4" onSubmit={handleEditBtn}>
               <div className="flex flex-col w-full items-center justify-center gap-2">
                 <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Email:</p>
-                  <input
-                    disabled
-                    type="email"
-                    name="email"
-                    defaultValue={currentCustomer?.user_email}
-                    placeholder="email"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Name:</p>
+                  <p className=" w-96 text-end">Payment&nbsp;Method:</p>
                   <input
                     type="text"
-                    name="name"
-                    defaultValue={currentCustomer?.user_name}
+                    name="gateway_name"
+                    defaultValue={currentGateway?.gateway_name}
                     placeholder="enter full name"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
                 <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Phone&nbsp;No:</p>
+                  <p className=" w-96 text-end">Status:</p>
                   <input
                     type="text"
-                    name="contact"
-                    defaultValue={currentCustomer?.user_contact}
+                    name="gateway_status"
+                    defaultValue={currentGateway?.gateway_status}
                     placeholder="rider contact"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
                 <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Date&nbsp;of&nbsp;Birth:</p>
+                  <p className=" w-96 text-end">Secret&nbsp;Key:</p>
                   <input
                     type="text"
-                    name="dob"
-                    defaultValue={currentCustomer?.user_dob}
+                    name="gateway_secret_key"
+                    defaultValue={currentGateway?.gateway_secret_key}
                     placeholder="date of birth"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
                 <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Gender:</p>
+                  <p className=" w-96 text-end">Publishable&nbsp;Key:</p>
                   <input
                     type="text"
-                    name="gender"
-                    defaultValue={currentCustomer?.user_gender}
+                    name="gateway_public_key"
+                    defaultValue={currentGateway?.gateway_public_key}
                     placeholder="gender"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
-                <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Country:</p>
-                  <input
-                    type="text"
-                    name="country"
-                    defaultValue={currentCustomer?.user_country}
-                    placeholder="work location"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
-                </div>
+                <input
+                  type="file"
+                  name="gateway_logo"
+                  className="file-input outline-none w-full max-w-xs my-4 focus:outline-none"
+                />
               </div>
               <div className="flex items-center justify-end gap-4">
                 <Link to={"/deliveryAllDeliveryMan"}>

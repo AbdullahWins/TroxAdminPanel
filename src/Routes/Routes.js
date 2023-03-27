@@ -35,6 +35,7 @@ import BusinessDeliveryCost from "../Pages/BusinessSetup/BusinessDeliveryCost";
 import BusinessDeliveryManCharge from "../Pages/BusinessSetup/BusinessDeliveryManCharge";
 import BusinessNotificationSettings from "../Pages/BusinessSetup/BusinessNotificationSettings";
 import PaymentGateway from "../Pages/PaymentGateway/PaymentGateway";
+import PaymentGatewayEdit from "../Pages/EditPages/PaymentGatewayEdit";
 import WithdrawConfirmed from "../Pages/WithdrawRequest/WithdrawConfirmed";
 import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
 import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
@@ -216,6 +217,10 @@ export const router = createBrowserRouter([
       {
         path: "/paymentGateway",
         element: <PaymentGateway></PaymentGateway>,
+      },
+      {
+        path: "/paymentGatewayEdit/:id",
+        element: <PaymentGatewayEdit></PaymentGatewayEdit>,
       },
 
       //user
