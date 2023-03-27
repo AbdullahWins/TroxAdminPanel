@@ -89,8 +89,8 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
         <table className="table w-full">
           <thead>
             <tr className="font-bold text-center text-3xl">
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                {/* <input
+              {/* <th className="bg-secondaryMainLightest text-bold text-lg normal-case"> */}
+              {/* <input
                 type="checkbox"
                 className="checkbox rounded-none"
                 name="allCheckbox"
@@ -98,7 +98,7 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
                   handleAllCheckbox(currentRows, e);
                 }}
               /> */}
-              </th>
+              {/* </th> */}
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Serial
               </th>
@@ -124,7 +124,7 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
             {currentRows?.map((gateway, i) => {
               return (
                 <tr key={i} className="text-center">
-                  <th className="px-0 pl-4">
+                  {/* <th className="px-0 pl-4">
                     <input
                       type="checkbox"
                       className="checkbox rounded-none"
@@ -133,22 +133,22 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
                         handleCheckbox(gateway, e);
                       }}
                     />
-                  </th>
-                  <td className="px-0">{i + 1}</td>
-                  <td className="px-0 mx-0">{gateway?.gateway_name}</td>
-                  <td className="px-0 mx-0">{gateway?.gateway_name}</td>
-                  <td className="px-0 mx-0">
+                  </th> */}
+                  <td className="p-0 m-0">{i + 1}</td>
+                  <td className="p-0 m-0">{gateway?.gateway_name}</td>
+                  <td className="flex items-center justify-center">
                     <img
                       className="h-8 w-8"
                       src={gateway?.gateway_logo}
                       alt=""
                     />
                   </td>
-                  <td className="px-0 mx-0"></td>
-                  <td className="px-0 mx-0"></td>
-                  <td className="px-0 mx-0"></td>
-                  <td className="px-0 mx-0"></td>
-                  <td className="px-0 mx-0">
+                  <td className="p-0 m-0">{gateway?.gateway_status}</td>
+                  <td className="p-0 m-0"></td>
+                  <td className="p-0 m-0"></td>
+                  <td className="p-0 m-0"></td>
+                  <td className="p-0 m-0"></td>
+                  <td className="p-0 m-0">
                     <div className="flex items-center justify-center gap-0">
                       <Link
                         to={{
