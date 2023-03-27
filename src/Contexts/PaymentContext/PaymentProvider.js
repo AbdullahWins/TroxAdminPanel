@@ -15,6 +15,7 @@ const PaymentProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [allGateways, setAllGateways] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState(null);
+  const [currentGateway, setCurrentGateway] = useState(null);
   const [filteredGatewaysBySearch, setFilteredGatewaysBySearch] =
     useState(false);
 
@@ -35,6 +36,34 @@ const PaymentProvider = ({ children }) => {
       }
     );
   };
+
+  //add Gateway
+  // const addGateway = async (newGateway, logo) => {
+  //   setIsLoading(true);
+  //   const readyGateway = {
+  //     gateway_name: newGateway?.gateway_name,
+  //     gateway_status: newGateway?.gateway_status,
+  //     gateway_secret_key: newGateway?.gateway_secret_key,
+  //     gateway_public_key: newGateway?.gateway_public_key,
+  //     gateway_logo: await uploadImages(logo),
+  //   };
+  //   const db = firebaseFirestore;
+  //   const paymentDocRef = doc(db, "paymentDetails", newGateway?.gateway_name);
+  //   paymentDocRef
+  //     .set(readyGateway)
+  //     .then((docRef) => {
+  //       const newDocId = docRef.id; // get the ID of the newly created document
+  //       setFilteredGatewaysBySearch((prevGateways) => [
+  //         ...prevGateways,
+  //         { ...readyGateway, id: newDocId }, // add the new document ID to the object
+  //       ]);
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error adding gateway: ", error);
+  //       setIsLoading(false);
+  //     });
+  // };
 
   //add Gateway
   const addGateway = async (newGateway, logo) => {
@@ -105,7 +134,7 @@ const PaymentProvider = ({ children }) => {
 
   //filter order by search value
   const filterGatewaysBySearch = (e) => {
-    const searchValue = e.target.value;
+    const searchValue = e?.target?.value;
     if (searchValue === null) {
       setFilteredGatewaysBySearch(allGateways);
     }
@@ -127,6 +156,8 @@ const PaymentProvider = ({ children }) => {
     addGateway,
     setIsLoading,
     fetchGateways,
+    currentGateway,
+    setCurrentGateway,
     updateSingleGateway,
     filterGatewaysBySearch,
     searchBarValue,

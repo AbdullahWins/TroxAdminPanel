@@ -1,5 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { PaymentContext } from "../../Contexts/PaymentContext/PaymentProvider";
@@ -7,11 +7,11 @@ import { firebaseFirestore } from "../../Firebase/firebase.config";
 
 const PaymentGatewayEdit = () => {
   const { id } = useParams();
-  const { updateSingleGateway } = useContext(PaymentContext);
-  const [currentGateway, setCurrentGateway] = useState(null);
+  const { updateSingleGateway, currentGateway, setCurrentGateway } =
+    useContext(PaymentContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/customerAll";
+  const from = location.state?.from?.pathname || "/paymentGateway";
 
   useEffect(() => {
     const fetchSingleGateway = async () => {
@@ -29,7 +29,7 @@ const PaymentGatewayEdit = () => {
       }
     };
     fetchSingleGateway();
-  }, [id]);
+  }, [setCurrentGateway, id]);
 
   const handleEditBtn = (event) => {
     event.preventDefault();

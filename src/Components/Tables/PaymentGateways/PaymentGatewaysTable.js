@@ -41,9 +41,9 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
     setActiveButton(pageNumber);
   };
 
-  const handleCheckbox = (order, e) => {
-    handleSelectCheckbox(order, e);
-  };
+  // const handleCheckbox = (order, e) => {
+  //   handleSelectCheckbox(order, e);
+  // };
 
   // const handleAllCheckbox = (orders, e) => {
   //   handleSelectAllCheckbox(orders, e);
@@ -151,8 +151,9 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
                   <td className="p-0 m-0">
                     <div className="flex items-center justify-center gap-0">
                       <Link
+                        onClick={() => setCurrentGateway(gateway)}
                         to={{
-                          pathname: `/paymentGatewayEdit/${gateway?.gateway_id}`,
+                          pathname: `/paymentGatewayEdit/${gateway?.gateway_name}`,
                           gateway: gateway,
                         }}
                       >
