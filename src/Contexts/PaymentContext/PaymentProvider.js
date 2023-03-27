@@ -1,7 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
-import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const PaymentContext = createContext();
@@ -14,29 +20,7 @@ const PaymentProvider = ({ children }) => {
 
   //   const [currentPaymentType, setCurrentPaymentType] = useState(false);
 
-  //   //fetch one rider
-  //   const fetchSingleRider = async (riderId) => {
-  //     console.log(riderId);
-  //     try {
-  //       const ref = doc(firebaseFirestore, "riders", riderId);
-  //       const docSnap = await getDoc(ref);
-  //       if (docSnap.exists()) {
-  //         const rider = docSnap.data();
-  //         if (currentRider?.rider_id === rider?.rider_id) {
-  //           return;
-  //         } else {
-  //           setCurrentRider(rider);
-  //           console.log(rider);
-  //         }
-  //       } else {
-  //         console.log("No such doCUMent!");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching doCUMent!", error);
-  //     }
-  //   };
-
-  //fetch orders from database
+  //fetch payment method from database
   const fetchGateways = async () => {
     setIsLoading(true);
     await getDocs(collection(firebaseFirestore, "paymentDetails")).then(
@@ -50,6 +34,31 @@ const PaymentProvider = ({ children }) => {
         setIsLoading(false);
       }
     );
+  };
+
+  //add Gateway
+  const addGateway = async (newGateway, logo) => {
+    setIsLoading(true);
+    const gatewaysCollection = collection(firebaseFirestore, "paymentDetails");
+    const readyGateway = {
+      gateway_name: newGateway?.gateway_name,
+      gateway_status: newGateway?.gateway_status,
+      gateway_secret_key: newGateway?.gateway_secret_key,
+      gateway_public_key: newGateway?.gateway_public_key,
+      gateway_logo: await uploadImages(logo),
+    };
+    await addDoc(gatewaysCollection, readyGateway)
+      .then((docRef) => {
+        setFilteredGatewaysBySearch((prevGateways) => [
+          ...prevGateways,
+          readyGateway,
+        ]);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error adding gateway: ", error);
+        setIsLoading(false);
+      });
   };
 
   //   update one payment method
@@ -115,6 +124,7 @@ const PaymentProvider = ({ children }) => {
   //exports
   const GatewayInfo = {
     isLoading,
+    addGateway,
     setIsLoading,
     fetchGateways,
     updateSingleGateway,

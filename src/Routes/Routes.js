@@ -41,6 +41,7 @@ import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
 import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
 import CustomerEdit from "../Pages/EditPages/CustomerEdit";
 import WarehouseEdit from "../Pages/EditPages/WarehouseEdit";
+import PaymentGatewayAdd from "../Pages/PaymentGateway/PaymentGatewayAdd";
 
 export const router = createBrowserRouter([
   {
@@ -217,6 +218,10 @@ export const router = createBrowserRouter([
       {
         path: "/paymentGateway",
         element: <PaymentGateway></PaymentGateway>,
+      },
+      {
+        path: "/paymentGatewayAdd",
+        element: <PaymentGatewayAdd></PaymentGatewayAdd>,
       },
       {
         path: "/paymentGatewayEdit/:id",
