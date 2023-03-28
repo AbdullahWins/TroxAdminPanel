@@ -7,8 +7,12 @@ import { firebaseFirestore } from "../../Firebase/firebase.config";
 
 const PaymentGatewayEdit = () => {
   const { id } = useParams();
-  const { updateSingleGateway, currentGateway, setCurrentGateway } =
-    useContext(PaymentContext);
+  const {
+    fetchGateways,
+    updateSingleGateway,
+    currentGateway,
+    setCurrentGateway,
+  } = useContext(PaymentContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/paymentGateway";
@@ -47,8 +51,8 @@ const PaymentGatewayEdit = () => {
       gateway_public_key: publicKey,
       // gateway_logo: logo,
     };
-    console.log(newGateway);
     updateSingleGateway(newGateway, id, logo);
+    fetchGateways();
     setTimeout(() => {
       navigate(from, { replace: true });
     }, 1000);
@@ -70,6 +74,7 @@ const PaymentGatewayEdit = () => {
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Payment&nbsp;Method:</p>
                   <input
+                    disabled
                     type="text"
                     name="gateway_name"
                     defaultValue={currentGateway?.gateway_name}
@@ -80,6 +85,7 @@ const PaymentGatewayEdit = () => {
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Status:</p>
                   <input
+                    required
                     type="text"
                     name="gateway_status"
                     defaultValue={currentGateway?.gateway_status}
@@ -90,6 +96,7 @@ const PaymentGatewayEdit = () => {
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Secret&nbsp;Key:</p>
                   <input
+                    required
                     type="text"
                     name="gateway_secret_key"
                     defaultValue={currentGateway?.gateway_secret_key}
@@ -100,6 +107,7 @@ const PaymentGatewayEdit = () => {
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Publishable&nbsp;Key:</p>
                   <input
+                    required
                     type="text"
                     name="gateway_public_key"
                     defaultValue={currentGateway?.gateway_public_key}
@@ -108,13 +116,14 @@ const PaymentGatewayEdit = () => {
                   />
                 </div>
                 <input
+                  required
                   type="file"
                   name="gateway_logo"
                   className="file-input outline-none w-full max-w-xs my-4 focus:outline-none"
                 />
               </div>
               <div className="flex items-center justify-end gap-4">
-                <Link to={"/deliveryAllDeliveryMan"}>
+                <Link to={"/paymentGateway"}>
                   <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
                     Cancel
                   </label>

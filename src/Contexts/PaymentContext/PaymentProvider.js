@@ -2,10 +2,10 @@ import React, { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
 import {
-  addDoc,
   collection,
   doc,
   getDocs,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -66,6 +66,31 @@ const PaymentProvider = ({ children }) => {
   // };
 
   //add Gateway
+  // const addGateway = async (newGateway, logo) => {
+  //   setIsLoading(true);
+  //   const gatewaysCollection = collection(firebaseFirestore, "paymentDetails");
+  //   const readyGateway = {
+  //     gateway_name: newGateway?.gateway_name,
+  //     gateway_status: newGateway?.gateway_status,
+  //     gateway_secret_key: newGateway?.gateway_secret_key,
+  //     gateway_public_key: newGateway?.gateway_public_key,
+  //     gateway_logo: await uploadImages(logo),
+  //   };
+  //   await addDoc(gatewaysCollection, readyGateway)
+  //     .then((docRef) => {
+  //       setFilteredGatewaysBySearch((prevGateways) => [
+  //         ...prevGateways,
+  //         readyGateway,
+  //       ]);
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error adding gateway: ", error);
+  //       setIsLoading(false);
+  //     });
+  // };
+
+  // add Gateway
   const addGateway = async (newGateway, logo) => {
     setIsLoading(true);
     const gatewaysCollection = collection(firebaseFirestore, "paymentDetails");
@@ -76,12 +101,15 @@ const PaymentProvider = ({ children }) => {
       gateway_public_key: newGateway?.gateway_public_key,
       gateway_logo: await uploadImages(logo),
     };
-    await addDoc(gatewaysCollection, readyGateway)
-      .then((docRef) => {
-        setFilteredGatewaysBySearch((prevGateways) => [
-          ...prevGateways,
-          readyGateway,
-        ]);
+    const gatewayRef = doc(gatewaysCollection, newGateway?.gateway_name);
+    await setDoc(gatewayRef, readyGateway)
+      .then(() => {
+        setFilteredGatewaysBySearch((prevGateways) => {
+          if (Array.isArray(prevGateways)) {
+            return [...prevGateways, readyGateway];
+          }
+          return [readyGateway];
+        });
         setIsLoading(false);
       })
       .catch((error) => {
