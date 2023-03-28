@@ -37,59 +37,6 @@ const PaymentProvider = ({ children }) => {
     );
   };
 
-  //add Gateway
-  // const addGateway = async (newGateway, logo) => {
-  //   setIsLoading(true);
-  //   const readyGateway = {
-  //     gateway_name: newGateway?.gateway_name,
-  //     gateway_status: newGateway?.gateway_status,
-  //     gateway_secret_key: newGateway?.gateway_secret_key,
-  //     gateway_public_key: newGateway?.gateway_public_key,
-  //     gateway_logo: await uploadImages(logo),
-  //   };
-  //   const db = firebaseFirestore;
-  //   const paymentDocRef = doc(db, "paymentDetails", newGateway?.gateway_name);
-  //   paymentDocRef
-  //     .set(readyGateway)
-  //     .then((docRef) => {
-  //       const newDocId = docRef.id; // get the ID of the newly created document
-  //       setFilteredGatewaysBySearch((prevGateways) => [
-  //         ...prevGateways,
-  //         { ...readyGateway, id: newDocId }, // add the new document ID to the object
-  //       ]);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error adding gateway: ", error);
-  //       setIsLoading(false);
-  //     });
-  // };
-
-  //add Gateway
-  // const addGateway = async (newGateway, logo) => {
-  //   setIsLoading(true);
-  //   const gatewaysCollection = collection(firebaseFirestore, "paymentDetails");
-  //   const readyGateway = {
-  //     gateway_name: newGateway?.gateway_name,
-  //     gateway_status: newGateway?.gateway_status,
-  //     gateway_secret_key: newGateway?.gateway_secret_key,
-  //     gateway_public_key: newGateway?.gateway_public_key,
-  //     gateway_logo: await uploadImages(logo),
-  //   };
-  //   await addDoc(gatewaysCollection, readyGateway)
-  //     .then((docRef) => {
-  //       setFilteredGatewaysBySearch((prevGateways) => [
-  //         ...prevGateways,
-  //         readyGateway,
-  //       ]);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error adding gateway: ", error);
-  //       setIsLoading(false);
-  //     });
-  // };
-
   // add Gateway
   const addGateway = async (newGateway, logo) => {
     setIsLoading(true);
@@ -138,6 +85,30 @@ const PaymentProvider = ({ children }) => {
     } catch (error) {
       console.error("Error updating Payment method", error);
     }
+  };
+
+  //update one gateway status
+  const updateSingleGatewayStatus = async (gatewayName, status) => {
+    try {
+      const db = firebaseFirestore;
+      const paymentDocRef = doc(db, "paymentDetails", gatewayName);
+      try {
+        await updateDoc(paymentDocRef, {
+          gateway_status: status,
+        });
+        fetchGateways();
+        console.log("Gateway status updated successfully");
+      } catch {
+        console.error("Gateway document not found");
+      }
+    } catch (error) {
+      console.error("Error updating Gateway status", error);
+    }
+  };
+
+  //update state in modals
+  const clickHandlerForModals = (gatewayName, status) => {
+    updateSingleGatewayStatus(gatewayName, status);
   };
 
   // Upload images to Firebase Storage
@@ -190,6 +161,7 @@ const PaymentProvider = ({ children }) => {
     filterGatewaysBySearch,
     searchBarValue,
     filteredGatewaysBySearch,
+    clickHandlerForModals,
     allGateways,
   };
   return (

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PaymentContext } from "../../../Contexts/PaymentContext/PaymentProvider";
-import WarehouseConfirmationDeletePopup from "../../Modals/Warehouse/WarehouseConfirmationDeletePopup";
+import PaymentConfirmationDeletePopup from "../../Modals/PaymentMethod/PaymentConfirmationDeletePopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
 const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
@@ -89,16 +89,16 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
         <table className="table w-full">
           <thead>
             <tr className="font-bold text-center text-3xl">
-              {/* <th className="bg-secondaryMainLightest text-bold text-lg normal-case"> */}
-              {/* <input
+              {/* <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+              <input
                 type="checkbox"
                 className="checkbox rounded-none"
                 name="allCheckbox"
                 onChange={(e) => {
                   handleAllCheckbox(currentRows, e);
                 }}
-              /> */}
-              {/* </th> */}
+              />
+              </th> */}
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Serial
               </th>
@@ -157,10 +157,7 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
                           gateway: gateway,
                         }}
                       >
-                        <label
-                          htmlFor="pausePopup"
-                          className="btn rounded-full p-3 bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
-                        >
+                        <label className="btn rounded-full p-3 bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh">
                           <span className="material-symbols-outlined">
                             border_color
                           </span>
@@ -168,7 +165,7 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
                       </Link>
 
                       <label
-                        htmlFor="warehouseDeletePopup"
+                        htmlFor="gatewayDeletePopup"
                         onClick={() => setCurrentGateway(gateway)}
                         className="btn rounded-full p-0 bg-whiteHigh  text-alertColor border-none hover:bg-whiteHigh"
                       >
@@ -237,10 +234,10 @@ const PaymentGatewaysTable = ({ rows, handleSelectCheckbox }) => {
           </ul>
         </div>
       </section>
-      <WarehouseConfirmationDeletePopup
-        currentWarehouse={currentGateway}
+      <PaymentConfirmationDeletePopup
+        currentGateway={currentGateway}
         clickHandlerForModals={clickHandlerForModals}
-      ></WarehouseConfirmationDeletePopup>
+      ></PaymentConfirmationDeletePopup>
     </div>
   );
 };
