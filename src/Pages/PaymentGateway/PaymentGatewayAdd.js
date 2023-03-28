@@ -88,7 +88,7 @@ const PaymentGatewayAdd = () => {
                 />
               </div>
               <div className="flex items-center justify-end gap-4">
-                <Link to={"/deliveryAllDeliveryMan"}>
+                <Link to={"/paymentGateway"}>
                   <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
                     Cancel
                   </label>
