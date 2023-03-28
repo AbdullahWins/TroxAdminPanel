@@ -50,7 +50,7 @@ const PaymentGatewayAdd = () => {
                   <input
                     type="text"
                     name="gateway_name"
-                    placeholder="enter full name"
+                    placeholder="Method"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
@@ -59,7 +59,7 @@ const PaymentGatewayAdd = () => {
                   <input
                     type="text"
                     name="gateway_status"
-                    placeholder="rider contact"
+                    placeholder="Status"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
@@ -68,7 +68,7 @@ const PaymentGatewayAdd = () => {
                   <input
                     type="text"
                     name="gateway_secret_key"
-                    placeholder="date of birth"
+                    placeholder="Secret key"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
@@ -77,7 +77,7 @@ const PaymentGatewayAdd = () => {
                   <input
                     type="text"
                     name="gateway_public_key"
-                    placeholder="gender"
+                    placeholder="Public Key"
                     className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
                   />
                 </div>
