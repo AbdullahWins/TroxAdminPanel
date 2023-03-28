@@ -24,6 +24,9 @@ import DeliveryCancelled from "../Pages/DeliveryMan/DeliveryCancelled";
 import LocationsCountry from "../Pages/Locations/LocationsCountry";
 import LocationsCity from "../Pages/Locations/LocationsCity";
 import LocationsState from "../Pages/Locations/LocationsState";
+import LocationsCountryAdd from "../Pages/Locations/LocationsCountryAdd";
+import LocationsCityAdd from "../Pages/Locations/LocationsCityAdd";
+import LocationsStateAdd from "../Pages/Locations/LocationsStateAdd";
 import StaffRole from "../Pages/Staff/StaffRole";
 import Login from "../Pages/Authentication/Login/Login";
 import PrivateRoutes from "../Routes/PrivateRoutes";
@@ -32,10 +35,13 @@ import BusinessDeliveryCost from "../Pages/BusinessSetup/BusinessDeliveryCost";
 import BusinessDeliveryManCharge from "../Pages/BusinessSetup/BusinessDeliveryManCharge";
 import BusinessNotificationSettings from "../Pages/BusinessSetup/BusinessNotificationSettings";
 import PaymentGateway from "../Pages/PaymentGateway/PaymentGateway";
+import PaymentGatewayEdit from "../Pages/EditPages/PaymentGatewayEdit";
 import WithdrawConfirmed from "../Pages/WithdrawRequest/WithdrawConfirmed";
 import WithdrawCancelled from "../Pages/WithdrawRequest/WithdrawCancelled";
 import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
 import CustomerEdit from "../Pages/EditPages/CustomerEdit";
+import WarehouseEdit from "../Pages/EditPages/WarehouseEdit";
+import PaymentGatewayAdd from "../Pages/PaymentGateway/PaymentGatewayAdd";
 
 export const router = createBrowserRouter([
   {
@@ -129,6 +135,18 @@ export const router = createBrowserRouter([
         path: "/locationsCity",
         element: <LocationsCity></LocationsCity>,
       },
+      {
+        path: "/locationsCountryAdd",
+        element: <LocationsCountryAdd></LocationsCountryAdd>,
+      },
+      {
+        path: "/locationsStateAdd",
+        element: <LocationsStateAdd></LocationsStateAdd>,
+      },
+      {
+        path: "/locationsCityAdd",
+        element: <LocationsCityAdd></LocationsCityAdd>,
+      },
 
       // transaction
       {
@@ -148,6 +166,10 @@ export const router = createBrowserRouter([
       {
         path: "/warehouseAddNew",
         element: <WarehouseAddNew></WarehouseAddNew>,
+      },
+      {
+        path: "/warehouseedit/:id",
+        element: <WarehouseEdit></WarehouseEdit>,
       },
 
       // staff
@@ -196,6 +218,14 @@ export const router = createBrowserRouter([
       {
         path: "/paymentGateway",
         element: <PaymentGateway></PaymentGateway>,
+      },
+      {
+        path: "/paymentGatewayAdd",
+        element: <PaymentGatewayAdd></PaymentGatewayAdd>,
+      },
+      {
+        path: "/paymentGatewayEdit/:id",
+        element: <PaymentGatewayEdit></PaymentGatewayEdit>,
       },
 
       //user

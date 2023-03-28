@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
-import CustomerAllTable from "../../Components/Tables/Customer/CustomerAllTable";
+import WarehouseAllTable from "../../Components/Tables/Warehouse/WarehouseAllTable";
 import { WarehouseContext } from "../../Contexts/WarehouseContext/WarehouseProvider";
 
-const CustomerAll = () => {
+const WarehouseAll = () => {
   const [selectedWarehouses, setSelectedWarehouses] = useState([]);
   const [approvedWarehouses, setApprovedWarehouses] = useState([]);
   const {
@@ -19,9 +19,9 @@ const CustomerAll = () => {
   const handleSelectCheckbox = (warehouse, e) => {
     const selectedWarehousesList = [...selectedWarehouses];
     if (e.target.checked) {
-      selectedWarehousesList.push(warehouse?.used_id);
+      selectedWarehousesList.push(warehouse?.warehouse_id);
     } else {
-      const index = selectedWarehousesList.indexOf(warehouse?.used_id);
+      const index = selectedWarehousesList.indexOf(warehouse?.warehouse_id);
       if (index !== -1) {
         selectedWarehousesList.splice(index, 1);
       }
@@ -48,7 +48,7 @@ const CustomerAll = () => {
 
   useEffect(() => {
     const filteredWarehousesByStatus = filteredWarehousesBySearch?.filter(
-      (warehouse) => warehouse?.user_status?.toLowerCase() === "active"
+      (warehouse) => warehouse?.warehouse_status?.toLowerCase() === "active"
     );
     setApprovedWarehouses(filteredWarehousesByStatus);
   }, [filteredWarehousesBySearch]);
@@ -107,7 +107,7 @@ const CustomerAll = () => {
         </label>
         <button
           className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow"
-          onClick={() => handleApproveAll(selectedWarehouses, "Approved")}
+          onClick={() => handleApproveAll(selectedWarehouses, "Active")}
         >
           Approve Selected
         </button>
@@ -115,14 +115,14 @@ const CustomerAll = () => {
       {isLoading ? (
         <OrdersLoading></OrdersLoading>
       ) : (
-        <CustomerAllTable
+        <WarehouseAllTable
           rows={approvedWarehouses}
-          setCurrentCustomer={setCurrentWarehouse}
+          setCurrentWarehouse={setCurrentWarehouse}
           handleSelectCheckbox={handleSelectCheckbox}
-        ></CustomerAllTable>
+        ></WarehouseAllTable>
       )}
     </div>
   );
 };
 
-export default CustomerAll;
+export default WarehouseAll;

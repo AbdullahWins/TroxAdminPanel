@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { CustomerContext } from "../../../Contexts/CustomerContext/CustomerProvider";
-import CustomerConfirmationBlockPopup from "../../Modals/Customer/CustomerConfirmationBlockPopup";
+// import { Link } from "react-router-dom";
+import { LocationContext } from "../../../Contexts/LocationContext/LocationProvider";
+import LocationsConfirmationDeletePopup from "../../Modals/Locations/LocationsConfirmationDeletePopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
-const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
+const LocationCountryTable = ({ rows, handleSelectCheckbox }) => {
   const {
     searchBarValue,
-    currentCustomer,
-    setCurrentCustomer,
+    currentCountry,
+    // setCurrentCountry,
     clickHandlerForModals,
-  } = useContext(CustomerContext);
+  } = useContext(LocationContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -41,9 +41,9 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
     setActiveButton(pageNumber);
   };
 
-  const handleCheckbox = (order, e) => {
-    handleSelectCheckbox(order, e);
-  };
+  //   const handleCheckbox = (order, e) => {
+  //     handleSelectCheckbox(order, e);
+  //   };
 
   // const handleAllCheckbox = (orders, e) => {
   //   handleSelectAllCheckbox(orders, e);
@@ -89,76 +89,49 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
         <table className="table w-full">
           <thead>
             <tr className="font-bold text-center text-3xl">
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                {/* <input
+              {/* <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                <input
                 type="checkbox"
                 className="checkbox rounded-none"
                 name="allCheckbox"
                 onChange={(e) => {
                   handleAllCheckbox(currentRows, e);
                 }}
-              /> */}
-              </th>
+              />
+              </th> */}
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Serial
               </th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Created
+                Country Name
               </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Name
-              </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Gender
-              </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Contact
-              </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Email
-              </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+              {/* <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Actions
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody className="text-center">
-            {currentRows?.map((customer, i) => {
+            {currentRows?.map((country, i) => {
               return (
                 <tr key={i} className="text-center">
-                  <th className="px-0 pl-4">
+                  {/* <th className="px-0 pl-4">
                     <input
                       type="checkbox"
                       className="checkbox rounded-none"
                       name="checkbox"
                       onChange={(e) => {
-                        handleCheckbox(customer, e);
+                        handleCheckbox(country, e);
                       }}
                     />
-                  </th>
+                  </th> */}
                   <td className="px-0">{i + 1}</td>
-                  <td className="px-0 mx-0">
-                    {customer?.timestamp?.toDate().toLocaleDateString()}
-                  </td>
-                  <td className="px-0 mx-0">{customer?.user_name}</td>
-                  <td className="px-0 mx-0">{customer?.user_gender}</td>
-                  <td className="px-0 mx-0">{customer?.user_contact}</td>
-                  <td className="px-0">{customer?.user_email}</td>
-                  <td className="px-0 mx-0">
+                  <td className="px-0 mx-0">{country?.name}</td>
+                  {/* <td className="px-0 mx-0">
                     <div className="flex items-center justify-center gap-0">
-                      <label
-                        htmlFor="customerBlockPopup"
-                        onClick={() => setCurrentCustomer(customer)}
-                        className="btn rounded-full p-0 bg-whiteHigh text-blackMid border-none hover:bg-whiteHigh"
-                      >
-                        <span className="material-symbols-outlined p-0">
-                          block
-                        </span>
-                      </label>
                       <Link
                         to={{
-                          pathname: `/customeredit/${customer?.user_id}`,
-                          customer: customer,
+                          pathname: `/countryedit/${country?.name}`,
+                          country: country,
                         }}
                       >
                         <label
@@ -170,8 +143,17 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
                           </span>
                         </label>
                       </Link>
+                      <label
+                        htmlFor="locationDeletePopup"
+                        onClick={() => setCurrentCountry(country?.name)}
+                        className="btn rounded-full p-0 bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
+                      >
+                        <span className="material-symbols-outlined">
+                          delete
+                        </span>
+                      </label>
                     </div>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}
@@ -231,12 +213,12 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
           </ul>
         </div>
       </section>
-      <CustomerConfirmationBlockPopup
-        currentCustomer={currentCustomer}
+      <LocationsConfirmationDeletePopup
+        currentCountry={currentCountry}
         clickHandlerForModals={clickHandlerForModals}
-      ></CustomerConfirmationBlockPopup>
+      ></LocationsConfirmationDeletePopup>
     </div>
   );
 };
 
-export default CustomerAllTable;
+export default LocationCountryTable;

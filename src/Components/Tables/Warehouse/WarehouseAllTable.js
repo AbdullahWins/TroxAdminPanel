@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CustomerContext } from "../../../Contexts/CustomerContext/CustomerProvider";
-import CustomerConfirmationBlockPopup from "../../Modals/Customer/CustomerConfirmationBlockPopup";
+import { WarehouseContext } from "../../../Contexts/WarehouseContext/WarehouseProvider";
+import WarehouseConfirmationDeletePopup from "../../Modals/Warehouse/WarehouseConfirmationDeletePopup";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 
-const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
+const WarehouseAllTable = ({ rows, handleSelectCheckbox }) => {
   const {
     searchBarValue,
-    currentCustomer,
-    setCurrentCustomer,
+    currentWarehouse,
+    setCurrentWarehouse,
     clickHandlerForModals,
-  } = useContext(CustomerContext);
+  } = useContext(WarehouseContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -103,27 +103,26 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
                 Serial
               </th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Created
-              </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Name
-              </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Gender
-              </th>
-              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
-                Contact
               </th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Email
               </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
+                Address
+              </th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
+              <th className="bg-secondaryMainLightest text-bold text-lg normal-case"></th>
               <th className="bg-secondaryMainLightest text-bold text-lg normal-case">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody className="text-center">
-            {currentRows?.map((customer, i) => {
+            {currentRows?.map((warehouse, i) => {
               return (
                 <tr key={i} className="text-center">
                   <th className="px-0 pl-4">
@@ -132,33 +131,27 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
                       className="checkbox rounded-none"
                       name="checkbox"
                       onChange={(e) => {
-                        handleCheckbox(customer, e);
+                        handleCheckbox(warehouse, e);
                       }}
                     />
                   </th>
                   <td className="px-0">{i + 1}</td>
+                  <td className="px-0 mx-0">{warehouse?.warehouse_name}</td>
+                  <td className="px-0 mx-0">{warehouse?.warehouse_email}</td>
                   <td className="px-0 mx-0">
-                    {customer?.timestamp?.toDate().toLocaleDateString()}
+                    {warehouse?.warehouse_city},{warehouse?.warehouse_country}
                   </td>
-                  <td className="px-0 mx-0">{customer?.user_name}</td>
-                  <td className="px-0 mx-0">{customer?.user_gender}</td>
-                  <td className="px-0 mx-0">{customer?.user_contact}</td>
-                  <td className="px-0">{customer?.user_email}</td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
+                  <td className="px-0 mx-0"></td>
                   <td className="px-0 mx-0">
                     <div className="flex items-center justify-center gap-0">
-                      <label
-                        htmlFor="customerBlockPopup"
-                        onClick={() => setCurrentCustomer(customer)}
-                        className="btn rounded-full p-0 bg-whiteHigh text-blackMid border-none hover:bg-whiteHigh"
-                      >
-                        <span className="material-symbols-outlined p-0">
-                          block
-                        </span>
-                      </label>
                       <Link
                         to={{
-                          pathname: `/customeredit/${customer?.user_id}`,
-                          customer: customer,
+                          pathname: `/warehouseedit/${warehouse?.warehouse_id}`,
+                          warehouse: warehouse,
                         }}
                       >
                         <label
@@ -170,6 +163,16 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
                           </span>
                         </label>
                       </Link>
+
+                      <label
+                        htmlFor="warehouseDeletePopup"
+                        onClick={() => setCurrentWarehouse(warehouse)}
+                        className="btn rounded-full p-0 bg-whiteHigh  text-alertColor border-none hover:bg-whiteHigh"
+                      >
+                        <span className="material-symbols-outlined p-0">
+                          delete
+                        </span>
+                      </label>
                     </div>
                   </td>
                 </tr>
@@ -231,12 +234,12 @@ const CustomerAllTable = ({ rows, handleSelectCheckbox }) => {
           </ul>
         </div>
       </section>
-      <CustomerConfirmationBlockPopup
-        currentCustomer={currentCustomer}
+      <WarehouseConfirmationDeletePopup
+        currentWarehouse={currentWarehouse}
         clickHandlerForModals={clickHandlerForModals}
-      ></CustomerConfirmationBlockPopup>
+      ></WarehouseConfirmationDeletePopup>
     </div>
   );
 };
 
-export default CustomerAllTable;
+export default WarehouseAllTable;
