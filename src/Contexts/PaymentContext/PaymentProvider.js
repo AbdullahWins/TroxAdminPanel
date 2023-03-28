@@ -96,7 +96,6 @@ const PaymentProvider = ({ children }) => {
         await updateDoc(paymentDocRef, {
           gateway_status: status,
         });
-        fetchGateways();
         console.log("Gateway status updated successfully");
       } catch {
         console.error("Gateway document not found");
