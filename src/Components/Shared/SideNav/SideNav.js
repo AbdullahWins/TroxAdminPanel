@@ -496,9 +496,9 @@ const SideNav = () => {
               <Link className="w-full" to="/businessDeliveryManCharge">
                 <p>Delivery Man Charge</p>
               </Link>
-              <Link className="w-full" to="/businessNotificationSettings">
+              {/* <Link className="w-full" to="/businessNotificationSettings">
                 <p>Notification Settings</p>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

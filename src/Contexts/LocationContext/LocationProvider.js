@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
 import {
-  addDoc,
   collection,
   doc,
   getDocs,
