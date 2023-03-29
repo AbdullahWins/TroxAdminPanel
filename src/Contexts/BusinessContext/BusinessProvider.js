@@ -1,7 +1,13 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 export const BusinessContext = createContext();
@@ -9,70 +15,8 @@ const BusinessProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [allParcelTypes, setAllParcelTypes] = useState(false);
   const [currentParcelType, setCurrentParcelType] = useState(false);
-
-  //   //update one rider status
-  //   const updateRiderStatus = async (rider, status) => {
-  //     try {
-  //       const db = firebaseFirestore;
-  //       const riderDocRef = doc(db, "riderDetails", rider);
-  //       try {
-  //         await updateDoc(riderDocRef, {
-  //           rider_status: status,
-  //         });
-  //         console.log("Rider status updated successfully");
-  //       } catch {
-  //         console.error("Rider document not found");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error updating rider status", error);
-  //     }
-  //   };
-
-  //   //fetch one rider
-  //   const fetchSingleRider = async (riderId) => {
-  //     console.log(riderId);
-  //     try {
-  //       const ref = doc(firebaseFirestore, "riders", riderId);
-  //       const docSnap = await getDoc(ref);
-  //       if (docSnap.exists()) {
-  //         const rider = docSnap.data();
-  //         if (currentRider?.rider_id === rider?.rider_id) {
-  //           return;
-  //         } else {
-  //           setCurrentRider(rider);
-  //           console.log(rider);
-  //         }
-  //       } else {
-  //         console.log("No such doCUMent!");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching doCUMent!", error);
-  //     }
-  //   };
-
-  //update one rider
-  //   const updateSingleRider = async (newRider, id) => {
-  //     try {
-  //       const db = firebaseFirestore;
-  //       const riderDocRef = doc(db, "riderDetails", id);
-  //       try {
-  //         await updateDoc(riderDocRef, {
-  //           rider_name: newRider?.rider_name,
-  //           rider_email: newRider?.rider_email,
-  //           rider_contact: newRider?.rider_contact,
-  //           rider_dob: newRider?.rider_dob,
-  //           rider_gender: newRider?.rider_gender,
-  //           rider_work_location: newRider?.rider_work_location,
-  //           rider_address: newRider?.rider_address,
-  //         });
-  //         console.log("Rider updated successfully");
-  //       } catch {
-  //         console.error("Rider document not found");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error updating rider", error);
-  //     }
-  //   };
+  const [documentPrices, setDocumentPrices] = useState(null);
+  const [parcelPrices, setParcelPrices] = useState(null);
 
   // Upload images to Firebase Storage
   const uploadImages = async (images) => {
@@ -93,6 +37,43 @@ const BusinessProvider = ({ children }) => {
     console.log(imageUrls);
     return imageUrls;
   };
+
+  //fetch prices
+  // const fetchDocumentPrices = async () => {
+  //   setIsLoading(true);
+  //   await getDocs(doc(firebaseFirestore, "deliveryCost", "document")).then(
+  //     (querySnapshot) => {
+  //       const newData = querySnapshot.docs.map((doc) => ({
+  //         ...doc.data(),
+  //         id: doc.id,
+  //       }));
+  //       setDocumentPrices(newData);
+  //       console.log(documentPrices);
+  //       setIsLoading(false);
+  //     }
+  //   );
+  // };
+
+  useEffect(() => {
+    const fetchDocumentPrices = async () => {
+      setIsLoading(true);
+      await getDocs(collection(firebaseFirestore, "deliveryCost")).then(
+        (querySnapshot) => {
+          const newData = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          setDocumentPrices(newData[0]);
+          setParcelPrices(newData[1]);
+          setIsLoading(false);
+        }
+      );
+    };
+    fetchDocumentPrices();
+  }, []);
+
+  console.log(documentPrices);
+  console.log(parcelPrices);
 
   // add delivery cost
   const addDeliveryCost = async (deliveryCost) => {
@@ -186,6 +167,8 @@ const BusinessProvider = ({ children }) => {
   //exports
   const BusinessInfo = {
     isLoading,
+    documentPrices,
+    parcelPrices,
     setIsLoading,
     addDeliveryCost,
     addDeliveryManCharge,
