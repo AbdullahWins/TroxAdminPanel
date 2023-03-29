@@ -3,7 +3,7 @@ import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading"
 import TransactionsUnsettledBalanceTable from "../../Components/Tables/Transactions/TransactionsUnsettledBalanceTable";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 
-const OrdersCancelled = () => {
+const TransactionsUnsettledBalance = () => {
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [assignedOrders, setAssignedOrders] = useState([]);
   const {
@@ -52,7 +52,7 @@ const OrdersCancelled = () => {
       <div className="flex items-center justify-between p-3 bg-secondaryMain text-whiteHigh rounded-t-lg">
         <section className="flex items-center gap-4">
           <div>
-            <p className="font-bold text-2xl">Orders</p>
+            <p className="font-bold text-2xl">Transaction</p>
           </div>
           <div>
             <div className="dropdown dropdown-hover">
@@ -195,4 +195,4 @@ const OrdersCancelled = () => {
   );
 };
 
-export default OrdersCancelled;
+export default TransactionsUnsettledBalance;
