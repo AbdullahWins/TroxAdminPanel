@@ -42,6 +42,25 @@ const CustomerProvider = ({ children }) => {
     }
   };
 
+  //update one customer type
+  const updateCustomerType = async (customer, type) => {
+    try {
+      const db = firebaseFirestore;
+      const customerDocRef = doc(db, "userDetails", customer);
+      try {
+        await updateDoc(customerDocRef, {
+          user_type: type,
+        });
+        fetchCustomers();
+        console.log("customer type updated successfully");
+      } catch {
+        console.error("customer document not found");
+      }
+    } catch (error) {
+      console.error("Error updating customer type", error);
+    }
+  };
+
   //update state in modals
   const clickHandlerForModals = (customerId, status) => {
     updateCustomerStatus(customerId, status);
@@ -253,6 +272,7 @@ const CustomerProvider = ({ children }) => {
     filterCustomersByLocationType,
     reloadCurrentPage,
     updateCustomerStatus,
+    updateCustomerType,
     // updateManyCustomerStatus,
     isLoading,
     setIsLoading,

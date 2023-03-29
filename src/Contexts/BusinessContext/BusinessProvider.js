@@ -72,9 +72,6 @@ const BusinessProvider = ({ children }) => {
     fetchDocumentPrices();
   }, []);
 
-  console.log(documentPrices);
-  console.log(parcelPrices);
-
   // add delivery cost
   const addDeliveryCost = async (deliveryCost) => {
     try {

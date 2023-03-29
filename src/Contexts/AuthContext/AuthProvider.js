@@ -8,13 +8,16 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { firebaseApp } from "../../Firebase/firebase.config";
+import { firebaseApp, firebaseFirestore } from "../../Firebase/firebase.config";
+import { doc, getDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 const auth = getAuth(firebaseApp);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [dbUser, setDbUser] = useState(null);
+  const [userType, setUserType] = useState(null);
   const [loading, setLoading] = useState(true);
 
   //update existing user
@@ -22,6 +25,29 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return updateProfile(auth.currentUser, profile);
   };
+  console.log(userType);
+
+  // fetch user data from firebase
+  useEffect(() => {
+    const fetchUserFromDb = async (loggedInUser) => {
+      if (loggedInUser) {
+        try {
+          const ref = doc(firebaseFirestore, "userDetails", loggedInUser?.uid);
+          const docSnap = await getDoc(ref);
+          if (docSnap.exists()) {
+            const newUser = docSnap.data();
+            setUserType(newUser?.user_type);
+            setDbUser(newUser);
+          } else {
+            console.log("No such doCUMent!");
+          }
+        } catch (error) {
+          console.error("Error fetching doCUMent!", error);
+        }
+      }
+    };
+    fetchUserFromDb(user);
+  }, [user]);
 
   //login via third party providers
   const providerLogin = (provider) => {
@@ -62,6 +88,8 @@ const AuthProvider = ({ children }) => {
   //exports
   const authInfo = {
     user,
+    dbUser,
+    userType,
     setUser,
     updateUser,
     createNewUserEmail,
