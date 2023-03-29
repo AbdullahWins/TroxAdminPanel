@@ -43,9 +43,9 @@ const OrdersCancelled = () => {
     setAssignedOrders(filteredOrdersByStatus);
   }, [filteredOrdersBySearch]);
 
-  const handleAllCheckbox = () => {
-    console.log("selected all");
-  };
+  // const handleAllCheckbox = () => {
+  //   console.log("selected all");
+  // };
 
   return (
     <div className="overflow-x-auto w-full py-10 pr-10">

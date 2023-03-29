@@ -5,9 +5,9 @@ export const StaffContext = createContext();
 const StaffProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [allStaffs, setAllStaffs] = useState(false);
-//   const [searchBarValue, setSearchBarValue] = useState(null);
-//   const [currentStaff, setCurrentStaff] = useState(null);
-//   const [filteredStaffsBySearch, setFilteredStaffsBySearch] = useState(false);
+  //   const [searchBarValue, setSearchBarValue] = useState(null);
+  //   const [currentStaff, setCurrentStaff] = useState(null);
+  //   const [filteredStaffsBySearch, setFilteredStaffsBySearch] = useState(false);
 
   //   const [currentStaffType, setCurrentStaffType] = useState(false);
   const { customers } = useContext(CustomerContext);
@@ -25,6 +25,7 @@ const StaffProvider = ({ children }) => {
   const StaffInfo = {
     isLoading,
     setIsLoading,
+    allStaffs,
   };
 
   return (
