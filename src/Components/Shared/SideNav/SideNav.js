@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./SideNav.css";
-import avater from "../../../Assets/img/profile/avater.png";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 
 const SideNav = () => {
@@ -9,7 +8,7 @@ const SideNav = () => {
   const [canShow, setCanShow] = useState(false);
   const [isActive, setIsActive] = useState("dashboard");
 
-  const { userType } = useContext(AuthContext);
+  const { dbUser, userType } = useContext(AuthContext);
 
   // const navigate = useNavigate();
 
@@ -59,7 +58,11 @@ const SideNav = () => {
         className={`flex items-center justify-between p-3 gap-2 bg-secondaryMainLightest rounded-tr-lg`}
       >
         <div className="min-w-12">
-          <img className="w-12" src={avater} alt="" />
+          <img
+            className="w-12 h-12 rounded-full"
+            src={dbUser?.user_image}
+            alt=""
+          />
         </div>
         <div
           className={`${
@@ -67,16 +70,20 @@ const SideNav = () => {
           } flex items-start justify-between gap-4 overflow-auto`}
         >
           <div>
-            <p className="font-black text-blackMid">William</p>
-            <p className="text-sm text-blackMid">Super Admin</p>
+            <p className="font-black text-blackMid">{dbUser?.user_name}</p>
+            <p className="text-sm text-blackMid">{dbUser?.user_type}</p>
           </div>
-          <div>
-            <button onClick={toggleSideNav} className="btn-btn-ghost">
-              <span className="material-symbols-outlined text-blackMid">
-                menu_open
-              </span>
-            </button>
-          </div>
+        </div>
+        <div
+          className={`${
+            canShow ? "hidden" : "block"
+          } flex items-start justify-between gap-4 overflow-auto`}
+        >
+          <button onClick={toggleSideNav} className="btn-btn-ghost">
+            <span className="material-symbols-outlined text-blackMid">
+              menu_open
+            </span>
+          </button>
         </div>
       </section>
       {/* routes */}

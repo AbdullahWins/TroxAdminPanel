@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import avater from "../../../Assets/img/profile/avater.png";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 
 const TopNav = () => {
-  const { logout } = useContext(AuthContext);
+  const { dbUser, logout } = useContext(AuthContext);
   return (
     <div className="navbar bg-base-100 px-6 py-3">
       {/* top nav left */}
@@ -96,8 +95,8 @@ const TopNav = () => {
         {/* user avater */}
         <div className="dropdown dropdown-end">
           <label tabIndex={3} className="btn btn-ghost btn-circle avatar">
-            <div className="w-12 rounded-full">
-              <img src={avater} alt="" />
+            <div className="w-12 h-12 rounded-full">
+              <img src={dbUser?.user_image} alt="" />
             </div>
           </label>
           <ul
