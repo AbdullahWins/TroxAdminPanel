@@ -158,7 +158,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="domesticBellowOnePrice"
-                          defaultValue={documentPrices?.domestic_five_to_ten}
+                          defaultValue={documentPrices?.domestic_bellow_one}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -168,7 +168,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="domesticOneToFivePrice"
-                          defaultValue={documentPrices?.domestic_five_to_ten}
+                          defaultValue={documentPrices?.domestic_one_to_five}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -197,7 +197,7 @@ const BusinessDeliveryCost = () => {
                           type="number"
                           name="internationalBellowOnePrice"
                           defaultValue={
-                            documentPrices?.international_five_to_ten
+                            documentPrices?.international_bellow_one
                           }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
@@ -209,7 +209,7 @@ const BusinessDeliveryCost = () => {
                           type="number"
                           name="internationalOneToFivePrice"
                           defaultValue={
-                            documentPrices?.international_five_to_ten
+                            documentPrices?.international_one_to_five
                           }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
