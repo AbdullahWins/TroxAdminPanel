@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { CustomerContext } from "../../Contexts/CustomerContext/CustomerProvider";
 import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
 import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
 import HomeTopCard from "../Cards/HomeTopCard";
@@ -7,6 +8,7 @@ import Chart from "../Charts/Chart";
 const HomeBody = () => {
   const { orders, deliveredOrderCount } = useContext(OrderContext);
   const { riders } = useContext(DeliveryContext);
+  const { customers } = useContext(CustomerContext);
   const data = [
     {
       title: "Total Placed Order",
@@ -18,7 +20,11 @@ const HomeBody = () => {
       number: deliveredOrderCount,
       color: "bg-secondaryMain",
     },
-    { title: "Total Customers", number: 36, color: "bg-infoColor" },
+    {
+      title: "Total Customers",
+      number: customers?.length,
+      color: "bg-infoColor",
+    },
     {
       title: "Total Delivery Man",
       number: riders?.length,
