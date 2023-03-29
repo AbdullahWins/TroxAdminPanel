@@ -89,27 +89,29 @@ const SideNav = () => {
       {/* routes */}
       <section className="flex flex-col justify-start items-start gap-1">
         {/* dashboard */}
-        <div
-          onClick={() => activateMenu("dashboard")}
-          className={`px-2 py-4 w-full ${
-            isActive === "dashboard"
-              ? "bg-primaryMainLightest text-primaryMain"
-              : null
-          }`}
-        >
-          <Link
-            className={`flex items-center ${
-              isClosed ? "justify-center" : "justify-start pl-2"
+        {(userType === "Admin" || userType === "Manager") && (
+          <div
+            onClick={() => activateMenu("dashboard")}
+            className={`px-2 py-4 w-full ${
+              isActive === "dashboard"
+                ? "bg-primaryMainLightest text-primaryMain"
+                : null
             }`}
-            to="/"
           >
-            <span className="material-symbols-outlined text-blackMid">
-              dashboard
-            </span>
-            &nbsp;
-            <p className={`${canShow ? "hidden" : "block"}`}>Dashboard</p>
-          </Link>
-        </div>
+            <Link
+              className={`flex items-center ${
+                isClosed ? "justify-center" : "justify-start pl-2"
+              }`}
+              to="/"
+            >
+              <span className="material-symbols-outlined text-blackMid">
+                dashboard
+              </span>
+              &nbsp;
+              <p className={`${canShow ? "hidden" : "block"}`}>Dashboard</p>
+            </Link>
+          </div>
+        )}
         {/* order */}
         {(userType === "Admin" || userType === "Manager") && (
           <div
