@@ -19,7 +19,7 @@ const StaffProvider = ({ children }) => {
     setAllStaffs(specialUsers);
   }, [customers]);
 
-  console.log(allStaffs);
+  // console.log(allStaffs);
 
   //exports
   const StaffInfo = {
