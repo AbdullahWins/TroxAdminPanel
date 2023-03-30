@@ -25,7 +25,6 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return updateProfile(auth.currentUser, profile);
   };
-  console.log(userType);
 
   // fetch user data from firebase
   const fetchUserFromDb = async (loggedInUser) => {
