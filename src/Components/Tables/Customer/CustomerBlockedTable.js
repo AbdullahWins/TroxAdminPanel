@@ -48,8 +48,6 @@ const CustomerBlockedTable = ({ rows, handleSelectCheckbox }) => {
   //   handleSelectAllCheckbox(orders, e);
   // };
 
-  console.log(currentRows);
-
   const renderPagination = () => {
     const pageNumbers = [];
 

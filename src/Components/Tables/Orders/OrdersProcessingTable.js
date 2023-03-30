@@ -136,7 +136,7 @@ const OrdersProcessingTable = ({
                     {order?.timestamp?.toDate().toLocaleDateString()}
                   </td>
                   <td className="px-0 mx-0">{order.sender_name}</td>
-                  <td className="px-0 mx-0">${order.totalAmount}.00</td>
+                  <td className="px-0 mx-0">${order.total_price}.00</td>
                   <td className="px-0">{order.sender_address}</td>
                   <td className="px-0 mx-0">{order.receiver_address}</td>
                   <td className="px-0 py-0">

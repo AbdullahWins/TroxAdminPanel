@@ -84,14 +84,14 @@ const PaymentGatewayEdit = () => {
                 </div>
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Status:</p>
-                  <input
-                    required
-                    type="text"
+
+                  <select
                     name="gateway_status"
-                    defaultValue={currentGateway?.gateway_status}
-                    placeholder="rider contact"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
+                    className="select bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
+                  >
+                    <option value={"Active"}>Active</option>
+                    <option value={"Inactive"}>Inactive</option>
+                  </select>
                 </div>
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Secret&nbsp;Key:</p>

@@ -1,10 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
 import {
-  addDoc,
   collection,
   doc,
   getDocs,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 
@@ -149,8 +149,9 @@ const LocationProvider = ({ children }) => {
   const addCountry = async (countryData) => {
     setIsLoading(true);
     const countriesCollection = collection(firebaseFirestore, "Countries");
-    await addDoc(countriesCollection, countryData)
-      .then((docRef) => {
+    const countryDocRef = doc(countriesCollection, countryData?.name);
+    await setDoc(countryDocRef, countryData)
+      .then(() => {
         const newCountry = { ...countryData };
         setStates((prevCountries) => [...prevCountries, newCountry]);
         setFilteredCountriesBySearch((prevCountries) => [
@@ -174,8 +175,9 @@ const LocationProvider = ({ children }) => {
       selectedCountry,
       "States"
     );
-    await addDoc(statesCollection, stateData)
-      .then((docRef) => {
+    const stateDocRef = doc(statesCollection, stateData.name);
+    await setDoc(stateDocRef, stateData)
+      .then(() => {
         const newState = { ...stateData };
         setStates((prevStates) => [...prevStates, newState]);
         setFilteredStatesBySearch((prevStates) => [...prevStates, newState]);
@@ -198,8 +200,9 @@ const LocationProvider = ({ children }) => {
       selectedState,
       "Cities"
     );
-    await addDoc(citiesCollection, cityData)
-      .then((docRef) => {
+    const cityDocRef = doc(citiesCollection, cityData.name);
+    await setDoc(cityDocRef, cityData)
+      .then(() => {
         const newCity = { ...cityData };
         setCities((prevCities) => [...prevCities, newCity]);
         setFilteredCitiesBySearch((prevCities) => [...prevCities, newCity]);

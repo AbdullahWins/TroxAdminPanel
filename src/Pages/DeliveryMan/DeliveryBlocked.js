@@ -114,7 +114,7 @@ const DeliveryBlocked = () => {
                 <li>
                   <button
                     onClick={() => {
-                      handleLocationTypeToggle("Long Distance");
+                      handleLocationTypeToggle("Domestic");
                     }}
                     className="active:bg-primaryMain"
                   >

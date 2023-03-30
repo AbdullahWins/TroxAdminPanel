@@ -25,7 +25,7 @@ const HomeOrders = () => {
                 return (
                   <tr key={i}>
                     <th>{order?.order_id}</th>
-                    <td>{order?.timestamp?.seconds}</td>
+                    <td>{order?.timestamp?.toDate().toLocaleDateString()}</td>
                     <td>{order?.sender_name}</td>
                     <td>{order?.id}</td>
                   </tr>

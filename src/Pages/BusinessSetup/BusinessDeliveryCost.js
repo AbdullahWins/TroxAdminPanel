@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { BusinessContext } from "../../Contexts/BusinessContext/BusinessProvider";
 
 const BusinessDeliveryCost = () => {
-  const { addDeliveryCost } = useContext(BusinessContext);
+  const { addDeliveryCost, documentPrices } = useContext(BusinessContext);
   const [selectedValue, setSelectedValue] = useState("parcel");
 
   const handleChange = (event) => {
@@ -18,9 +18,12 @@ const BusinessDeliveryCost = () => {
     const domesticBellowOnePrice = form?.domesticBellowOnePrice?.value;
     const domesticOneToFivePrice = form?.domesticOneToFivePrice?.value;
     const domesticFiveToTenPrice = form?.domesticFiveToTenPrice?.value;
-    const internationalBellowOnePrice = form?.internationalBellowOnePrice?.value;
-    const internationalOneToFivePrice = form?.internationalOneToFivePrice?.value;
-    const internationalFiveToTenPrice = form?.internationalFiveToTenPrice?.value;
+    const internationalBellowOnePrice =
+      form?.internationalBellowOnePrice?.value;
+    const internationalOneToFivePrice =
+      form?.internationalOneToFivePrice?.value;
+    const internationalFiveToTenPrice =
+      form?.internationalFiveToTenPrice?.value;
     const packageType = selectedValue;
 
     const DeliveryCost = {
@@ -117,7 +120,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="localBellowOnePrice"
-                          placeholder="$15.00"
+                          defaultValue={documentPrices?.local_bellow_one}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -127,7 +130,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="localOneToFivePrice"
-                          placeholder="$25:00"
+                          defaultValue={documentPrices?.local_one_to_five}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -137,7 +140,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="localFiveToTenPrice"
-                          placeholder="$50.00"
+                          defaultValue={documentPrices?.local_five_to_ten}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -155,7 +158,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="domesticBellowOnePrice"
-                          placeholder="$20.00"
+                          defaultValue={documentPrices?.domestic_bellow_one}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -165,7 +168,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="domesticOneToFivePrice"
-                          placeholder="$30.00"
+                          defaultValue={documentPrices?.domestic_one_to_five}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -175,7 +178,7 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="domesticFiveToTenPrice"
-                          placeholder="$60.00"
+                          defaultValue={documentPrices?.domestic_five_to_ten}
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -193,7 +196,9 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="internationalBellowOnePrice"
-                          placeholder="$40.00"
+                          defaultValue={
+                            documentPrices?.international_bellow_one
+                          }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -203,7 +208,9 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="internationalOneToFivePrice"
-                          placeholder="$60.00"
+                          defaultValue={
+                            documentPrices?.international_one_to_five
+                          }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
@@ -213,7 +220,9 @@ const BusinessDeliveryCost = () => {
                           required
                           type="number"
                           name="internationalFiveToTenPrice"
-                          placeholder="$120.00"
+                          defaultValue={
+                            documentPrices?.international_five_to_ten
+                          }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-24 text-right"
                         />
                       </div>
