@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
+// import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 import { WarehouseContext } from "../../Contexts/WarehouseContext/WarehouseProvider";
 
 const WarehouseAddNew = () => {
-  const { createNewUserEmail } = useContext(AuthContext);
+  // const { createNewUserEmail } = useContext(AuthContext);
   const { addOneWarehouse } = useContext(WarehouseContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,16 +34,16 @@ const WarehouseAddNew = () => {
     };
     if (warehousePassword === warehousePasswordConfirm) {
       try {
-        createNewUserEmail(warehouseEmail, warehousePassword);
+        // createNewUserEmail(warehouseEmail, warehousePassword);
         addOneWarehouse(newWarehouse);
         setTimeout(() => {
           navigate(from, { replace: true });
-        }, 5000);
+        }, 3000);
       } catch (error) {
         console.log(error.message);
       }
     } else {
-      console.log("password mila bhai");
+      console.log("password nhi mil rha bhai");
     }
   };
 
