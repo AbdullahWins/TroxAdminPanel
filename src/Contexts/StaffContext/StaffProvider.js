@@ -22,7 +22,7 @@ const StaffProvider = ({ children }) => {
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [currentStaff, setCurrentStaff] = useState(null);
   const [filteredStaffsBySearch, setFilteredStaffsBySearch] = useState([]);
-  const { customers } = useContext(CustomerContext);
+  const { customers, fetchCustomers } = useContext(CustomerContext);
 
   //update one Staff status
   const updateStaffStatus = async (staff, status) => {
@@ -103,8 +103,9 @@ const StaffProvider = ({ children }) => {
           user_gender: newStaff?.user_gender,
           user_country: newStaff?.user_country,
           user_address: newStaff?.user_address,
+          user_type: newStaff?.user_type,
         });
-        fetchStaffs();
+        fetchCustomers();
         console.log("staff updated successfully");
       } catch {
         console.error("staff document not found");

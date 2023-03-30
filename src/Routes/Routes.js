@@ -42,6 +42,7 @@ import WithdrawPending from "../Pages/WithdrawRequest/WithdrawPending";
 import CustomerEdit from "../Pages/EditPages/CustomerEdit";
 import WarehouseEdit from "../Pages/EditPages/WarehouseEdit";
 import PaymentGatewayAdd from "../Pages/PaymentGateway/PaymentGatewayAdd";
+import StaffEdit from "../Pages/EditPages/StaffEdit";
 
 export const router = createBrowserRouter([
   {
@@ -184,6 +185,10 @@ export const router = createBrowserRouter([
       {
         path: "/staffRole",
         element: <StaffRole></StaffRole>,
+      },
+      {
+        path: "/staffedit/:id",
+        element: <StaffEdit></StaffEdit>,
       },
 
       //withdraw request
