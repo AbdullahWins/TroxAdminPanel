@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
+import { v4 as uuidv4 } from "uuid";
 import {
   // collection,
   doc,
   getDoc,
+  serverTimestamp,
+  setDoc,
   //   getDoc,
   // getDocs,
   //   serverTimestamp,
@@ -86,6 +89,35 @@ const StaffProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error fetching doCUMent!", error);
+    }
+  };
+
+  // add one staff
+  const addOneStaff = async (newStaff) => {
+    try {
+      const db = firebaseFirestore;
+      const userId = uuidv4();
+      const timeStamp = serverTimestamp();
+      const riderDocRef = doc(db, "userDetails", userId);
+      try {
+        await setDoc(riderDocRef, {
+          user_name: newStaff?.user_name,
+          user_email: newStaff?.user_email,
+          user_contact: newStaff?.user_contact,
+          user_dob: newStaff?.user_dob,
+          user_gender: newStaff?.user_gender,
+          user_country: newStaff?.user_country,
+          user_address: newStaff?.user_address,
+          user_type: newStaff?.user_type,
+          timestamp: timeStamp,
+        });
+        fetchCustomers();
+        console.log("staff successfully added");
+      } catch (error) {
+        console.error("Error adding staff", error);
+      }
+    } catch (error) {
+      console.error("Error adding staff", error);
     }
   };
 
@@ -190,7 +222,7 @@ const StaffProvider = ({ children }) => {
     updateSingleStaff,
     customers,
     staffs,
-    // addOneStaff,
+    addOneStaff,
     allCustomers,
     setAllCustomers,
     searchBarValue,
