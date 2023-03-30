@@ -15,6 +15,7 @@ const BusinessProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [allParcelTypes, setAllParcelTypes] = useState(false);
   const [currentParcelType, setCurrentParcelType] = useState(false);
+  const [deliveryManCharges, setDeliveryManCharges] = useState(null);
   const [documentPrices, setDocumentPrices] = useState(null);
   const [parcelPrices, setParcelPrices] = useState(null);
 
@@ -54,6 +55,7 @@ const BusinessProvider = ({ children }) => {
   //   );
   // };
 
+  //fetch delivery cost
   useEffect(() => {
     const fetchDocumentPrices = async () => {
       setIsLoading(true);
@@ -70,6 +72,24 @@ const BusinessProvider = ({ children }) => {
       );
     };
     fetchDocumentPrices();
+  }, []);
+
+  //fetch delivery man charge
+  useEffect(() => {
+    const fetchDeliveryManCharge = async () => {
+      setIsLoading(true);
+      await getDocs(collection(firebaseFirestore, "deliveryManCharge")).then(
+        (querySnapshot) => {
+          const newData = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          setDeliveryManCharges(newData[0]);
+          setIsLoading(false);
+        }
+      );
+    };
+    fetchDeliveryManCharge();
   }, []);
 
   // add delivery cost
@@ -164,6 +184,7 @@ const BusinessProvider = ({ children }) => {
   //exports
   const BusinessInfo = {
     isLoading,
+    deliveryManCharges,
     documentPrices,
     parcelPrices,
     setIsLoading,

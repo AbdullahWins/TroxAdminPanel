@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { BusinessContext } from "../../Contexts/BusinessContext/BusinessProvider";
 
 const BusinessDeliveryManCharge = () => {
-  const { addDeliveryManCharge } = useContext(BusinessContext);
+  const { addDeliveryManCharge, deliveryManCharges } =
+    useContext(BusinessContext);
 
   const handleSubmitBtn = async (event) => {
     event.preventDefault();
@@ -99,7 +100,9 @@ const BusinessDeliveryManCharge = () => {
                           required
                           type="number"
                           name="localDeliveryCharge"
-                          placeholder="40%"
+                          defaultValue={
+                            deliveryManCharges?.local_delivery_charge
+                          }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-20 text-right"
                         />
                       </div>
@@ -118,7 +121,9 @@ const BusinessDeliveryManCharge = () => {
                           required
                           type="number"
                           name="domesticDeliveryCharge"
-                          placeholder="20%"
+                          defaultValue={
+                            deliveryManCharges?.domestic_delivery_charge
+                          }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-20 text-right"
                         />
                       </div>
@@ -137,7 +142,9 @@ const BusinessDeliveryManCharge = () => {
                           required
                           type="number"
                           name="internationalDeliveryCharge"
-                          placeholder="20%"
+                          defaultValue={
+                            deliveryManCharges?.international_delivery_charge
+                          }
                           className="input border-2 border-blackLow border-opacity-20 p-1 focus:outline-none w-20 text-right"
                         />
                       </div>
