@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { firebaseFirestore } from "../../Firebase/firebase.config";
+import { v4 as uuidv4 } from "uuid";
 import {
   // collection,
   doc,
   getDoc,
+  serverTimestamp,
+  setDoc,
   //   getDoc,
   // getDocs,
   //   serverTimestamp,
@@ -22,7 +25,7 @@ const StaffProvider = ({ children }) => {
   const [searchBarValue, setSearchBarValue] = useState(null);
   const [currentStaff, setCurrentStaff] = useState(null);
   const [filteredStaffsBySearch, setFilteredStaffsBySearch] = useState([]);
-  const { customers } = useContext(CustomerContext);
+  const { customers, fetchCustomers } = useContext(CustomerContext);
 
   //update one Staff status
   const updateStaffStatus = async (staff, status) => {
@@ -89,6 +92,35 @@ const StaffProvider = ({ children }) => {
     }
   };
 
+  // add one staff
+  const addOneStaff = async (newStaff) => {
+    try {
+      const db = firebaseFirestore;
+      const userId = uuidv4();
+      const timeStamp = serverTimestamp();
+      const riderDocRef = doc(db, "userDetails", userId);
+      try {
+        await setDoc(riderDocRef, {
+          user_name: newStaff?.user_name,
+          user_email: newStaff?.user_email,
+          user_contact: newStaff?.user_contact,
+          user_dob: newStaff?.user_dob,
+          user_gender: newStaff?.user_gender,
+          user_country: newStaff?.user_country,
+          user_address: newStaff?.user_address,
+          user_type: newStaff?.user_type,
+          timestamp: timeStamp,
+        });
+        fetchCustomers();
+        console.log("staff successfully added");
+      } catch (error) {
+        console.error("Error adding staff", error);
+      }
+    } catch (error) {
+      console.error("Error adding staff", error);
+    }
+  };
+
   // update one Staff
   const updateSingleStaff = async (newStaff, id) => {
     try {
@@ -103,8 +135,9 @@ const StaffProvider = ({ children }) => {
           user_gender: newStaff?.user_gender,
           user_country: newStaff?.user_country,
           user_address: newStaff?.user_address,
+          user_type: newStaff?.user_type,
         });
-        fetchStaffs();
+        fetchCustomers();
         console.log("staff updated successfully");
       } catch {
         console.error("staff document not found");
@@ -189,7 +222,7 @@ const StaffProvider = ({ children }) => {
     updateSingleStaff,
     customers,
     staffs,
-    // addOneStaff,
+    addOneStaff,
     allCustomers,
     setAllCustomers,
     searchBarValue,

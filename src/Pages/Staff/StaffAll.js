@@ -1,29 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import StaffAllTable from "../../Components/Tables/Staff/StaffAllTable";
-import { CustomerContext } from "../../Contexts/CustomerContext/CustomerProvider";
 import { StaffContext } from "../../Contexts/StaffContext/StaffProvider";
 
 const StaffAll = () => {
   const [selectedStaffs, setSelectedStaffs] = useState([]);
   const [approvedStaffs, setApprovedStaffs] = useState([]);
-  const { staffs } = useContext(StaffContext);
   const {
     isLoading,
-    fetchStaffs,
     searchBarValue,
-    filteredStaffsBySearch,
-    filterStaffsBySearch,
     setCurrentStaff,
     updateManyStaffStatus,
-  } = useContext(CustomerContext);
+    fetchStaffs,
+    // staffs,
+    filteredStaffsBySearch,
+    filterStaffsBySearch,
+  } = useContext(StaffContext);
 
   const handleSelectCheckbox = (staff, e) => {
     const selectedStaffsList = [...selectedStaffs];
     if (e.target.checked) {
-      selectedStaffsList.push(staff?.used_id);
+      selectedStaffsList.push(staff?.user_id);
     } else {
-      const index = selectedStaffsList.indexOf(staff?.used_id);
+      const index = selectedStaffsList.indexOf(staff?.user_id);
       if (index !== -1) {
         selectedStaffsList.splice(index, 1);
       }
@@ -118,7 +117,7 @@ const StaffAll = () => {
         <OrdersLoading></OrdersLoading>
       ) : (
         <StaffAllTable
-          rows={staffs}
+          rows={filteredStaffsBySearch}
           approvedStaffs={approvedStaffs}
           setCurrentCustomer={setCurrentStaff}
           handleSelectCheckbox={handleSelectCheckbox}
