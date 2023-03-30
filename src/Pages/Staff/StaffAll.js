@@ -12,7 +12,7 @@ const StaffAll = () => {
     setCurrentStaff,
     updateManyStaffStatus,
     fetchStaffs,
-    staffs,
+    // staffs,
     filteredStaffsBySearch,
     filterStaffsBySearch,
   } = useContext(StaffContext);
