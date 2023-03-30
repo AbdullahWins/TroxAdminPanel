@@ -47,21 +47,23 @@ const PaymentGatewayAdd = () => {
               <div className="flex flex-col w-full items-center justify-center gap-2">
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Payment&nbsp;Method:</p>
-                  <input
-                    type="text"
+                  <select
                     name="gateway_name"
-                    placeholder="Method"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
+                    className="select bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
+                  >
+                    <option value={"Paypal"}>Paypal</option>
+                    <option value={"Stripe"}>Stripe</option>
+                  </select>
                 </div>
                 <div className="flex items-center justify-center gap-1">
-                  <p className=" w-96 text-end">Status:</p>
-                  <input
-                    type="text"
+                  <p className="w-96 text-end">Status:</p>
+                  <select
                     name="gateway_status"
-                    placeholder="Status"
-                    className="input bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
-                  />
+                    className="select bg-whiteHigh border-2 border-blackLow border-opacity-25 focus:outline-none w-96 font-bold"
+                  >
+                    <option value={"Active"}>Active</option>
+                    <option value={"Inactive"}>Inactive</option>
+                  </select>
                 </div>
                 <div className="flex items-center justify-center gap-1">
                   <p className=" w-96 text-end">Secret&nbsp;Key:</p>

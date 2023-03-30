@@ -126,7 +126,6 @@ const PaymentProvider = ({ children }) => {
         console.error("Error uploading image", error);
       }
     }
-    console.log(imageUrls);
     return imageUrls;
   };
 

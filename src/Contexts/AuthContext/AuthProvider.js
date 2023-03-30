@@ -28,26 +28,24 @@ const AuthProvider = ({ children }) => {
   console.log(userType);
 
   // fetch user data from firebase
-  useEffect(() => {
-    const fetchUserFromDb = async (loggedInUser) => {
-      if (loggedInUser) {
-        try {
-          const ref = doc(firebaseFirestore, "userDetails", loggedInUser?.uid);
-          const docSnap = await getDoc(ref);
-          if (docSnap.exists()) {
-            const newUser = docSnap.data();
-            setUserType(newUser?.user_type);
-            setDbUser(newUser);
-          } else {
-            console.log("No such doCUMent!");
-          }
-        } catch (error) {
-          console.error("Error fetching doCUMent!", error);
+  const fetchUserFromDb = async (loggedInUser) => {
+    setLoading(true);
+    if (loggedInUser) {
+      try {
+        const ref = doc(firebaseFirestore, "userDetails", loggedInUser?.uid);
+        const docSnap = await getDoc(ref);
+        if (docSnap.exists()) {
+          const newUser = docSnap.data();
+          setUserType(newUser?.user_type);
+          setDbUser(newUser);
+        } else {
+          console.log("No such doCUMent!");
         }
+      } catch (error) {
+        console.error("Error fetching doCUMent!", error);
       }
-    };
-    fetchUserFromDb(user);
-  }, [user]);
+    }
+  };
 
   //login via third party providers
   const providerLogin = (provider) => {
@@ -77,6 +75,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      fetchUserFromDb(currentUser);
       setLoading(false);
     });
 
